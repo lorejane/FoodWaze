@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2018 at 09:39 PM
+-- Generation Time: Oct 20, 2018 at 10:07 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `foodwaze`
 --
+CREATE DATABASE IF NOT EXISTS `foodwaze` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `foodwaze`;
 
 -- --------------------------------------------------------
 
@@ -26,11 +28,27 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `CategoryId` int(10) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(50) NOT NULL,
   PRIMARY KEY (`CategoryId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Truncate table before insert `category`
+--
+
+TRUNCATE TABLE `category`;
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`CategoryId`, `CategoryName`) VALUES
+(1, 'Meal'),
+(2, 'Pasta'),
+(3, 'Dessert'),
+(4, 'Drinks');
 
 -- --------------------------------------------------------
 
@@ -38,28 +56,33 @@ CREATE TABLE IF NOT EXISTS `category` (
 -- Table structure for table `employee`
 --
 
+DROP TABLE IF EXISTS `employee`;
 CREATE TABLE IF NOT EXISTS `employee` (
   `Lastname` varchar(50) NOT NULL,
-  `EmployeeId` int(10) NOT NULL AUTO_INCREMENT,
   `EmployeeAccount` varchar(50) NOT NULL,
   `Firstname` varchar(50) NOT NULL,
-  `PositionId` enum('manager','cashier') NOT NULL DEFAULT 'cashier',
+  `PositionId` int(11) NOT NULL,
   `StallId` int(10) NOT NULL,
   `Password` varchar(50) NOT NULL,
+  `EmployeeId` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`EmployeeId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
+--
+-- Truncate table before insert `employee`
+--
+
+TRUNCATE TABLE `employee`;
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`Lastname`, `EmployeeId`, `EmployeeAccount`, `Firstname`, `PositionId`, `StallId`, `Password`) VALUES
-('', 3, 'jane', '', 'manager', 0, '123'),
-('', 4, 'arya', '', 'manager', 0, 'lore'),
-('', 7, 'robs', '', 'cashier', 0, '123'),
-('', 8, 'robs', '', 'cashier', 1, '123'),
-('', 9, 'pao', '', 'cashier', 0, '123'),
-('', 10, 'lyn', '', 'cashier', 0, 'lore');
+INSERT INTO `employee` (`Lastname`, `EmployeeAccount`, `Firstname`, `PositionId`, `StallId`, `Password`, `EmployeeId`) VALUES
+('', 'admin', '', 1, 0, 'admin', 1),
+('stark', 'arya', 'masie', 3, 1, '123', 2),
+('', 'lyn', '', 2, 1, '123', 3),
+('', 'lore', '', 3, 1, 'lore', 4),
+('', 'admin2', '', 1, 0, '123', 5);
 
 -- --------------------------------------------------------
 
@@ -67,18 +90,25 @@ INSERT INTO `employee` (`Lastname`, `EmployeeId`, `EmployeeAccount`, `Firstname`
 -- Table structure for table `foodcourt`
 --
 
+DROP TABLE IF EXISTS `foodcourt`;
 CREATE TABLE IF NOT EXISTS `foodcourt` (
   `FoodcourtId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   PRIMARY KEY (`FoodcourtId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Truncate table before insert `foodcourt`
+--
+
+TRUNCATE TABLE `foodcourt`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `menu`
 --
 
+DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
   `MenuId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
@@ -86,7 +116,22 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `Price` int(10) NOT NULL,
   `CategoryId` int(10) NOT NULL,
   PRIMARY KEY (`MenuId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Truncate table before insert `menu`
+--
+
+TRUNCATE TABLE `menu`;
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`MenuId`, `Name`, `StallId`, `Price`, `CategoryId`) VALUES
+(1, 'Spaghetti', 1, 85, 2),
+(2, 'Chickenw/Rice', 1, 105, 1),
+(3, 'Carbonara', 1, 95, 2),
+(4, 'Coca Cola', 1, 35, 4);
 
 -- --------------------------------------------------------
 
@@ -94,6 +139,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
 -- Table structure for table `order`
 --
 
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `OrderId` int(11) NOT NULL AUTO_INCREMENT,
   `StallId` int(11) NOT NULL,
@@ -102,37 +148,54 @@ CREATE TABLE IF NOT EXISTS `order` (
   PRIMARY KEY (`OrderId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Truncate table before insert `order`
+--
+
+TRUNCATE TABLE `order`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `orderdetails`
 --
 
+DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE IF NOT EXISTS `orderdetails` (
   `OrderId` int(10) NOT NULL,
   `MenuId` int(10) NOT NULL,
   `Quantity` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Truncate table before insert `orderdetails`
+--
+
+TRUNCATE TABLE `orderdetails`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `position`
 --
 
+DROP TABLE IF EXISTS `position`;
 CREATE TABLE IF NOT EXISTS `position` (
   `PositionId` int(10) NOT NULL,
   `Name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Truncate table before insert `position`
+--
+
+TRUNCATE TABLE `position`;
+--
 -- Dumping data for table `position`
 --
 
 INSERT INTO `position` (`PositionId`, `Name`) VALUES
-(1, 'admin'),
-(2, 'manager'),
-(3, 'cashier');
+(2, 'Manager'),
+(3, 'Cashier'),
+(1, 'Admin');
 
 -- --------------------------------------------------------
 
@@ -140,35 +203,25 @@ INSERT INTO `position` (`PositionId`, `Name`) VALUES
 -- Table structure for table `stall`
 --
 
+DROP TABLE IF EXISTS `stall`;
 CREATE TABLE IF NOT EXISTS `stall` (
   `StallId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   PRIMARY KEY (`StallId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Table structure for table `user`
+-- Truncate table before insert `stall`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
-  `user_id` int(10) NOT NULL AUTO_INCREMENT,
-  `type` enum('manager','admin') DEFAULT 'manager',
-  `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
-
+TRUNCATE TABLE `stall`;
 --
--- Dumping data for table `user`
+-- Dumping data for table `stall`
 --
 
-INSERT INTO `user` (`user_id`, `type`, `username`, `password`) VALUES
-(0, 'admin', 'admin', 'admin'),
-(20, 'manager', 'lore', '123'),
-(21, 'manager', 'robs', 'robs'),
-(22, 'manager', '', '');
+INSERT INTO `stall` (`StallId`, `Name`) VALUES
+(1, 'Lydia''s'),
+(2, 'Kkimbop');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
