@@ -36,6 +36,21 @@ class Manager extends CI_Controller {
 
 	}
 
+	public function GenerateTable(){
+        $json = '{ "data": [';
+        foreach($this->position_model->getEmployee() as $data){
+            $json .= '['
+                .'"'.$data->EmployeeAccount.'",'
+                .'"'.$data->EmployeeId.'",'
+                .'"'.$data->PositionId.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
 	public function new_employee(){
 		$this->load->view('manager/inc/header');
 		$this->load->view('manager/inc/footer');
