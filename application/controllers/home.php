@@ -29,6 +29,7 @@ class Home extends CI_Controller {
 		$this->load->view('admin/inc/footer');
 		$this->load->view('admin/inc/nav');
 		$data['details'] = $this->position_model->getEmployeeDetails();
+		$data['detailpos'] = $this->position_model->getPosition();
 		$this->load->view('account', $data);
 
 	}

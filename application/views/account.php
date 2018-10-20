@@ -5,23 +5,22 @@
 	<form class="form" role="form" action="<?php echo base_url('home/view')?>" method="post">
 		 
 	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Employee ID" style="width:30%;"  >
-	</div>
-
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="First Name" style="width:30%;" >
+	    <input type="text" class="form-control" placeholder="Employee ID" style="width:30%;" readonly value="<?php echo $details->EmployeeId; ?>"  >
 	</div>
 	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Last Name" style="width:30%;" name="username">
+	    <input type="text" class="form-control" placeholder="Position" style="width:30%;" readonly value="<?php echo $detailpos->Name; ?>">
+	</div>	
+	<div class="form-group">		
+	    <input type="text" class="form-control" placeholder="Stall Number" style="width:30%;" readonly value="<?php echo $details->StallId; ?>">
+	</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="First Name" style="width:30%;" value="<?php echo $details->Firstname; ?>" >
+	</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="Last Name" style="width:30%;" value="<?php echo $details->Lastname; ?>">
 	</div>
 	<div class="form-group">
 	    <input type="text" class="form-control" name="EmployeeAccount" placeholder="Account" style="width:30%;" value="<?php echo $details->EmployeeAccount; ?>">
-	</div>
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Position" style="width:30%;" name="username">
-	</div>	
-	<div class="form-group">		
-	    <input type="text" class="form-control" placeholder="Stall Number" style="width:30%;" name="username">
 	</div>
 	<div class="form-group">		
 	    <input type="password" class="form-control" placeholder="Password" style="width:30%;" name="password">

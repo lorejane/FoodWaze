@@ -68,6 +68,11 @@
 			// return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '1'")->row();
 		}
 
+		public function getPosition(){
+			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
+			// return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '1'")->row();
+		}
+
 		/**public function authenticate($EmployeeAccount, $password){
 			$query = $this->db->query("SELECT * FROM employee WHERE EmployeeAccount = '".$EmployeeAccount."' AND password = '".$password."'")->row();	
 			if(is_object($query)){
