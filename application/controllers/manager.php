@@ -16,24 +16,24 @@ class Manager extends CI_Controller {
 	public function dashboard()
 	{
 		$this->load->view('manager/inc/header');
-		$this->load->view('manager/inc/footer');
-		$this->load->view('manager/inc/nav');
+		
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$data['details'] = $this->position_model->getEmployeeDetails();
 		$this->load->view('manager/home', $data);
+		$this->load->view('manager/inc/footer');
 		
 	}
 
 	public function Account()
 	{
 		$this->load->view('manager/inc/header');
-		$this->load->view('manager/inc/footer');
-		$this->load->view('manager/inc/nav');
+		
 		$this->load->model('position_model');
 		$data['employees'] = $this->position_model->getEmployee();
 		$this->load->view('manager/account', $data);
-
+		$this->load->view('manager/inc/footer');
+		
 	}
 
 	public function GenerateTable(){
@@ -53,9 +53,9 @@ class Manager extends CI_Controller {
 
 	public function new_employee(){
 		$this->load->view('manager/inc/header');
-		$this->load->view('manager/inc/footer');
-		$this->load->view('manager/inc/nav');		
+		
 		$this->load->view('manager/newaccount');
+		$this->load->view('manager/inc/footer');
 	}
 
 	public function create_employee()
