@@ -18,21 +18,22 @@ class Manager extends CI_Controller {
 		$this->load->view('manager/inc/header');
 		$this->load->view('manager/inc/footer');
 		$this->load->view('manager/inc/nav');
-		$this->load->view('manager/home');
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$data['details'] = $this->position_model->getEmployeeDetails();
-		$this->load->view('admin/home', $data);
+		$this->load->view('manager/home', $data);
 		
 	}
 
-	public function account(){
+	public function Account()
+	{
 		$this->load->view('manager/inc/header');
 		$this->load->view('manager/inc/footer');
 		$this->load->view('manager/inc/nav');
-		$this->load->model('employee_model');
-		$employees = $this->employee_model->get();
-		$this->load->view('manager/account', ['employees' => $employees]);
+		$this->load->model('position_model');
+		$data['employees'] = $this->position_model->getEmployee();
+		$this->load->view('manager/account', $data);
+
 	}
 
 	public function new_employee(){

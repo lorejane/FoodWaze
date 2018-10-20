@@ -1,0 +1,109 @@
+
+#head img{
+	width: 118px;
+	height: 112px;
+}
+
+.navbar-custom {
+    background: url(../images/bg-navigation.png) no-repeat;
+}
+
+.navbar-custom .navbar-nav > li > a {
+    color:white;
+	font-family: abeatbykai;
+	font-size: 15px;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+    color: black;
+    background-color:transparent;
+	font-family: abeatbykai;
+	font-size: 15px;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+    text-decoration: none;	
+	background-color: transparent;
+	text-shadow: 2px 2px 2px black;
+}
+
+#last{
+	margin-right: 30px;
+}
+
+#ccs h1{
+	color: #316e66;
+	font: 26px/30px "Times New Roman", Times, serif;
+	margin: 18px 0 20px;
+	padding-left: 2px;
+	text-transform: uppercase;
+}
+
+#legend button{
+	width: 100px;
+	margin-top: -10px;
+	margin-bottom: 10px;
+}
+
+#month select{
+	font-family: beatbykai;
+	font-size: 20px;
+}
+
+.border{
+	border: 5px solid;
+}
+
+#date button{
+	background: transparent;
+	border-color: transparent;
+	color: black;
+	font-family: Arial;
+	font-size: 16px;
+	text-align: left;
+	padding-left: 5px;
+	
+	height: 50px;
+	width: 50px;
+	
+	  border-radius: 10%;
+	-webkit-transition: 0.3s;
+	border: 1px solid;
+}
+
+#date button:hover{
+	background: white;
+	margin: 0px;
+	box-shadow: 5px 5px 10px grey;
+}
+
+#sidebar div.sections {
+	margin-bottom: 12px;
+	padding: 20px;
+}
+
+#login h3{
+	color: #316e66;
+	font: 15px "Times New Roman", Times, serif;
+	margin: 18px 0 20px;
+	padding-left: 2px;
+	text-transform: uppercase;
+}
+
+#login h1{
+	color: #316e66;
+	font: 20px "Times New Roman", Times, serif;
+	margin: 18px 0 20px;
+	padding-left: 2px;
+	text-transform: uppercase;
+}
+
+#login input[type=submit]{
+	margin-top: 10px;
+	font: 15px "Times New Roman", Times, serif;
+	text-transform: uppercase;
+}

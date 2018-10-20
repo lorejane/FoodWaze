@@ -18,13 +18,9 @@
 		*
 		*/
 
-		public function get($EmployeeId = null){
-			if ($EmployeeId == null){
-				$query = $this->db->get('employee');
-			} else{
-				$query = $this->db->get_where('employee',['EmployeeId' => $EmployeeId]);
-			}
-			return $query->result();
+		public function getEmployee(){
+			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."' ")
+			
 		}
 
 		/**

@@ -12,12 +12,13 @@
 				<th>Options</th>
 			</thead>
 		<tbody>	
-		<?php foreach($employees as $_key => $_value): ?>
+		<?php foreach($employees as $employee): ?>
 		<tr>
-			<td><?=$_value->EmployeeId?></td>
-			<td><?=$_value->EmployeeAccount?></td>
-			<td><?php echo anchor("manager/edit_employee/{$_value->EmployeeId}",'Update',['class' => 'btn btn-success']); ?>
-			&nbsp;&nbsp;&nbsp;<?php echo anchor("manager/delete_employee/{$_value->EmployeeId}",'Delete',['class' => 'btn btn-danger']); ?>
+			<td><?php echo $employee->EmployeeId; ?></td>
+			<td><?php echo $employee->EmployeeAccount; ?></td>
+			<td><?php echo anchor("manager/edit_employee/".$employee->EmployeeId,'Update',['class' => 'btn btn-success']); ?>
+			&nbsp;&nbsp;&nbsp;<?php echo anchor("manager/delete_employee/".$employee->EmployeeId,'Delete',['class' => 'btn btn-danger']); ?>
+			</td>
 		</tr>
 		<?php endforeach;?>
 		</tbody>
