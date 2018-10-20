@@ -104,18 +104,21 @@
 	</div>	
 </div>
 <script>
-	$('.b').click(
-	    function(){
-	        $('#input').val($('#input').val()+$(this).val()).append($("<br/>").text());
-	    }
-	);
+	function displaynum(n1){
+    	calcform.txt1.value=calcform.txt1.value+n1;
+  	}
+  	$(document).ready(function(){
+		$('.b').click(function(){
+	        $('#input').val(Number($('#input').val()) + Number($(this).val()));
+	    });
 
-    $('#idOfButtonToClick').click(
-        function(){
+	    $('#idOfButtonToClick').click(function(){
             var inputString = $('#idOfInput').val();
             var shortenedString = inputString.substr(0,(inputString.length -1));
             $('#idOfInput').val(shortenedString);
         });
+
+  	});
 
 
 </script>

@@ -48,6 +48,7 @@
 	<div class="table-responsive">
 					<th>Employee ID</th>
 					<th>Position</th>
+					<th></th>
 				</tr>
 			</thead>
 		<tbody>	

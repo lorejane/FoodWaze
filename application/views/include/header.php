@@ -7,6 +7,7 @@
 			<link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
       <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
       
+      <script src="<?php echo base_url('bootstrap/js/jquery.min.js'); ?>"></script>
       <style>
         .menu{
           border: 2px solid rgba(0, 0, 0, .2);
@@ -58,12 +59,10 @@
 
 </style>
     <script type="text/javascript">
-      function displaynum(n1){
-        calcform.txt1.value=calcform.txt1.value+n1;
-      }
+      
 
     </script>
 	</head>
 <body>
-<?php include('nav.php'); ?>	
+<?php include("nav.php") ?>
 <main class="main-container">
