@@ -27,11 +27,11 @@ class Admin extends CI_Controller {
 	public function account()
 	{
 		$this->load->view('admin/inc/header');
-		$this->load->view('admin/inc/footer');
 		$this->load->view('admin/inc/nav');
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$this->load->view('admin/newaccount',$data);
+		$this->load->view('admin/inc/footer');
 	}
 
 	public function new_user()

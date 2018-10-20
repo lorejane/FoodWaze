@@ -16,19 +16,31 @@ class Manager extends CI_Controller {
 	public function dashboard()
 	{
 		$this->load->view('manager/inc/header');
+<<<<<<< HEAD
+		$this->load->view('manager/inc/footer');
+		$this->load->model('foodwaze_model');
+		$data['employees'] = $this->foodwaze_model->get();
+		$data['details'] = $this->position_model->getEmployeeDetails();
+		$this->load->view('manager/managerhome', $data);
+=======
 		
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$data['details'] = $this->position_model->getEmployeeDetails();
 		$this->load->view('manager/home', $data);
 		$this->load->view('manager/inc/footer');
+>>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 		
 	}
 
 	public function Account()
 	{
 		$this->load->view('manager/inc/header');
+<<<<<<< HEAD
+		$this->load->view('manager/inc/footer');
+=======
 		
+>>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 		$this->load->model('position_model');
 		$data['employees'] = $this->position_model->getEmployee();
 		$this->load->view('manager/account', $data);
@@ -87,5 +99,14 @@ class Manager extends CI_Controller {
 		$this->employee_model->delete($EmployeeId);
 	}
 	
+	//new 10/20/18
+	public function menu(){
+
+		$this->load->view('manager/inc/header');
+		$this->load->view('manager/inc/footer');
+		$this->load->model('employee_model');
+		$data['category']=$this->employee_model->category();
+		$this->load->view('manager/menu', $data);
+	}
 	
 }
