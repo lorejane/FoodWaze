@@ -42,7 +42,8 @@ class Manager extends CI_Controller {
             $json .= '['
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->EmployeeId.'",'
-                .'"'.$data->PositionId.'"'
+                .'"'.$data->PositionId.'",'
+                .'"<a href=\"'.base_url('manager/edit_employee/'.$data->EmployeeId).'\">Update</a><button onclick = \"delete('.$data->EmployeeId.')\" class=\"btn btn-danger\">Delete</button>"'
             .']';            
             $json .= ',';
         }
@@ -50,6 +51,13 @@ class Manager extends CI_Controller {
         $json .= ']}';
         echo $json;        
     }
+
+	public function removeExcessComma($str){
+		if($str != '{ "data": ['){
+            $str = substr($str, 0, strlen($str) - 1);
+		}
+		return $str;
+	}
 
 	public function new_employee(){
 		$this->load->view('manager/inc/header');

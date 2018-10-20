@@ -7,6 +7,7 @@
 					<th>Account</th>			
 					<th>Employee ID</th>
 					<th>Position</th>
+					<th></th>
 				</tr>
 			</thead>
 		</table>            			
