@@ -16,29 +16,58 @@ class Manager extends CI_Controller {
 	public function dashboard()
 	{
 		$this->load->view('manager/inc/header');
+<<<<<<< HEAD
 		$this->load->view('manager/inc/footer');
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$data['details'] = $this->position_model->getEmployeeDetails();
 		$this->load->view('manager/managerhome', $data);
+=======
+		
+		$this->load->model('foodwaze_model');
+		$data['employees'] = $this->foodwaze_model->get();
+		$data['details'] = $this->position_model->getEmployeeDetails();
+		$this->load->view('manager/home', $data);
+		$this->load->view('manager/inc/footer');
+>>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 		
 	}
 
 	public function Account()
 	{
 		$this->load->view('manager/inc/header');
+<<<<<<< HEAD
 		$this->load->view('manager/inc/footer');
+=======
+		
+>>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 		$this->load->model('position_model');
 		$data['employees'] = $this->position_model->getEmployee();
 		$this->load->view('manager/account', $data);
-
+		$this->load->view('manager/inc/footer');
+		
 	}
+
+	public function GenerateTable(){
+        $json = '{ "data": [';
+        foreach($this->position_model->getEmployee() as $data){
+            $json .= '['
+                .'"'.$data->EmployeeAccount.'",'
+                .'"'.$data->EmployeeId.'",'
+                .'"'.$data->PositionId.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
 
 	public function new_employee(){
 		$this->load->view('manager/inc/header');
-		$this->load->view('manager/inc/footer');
-		$this->load->view('manager/inc/nav');		
+		
 		$this->load->view('manager/newaccount');
+		$this->load->view('manager/inc/footer');
 	}
 
 	public function create_employee()

@@ -17,7 +17,7 @@ class Home extends CI_Controller {
 
 	public function dashboard(){
 		$this->load->view('include/header');
-		$this->load->view('include/nav');
+		// $this->load->view('include/nav');
 		$this->load->view('order');
 		$this->load->view('include/footer');
 
@@ -26,17 +26,16 @@ class Home extends CI_Controller {
 	public function Account()
 	{
 		$this->load->view('admin/inc/header');
-		$this->load->view('admin/inc/footer');
 		$this->load->view('admin/inc/nav');
 		$data['details'] = $this->position_model->getEmployeeDetails();
 		$data['detailpos'] = $this->position_model->getPosition();
 		$this->load->view('account', $data);
-
+		$this->load->view('admin/inc/footer');
+		
 	}
 
 	public function login($submit = null){
-		$this->load->view('include/header');
-		$this->load->view('include/footer');
+	
 		if ($submit == null){
 			$this->load->view('login');	
 			return true;

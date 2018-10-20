@@ -1,3 +1,14 @@
+<html>
+	<head>
+		<title>FOODWAZE</title>
+			<link rel="stylesheet" href="<?php echo base_url('bootstrap/css/bootstrap.min.css'); ?>">
+			<link href="<?php echo base_url('assets/css/core.min.css' ); ?>" rel="stylesheet">
+			<link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
+			<link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
+	</head>
+<body>
+	
+<main class="main-container">
 <center>
 	<div>
 	<h1>LOGIN</h1>
@@ -16,3 +27,13 @@
 		</form>
 	</div>
 </center>
+
+</main>
+
+<!-- Scripts -->
+<script src = "<?php echo base_url('assets/js/core.min.js'); ?>"></script>
+<script src = "<?php echo base_url('assets/js/app.min.js'); ?>"></script>
+<script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script>
+
+</body>
+</html>
