@@ -64,5 +64,15 @@
     </script>
 	</head>
 <body>
-<?php include("nav.php") ?>
+<?php     
+  if($this->session->has_userdata('logged_in')){
+    if($this->session->has_userdata('is_admin')){
+      include('menu_admin.php');
+    }else if($this->session->has_userdata('is_manager')){
+      include('menu_manager.php');
+    }else if($this->session->has_userdata('is_cashier')){
+      include('menu_cashier.php');
+    }
+  }
+?>
 <main class="main-container">

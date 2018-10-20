@@ -48,10 +48,13 @@ class Home extends CI_Controller {
         $user = $this->user->Login($EmployeeAccount, $password);
         $position = $this->session->userdata('PositionId');
         if($position == 1){
+			$this->session->set_userdata(array('is_admin' => true));
             redirect('admin/dashboard');
         }else if($position == 2){
+			$this->session->set_userdata(array('is_manager' => true));
             redirect('manager/dashboard');
         }else if($position == 3){
+			$this->session->set_userdata(array('is_cashier' => true));
             redirect('home/dashboard');
         }else{
         	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');

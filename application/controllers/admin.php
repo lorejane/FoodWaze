@@ -18,28 +18,26 @@ class Admin extends CI_Controller {
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$data['details'] = $this->position_model->getEmployeeDetails();		
-		$this->load->view('admin/inc/header');
+		$this->load->view('include/header');
 		$this->load->view('admin/home', $data);
-		$this->load->view('admin/inc/footer');
+		$this->load->view('include/footer');
 
 	}
 
 	public function account()
 	{
-		$this->load->view('admin/inc/header');
-		$this->load->view('admin/inc/nav');
+		$this->load->view('include/header');		
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
 		$this->load->view('admin/newaccount',$data);
-		$this->load->view('admin/inc/footer');
+		$this->load->view('include/footer');
 	}
 
 	public function new_user()
 	{
-		$this->load->view('admin/inc/header');
-		$this->load->view('admin/inc/footer');
-		$this->load->view('admin/inc/nav');		
+		$this->load->view('include/header');
 		$this->load->view('admin/newaccount');
+		$this->load->view('include/footer');			
 	}
 
 	public function create_user()
