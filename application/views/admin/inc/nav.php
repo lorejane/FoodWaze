@@ -33,7 +33,7 @@
             </li>            
 
             <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Home/Logout'); ?>">
+                <a class="menu-link" href="<?php echo base_url('home/logout'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Logout</span>
                 </a>
