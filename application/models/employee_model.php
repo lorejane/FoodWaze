@@ -19,7 +19,7 @@
 		*/
 
 		public function getEmployee(){
-			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."' ")
+			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."' ");
 			
 		}
 
@@ -55,6 +55,16 @@
 		public function delete($EmployeeId){
 			$this->db->where(['EmployeeId' => $EmployeeId]);
 			return $this->db->delete('employee');
+
+		}
+
+		//new 10/20/18
+
+		public function category(){
+				//$query = $this->db->get("category");
+				//select = from category
+				$query = $this->db->query("SELECT CategoryName FROM category")->result();
+				return $query;
 
 		}
 	}
