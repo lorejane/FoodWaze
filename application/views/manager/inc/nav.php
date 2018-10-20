@@ -20,14 +20,14 @@
             </li>            
             <li class="menu-item active">
                 <a class="menu-link" href="<?php echo base_url('manager/account'); ?>">
-                    <span class="icon fa fa-home"></span>
+                    
                     <span class="title">Manage Account</span>
                 </a>
 			</li>
 			
 			<li class="menu-item active">
                 <a class="menu-link" href="<?php echo base_url('manager/account'); ?>">
-                    <span class="icon fa fa-home"></span>
+                 
                     <span class="title">Sales</span>
                 </a>
             </li>            
@@ -35,7 +35,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('home/logout'); ?>">
-                    <span class="icon fa fa-home"></span>
+                
                     <span class="title">Logout</span>
                 </a>
             </li>    

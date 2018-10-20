@@ -1,31 +1,44 @@
-<div class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(../assets/img/login-bg.jpg);" data-overlay="7">
+<main class="main-container">
+<!-- <div class="min-h-fullscreen bg-img center-vh p-20" style="background-image: url(../assets/img/login-bg.jpg);" data-overlay="7"> -->
 
-    <div class="card card-round card-shadowed px-50 py-30 w-400px mb-0" style="max-width: 100%">
-      <h5 class="text-uppercase">Sign in</h5>
+    <!-- <div class="card card-round card-shadowed px-50 py-30 w-400px mb-0" style="max-width: 100%">
+      <h1 class="text-uppercase">FoodWaze</h1>
+            <p>Make Ordering EZ!</p>
+            
+    </div> -->
 
-      <form class="form-type-line">
-        <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" class="form-control" id="Username">
-        </div>
+    
+            <div class="card">
+              <h1 class="card-title"><strong>FoodWaze</strong></h1>
+                <p>Make Ordering EZ!</p>
+              <div class="card-body">
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="Password">
-        </div>
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#Step-1">Step 1</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Step-2">Step 2</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Step-3">Step 3</a>
+                  </li>
+                </ul>
 
-        <div class="form-group flexbox flex-column flex-md-row">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" checked>
-            <label class="custom-control-label">Remember me</label>
-          </div>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                  <div class="tab-pane fade active show" id="Step-1">
+                    Choose a Stall.
+                  </div>
+                  <div class="tab-pane fade" id="Step-2">
+                    Place your order.
+                  </div>
+                  <div class="tab-pane fade" id="Step-3">
+                    What's your name?
+                  </div>
+                </div>
 
-          <a class="text-muted hover-primary fs-13 mt-2 mt-md-0" href="#">Forgot password?</a>
-        </div>
-
-        <div class="form-group">
-          <button class="btn btn-bold btn-block btn-primary"  onclick = "login.authenticate()" type="submit">Login</button>
-        </div>
-      </form>
-    </div>
-</div>
+              </div>
+            </div>
+  
