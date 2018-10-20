@@ -12,7 +12,7 @@
 						</div>
 	</nav>
 
-	<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+		<!--<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
 		<div class="profile-sidebar">
 			<div class="profile-usertitle">
 				<div class="profile-usertitle-name">Manager</div>
@@ -35,7 +35,8 @@
 
 	<!--/.sidebar--> 
 
-<!-- Latest Blog -->
+<!-- Latest Blog --> 
+<!--
 <div class="container-fluid">
 		<div class="col-md-2">
 		</div>
@@ -44,7 +45,8 @@
 				<div id = "bodyreservation"> 
 			<?php echo anchor("manager/new_employee",'Create',['class' => 'btn btn-primary']); ?>
 		</div>
-	
+	-->
+	<table>
 	<div class="table-responsive">
 					<th>Employee ID</th>
 					<th>Position</th>
