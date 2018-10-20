@@ -7,5 +7,10 @@
 			<link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
 	</head>
 <body>
-<?php include('nav.php'); ?>	
+<?php
+	if($this->session->has_userdata('logged_in')){
+		include('nav.php');
+	}
+?>
+
 <main class="main-container">

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<!--homepage-->
 			           
 <!-- header -->	
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -47,20 +45,11 @@
 			<?php echo anchor("manager/new_employee",'Create',['class' => 'btn btn-primary']); ?>
 		</div>
 	
-=======
-<div class="col-sm-10">
-
->>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 	<div class="table-responsive">
-		<table id = "author-table" class="table table-striped table-bordered display nowrap" style="width:100%; overflow-x:auto;" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("manager/GenerateTable") ?>">
-			<thead>
-				<tr>
-					<th>Account</th>			
 					<th>Employee ID</th>
 					<th>Position</th>
 				</tr>
 			</thead>
-<<<<<<< HEAD
 		<tbody>	
 		<?php foreach($employees as $employee): ?>
 		<tr>
@@ -76,7 +65,4 @@
 	</div>
 	</div>
 	</div>
-=======
-		</table>            			
->>>>>>> 465053d668091141442caf6ad459b9a97c6feca3
 	</div>
