@@ -34,17 +34,6 @@ class Home extends CI_Controller {
 
 	}
 
-	/**	public function Account()
-	{
-		$this->load->view('include/header');
-		$this->load->view('include/footer');
-		$this->load->view('include/nav');
-		$this->load->model('employee_model');
-		$employees = $this->employee_model->get();
-		$this->load->view('account', ['employees' => $employees]);
-	}
-	*/
-
 	public function login($submit = null){
 		$this->load->view('include/header');
 		$this->load->view('include/footer');

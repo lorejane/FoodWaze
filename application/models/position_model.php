@@ -35,13 +35,6 @@
 		*@return array
 		*/
 
-		/**public function getall($EmployeeId){
-			$this->db->select('EmployeeId', 'EmployeeAccount');
-			$this->db->where('EmployeeAccount', $EmployeeId);
-			$q = $this->db->get('employee');
-			return $q->row_array();
-		}
-		*/
 		public function Login($PositionId, $EmployeeAccount, $password)
 		{
 			$query = $this->db->query("SELECT * FROM employee WHERE EmployeeAccount = '".$EmployeeAccount."' AND password = '".$password."'");
@@ -51,6 +44,7 @@
 				$session_data = array(
 					'PositionId' => $row->PositionId,
 					'EmployeeId' => $row->EmployeeId,
+					'StallId' => $row->StallId,
 					'logged_in' => true
 				);
 				$ok = true;
@@ -65,12 +59,16 @@
 
 		public function getEmployeeDetails(){
 			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
-			// return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '1'")->row();
 		}
 
 		public function getPosition(){
 			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
-			// return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '1'")->row();
+	
+		}
+
+		public function getEmployee(){
+			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
+			
 		}
 
 		/**public function authenticate($EmployeeAccount, $password){

@@ -31,8 +31,8 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/inc/footer');
 		$this->load->view('admin/inc/nav');
 		$this->load->model('foodwaze_model');
-		$employees = $this->foodwaze_model->get();
-		$this->load->view('admin/newaccount', ['employees' => $employees]);
+		$data['employees'] = $this->foodwaze_model->get();
+		$this->load->view('admin/newaccount',$data);
 	}
 
 	public function new_user()
