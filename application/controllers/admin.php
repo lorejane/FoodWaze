@@ -15,13 +15,12 @@ class Admin extends CI_Controller {
 
 	public function dashboard()
 	{
-		$this->load->view('admin/inc/header');
-		$this->load->view('admin/inc/footer');
-		$this->load->view('admin/inc/nav');
 		$this->load->model('foodwaze_model');
 		$data['employees'] = $this->foodwaze_model->get();
-		$data['details'] = $this->position_model->getEmployeeDetails();
+		$data['details'] = $this->position_model->getEmployeeDetails();		
+		$this->load->view('admin/inc/header');
 		$this->load->view('admin/home', $data);
+		$this->load->view('admin/inc/footer');
 
 	}
 
