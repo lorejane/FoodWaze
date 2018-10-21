@@ -43,12 +43,5 @@
 			
 		}
 
-		/**public function authenticate($EmployeeAccount, $password){
-			$query = $this->db->query("SELECT * FROM employee WHERE EmployeeAccount = '".$EmployeeAccount."' AND password = '".$password."'")->row();	
-			if(is_object($query)){
-				return $query->PositionId;
-			}else{
-				return 0;
-			}
-		*/ 
+
 }

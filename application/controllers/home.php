@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 
 	parent::__construct();
 			$this->load->model('position_model', 'user');
+			$this->load->model('Order_model', 'ord');
 	}
 
 	public function index()
@@ -16,12 +17,20 @@ class Home extends CI_Controller {
 	}
 
 	public function dashboard(){
+		//$this->session->unset_userdata('sf');
+		$this->load->view('include/header');
+		$this->load->model('Order_model');
+		$data['menus'] = $this->Order_model->getMenu();
+		$this->load->view('order', $data);
+		$this->load->view('include/footer');
+	}
+	/**public function dashboard(){
 		$this->load->view('include/header');
 	   // $this->load->view('include/nav');
 		$this->load->view('order');
 		$this->load->view('include/footer');
 
-	}
+	}*/
 
 	public function Account()
 	{

@@ -1,5 +1,70 @@
-<div class="col-sm-10">
 
+<div class="row">
+	<div class="col-sm-6" style="padding-left:3%;">
+	<table cellpadding="6" cellspacing="1" border="solid thin black">
+	<thead><tr><th>id</th><th>name</th><th>price</th><th>quantity</th><th>Action</th></tr></thead>
+	<tbody>
+	<?php foreach($menus as $items): ?>
+	  <tr>
+	    <td><?php echo $items['MenuId'] ?></td>
+	    <td><?php echo $items['Name'] ?></td>
+	    <td><?php echo $items['Price'] ?></td>
+	    <td><input type = "number" min = "1" id = "<?php echo $items['MenuId'] ?>" ></td>
+	    <td>
+	      <button class = "addToCart" data-id = "<?php echo $items['MenuId'] ?>" data-name = "<?php echo $items['Name'] ?>" data-price = "<?php echo $items['Price'] ?>">Add to cart</button>
+	    </td>    
+	  </tr>
+	<?php endforeach; ?>
+	</tbody>
+	</table>
+</div>	
+<div class="col-sm-6">
+<h4>Your Cart</h4>
+<a href = "<?php echo base_url('emptyCart/'); ?>">Empty cart</a>
+<table id = "cart" cellpadding="6" cellspacing="1" border="solid thin black">
+<thead>
+  <tr><th>id</th><th>name</th><th>price</th><th>quantity</th><th>total price</th><th>Action</th></tr>
+</thead>
+<tbody>
+<?php foreach($this->cart->contents() as $items): ?>
+  <tr>        
+    <td><?php echo $items['MenuId'] ?></td>
+    <td><?php echo str_replace('_', ' ', str_replace('_00', ')', str_replace('00_', '(', $items['Name']))) ?></td>
+    <td><?php echo $items['Price'] ?></td>
+    <td><?php echo $items['qty'] ?></td>
+    <td><?php echo $items['Price'] * $items['qty'] ?></td>
+    <td>
+      <a href = "<?php echo base_url('removeFromCart/'.$items['rowid']); ?>">Remove from cart</a>
+    </td>
+  </tr>
+<?php endforeach; ?>
+  <tr><td>Total</td><td><?php echo $this->cart->total(); ?></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+  $('.addToCart').click(function(){
+    var MenuId = $(this).data('MenuId');
+    var Name = $(this).data('Name');
+    var Price = $(this).data('Price');
+    var quantity = $('#' + MenuId).val();    
+    if(quantity != '' && quantity > 0){
+      $.ajax({
+        url: "<?php echo base_url('Order/addToCart/'); ?>"+MenuId+"/"+Name.replace(/ /g, '_').replace('(','00_').replace(')','_00')+"/"+quantity+"/"+Price,
+        success: function(data){
+          alert(quantity + " " + Name + "(s) added to cart");          
+          $('#cart').html(data);
+        }
+      });
+    }else{
+      alert("Invalid quantity");
+    }    
+    $('#' + MenuId).val('');
+  });
+</script>
+<!--
 	<div class="row">
 		<div class="menu col-sm-8" style="height:100%; overflow:auto;">
 			<div class="btn-group" role="group">
@@ -122,3 +187,4 @@
 
 
 </script>
+-->
