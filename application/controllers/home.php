@@ -5,7 +5,7 @@ class Home extends CI_Controller {
 	public function __construct(){
 
 	parent::__construct();
-			$this->load->model('position_model', 'user');
+			$this->load->model('foodwaze_model', 'user');
 			$this->load->model('Order_model', 'ord');
 	}
 
@@ -19,27 +19,21 @@ class Home extends CI_Controller {
 	public function dashboard(){
 		//$this->session->unset_userdata('sf');
 		$this->load->view('include/header');
-		$this->load->model('Order_model');
-		$data['menus'] = $this->Order_model->getMenu();
+		$data['cat1'] = $this->Order_model->getCat1();
+		$data['cat2'] = $this->Order_model->getCat2();
+		$data['cat3'] = $this->Order_model->getCat3();
+		$data['cat4'] = $this->Order_model->getCat4();
 		$this->load->view('order', $data);
 		$this->load->view('include/footer');
 	}
-	/**public function dashboard(){
-		$this->load->view('include/header');
-	   // $this->load->view('include/nav');
-		$this->load->view('order');
-		$this->load->view('include/footer');
-
-	}*/
 
 	public function Account()
 	{
 		$this->load->view('include/header');
-		$data['details'] = $this->position_model->getEmployeeDetails();
-		$data['detailpos'] = $this->position_model->getPosition();
+		$data['details'] = $this->foodwaze_model->getEmployeeDetails();
+		$data['detailpos'] = $this->foodwaze_model->getPosition();
 		$this->load->view('account', $data);
 		$this->load->view('include/footer');
-		
 	}
 
 	public function login($submit = null){

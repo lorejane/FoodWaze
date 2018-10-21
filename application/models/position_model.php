@@ -7,41 +7,46 @@
 			parent:: __construct();
 		}
 
-		public function Login($PositionId, $EmployeeAccount, $password)
-		{
-			$query = $this->db->query("SELECT * FROM employee WHERE EmployeeAccount = '".$EmployeeAccount."' AND password = '".$password."'");
-			$ok = false;
-			$session_data = [];
-			foreach($query->result() as $row){
-				$session_data = array(
-					'PositionId' => $row->PositionId,
-					'EmployeeId' => $row->EmployeeId,
-					'StallId' => $row->StallId,
-					'logged_in' => true
-				);
-				$ok = true;
+		public function get($EmployeeId = null){
+			if ($EmployeeId == null){
+				$query = $this->db->get('employee');
+			} else{
+				$query = $this->db->get_where('employee', ['EmployeeId' => $EmployeeId]);
 			}
-			if($ok){
-				return $session_data;
-			}
-			else{
+			return $query->result();
+		}
+
+		public function create($EmployeeAccount, $password){
+			$this->form_validation->set_rules('EmployeeAccount', 'EmployeeAccount', 'is_unique[user.username]');
+			if ($this->form_validation->run() ==false){
 				return false;
 			}
+			//create record
+			return $this->db->insert('employee',[
+				'EmployeeAccount' => $EmployeeAccount,
+				'password' => $password
+
+			]);
+			return $result;
 		}
 
-		public function getEmployeeDetails(){
-			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
+		public function delete($EmployeeId){
+			$this->db->where(['EmployeeId' => $EmployeeId]);
+			return $this->db->delete('employee');
+
 		}
 
-		public function getPosition(){
-			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
-	
-		}
+	    public function retrieve_user($EmployeeId = '') {
+		     $this->db->where('EmployeeId', $EmployeeId);  // get users record
+		     $q = $this->db->get('employee');   // this would be changed to your users table name
 
-		public function getEmployee(){
-			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
-			
-		}
-
+		      if($q->num_rows() > 0) {
+		        // return a single db row array $row['name'];
+		        return $q->row_array();
+		        // return a single db object $row->name;
+		        // return $q->row;      
+		      }
+		      return FALSE; 
+     	}
 
 }

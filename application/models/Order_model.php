@@ -8,9 +8,9 @@
 			parent:: __construct();
 		}
 
-		public function getMenu(){
+		public function getCat1(){
 			$menu = [];
-			foreach($this->db->query("SELECT * FROM menu WHERE StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
+			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='1' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
 				$menu[] = array(
 					'MenuId' => $row->MenuId,
 					'Name' => $row->Name,
@@ -20,8 +20,38 @@
 			return $menu;
 		}	
 
-		public function getCategory(){
-			return $this->db->query("SELECT * FROM employee WHERE CategoryId = '".$this->session->userdata('CategoryId')."'")->result();
-			
-        } 
+		public function getCat2(){
+			$menu = [];
+			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='2' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
+				$menu[] = array(
+					'MenuId' => $row->MenuId,
+					'Name' => $row->Name,
+					'Price' => $row->Price,
+				);
+			}
+			return $menu;
+		}
+		public function getCat3(){
+			$menu = [];
+			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='3' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
+				$menu[] = array(
+					'MenuId' => $row->MenuId,
+					'Name' => $row->Name,
+					'Price' => $row->Price,
+				);
+			}
+			return $menu;
+		}
+
+		public function getCat4(){
+			$menu = [];
+			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='4' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
+				$menu[] = array(
+					'MenuId' => $row->MenuId,
+					'Name' => $row->Name,
+					'Price' => $row->Price,
+				);
+			}
+			return $menu;
+		}		
 }

@@ -15,9 +15,8 @@ class Admin extends CI_Controller {
 
 	public function dashboard()
 	{
-		$this->load->model('foodwaze_model');
-		$data['employees'] = $this->foodwaze_model->get();
-		$data['details'] = $this->position_model->getEmployeeDetails();		
+		$data['employees'] = $this->position_model->get();
+		$data['details'] = $this->foodwaze_model->getEmployeeDetails();		
 		$this->load->view('include/header');
 		$this->load->view('admin/home', $data);
 		$this->load->view('include/footer');
@@ -27,8 +26,7 @@ class Admin extends CI_Controller {
 	public function account()
 	{
 		$this->load->view('include/header');		
-		$this->load->model('foodwaze_model');
-		$data['employees'] = $this->foodwaze_model->get();
+		$data['employees'] = $this->position_model->get();
 		$this->load->view('admin/newaccount',$data);
 		$this->load->view('include/footer');
 	}
@@ -45,21 +43,18 @@ class Admin extends CI_Controller {
 		$EmployeeAccount = $this->input->post('EmployeeAccount');
 		$password = $this->input->post('password');
 
-		$this->load->model('foodwaze_model');
-		$this->foodwaze_model->create($EmployeeAccount, $password);	
+		$this->position_model->create($EmployeeAccount, $password);	
 	}
 
 	public function edit_user($EmployeeId)
 	{
-		$this->load->model('foodwaze_model');
-		$this->foodwaze_model->delete($EmployeeId);
+		$this->position_model->delete($EmployeeId);
 	}
 	
 
 	public function delete_user($EmployeeId)
 	{
-		$this->load->model('foodwaze_model');
-		$this->foodwaze_model->delete($EmployeeId);
+		$this->position_model->delete($EmployeeId);
 	}
 	
 	

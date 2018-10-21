@@ -1,14 +1,6 @@
 
 
 <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
-    <header class="sidebar-header">
-        <a class="logo-icon" href="../index.html"><img <?php echo base_url('../assets/img/logo-icon-light.png'); ?> alt="logo icon"></a>
-        <span class="logo">
-            <a href="../index.html"><img <?php echo base_url('../assets/img/logo-light.png'); ?> alt="logo"></a>
-        </span>
-        <span class="sidebar-toggle-fold"></span>
-    </header>
-
     <nav class="sidebar-navigation">
         <ul class="menu">
 
@@ -16,12 +8,12 @@
                 <a class="menu-link" href="<?php echo base_url('home/dashboard'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Home</span>
-                </a>
+                 </a>
             </li>            
             <li class="menu-item active">
                 <a class="menu-link" href="<?php echo base_url('home/account'); ?>">
-                    
-                    <span class="title">Manage Account</span>
+                    <span class="icon fa fa-user"></span>
+                    <span class="title">Account</span>
                 </a>
             </li>            
 

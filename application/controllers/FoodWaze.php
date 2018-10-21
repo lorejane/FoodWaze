@@ -5,7 +5,6 @@ class FoodWaze extends CI_Controller {
     public function __construct(){
 
         parent::__construct();
-                $this->load->model('position_model', 'user');
         }
     
         public function index()

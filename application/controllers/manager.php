@@ -16,10 +16,8 @@ class Manager extends CI_Controller {
 	public function dashboard()
 	{
 		$this->load->view('include/header');
-		
-		$this->load->model('foodwaze_model');
-		$data['employees'] = $this->foodwaze_model->get();
-		$data['details'] = $this->position_model->getEmployeeDetails();
+		$data['employees'] = $this->position_model->get();
+		$data['details'] = $this->foodwaze_model->getEmployeeDetails();
 		$this->load->view('manager/home', $data);
 		$this->load->view('include/footer');
 		
@@ -28,9 +26,7 @@ class Manager extends CI_Controller {
 	public function Account()
 	{
 		$this->load->view('include/header');
-		
-		$this->load->model('position_model');
-		$data['employees'] = $this->position_model->getEmployee();
+		$data['employees'] = $this->foodwaze_model->getEmployee();
 		$this->load->view('manager/account', $data);
 		$this->load->view('include/footer');
 		
@@ -38,7 +34,7 @@ class Manager extends CI_Controller {
 
 	public function GenerateTable(){
         $json = '{ "data": [';
-        foreach($this->position_model->getEmployee() as $data){
+        foreach($this->foodwaze_model->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->EmployeeId.'",'
