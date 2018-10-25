@@ -30,6 +30,10 @@
 			}
 		}
 
+		public function getEmployee(){
+			return $this->db->query("SELECT * FROM employee")->result();
+		}
+
 		public function getEmployeeDetails(){
 			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		}
@@ -42,6 +46,17 @@
 		public function getEmployee(){
 			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
 			
+		}
+
+		public function getStall(){
+			return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
+			
+		}
+
+		public function delete($EmployeeId){
+			$this->db->where(['EmployeeId' => $EmployeeId]);
+			return $this->db->delete('employee');
+
 		}
 
 	}

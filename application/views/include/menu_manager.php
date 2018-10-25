@@ -1,6 +1,6 @@
 
 
-	<aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
+    <aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
     <header class="sidebar-header">
         <a class="logo-icon" href="../index.html"><img <?php echo base_url('../assets/img/logo-icon-light.png'); ?> alt="logo icon"></a>
         <span class="logo">
@@ -13,20 +13,55 @@
         <ul class="menu">
 
             <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('manager/dashboard'); ?>">
-                    <span class="icon fa fa-home"></span>
-                    <span class="title">Home</span>
+                 <a class="menu-link" href="#">
+                    <span class="icon ti-layout"></span>
+                    <span class="title">Menu</span>
+                    <span class="arrow"></span>
                 </a>
-            </li>            
+
+
+                <ul class="menu-submenu">
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('manager/meal'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Meal</span>
+                        </a>
+                    </li>   
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('manager/pasta'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Pasta</span>
+                        </a>
+                    </li>   
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('manager/dessert'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Dessert</span>
+                        </a>
+                    </li>   
+
+                    <li class="menu-item">
+                        <a class="menu-link" href="<?php echo base_url('manager/drinks'); ?>">
+                            <span class="dot"></span>
+                            <span class="title">Drinks</span>
+                        </a>
+                    </li>  
+
+                    </ul> 
+
+            </li>  
+
             <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('manager/account'); ?>">
-                    
-                    <span class="title">Manage Account</span>
+                <a class="menu-link" href="<?php echo base_url('manager/Accounts'); ?>">
+                    <span class="icon fa fa-home"></span>
+                    <span class="title">Manage Accounts</span>
                 </a>
-			</li>
-			
-			<li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('manager/account'); ?>">
+            </li>  
+            
+            <li class="menu-item active">
+                <a class="menu-link" href="<?php echo base_url('manager/Accounts'); ?>">
                  
                     <span class="title">Sales</span>
                 </a>

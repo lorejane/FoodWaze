@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="col-sm-8" style="padding-left:3%;">
 		<div class="card">

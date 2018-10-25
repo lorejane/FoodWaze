@@ -19,10 +19,10 @@ class Home extends CI_Controller {
 	public function dashboard(){
 		//$this->session->unset_userdata('sf');
 		$this->load->view('include/header');
-		$data['cat1'] = $this->Order_model->getCat1();
-		$data['cat2'] = $this->Order_model->getCat2();
-		$data['cat3'] = $this->Order_model->getCat3();
-		$data['cat4'] = $this->Order_model->getCat4();
+		$data['cat1'] = $this->Order_model->getMenuMeal();
+		$data['cat2'] = $this->Order_model->getMenuPasta();
+		$data['cat3'] = $this->Order_model->getMenuDessert();
+		$data['cat4'] = $this->Order_model->getMenuDrinks();
 		$this->load->view('order', $data);
 		$this->load->view('include/footer');
 	}
@@ -55,7 +55,7 @@ class Home extends CI_Controller {
             redirect('admin/dashboard');
         }else if($position == 2){
 			$this->session->set_userdata(array('is_manager' => true));
-            redirect('manager/dashboard');
+            redirect('manager/Accounts');
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
             redirect('home/dashboard');
