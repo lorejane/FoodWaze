@@ -13,33 +13,51 @@ class Manager extends CI_Controller {
 		redirect(base_url('login'));
 	}
 
-	public function dashboard()
-	{
-		$this->load->view('include/header');
-		$data['employees'] = $this->position_model->get();
-		$data['details'] = $this->foodwaze_model->getEmployeeDetails();
-		$this->load->view('manager/home', $data);
-		$this->load->view('include/footer');
-		
-	}
+    public function Meal(){
 
-	public function Account()
-	{
-		$this->load->view('include/header');
-		$data['employees'] = $this->foodwaze_model->getEmployee();
-		$this->load->view('manager/account', $data);
-		$this->load->view('include/footer');
-		
-	}
+        $this->load->view('include/header');
+        $this->load->view('manager/menu/meal');
+        $this->load->view('include/footer');
+    }
 
-	public function GenerateTable(){
+    public function Pasta(){
+
+        $this->load->view('include/header');
+        $this->load->view('manager/menu/pasta');
+        $this->load->view('include/footer');
+    }
+    public function Dessert(){
+
+        $this->load->view('include/header');
+        $this->load->view('manager/menu/dessert');
+        $this->load->view('include/footer');
+    }
+
+    public function Drinks(){
+
+        $this->load->view('include/header');
+        $this->load->view('manager/menu/drinks');
+        $this->load->view('include/footer');
+    }
+
+    public function Accounts()
+    {
+        $this->load->view('include/header');
+        $this->load->view('manager/accounts');
+        $this->load->view('include/footer');
+        
+    }  
+		//DisplayTableFor E M P L O Y E E
+	public function GenerateTableEmployee(){
         $json = '{ "data": [';
         foreach($this->foodwaze_model->getEmployee() as $data){
             $json .= '['
-                .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->EmployeeId.'",'
+                .'"'.$data->EmployeeAccount.'",'
+                .'"'.$data->Firstname.'",'
                 .'"'.$data->PositionId.'",'
-                .'"<a href=\"'.base_url('manager/edit_employee/'.$data->EmployeeId).'\">Update</a><button onclick = \"delete('.$data->EmployeeId.')\" class=\"btn btn-danger\">Delete</button>"'
+                .'"'.$data->StallId.'",'                
+              .'"<a href=\"'.base_url('manager/view_employee/'.$data->EmployeeId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->EmployeeId).'\" class=\"btn btn-danger\" >Delete</a>"'
             .']';            
             $json .= ',';
         }
@@ -48,18 +66,76 @@ class Manager extends CI_Controller {
         echo $json;        
     }
 
+    //DisplayTableForMeal M E A L
+   	public function getMeal(){
+        $json = '{ "data": [';
+        foreach($this->Order_model->getMenuMeal() as $data){                 
+           $json .= '['
+                .'"'.$data->MenuId.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Price.'",'                
+             .'"<a href=\"'.base_url('Menu/view_menu/'.$data->MenuId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('Menu/delete_meal/'.$data->MenuId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+   	public function getPasta(){
+        $json = '{ "data": [';
+        foreach($this->Order_model->getMenuPasta() as $data){                 
+            $json .= '['                
+                .'"'.$data->MenuId.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Price.'",'                
+                 .'"<a href=\"'.base_url('Menu/view_menu/'.$data->MenuId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('Menu/delete_pasta/'.$data->MenuId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }    
+
+   	public function getDessert(){
+        $json = '{ "data": [';
+        foreach($this->Order_model->getMenuDessert() as $data){                 
+            $json .= '['                
+                .'"'.$data->MenuId.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Price.'",'                
+                 .'"<a href=\"'.base_url('Menu/view_menu/'.$data->MenuId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('Menu/delete_dessert/'.$data->MenuId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+   	public function getDrinks(){
+        $json = '{ "data": [';
+        foreach($this->Order_model->getMenuDrinks() as $data){                 
+            $json .= '['                
+                .'"'.$data->MenuId.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Price.'",'                
+                 .'"<a href=\"'.base_url('Menu/view_menu/'.$data->MenuId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('Menu/delete_drinks/'.$data->MenuId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';             
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+   
 	public function removeExcessComma($str){
 		if($str != '{ "data": ['){
             $str = substr($str, 0, strlen($str) - 1);
 		}
 		return $str;
-	}
-
-	public function new_employee(){
-		$this->load->view('include/header');
-		
-		$this->load->view('manager/newaccount');
-		$this->load->view('include/footer');
 	}
 
 	public function create_employee()
@@ -77,20 +153,19 @@ class Manager extends CI_Controller {
 		$this->employee_model->edit($EmployeeId);
 	}
 
-	public function delete_employee($EmployeeId)
-	{
-		$this->load->model('employee_model');
-		$this->employee_model->delete($EmployeeId);
-	}
-	
-	//new 10/20/18
-	public function menu(){
+    public function view_employee(){
+        $this->load->view('include/header');
+        $data['empdetails'] = $this->foodwaze_model->getEmployee();
+        $this->load->view('manager/viewaccount', $data);
+        $this->load->view('include/footer');
+    }
 
-		$this->load->view('include/header');
-		$this->load->model('employee_model');
-		$data['category']=$this->employee_model->category();
-		$this->load->view('manager/menu', $data);
-		$this->load->view('include/footer');
+	public function delete_employee()
+	{
+        $u = $this->uri->segment(3);
+        $this->foodwaze_model->delete($u);
+        redirect('manager/Accounts', 'refresh');
 	}
+
 	
 }

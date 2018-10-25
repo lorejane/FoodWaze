@@ -1,4 +1,3 @@
-
 <!-- for homepage footer -->
 <footer class="site-footer">
     <div class="row">
@@ -43,29 +42,6 @@
 <script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script>
 
 
-<!-- for callback -->
- <script>
-      // Callback functions
-      function test(tab) {
-        //alert( tab.html() );
-      }
-
-
-      function callbackOnNext(tab, navigation, index) {
-        app.toast('Next');
-      }
-
-
-      function callbackOnPrevious(tab, navigation, index) {
-        app.toast('Previous');
-      }
-
-
-      function callbackOnFinish(tab, navigation, index) {
-        app.toast('Submit');
-      }
-
-    </script>
 
 
 

@@ -36,11 +36,33 @@
 
 
 <hr>
- <div class="col-lg-6">
+ <div class="col-lg-12">
             <div class="card">
-              <h1 class="card-title"><strong>Ordering made EZ!</strong></h1>
+              <h3 class="card-title"><strong>Ordering made EZ!</strong></h3>
+
+              
 
               <div class="card-body">
+                <div data-provide="wizard" data-navigateable="true">
+                  <ul class="nav nav-process nav-process-circle">
+                    <li class="nav-item">
+                      <span class="nav-title">Step 1</span>
+                      <a class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <span class="nav-title">Step 2</span>
+                      <a class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
+                    </li>
+
+                    <li class="nav-item">
+                      <span class="nav-title">Step 3</span>
+                      <a class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
+                    </li>
+
+                  </ul>
+<!--
+<div class="card-body">
                 <div data-provide="wizard"> 
                   <ul class="nav nav-process nav-process-circle">
                     <li class="nav-item">
@@ -60,81 +82,124 @@
 
                    
                   </ul>
-
+-->
 
                   <div class="tab-content">
-                    <div class="tab-pane fade active show" id="wizard-basic-1">
-                      <p class="text-center fs-35 text-muted">Pick a stall.</p>
-                    <!-- insert stall no -->
+                    <div class="tab-pane fade active show" id="wizard-navable-1">
+                      <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
+                    <!-- step 1 -->
                       <div class="form-group">
                         <input type="number" class="form-control" placeholder="Stall Number" style="width:20%;" name="StallId">
                       </div>
 
-                    </div> <!-- end insert stall no -->
+  
+                          <div class="row">   
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 1</h4>
+                                <img src="images_foodwaze/stall/stall1.jpg" alt="" style="width:200px">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 2</h4>
+                                <img src="images_foodwaze/stall/stall2.jpg" alt="" style="width:200px">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 3</h4>
+                                <img src="images_foodwaze/stall/stall3.jpg" alt="" style="width:200px">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 4</h4>
+                                <img src="images_foodwaze/stall/stall4.jpg" alt="" style="width:200px">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 5</h4>
+                                <img src="images_foodwaze/stall/stall5.jpg" alt="" style="width:200px">
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <h4 title="nav-title">Stall 6</h4>
+                                <img src="images_foodwaze/stall/stall6.jpg" alt="" style="width:200px">
+                            </div>
+                          </div>
 
+                    </div> <!-- end step 1 -->
 
-                   
-
-
-
-
-
-
-                    <div class="tab-pane fade" id="wizard-basic-2">
-                      <p class="text-center fs-35 text-muted">Order up!</p>
+                  <!-- step 2 -->
+                  <div class="tab-pane fade" id="wizard-navable-2">
+                      <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
                       <p class="text-center text-gray">What's your order?</p>
                     </div>
+                  <!-- end step 2 -->
 
-                    <div class="tab-pane fade" id="wizard-basic-3">
-                            
+
+                  <!-- step 3 -->
+                  <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
                             <hr class="w-100px">
 
 
+<!--
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" style="width:80%;" id="input-1" required>
+                        <div class="invalid-feedback"></div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <input type="number" class="form-control" placeholder="ContactNo" style="width:80%;" id="input-1" required>
+                        <div class="invalid-feedback"></div>
+                      </div> 
+
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input class="form-control" type="text" required>
+                        <div class="form-control-feedback"></div>
+                      </div>
+-->
+<!-- step 3 -->
+              <div class="form-group row">
+                <label class="col-4 col-lg-2 col-form-label require" for="input-1">Name</label>
+                <div class="col-8 col-lg-10">
+                  <input type="text" class="form-control" id="input-1" required>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+
+               <div class="form-group row">
+                <label class="col-4 col-lg-2 col-form-label require" for="input-1">Contact No.</label>
+                <div class="col-8 col-lg-10">
+                  <input type="text" class="form-control" id="input-1" required>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+<!-- end of step 3 -->
+<!--
                             <div class="form-group row">
-                              <label class="col-4 col-lg-2 col-form-label require" for="input-1">Name</label>
-                              <div class="col-8 col-lg-10">
+                              <label class="col-4 col-lg-8 col-form-label require" for="input-1">Name</label>
+                              <div class="col-8 col-lg-2">
                                 <input type="text" class="form-control" id="input-1" required>
                                 <div class="invalid-feedback"></div>
                               </div>
                             </div>
 
-                          <!-- insert info -->
                             <div class="form-group row">
-                              <label class="col-4 col-lg-2 col-form-label require" for="input-1">Contact no.</label>
-                              <div class="col-8 col-lg-10">
+                              <label class="col-4 col-lg-8 col-form-label require" for="input-1">Contact no.</label>
+                              <div class="col-8 col-lg-2">
                                 <input type="text" class="form-control" id="input-1" required>
                                 <div class="invalid-feedback"></div>
                               </div>
                             </div>
-                          <!-- end insert info -->
-
-
-
-                              <!-- <div class="form-group">
-                                <label>Email address</label>
-                                <input class="form-control" type="email" required>
-                                <div class="form-control-feedback"></div>
-                              </div>
-
-                                <div class="form-group">
-                                <label>Contact no.</label>
-                                <input class="form-control" type="text" required>
-                                <div class="form-control-feedback"></div>
-                              </div> -->
+-->
 
                       </div>
-                  
+                  <!--end step 3 -->
 
-                  <hr>
+                <hr>
 
-                 <div class="flexbox">
+
+
+                <div class="flexbox">
                     <button class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
                     <button class="btn btn-secondary" data-wizard="next" type="button">Next</button>
                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
                   </div>
-
-                  
 
 
                 </div>

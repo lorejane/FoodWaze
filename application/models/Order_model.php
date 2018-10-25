@@ -7,51 +7,34 @@
 		{
 			parent:: __construct();
 		}
-
-		public function getCat1(){
-			$menu = [];
-			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='1' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
-				$menu[] = array(
-					'MenuId' => $row->MenuId,
-					'Name' => $row->Name,
-					'Price' => $row->Price,
-				);
-			}
-			return $menu;
-		}	
-
-		public function getCat2(){
-			$menu = [];
-			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='2' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
-				$menu[] = array(
-					'MenuId' => $row->MenuId,
-					'Name' => $row->Name,
-					'Price' => $row->Price,
-				);
-			}
-			return $menu;
-		}
-		public function getCat3(){
-			$menu = [];
-			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='3' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
-				$menu[] = array(
-					'MenuId' => $row->MenuId,
-					'Name' => $row->Name,
-					'Price' => $row->Price,
-				);
-			}
-			return $menu;
+		public function getMenu(){
+			return $this->db->query("SELECT * FROM menu")->result();
+			
 		}
 
-		public function getCat4(){
-			$menu = [];
-			foreach($this->db->query("SELECT * FROM menu WHERE CategoryId ='4' AND StallId = '".$this->session->userdata('StallId')."'")->result() as $row){
-				$menu[] = array(
-					'MenuId' => $row->MenuId,
-					'Name' => $row->Name,
-					'Price' => $row->Price,
-				);
-			}
-			return $menu;
-		}		
+		public function getMenuMeal(){
+			return $this->db->query("SELECT * FROM menu WHERE CategoryId = '1' AND StallId = '".$this->session->userdata('StallId')."'")->result();
+			
+		}
+
+		public function getMenuPasta(){
+			return $this->db->query("SELECT * FROM menu WHERE CategoryId = '2' AND StallId = '".$this->session->userdata('StallId')."'")->result();
+			
+		}
+
+		public function getMenuDessert(){
+			return $this->db->query("SELECT * FROM menu WHERE CategoryId = '3' AND StallId = '".$this->session->userdata('StallId')."'")->result();
+			
+		}
+
+		public function getMenuDrinks(){
+			return $this->db->query("SELECT * FROM menu WHERE CategoryId = '4' AND StallId = '".$this->session->userdata('StallId')."'")->result();
+			
+		}
+
+		public function delete($MenuId){
+			$this->db->where(['MenuId' => $MenuId]);
+			return $this->db->delete('menu');
+
+		}
 }

@@ -1,36 +1,27 @@
-<div class="main-content">
-	<div class="col-sm-10">
-		<div class="row">
-			<div class="col-sm-12">
-				<?php echo anchor("admin/new_user",'Create',['class' => 'btn btn-primary']); ?>
-			</div>
-		</div>
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<th>ID</th>
-					<th>Account</th>
-					<th>Name</th>
-					<th>Position</th>
-					<th>Store</th>
-					<th>Options</th>
-				</thead>
-			<tbody>	
-			<?php foreach($employees as $_key => $_value): ?>
-			<tr>
-				<td><?=$_value->EmployeeId?></td>
-				<td><?=$_value->EmployeeAccount?></td>
-				<td><?=$_value->EmployeeAccount?></td>
-				<td><?=$_value->PositionId?></td>
-				<td><?=$_value->PositionId?></td>
-				<td><td><?php echo anchor("admin/edit_user/{$_value->EmployeeId}",'Update',['class' => 'btn btn-success']); ?>
-				&nbsp;&nbsp;&nbsp;<?php echo anchor("admin/delete_user/{$_value->EmployeeId}",'Delete',['class' => 'btn btn-danger']); ?>
-			</tr>
-			<?php endforeach;?>
-			</tbody>
-		</table>
+<div class="col-sm-10">
+	<h3>CREATE NEW EMPLOYEE ACCOUNT</h3>
+	<form class="form" role="form" action="<?php echo base_url('admin/create_user')?>" method="post">
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="Employee ID" style="width:30%;" name="username">
 	</div>
-		<?php print_r($details);
-		print_r($this->session->userdata()); 
-		?>
-</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="First Name" style="width:30%;" name="username">
+	</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="Last Name" style="width:30%;" name="username">
+	</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="Account" style="width:30%;" name="username">
+	</div>
+	<div class="form-group">
+	    <input type="text" class="form-control" placeholder="Position" style="width:30%;" name="username">
+	</div>	
+	<div class="form-group">		
+	    <input type="text" class="form-control" placeholder="Stall Number" style="width:30%;" name="username">
+	</div>
+	<div class="form-group">		
+	    <input type="password" class="form-control" placeholder="Password" style="width:30%;" name="password">
+	</div>
+	  	<button name="reset" type="reset" class="btn btn-danger">Reset</button>
+	  	<button name="submit" type="submit" class="btn btn-primary">Submit</button>
+	</form>
