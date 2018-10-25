@@ -21,14 +21,6 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function NewAccount()
-	{	
-		$this->load->view('include/header');
-		$this->load->view('admin/create_account');
-		$this->load->view('include/footer');
-
-	}
-
 	public function account()
 	{
 		$this->load->view('include/header');		

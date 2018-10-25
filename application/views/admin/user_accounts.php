@@ -2,8 +2,10 @@
 	<div class="col-sm-10">
 		<div class="row">
 			<div class="col-sm-12">
-				<?php echo anchor("admin/NewAccount",'Create',['class' => 'btn btn-primary']); ?>
-			</div>
+				<a class="btn btn-float btn-lg btn-info float-md-right text-white"
+				data-toggle="modal" data-target="#modal-Account" data-provide="tooltip" data-original-title="Add Account">
+		<i class="ti-plus"></i>
+		</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-hover">
@@ -32,3 +34,5 @@
 		</table>
 	</div>
 </div>
+
+<?php include("create_account.php");?>
