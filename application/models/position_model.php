@@ -16,18 +16,10 @@
 			return $query->result();
 		}
 
-		public function create($EmployeeAccount, $password){
-			$this->form_validation->set_rules('EmployeeAccount', 'EmployeeAccount', 'is_unique[user.username]');
-			if ($this->form_validation->run() ==false){
-				return false;
-			}
-			//create record
-			return $this->db->insert('employee',[
-				'EmployeeAccount' => $EmployeeAccount,
-				'password' => $password
-
-			]);
-			return $result;
+		public function insert($data)
+		{
+		    $this->db->insert('employee',$data);
+		    return true;
 		}
 
 		public function delete($EmployeeId){

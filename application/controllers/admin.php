@@ -14,11 +14,17 @@ class Admin extends CI_Controller {
 	}
 
 	public function dashboard()
-	{
-		$data['employees'] = $this->position_model->get();
-		$data['details'] = $this->foodwaze_model->getEmployeeDetails();		
+	{	
 		$this->load->view('include/header');
-		$this->load->view('admin/home', $data);
+		$this->load->view('admin/home');
+		$this->load->view('include/footer');
+
+	}
+
+	public function NewAccount()
+	{	
+		$this->load->view('include/header');
+		$this->load->view('admin/create_account');
 		$this->load->view('include/footer');
 
 	}
@@ -27,23 +33,21 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('include/header');		
 		$data['employees'] = $this->position_model->get();
-		$this->load->view('admin/newaccount',$data);
+		$this->load->view('admin/user_accounts',$data);
 		$this->load->view('include/footer');
 	}
 
-	public function new_user()
-	{
-		$this->load->view('include/header');
-		$this->load->view('admin/newaccount');
-		$this->load->view('include/footer');			
-	}
-
-	public function create_user()
-	{
-		$EmployeeAccount = $this->input->post('EmployeeAccount');
-		$password = $this->input->post('password');
-
-		$this->position_model->create($EmployeeAccount, $password);	
+	public function create_user(){
+	    if (isset($_POST['submit'])){
+	        $data = array(
+	        		'Firstname'=>$_POST['Firstname'],
+	                'Lastname'=>$_POST['Lastname'],
+	                'EmployeeAccount'=>$_POST['EmployeeAccount'],
+	                'PositionId'=>$_POST['PositionId'],
+	                'StallId'=>$_POST['StallId'],
+	                'Password'=>$_POST['Password']);
+	         $this->position_model->insert($data);
+	    }
 	}
 
 	public function edit_user($EmployeeId)
@@ -56,6 +60,19 @@ class Admin extends CI_Controller {
 	{
 		$this->position_model->delete($EmployeeId);
 	}
-	
-	
+
+	public function Stall(){
+        $json = '{ "data": [';
+        foreach($this->Stall_model->getStall() as $data){
+            $json .= '['
+                .'"'.$data->StallId.'",'                
+                .'"'.$data->Name.'"'
+              //.'"<a href=\"'.base_url('admin/view_stall/'.$data->StallId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('admin/delete_stall/'.$data->StallId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }	
 }
