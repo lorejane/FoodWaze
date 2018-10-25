@@ -30,10 +30,7 @@
 			}
 		}
 
-		public function getEmployee(){
-			return $this->db->query("SELECT * FROM employee")->result();
-		}
-
+	
 		public function getEmployeeDetails(){
 			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		}
