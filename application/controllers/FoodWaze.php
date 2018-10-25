@@ -13,5 +13,6 @@ class FoodWaze extends CI_Controller {
             $this->load->view('homepage');
             $this->load->view('include/footer');
         }
-    
+
+        
 }

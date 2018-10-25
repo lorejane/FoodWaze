@@ -44,4 +44,12 @@
 			
 		}
 
+		// view menu
+		public function readMenu(){
+			$this->db->select("*");
+			$this->db->from("menu");
+			$query=$this->db->get();
+			return $query->result();
+		}
+
 	}
