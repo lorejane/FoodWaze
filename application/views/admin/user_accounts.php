@@ -2,7 +2,7 @@
 	<div class="col-sm-10">
 		<div class="row">
 			<div class="col-sm-12">
-				<?php echo anchor("admin/new_user",'Create',['class' => 'btn btn-primary']); ?>
+				<?php echo anchor("admin/NewAccount",'Create',['class' => 'btn btn-primary']); ?>
 			</div>
 		</div>
 		<div class="table-responsive">
@@ -22,9 +22,10 @@
 				<td><?=$_value->EmployeeAccount?></td>
 				<td><?=$_value->EmployeeAccount?></td>
 				<td><?=$_value->PositionId?></td>
-				<td><?=$_value->PositionId?></td>
-				<td><td><?php echo anchor("admin/edit_user/{$_value->EmployeeId}",'Update',['class' => 'btn btn-success']); ?>
-				&nbsp;&nbsp;&nbsp;<?php echo anchor("admin/delete_user/{$_value->EmployeeId}",'Delete',['class' => 'btn btn-danger']); ?>
+				<td><?=$_value->StallId?></td>
+				<td><?php echo anchor("admin/edit_user/{$_value->EmployeeId}",'Update',['class' => 'btn btn-success']); ?>
+				<?php echo anchor("admin/delete_user/{$_value->EmployeeId}",'Delete',['class' => 'btn btn-danger']); ?>
+				</td>
 			</tr>
 			<?php endforeach;?>
 			</tbody>
