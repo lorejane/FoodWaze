@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2018 at 10:07 PM
+-- Generation Time: Oct 26, 2018 at 03:21 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `employee` (
   `Password` varchar(50) NOT NULL,
   `EmployeeId` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`EmployeeId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Truncate table before insert `employee`
@@ -78,11 +78,13 @@ TRUNCATE TABLE `employee`;
 --
 
 INSERT INTO `employee` (`Lastname`, `EmployeeAccount`, `Firstname`, `PositionId`, `StallId`, `Password`, `EmployeeId`) VALUES
-('', 'admin', '', 1, 0, 'admin', 1),
-('stark', 'arya', 'masie', 3, 1, '123', 2),
-('', 'lyn', '', 2, 1, '123', 3),
-('', 'lore', '', 3, 1, 'lore', 4),
-('', 'admin2', '', 1, 0, '123', 5);
+('', 'admin2', '', 1, 0, '123', 5),
+('stark', 'sansa', 'sansa', 3, 2, '123', 6),
+('chu', 'katkat', 'Pikapika', 2, 1, '123', 8),
+('', 'lyn', '', 3, 1, '123', 11),
+('', 'jane', '', 3, 1, '123', 12),
+('jane', 'lj', 'lore', 3, 1, '123', 13),
+('jane', 'rere', 'lore', 3, 1, '123', 14);
 
 -- --------------------------------------------------------
 
@@ -113,10 +115,10 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `MenuId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
   `StallId` int(10) NOT NULL,
-  `Price` int(10) NOT NULL,
+  `Price` int(11) NOT NULL,
   `CategoryId` int(10) NOT NULL,
   PRIMARY KEY (`MenuId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Truncate table before insert `menu`
@@ -129,9 +131,24 @@ TRUNCATE TABLE `menu`;
 
 INSERT INTO `menu` (`MenuId`, `Name`, `StallId`, `Price`, `CategoryId`) VALUES
 (1, 'Spaghetti', 1, 85, 2),
-(2, 'Chickenw/Rice', 1, 105, 1),
 (3, 'Carbonara', 1, 95, 2),
-(4, 'Coca Cola', 1, 35, 4);
+(4, 'Coca Cola', 1, 35, 4),
+(5, 'Sprite', 1, 45, 4),
+(6, 'Royal', 1, 45, 4),
+(7, 'Pinapple Juice', 1, 50, 4),
+(9, 'Iced Tea', 1, 50, 4),
+(11, 'Palabok', 2, 85, 2),
+(12, 'Halo-halo', 2, 65, 3),
+(13, 'Gulaman', 2, 50, 4),
+(14, 'Bottled Water', 1, 35, 4),
+(15, 'Buko Juice', 2, 30, 4),
+(16, 'Pepsi', 1, 45, 4),
+(18, 'Orange Juice', 1, 45, 4),
+(19, 'Slush', 1, 45, 4),
+(20, 'Coffee', 1, 95, 4),
+(21, 'Chicken and Rice', 1, 95, 1),
+(22, 'Ice Cream', 1, 35, 3),
+(23, 'Strawberry Cake', 1, 100, 3);
 
 -- --------------------------------------------------------
 
