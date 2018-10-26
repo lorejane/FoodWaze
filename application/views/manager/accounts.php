@@ -22,23 +22,3 @@
 			</div>
 		</div>
 	</div>
-<?php include("updateaccount.php");?>
-<script>
-	$(document).ready(function () {
-        Employee.init();
-    });
-
-    var Employee = {
-        init: function () {
-            $('.modal').on('hidden.bs.modal', function () {
-                Employee.reset();
-            });
-
-            Employee.reset();
-        },
-
-        reset: function () {
-            // $('#librarian-table').DataTable().ajax.reload();
-        }
-    }
-</script>	

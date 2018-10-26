@@ -163,7 +163,7 @@ class Manager extends CI_Controller {
 	public function delete_employee()
 	{
         $u = $this->uri->segment(3);
-        $this->foodwaze_model->delete($u);
+        $this->position_model->delete($u);
         redirect('manager/Accounts', 'refresh');
 	}
 

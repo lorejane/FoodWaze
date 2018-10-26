@@ -1,24 +1,51 @@
-<div class="col-sm-10">
-	<h3>CREATE NEW EMPLOYEE ACCOUNT</h3>
-	<form class="form" role="form" action="<?php echo base_url('admin/create_user')?>" method="post">
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="First Name" style="width:30%;" name="Firstname">
-	</div>
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Last Name" style="width:30%;" name="Lastname">
-	</div>
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Account" style="width:30%;" name="EmployeeAccount">
-	</div>
-	<div class="form-group">
-	    <input type="text" class="form-control" placeholder="Position" style="width:30%;" name="PositionId">
-	</div>	
-	<div class="form-group">		
-	    <input type="text" class="form-control" placeholder="Stall Number" style="width:30%;" name="StallId">
-	</div>
-	<div class="form-group">		
-	    <input type="password" class="form-control" placeholder="Password" style="width:30%;" name="Password">
-	</div>
-	  	<button name="cancel" type="reset" class="btn btn-danger">Cancel</button>
-	  	<button name="submit" type="submit" class="btn btn-primary">Submit</button>
-	</form>
+
+<div class="modal modal-center fade" id="modal-Account" tabindex="-1">
+    <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Employee</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-type-line">
+                <div class="col-md-12 col-sm-12">
+                    <form id="modal-Account-form" action="<?php echo base_url('admin/create_user')?>" method="post" class="form-group mt-2">
+                        <input type="hidden" id="EmployeeId"/>
+                        
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Position</label>
+                                <input name="PositionId" class="form-control form-type-combine show-tick"></input>
+                            </div>
+                            <div class="col-12">
+                                <label>FirstName</label>
+                                <input name="Firstname" type="text" class="form-control" placeholder="Firt name" />
+                            </div>
+                            <div class="col-12">
+                                <label>LastName</label>
+                                <input name="Lastname" type="text" class="form-control" placeholder="Last name" />
+                            </div>
+                            <div class="col-12">
+                                <label>Account</label>
+                                <input name="EmployeeAccount" type="text" class="form-control" placeholder="Username" />
+                            </div>
+                            <div class="col-12">
+                                <label>Stall</label>
+                                <input name="StallId" type="text" class="form-control" placeholder="Username" />
+                            </div>
+                            <div class="col-12">
+                                <label>Password</label>
+                                <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
+                            </div>
+                        </div>  
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
+                <button name="submit" type="submit" class="btn btn-info">Save</button>
+            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
