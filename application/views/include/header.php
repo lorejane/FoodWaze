@@ -70,8 +70,8 @@
         }
         .keypad {
           float: left;
-          width: 63px;
-          height: 63px;
+          width: 60px;
+          height: 60px;
           margin: 5px;
           border: 1px solid rgba(0, 0, 0, .2);
         }

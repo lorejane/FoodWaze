@@ -12,4 +12,9 @@
 			$query =  $this->db->select('stall'); 
     		return $query->result();
 		}
+
+		public function getCustomerMenuMeal(){
+			return $this->db->query("SELECT * FROM menu WHERE StallId = '2' ")->result();
+			
+		}
 }

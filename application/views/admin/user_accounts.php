@@ -4,8 +4,8 @@
 			<div class="col-sm-12">
 				<a class="btn btn-float btn-lg btn-info float-md-right text-white"
 				data-toggle="modal" data-target="#modal-Account" data-provide="tooltip" data-original-title="Add Account">
-		<i class="ti-plus"></i>
-		</a>
+				<i class="ti-plus"></i>
+				</a>
 		</div>
 		<div class="table-responsive">
 			<table class="table table-hover">

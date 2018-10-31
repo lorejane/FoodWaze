@@ -88,11 +88,6 @@
                     <div class="tab-pane fade active show" id="wizard-navable-1">
                       <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                     <!-- step 1 -->
-                      <div class="form-group">
-                        <input type="number" class="form-control" placeholder="Stall Number" style="width:20%;" name="StallId">
-                      </div>
-
-  
                           <div class="row">   
                             <div class="col-md-3 col-sm-6">
                                 <h4 title="nav-title">Stall 1</h4>
@@ -126,9 +121,20 @@
                   <div class="tab-pane fade" id="wizard-navable-2">
                       <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
                       <p class="text-center text-gray">What's your order?</p>
+                      <div style="height:80%;">
+                      <?php foreach($cat as $items){
+                          echo ' 
+                          <div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
+                          <h4>'.$items->Name.'</h4>
+                          <h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
+                          <button class="b btn btn-success" data-id = "<?php echo $items->MenuId ?>"  data-name = "<?php echo $items->Name ?>" value = "'.$items->Price.'" >Add to cart</button>
+                          </div>
+                          ';
+                        } 
+                        ?>
+                      </div>
                     </div>
                   <!-- end step 2 -->
-
 
                   <!-- step 3 -->
                   <div class="tab-pane fade" id="wizard-navable-3">

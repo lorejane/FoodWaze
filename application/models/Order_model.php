@@ -7,10 +7,7 @@
 		{
 			parent:: __construct();
 		}
-		public function getMenu(){
-			return $this->db->query("SELECT * FROM menu")->result();
-			
-		}
+
 
 		public function getMenuMeal(){
 			return $this->db->query("SELECT * FROM menu WHERE CategoryId = '1' AND StallId = '".$this->session->userdata('StallId')."'")->result();

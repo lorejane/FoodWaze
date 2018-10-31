@@ -14984,7 +14984,7 @@ body .topbar-secondary + main {
   content: "\e646";
   font-family: themify;
   font-size: 24px;
-  color: #b5b9bf;
+  color: #fff;
   opacity: .7;
   position: absolute;
   top: 20px;
@@ -15926,7 +15926,7 @@ ul.flexbox {
 }
 
 .sidebar-header {
-  background-color: #926dde;
+  background-color: #fff;
   padding: 0 12px;
   display: -webkit-box;
   display: flex;

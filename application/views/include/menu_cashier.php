@@ -1,23 +1,16 @@
 
+<header class="topbar topbar-inverse">
+    <div class="topbar-left">
+   
 
-<aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
-    <nav class="sidebar-navigation">
-        <ul class="menu">
+    <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+        <i class="material-icons fullscreen-default">fullscreen</i>
+        <i class="material-icons fullscreen-active">fullscreen_exit</i>
+    </a>
 
-            <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('home/dashboard'); ?>">
-                    <span class="icon fa fa-home"></span>
-                    <span class="title">Home</span>
-                 </a>
-            </li>            
-            <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('home/Logout'); ?>">
-                    
-                    <span class="title">Logout</span>
-                </a>
-            </li>    
+    </div>
 
-        </ul>
-    </nav>
-
-</aside>
+    <div class="topbar-right">
+            <a class="dropdown-item" href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        
+    </div>
+</header>
