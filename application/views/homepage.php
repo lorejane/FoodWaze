@@ -100,16 +100,18 @@
 
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Name</label>
-                                    <div class="col-8 col-lg-7">
-                                        <input type="text" class="form-control" name="NameCustomer" id="input-1" required>
-                                        <div class="invalid-feedback"></div>
-                                    </div>                            
-                                    <div class="form-group row">
-                                        <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Contact No.</label>
                                         <div class="col-8 col-lg-7">
-                                            <input type="number" class="form-control" name="ContactNo" id="input-1" required max="11">
-                                        <div class="invalid-feedback"></div>
-                                    </div>
+                                            <input type="text" class="form-control" name="NameCustomer" id="input-1" required>
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Contact No.</label>
+                                        <div class="col-8 col-lg-7">
+                                                <input type="number" class="form-control" name="ContactNo" id="input-1" required max="11">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                 </div>
 
                                     
