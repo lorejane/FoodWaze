@@ -47,6 +47,15 @@ class Order extends CI_Controller {
 		$this->cart->destroy();
 		redirect(base_url('Order/'));
 	}
-
+	public function dashboard(){
+		//$this->session->unset_userdata('sf');
+		$this->load->view('include/header');
+		$data['cat1'] = $this->Stall_model->getCustomerMenuMeal();
+		//$data['cat2'] = $this->Stall_model->getCustomerMenuPasta();
+		//$data['cat3'] = $this->Stall_model->getCustomerMenuDessert();
+		//$data['cat4'] = $this->Stall_model->getCustomerMenuDrinks();
+		$this->load->view('homepage', $data);
+		$this->load->view('include/footer');
+	}
 
 }	

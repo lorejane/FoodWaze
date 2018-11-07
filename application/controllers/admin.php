@@ -39,6 +39,7 @@ class Admin extends CI_Controller {
 	                'StallId'=>$_POST['StallId'],
 	                'Password'=>$_POST['Password']);
 	         $this->position_model->insert($data);
+	         redirect('admin/account', 'refresh');
 	    }
 	}
 
@@ -50,7 +51,9 @@ class Admin extends CI_Controller {
 
 	public function delete_user($EmployeeId)
 	{
-		$this->position_model->delete($EmployeeId);
+        $u = $this->uri->segment(3);
+        $this->position_model->delete($u);
+        redirect('admin/account', 'refresh');
 	}
 
 	public function Stall(){

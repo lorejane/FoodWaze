@@ -138,14 +138,19 @@ class Manager extends CI_Controller {
 		return $str;
 	}
 
-	public function create_employee()
-	{
-		$EmployeeAccount = $this->input->post('EmployeeAccount');
-		$password = $this->input->post('password');
-
-		$this->load->model('employee_model');
-		$this->employee_model->create($EmployeeAccount, $password);	
-	}
+     public function create_employee(){
+        if (isset($_POST['submit'])){
+            $data = array(
+                    'Firstname'=>$_POST['Firstname'],
+                    'Lastname'=>$_POST['Lastname'],
+                    'EmployeeAccount'=>$_POST['EmployeeAccount'],
+                    'PositionId'=>$_POST['PositionId'],
+                    'StallId'=>$_POST['StallId'],
+                    'Password'=>$_POST['Password']);
+             $this->position_model->insert($data);
+             redirect('manager/accounts', 'refresh');
+        }
+    }
 
 	public function edit_employee($EmployeeId)
 	{
@@ -163,7 +168,7 @@ class Manager extends CI_Controller {
 	public function delete_employee()
 	{
         $u = $this->uri->segment(3);
-        $this->foodwaze_model->delete($u);
+        $this->position_model->delete($u);
         redirect('manager/Accounts', 'refresh');
 	}
 
