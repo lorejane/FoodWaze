@@ -45,11 +45,20 @@
 		}
 
 		// view menu
-		public function readMenu(){
-			$this->db->select("*");
-			$this->db->from("menu");
-			$query=$this->db->get();
-			return $query->result();
+		public function getMenu($stallId){			
+			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
+			return $query;
+		}
+
+		public function getCategory($stallId){			
+			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
+			return $query;
+		}
+
+		// view stall list
+		public function getStall(){
+			$stall=$this->db->query('SELECT * FROM stall')->result();
+			return $stall;
 		}
 
 	}
