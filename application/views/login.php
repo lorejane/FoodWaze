@@ -11,7 +11,7 @@
 <main class="main-container">
 <center>
 	<div>
-	<h1>LOGIN</h1>
+	<h1 style="padding-top: 50px;">LOGIN</h1>
 		<form role="form" action="<?php echo base_url('home/login/submit')?>" method="post">
 	<?php if($errror = $this->session->flashdata('login_fail')):?>
 	<?php endif; ?>	
