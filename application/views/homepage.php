@@ -30,11 +30,6 @@
             </header>
                 <!-- END Topbar -->
 
-        
-<main class="main-container">
-
-
-
 <hr>
  <div class="col-lg-12">
             <div class="card">
@@ -89,6 +84,7 @@
                       <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                     <!-- step 1 -->
                           <div class="row">   
+                            <button id="show">show</button>
                             <div class="col-md-3 col-sm-6">
                                 <h4 title="nav-title">Stall 1</h4>
                                 <img src="images_foodwaze/stall/stall1.jpg" alt="" style="width:200px">
@@ -121,7 +117,7 @@
                   <div class="tab-pane fade" id="wizard-navable-2">
                       <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
                       <p class="text-center text-gray">What's your order?</p>
-                      <div style="height:80%;">
+                      <div style="height:80%;" id="stall1">
                       <?php foreach($cat as $items){
                           echo ' 
                           <div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
@@ -213,5 +209,13 @@
             </div>
           </div>
 
-</main>
+<script>
+$(document).ready(function(){
+  $("#show").click(function(){
+    $("#stall1").show();
+  });
+});
+</script>
+
+
 <!-- END Main container -->

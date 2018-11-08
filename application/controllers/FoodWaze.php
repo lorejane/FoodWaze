@@ -16,7 +16,6 @@ class FoodWaze extends CI_Controller {
         }
 
         public function dashboard(){
-		//$this->session->unset_userdata('sf');
 		$this->load->view('include/header');
 		$data['cat'] = $this->Stall_model->getCustomerMenuMeal();
 		$this->load->view('homepage', $data);

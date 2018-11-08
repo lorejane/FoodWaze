@@ -70,4 +70,29 @@ class Admin extends CI_Controller {
         $json .= ']}';
         echo $json;        
     }	
+
+    public function GenerateTableEmployeeAdmin(){
+        $json = '{ "data": [';
+        foreach($this->foodwaze_model->getEmployee() as $data){
+            $json .= '['
+                .'"'.$data->EmployeeId.'",'
+                .'"'.$data->EmployeeAccount.'",'
+                .'"'.$data->Firstname.'",'
+                .'"'.$data->PositionId.'",'
+                .'"'.$data->StallId.'",'                
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->EmployeeId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function removeExcessComma($str){
+		if($str != '{ "data": ['){
+            $str = substr($str, 0, strlen($str) - 1);
+		}
+		return $str;
+	}
 }

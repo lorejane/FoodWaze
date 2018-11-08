@@ -40,7 +40,7 @@
 		}
 
 		public function getEmployee(){
-			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
+			return $this->db->query("SELECT * FROM employee")->result();
 			
 		}
 
