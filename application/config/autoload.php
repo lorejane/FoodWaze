@@ -133,5 +133,9 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-	'position_model', 'foodwaze_model', 'Order_model',  'Stall_model'
+	'position_model','_BaseModel',
+	'foodwaze_model', 'MealModel',
+	'PastaModel', 'DessertModel',
+	'DrinksModel','Order_model',
+	'AdminModel', 'ManagerModel' , 'Stall_model'
 	);

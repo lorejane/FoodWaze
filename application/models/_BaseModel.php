@@ -20,5 +20,4 @@ class _BaseModel extends CI_Model{
 		return $dbList;		
 	}
 
-
-}
+}	

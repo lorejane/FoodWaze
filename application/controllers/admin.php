@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Admin extends CI_Controller {
+include('_BaseController.php');
+use Respect\Validation\Validator as v;
+class Admin extends _BaseController {
 
 	public function __construct(){
 
@@ -13,7 +14,7 @@ class Admin extends CI_Controller {
 		redirect(base_url('login'));
 	}
 
-	public function dashboard()
+	public function Stalls()
 	{	
 		$this->load->view('include/header');
 		$this->load->view('admin/home');
@@ -21,34 +22,52 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function account()
+	public function Accounts()
 	{
 		$this->load->view('include/header');		
-		$data['employees'] = $this->position_model->get();
-		$this->load->view('admin/user_accounts',$data);
+		$this->load->view('admin/user_accounts');
 		$this->load->view('include/footer');
 	}
 
-	public function create_user(){
-	    if (isset($_POST['submit'])){
-	        $data = array(
-	        		'Firstname'=>$_POST['Firstname'],
-	                'Lastname'=>$_POST['Lastname'],
-	                'EmployeeAccount'=>$_POST['EmployeeAccount'],
-	                'PositionId'=>$_POST['PositionId'],
-	                'StallId'=>$_POST['StallId'],
-	                'Password'=>$_POST['Password']);
-	         $this->position_model->insert($data);
-	         redirect('admin/account', 'refresh');
-	    }
-	}
+	public function Get($id){        
+        echo $this->convert($this->AdminModel->_get($id));
+    }
 
-	public function edit_user($EmployeeId)
-	{
-		$this->position_model->delete($EmployeeId);
-	}
-	
+    public function GetStall($id){        
+        echo $this->convert($this->AdminModel->_getStallName($id));
+    }
 
+    public function Save(){        
+        $this->AdminModel->save($this->input->post('employee'));
+    }
+
+    public function SaveStall(){        
+        $this->Stall_model->save($this->input->post('stall'));
+    }
+
+    public function Validate(){
+        $Employee = $this->input->post('employee');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($employee['Firstname'])){
+            $str .= $this->invalid('Firstname', 'Please input a value');;
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->author->_exist('Firstname', $employee['Firstname']);            
+            if(is_object($ifExist)){
+                if($ifExist->EmployeeId != $employee['EmployeeId']){
+                    $str .= $this->invalid('Firstname', 'Author already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }    
+
+
+    
 	public function delete_user($EmployeeId)
 	{
         $u = $this->uri->segment(3);
@@ -56,13 +75,14 @@ class Admin extends CI_Controller {
         redirect('admin/account', 'refresh');
 	}
 
-	public function Stall(){
+	public function GenerateTableStall(){
+		// print_r($this->Stall_model->getStall());
         $json = '{ "data": [';
-        foreach($this->Stall_model->getStall() as $data){
+        foreach($this->AdminModel->getStall() as $data){
             $json .= '['
                 .'"'.$data->StallId.'",'                
-                .'"'.$data->Name.'"'
-              //.'"<a href=\"'.base_url('admin/view_stall/'.$data->StallId).'\" class=\"btn btn-info\" >Update</a><a href=\"'.base_url('admin/delete_stall/'.$data->StallId).'\" class=\"btn btn-danger\" >Delete</a>"'
+                .'"'.$data->Name.'",'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" class=\"btn btn-danger\" >Delete</a>"'
             .']';            
             $json .= ',';
         }
@@ -73,12 +93,12 @@ class Admin extends CI_Controller {
 
     public function GenerateTableEmployeeAdmin(){
         $json = '{ "data": [';
-        foreach($this->foodwaze_model->getEmployee() as $data){
+        foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
                 .'"'.$data->EmployeeAccount.'",'
-                .'"'.$data->Firstname.'",'
-                .'"'.$data->PositionId.'",'
+                .'"'.$data->Lastname.', '.$data->Firstname.'",'
+                .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
                 .'"'.$data->StallId.'",'                
               .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->EmployeeId).'\" class=\"btn btn-danger\" >Delete</a>"'
             .']';            
@@ -89,10 +109,4 @@ class Admin extends CI_Controller {
         echo $json;        
     }
 
-    public function removeExcessComma($str){
-		if($str != '{ "data": ['){
-            $str = substr($str, 0, strlen($str) - 1);
-		}
-		return $str;
-	}
 }

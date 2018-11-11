@@ -1,13 +1,24 @@
-<div class="main-content">
-	<div class="col-sm-10">
-		<div class="row">
-			<div class="col-sm-12">
-				<a class="btn btn-float btn-lg btn-info float-md-right text-white"
+<header class="header"> <!--header-inverse para madilim bg-ui-general-->
+<div class="container">
+	<div class="header-info">
+	<div class="left">
+		<br>
+		<h2 class="header-title"><strong>EMPLOYEES</strong></h2>
+	</div>
+	</div>
+
+	<div class="header-action">
+	<div class="buttons">
+		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white"
 				data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Account">
 				<i class="ti-plus"></i>
 				</a>
-			</div>
-
+		</a>
+	</div>
+	</div>
+</div>
+</header><!--/.header -->
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
@@ -15,7 +26,7 @@
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployeeAdmin") ?>">
 							<thead>
 								<tr>
-									<th style="width:10px;">Employee ID</th>
+									<th>Employee ID</th>
 									<th>Account</th>
 									<th>Name</th>			
 									<th>Position</th>
@@ -28,7 +39,7 @@
 		</div>
 	</div>
 
-<?php include("create_account.php");?>
+<?php include("Employees_Modal.php");?>
 
 <script>
 	$(document).ready(function () {

@@ -13,13 +13,13 @@
         <ul class="menu">
 
             <li class="menu-item active">
-                <a class="menu-link" href="#" "<?php echo base_url('admin/dashboard'); ?>">
+                <a class="menu-link" href="<?php echo base_url('Admin/Stalls'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Home</span>
                 </a>
             </li>            
             <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('admin/account'); ?>">
+                <a class="menu-link" href="<?php echo base_url('Admin/Accounts'); ?>">
                     <span class="icon fa fa-user"></span>
                     <span class="title">Manage Accounts</span>
                 </a>
@@ -36,4 +36,5 @@
     </nav>
 
 </aside>
+
 
