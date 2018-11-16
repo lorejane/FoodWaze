@@ -9,11 +9,9 @@
 
 	<div class="header-action">
 	<div class="buttons">
-		<!-- <a class="btn btn-primary btn-float" href="#" title="Create new book" data-provide="tooltip"><i class="ti-plus"></i></a> -->
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white"
-				data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Account">
-				<i class="ti-plus"></i>
-				</a>
+		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Employee_Modal.new();"
+		data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Account">
+		<i class="ti-plus"></i>
 		</a>
 	</div>
 	</div>
@@ -23,14 +21,13 @@
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
-						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployeeAdmin") ?>">
+						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("manager/GenerateTableEmployee") ?>">
 							<thead>
 								<tr>
 									<th>Employee ID</th>
 									<th>Account</th>
 									<th>Name</th>			
 									<th>Position</th>
-									<th>Stall</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -39,7 +36,7 @@
 		</div>
 	</div>
 
-<?php include("Employees_Modal.php");?>
+<?php include("AccountsModal.php");?>
 
 <script>
 	$(document).ready(function () {

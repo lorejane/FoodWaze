@@ -37,7 +37,7 @@ class Home extends CI_Controller {
             redirect('manager/Sales');
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
-            redirect('Cashier/Dashboard');
+            redirect('Cashier/Order');
         }else{
         	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
         	redirect('home/login');

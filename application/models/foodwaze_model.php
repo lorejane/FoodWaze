@@ -17,10 +17,19 @@
 			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
 		}
 
-		public function getPositionName($positionId){
-			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
+		public function getStalll(){
+	
+			return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
 		}
 
+		public function getPositionName($positionId){
+			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
+		} 
+
+		public function getStallName($stallId){
+			return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$stallId."'")->row()->Name;	
+		} 
+		
 		// view menu
 		public function getMenu($stallId){			
 			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();

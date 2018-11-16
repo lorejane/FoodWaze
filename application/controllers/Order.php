@@ -6,9 +6,8 @@ class Order extends CI_Controller {
 		parent::__construct();				
 	}
 
-	public function addToCart($MenuId=null, $Name=null, $qty=null, $Price=null){		
-		$data = array('MenuId' => $MenuId, 'qty' => 1, 'Name' => $Name, 'Price' => $Price, );
-		$this->cart->insert($data);
+	public function addToCart(){		
+		$this->input->post('order');
 		echo $this->displayCart();		
 	}
 
@@ -29,8 +28,6 @@ class Order extends CI_Controller {
 		    <td>'.$items['MenuId'].'</td>
 		    <td>'.$items['Name'].'</td>
 		    <td>'.$items['Price'].'</td>
-		    <td>'.$items['qty'].'</td>
-		    <td>'.$items['Price'] * $items['qty'].'</td>
 
 		  </tr>';
 		}
@@ -58,4 +55,27 @@ class Order extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
+    public function do_upload()
+    {
+            $config['upload_path']          = './bootstrap/images/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['max_size']             = 100;
+            $config['max_width']            = 1024;
+            $config['max_height']           = 768;
+
+            $this->load->library('upload', $config);
+
+            if ( ! $this->upload->do_upload('userfile'))
+            {
+                    $error = array('error' => $this->upload->display_errors());
+
+                    $this->load->view('upload_form', $error);
+            }
+            else
+            {
+                    $data = array('upload_data' => $this->upload->data());
+
+                    $this->load->view('upload_success', $data);
+            }
+    }
 }	

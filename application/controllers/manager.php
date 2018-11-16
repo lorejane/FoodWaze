@@ -13,56 +13,121 @@ class Manager extends _BaseController {
 	{
 		redirect(base_url('login'));
 	}
-    
-    public function Save(){        
-        $this->ManagerModel->save($this->input->post('employee'));
-    } 
 
-    public function Sales(){
+    public function Categories(){
 
         $this->load->view('include/header');
-        $this->load->view('Manager/sales');
+        $this->load->view('Manager/ManageCategories/Categories');
         $this->load->view('include/footer');
     }
 
-    public function Meal(){
+    public function Menu(){
 
         $this->load->view('include/header');
-        $this->load->view('Manager/menu/meal');
-        $this->load->view('include/footer');
-    }
-
-    public function Pasta(){
-
-        $this->load->view('include/header');
-        $this->load->view('Manager/menu/pasta');
-        $this->load->view('include/footer');
-    }
-    public function Dessert(){
-
-        $this->load->view('include/header');
-        $this->load->view('Manager/menu/dessert');
-        $this->load->view('include/footer');
-    }
-
-    public function Drinks(){
-
-        $this->load->view('include/header');
-        $this->load->view('Manager/menu/drinks');
+        $this->load->view('Manager/ManageMenus/Menu');
         $this->load->view('include/footer');
     }
 
     public function Accounts()
     {
         $this->load->view('include/header');
-        $this->load->view('Manager/accounts');
+        $this->load->view('Manager/ManageAccounts/Accounts');
         $this->load->view('include/footer');
         
     } 
     
-    public function Get($id){        
+    public function Sales(){
+        $this->load->view('include/header');
+        $this->load->view('manager/sales');
+        $this->load->view('include/footer');
+    }
+
+    public function Save(){        
+        $this->ManagerModel->save($this->input->post('employee'));
+    } 
+
+    public function SaveCategory(){        
+        $this->CategoriesModel->save($this->input->post('category'));
+    } 
+
+    public function SaveMenu(){        
+        $this->MenuModel->save($this->input->post('menu'));
+    }     
+
+    public function GetEmployee($id){        
         echo $this->convert($this->ManagerModel->_get($id));
     }
+
+    public function GetCategory($id){        
+        echo $this->convert($this->ManagerModel->_getCategories($id));
+    }
+
+    public function GetMenu($id){        
+        echo $this->convert($this->ManagerModel->_getMenu($id));
+    }
+
+    public function ValidateEmployee(){
+        $employee = $this->input->post('employee');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($employee['EmployeeAccount'])){
+            $str .= $this->invalid('EmployeeAccount', 'Please input a value');;
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->AdminModel->_exist('EmployeeAccount', $employee['EmployeeAccount']);            
+            if(is_object($ifExist)){
+                if($ifExist->EmployeeId != $employee['EmployeeId']){
+                    $str .= $this->invalid('EmployeeAccount', 'Account already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    }   
+
+    public function ValidateCategories(){
+        $category = $this->input->post('category');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($category['CategoryName'])){
+            $str .= $this->invalid('CategoryName', 'Please input a value');;
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->CategoriesModel->_exist('CategoryName', $category['CategoryName']);            
+            if(is_object($ifExist)){
+                if($ifExist->CategoryId != $category['CategoryId']){
+                    $str .= $this->invalid('CategoryName', 'Category already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    } 
+ 
+    public function ValidateMenus(){
+        $menu = $this->input->post('menu');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($menu['Name'])){
+            $str .= $this->invalid('Name', 'Please input a value');;
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->MenuModel->_exist('Name', $menu['Name']);            
+            if(is_object($ifExist)){
+                if($ifExist->MenuId != $menu['MenuId']){
+                    $str .= $this->invalid('Name', 'Menu already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    } 
 
 	//DisplayTableFor E M P L O Y E E
 	public function GenerateTableEmployee(){
@@ -88,6 +153,36 @@ class Manager extends _BaseController {
         $this->position_model->delete($u);
         redirect('Manager/Accounts', 'refresh');
 	}
-
 	
+    public function generateTableCategories(){
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->getCategories() as $data){                 
+           $json .= '['
+                .'"'.$data->CategoryId.'",'
+                .'"'.$data->CategoryName.'",'              
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\"  class=\"btn btn-info\" >Update</a><a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function generateTableMenus(){
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->getMenu() as $data){                 
+           $json .= '['
+                .'"'.$data->CategoryId.'",'
+                .'"'.$data->Name.'",'
+                .'"'.$data->Price.'",'                
+             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\"  class=\"btn btn-info\" >Update</a><a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" class=\"btn btn-danger\" >Delete</a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
 }

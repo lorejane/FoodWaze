@@ -20,4 +20,10 @@ class _BaseModel extends CI_Model{
 		return $dbList;		
 	}
 
+	public function _exist($column, $value){
+		$value = strtolower($value);
+		return $this->db->query("SELECT * FROM ".$this->table." WHERE LOWER(".$column.") = '".$value."'")->row();
+	}
+
+
 }	
