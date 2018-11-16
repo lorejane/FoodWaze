@@ -1,3 +1,57 @@
+input[type="checkbox"][id^="cb"] {
+    display: none;
+  }
+  
+  label {
+    padding: 10px;
+    display: block;
+    position: relative;
+    margin: 30px;
+    cursor: pointer;
+  }
+  
+  label:before {
+    background-color: white;
+    color: white;
+    content: " ";
+    display: block;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 28px;
+    transition-duration: 0.4s;
+    transform: scale(0);
+  }
+  
+  label img {
+    transition-duration: 0.2s;
+    transform-origin: 50% 50%;
+  }
+  
+  :checked + label {
+    border-color: #ddd;
+  }
+  
+  :checked + label:before {
+    content: "✓";
+    background-color: #33cabb;
+    transform: scale(1);
+  }
+  
+  :checked + label img {
+    transform: scale(0.9);
+    z-index: -1;
+  }
+  input[type=checkbox] {
+    display: none;
+  }
+
+
+
 .font-dosis{font-family:Dosis,Roboto,sans-serif}
 .bg-ui-general{background-image:url(../img/header/general.png)}
 .doc-btn-spacing .btn{margin-bottom:10px;margin-right:6px}
