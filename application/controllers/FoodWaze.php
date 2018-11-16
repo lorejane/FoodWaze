@@ -31,6 +31,15 @@ class FoodWaze extends CI_Controller {
             echo $this->convert($this->foodwaze_model->getCategory($stallId));
         }
 
+        // public function getPrice($stallId)
+        // {
+        //     echo $this->convert($this->foodwaze_model->getPrice($stallId));
+        // }
+
+
+
+
+
         //converts any query to json
         public function convert($param){
             $str = '{';		
@@ -60,18 +69,5 @@ class FoodWaze extends CI_Controller {
                 return "No data";
             return $str;
         }
-        // public function order()
-        // {
-        //     $this->load->view('include/header');
-        //     $this->load->view('orderpage');
-        //     $this->load->view('include/footer');
-        // }
-
-        // public function about()
-        // {
-        //     $this->load->view('include/header');
-        //     $this->load->view('aboutpage');
-        //     $this->load->view('include/footer');
-        // }
-        
+      
 }

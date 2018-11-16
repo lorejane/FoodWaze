@@ -32,6 +32,13 @@
 			return $query;
 		}
 
+		// // view price
+		// public function getPrice(){
+		// 	$query=$this->db->query('SELECT Price FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
+		// 	return $query;
+		// }
+		
+
 		// view stall list
 		public function getStall(){
 			$stall=$this->db->query('SELECT * FROM stall')->result();

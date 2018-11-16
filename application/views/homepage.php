@@ -65,12 +65,17 @@
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                             
-                                    <div class="row">   
+                                    <div class="row" id="filters">   
                                         <?php foreach($stall as $s): ?>
-                                            <div class="col-md-3 col-sm-6 stall" id="<?php echo $s->StallId; ?>">
+                                        
+                                        <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
+                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
+                                        
+
+                                            <!--<div class="col-md-3 col-sm-6 stall" id="<?php echo $s->StallId; ?>">
                                                 <h4 title="nav-title"><?php echo $s->Name; ?></h4>
                                                 <img src="images_foodwaze/stall/stall1.jpg" alt="" style="width:200px">
-                                            </div>
+                                            </div>-->
                                         <?php endforeach; ?>
                                     </div>
 
@@ -135,51 +140,67 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-<script>
-    $(".stall").click(function(){
-        console.log($(this).attr('id'));
-        $.ajax({
-            url: "<?php echo base_url("foodwaze/getCategory/") ?>" + $(this).attr('id'), 
-            success: function(kat){
-                kat = JSON.parse(kat);
-                console.log(kat);                                
-                var element = '';
-                element +='<div class="nav-tabs-left"><ul class="nav nav-tabs nav-tabs-success">';
-                var first = true;
-                $.each(kat, function(index, data){
-                    if(first){
-                        first = false;
-                        element +='<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
-                    }else{
-                        element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
+        <script>
+            function menu(id) {
+                  return $.ajax({
+                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
+                        success: function(menu){
+                            menu=JSON.parse(menu);
+                            console.log('---------MENU----------');
+                            // console.log(menu);
+                            $.each(menu, function(index, data){
+                                //console.log(data);
+                                //data.Price
+                                $('#cat-' + data.CategoryId).append(data.Name +' - PHP '+data.Price+  '<br />');
+                            });
+                        }
+                    }) 
+                }
+            $("input:checkbox").on('click', function() {
+              var $box = $(this);
+              if ($box.is(":checked")) {
+                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                $(group).prop("checked", false);
+                $box.prop("checked", true);      
+                id=$(this).attr('id');
+                console.log(id);    
+                 $.ajax({
+                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
+                    success: function(kat){
+                        kat = JSON.parse(kat);
+                        console.log('---------CATEGORY----------');
+                        console.log(kat);                                
+                        var element = '';
+                        element +='<div class="nav-tabs-left"><ul class="nav nav-tabs nav-tabs-success">';
+                        var first = true;
+                        $.each(kat, function(index, data){
+                            if(first){
+                                first = false;
+                                element +='<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
+                            }else{
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
+                            }
+                        })
+                        element +='</ul>';
+                        element +='<div class="tab-content">';
+                        first = true;
+                        $.each(kat, function(index, data){
+                            if(first){
+                                first = false;
+                                element +='<div class="tab-pane fade active show" id="cat-' + data.CategoryId + '"></div>';                                     
+                            }else{
+                                element +='<div class="tab-pane fade" id="cat-' + data.CategoryId + '"></div>';
+                            }
+                        })
+                        element +='</div>';
+                        $('#menu-container').html(element);
+                        menu(id);
                     }
-                })
-                element +='</ul>';
-                element +='<div class="tab-content">';
-                first = true;
-                $.each(kat, function(index, data){
-                    if(first){
-                        first = false;
-                        element +='<div class="tab-pane fade active show" id="cat-' + data.CategoryId + '"></div>';                                     
-                    }else{
-                        element +='<div class="tab-pane fade" id="cat-' + data.CategoryId + '"></div>';
-                    }
-                })
-                element +='</div>';
-                $('#menu-container').html(element);
-            }
-        })
-        $.ajax({
-            url: "<?php echo base_url("foodwaze/getMenu/") ?>" + $(this).attr('id'), 
-            success: function(menu){
-                menu=JSON.parse(menu);
-                // console.log(menu);
-                $.each(menu, function(index, data){
-                    console.log(data);
-                    //data.Price
-                    $('#cat-' + data.CategoryId).append(data.Name + '<br />');
-                });
-            }
-        })
-    });
-</script>
+                })                                                
+                 
+              }
+              else {
+                $box.prop("checked", false);
+              }
+            });
+        </script>
