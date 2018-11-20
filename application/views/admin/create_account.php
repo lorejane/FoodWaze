@@ -15,10 +15,6 @@
                         
                         <div class="row mb-2">
                             <div class="col-12">
-                                <label>Position</label>
-                                <input name="PositionId" class="form-control form-type-combine show-tick"></input>
-                            </div>
-                            <div class="col-12">
                                 <label>FirstName</label>
                                 <input name="Firstname" type="text" class="form-control" placeholder="Firt name" />
                             </div>
