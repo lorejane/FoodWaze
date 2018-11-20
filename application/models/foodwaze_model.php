@@ -8,48 +8,44 @@
 			parent:: __construct();
 		}
 
-		public function Login($PositionId, $EmployeeAccount, $password)
-		{
-			$query = $this->db->query("SELECT * FROM employee WHERE EmployeeAccount = '".$EmployeeAccount."' AND password = '".$password."'");
-			$ok = false;
-			$session_data = [];
-			foreach($query->result() as $row){
-				$session_data = array(
-					'PositionId' => $row->PositionId,
-					'EmployeeId' => $row->EmployeeId,
-					'StallId' => $row->StallId,
-					'logged_in' => true
-				);
-				$ok = true;
-			}
-			if($ok){
-				return $session_data;
-			}
-			else{
-				return false;
-			}
-		}
-
 		public function getEmployeeDetails(){
 			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		}
 
 		public function getPosition(){
-			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
 	
+			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
 		}
 
-		public function getEmployee(){
-			return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
-			
+		public function getStalll(){
+	
+			return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
 		}
 
+		public function getPositionName($positionId){
+			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
+		} 
+
+		public function getStallName($stallId){
+			return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$stallId."'")->row()->Name;	
+		} 
+		
 		// view menu
-		public function readMenu(){
-			$this->db->select("*");
-			$this->db->from("menu");
-			$query=$this->db->get();
-			return $query->result();
+		public function getMenu($stallId){			
+			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
+			return $query;
 		}
 
+		public function getCategory($stallId){			
+			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
+			return $query;
+		}
+
+		// view stall list
+		public function getStall(){
+			$stall=$this->db->query('SELECT * FROM stall')->result();
+			return $stall;
+		}
+
+	
 	}

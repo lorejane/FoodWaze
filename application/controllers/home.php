@@ -5,34 +5,13 @@ class Home extends CI_Controller {
 	public function __construct(){
 
 	parent::__construct();
-			$this->load->model('foodwaze_model', 'user');
-			$this->load->model('Order_model', 'ord');
+			$this->load->model('LoginModel', 'user');
 	}
 
 	public function index()
 	{
 		$this->load->view('include/header');
 		$this->load->view('login');
-		$this->load->view('include/footer');
-	}
-
-	public function dashboard(){
-		//$this->session->unset_userdata('sf');
-		$this->load->view('include/header');
-		$data['cat1'] = $this->Order_model->getMenuMeal();
-		$data['cat2'] = $this->Order_model->getMenuPasta();
-		$data['cat3'] = $this->Order_model->getMenuDessert();
-		$data['cat4'] = $this->Order_model->getMenuDrinks();
-		$this->load->view('order', $data);
-		$this->load->view('include/footer');
-	}
-
-	public function Account()
-	{
-		$this->load->view('include/header');
-		$data['details'] = $this->foodwaze_model->getEmployeeDetails();
-		$data['detailpos'] = $this->foodwaze_model->getPosition();
-		$this->load->view('account', $data);
 		$this->load->view('include/footer');
 	}
 
@@ -52,13 +31,13 @@ class Home extends CI_Controller {
         $position = $this->session->userdata('PositionId');
         if($position == 1){
 			$this->session->set_userdata(array('is_admin' => true));
-            redirect('admin/dashboard');
+            redirect('admin/Stalls');
         }else if($position == 2){
 			$this->session->set_userdata(array('is_manager' => true));
-            redirect('manager/Accounts');
+            redirect('manager/Sales');
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
-            redirect('home/dashboard');
+            redirect('Cashier/Order');
         }else{
         	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
         	redirect('home/login');
