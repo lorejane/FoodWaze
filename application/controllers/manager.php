@@ -61,6 +61,12 @@ class Manager extends _BaseController {
     public function GetCategory($id){        
         echo $this->convert($this->ManagerModel->_getCategories($id));
     }
+//edit 
+
+
+    public function GetAll(){
+        echo $this->convert($this->CategoriesModel->_list());
+    }
 
     public function GetMenu($id){        
         echo $this->convert($this->ManagerModel->_getMenu($id));
