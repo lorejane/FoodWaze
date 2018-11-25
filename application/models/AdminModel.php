@@ -25,7 +25,7 @@
 	}
 
 	public function delete($employee){		
-			$this->db->query("DELETE FROM employee WHERE EmployeeId = '".$employee['EmployeeId']." '");
+			$this->db->query("DELETE FROM employee WHERE EmployeeId = '".$employee['EmployeeId']."' ");
 	}
 
 	public function save($employee){

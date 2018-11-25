@@ -30,12 +30,14 @@
                                 <input id="Lastname" name="Lastname" type="text" class="form-control" placeholder="Last Name" />
                             </div>
                         </div>
+                    <!-- selectpicker -->
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
                                 <label>Position</label>
-                                <input id="PositionId" name="PositionId" type="text" class="form-control" placeholder="Stall Number" />
+                                <input id="PositionId" name="PositionId" type="text" class="form-control" placeholder="Position Name" />
                             </div>
-                        </div> 
+                        </div>
+                    
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Stall</label>
@@ -46,6 +48,7 @@
                             <div class="col-12">
                                 <label>Password</label>
                                 <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
+                                <span class="icon fa fa-eye" onclick="changePwdView()"></span>
                             </div>
                         </div>                                                 
                     </form>
@@ -98,7 +101,7 @@
                 EmployeeId: $('#EmployeeId').val()                 
         },         
 
-        init: function () {            
+        init: function () {  
             $('#modal-Employee-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();

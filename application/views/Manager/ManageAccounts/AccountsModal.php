@@ -34,6 +34,7 @@
                             <div class="col-12">
                                 <label>Password</label>
                                 <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
+                                <span class="icon fa fa-eye" onclick="changePwdView()"></span>
                             </div>
                         </div>                                                
                     </form>
@@ -152,5 +153,7 @@
             })
         }
     }
+
+
 
 </script>
