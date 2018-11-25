@@ -14,7 +14,41 @@ class FoodWaze extends CI_Controller {
             $this->load->view('homepage', $data); // for stall list
             $this->load->view('include/footer');
         }
-
+        public function clearcart()
+        {
+            session_destroy(); 
+            exit();
+        }
+        public function showcart()
+        {
+            $itemcart = $_SESSION['cart'];
+	   		$cart = array_column($itemcart, 'id');					
+			$rs = $this->foodwaze_model->readitem_f($cart);	
+			foreach($rs as $r)
+			{
+				$item[] = array(
+					'MenuId' => $r['MenuId'],
+					'Name' => $r['Name'],
+					'StallId' => $r['StallId'],
+					'Price' => $r['Price'],
+					'CategoryId' => $r['CategoryId'],
+					'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
+				);
+			}
+			print_r($rs);
+			// print_r($item);
+            // print_r( $_SESSION['cart']);
+        }
+        public function addtocart()
+        {            
+            if(isset($_POST['item_id']))
+              {
+                $_SESSION['cart'][$_POST['item_id']]['id']=$_POST['item_id'];                   
+                $_SESSION['cart'][$_POST['item_id']]['qty']=$_SESSION['cart'][$_POST['item_id']]['qty']+1; 
+				$_SESSION['cart']['total']=$_SESSION['cart']['total']+1;
+                echo count($_SESSION['cart']);
+              }
+        }
         public function dashboard(){
             $this->load->view('include/header');
             $data['cat'] = $this->Stall_model->getCustomerMenuMeal();

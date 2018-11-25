@@ -14,11 +14,9 @@
             <h1 class="title"><strong>FoodWaze</strong></h1>
             </a>
            
-
-                <!-- <a class="menu-item active" href="<?php echo base_url();?>">HOME</a>
-                <a class="menu-item" href="<?php echo base_url('customer/orderpage'); ?>">ORDER</a>
-                <a class="menu-item" href="<?php echo base_url('customer/aboutpage'); ?>">ABOUT</a>
- -->
+            <a class="card-title" href="<?php echo base_url("foodwaze/addtocart") ?>">
+            <button></button>
+            </a>
 
             <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
                 <i class="material-icons fullscreen-default">fullscreen</i>
@@ -141,6 +139,28 @@
 </main>
 <!-- END Main container -->
         <script>
+			function cart(id)
+            {                
+              var mid;
+              mid=document.getElementById(id);
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("foodwaze/addtocart") ?>',
+                data:{
+                  item_id:id
+                },
+                success:function(response) {
+                  $('.cap_status').html("Added to Cart").fadeIn('slow').delay(2000).fadeOut('slow');
+                },
+                error: function(){
+                    alert('ERROR!');
+                }
+              });
+
+            }
+        </script>
+        <script>
+            
             function menu(id) {
                   return $.ajax({
                         url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
@@ -151,7 +171,7 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append(data.Name +' - PHP '+data.Price+  '<br />');
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h4>'+data.Name+'</h4><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>   '); 
                             });
                         }
                     }) 
@@ -164,21 +184,21 @@
                 $box.prop("checked", true);      
                 id=$(this).attr('id');
                 console.log(id);    
-                 $.ajax({
+                $.ajax({
                     url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
                     success: function(kat){
                         kat = JSON.parse(kat);
                         console.log('---------CATEGORY----------');
                         console.log(kat);                                
                         var element = '';
-                        element +='<div class="nav-tabs-left"><ul class="nav nav-tabs nav-tabs-success">';
+                        element +=' <ul class="nav nav-tabs">';
                         var first = true;
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+data.CategoryName+'</h3></a></li>';
                             }else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-' + data.CategoryId + '">' + data.CategoryName + '</a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+data.CategoryName+'</h3></a></li>';
                             }
                         })
                         element +='</ul>';

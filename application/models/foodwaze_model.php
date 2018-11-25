@@ -25,6 +25,17 @@
 		public function getPositionName($positionId){
 			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
 		} 
+		private $menu = "menu";
+		public function readitem_f($condition=null){
+			$this->db->select('*');
+			$this->db->from($this->menu);
+			if( isset($condition) ) 
+			{			
+				$this->db->where_in('menuid',$condition);
+			}		
+			$query=$this->db->get();
+			return $query->result_array();		
+		}
 
 		public function getStallName($stallId){
 			return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$stallId."'")->row()->Name;	
