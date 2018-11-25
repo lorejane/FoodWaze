@@ -7,6 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		parent::__construct();		
 		}
 
+		public function invalid($name, $message){
+			return '"'.$name.'":"<div class=\"invalid-feedback\" style=\"display:block\">'.$message.'</div>",';
+		}
+
 		public function convert($param){
 			$str = '{';		
 			$counter = 0;				

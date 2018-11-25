@@ -15,33 +15,27 @@
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Account</label>
-                                <input id="EmployeeAccount" name="EmployeeAccount" type="text" class="form-control" placeholder="Employee Name" />
+                                <input id="EmployeeAccount" name="EmployeeAccount" type="text" class="form-control" placeholder="Account" />
                             </div>
                         </div> 
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>First Name</label>
-                                <input id="Firstname" name="Lastname" type="text" class="form-control" placeholder="Employee Name" />
+                                <input id="Firstname" name="Lastname" type="text" class="form-control" placeholder="First Name" />
                             </div>
                         </div>                                                  
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Last Name</label>
-                                <input id="Lastname" name="Lastname" type="text" class="form-control" placeholder="Employee Name" />
+                                <input id="Lastname" name="Lastname" type="text" class="form-control" placeholder="Last Name" />
                             </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Stall</label>
-                                <input id="StallId" name="StallId" type="text" class="form-control" placeholder="Employee Name" />
-                            </div>
-                        </div> 
+                        </div>   
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Password</label>
-                                <input id="Password" name="Password" type="password" class="form-control" placeholder="Employee Name" />
+                                <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
                             </div>
-                        </div>                                                 
+                        </div>                                                
                     </form>
                 </div>
             </div>
@@ -61,7 +55,6 @@
                 EmployeeAccount: $('#EmployeeAccount').val(),              
                 Firstname: $('#Firstname').val(),
                 Lastname: $('#Lastname').val(),
-                StallId: $('#StallId').val(),
                 Password: $('#Password').val()
             }
         },
@@ -85,7 +78,7 @@
             $('#rowActive').removeClass('invisible');          
             Employee_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Admin/Get/'); ?>" + id,
+                url: "<?php echo base_url('Manager/GetEmployee/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log(i);
@@ -93,6 +86,7 @@
                     $('#EmployeeAccount').val(i.EmployeeAccount);
                     $('#Firstname').val(i.Firstname);
                     $('#Lastname').val(i.Lastname);
+                    $('#Password').val(i.Password);
                 }
             });           
         },
@@ -101,13 +95,13 @@
             $('.invalid-feedback').remove();
             $('.is-invalid').removeClass('is-invalid');
             $.ajax({
-                url:'<?php echo base_url('Admin/Validate'); ?>',
+                url:'<?php echo base_url('Manager/ValidateEmployee'); ?>',
                 type: "POST",
                 data: {"employee": Employee_Modal.data()},
                 success: function(i){
                     i = JSON.parse(i);                    
                     if(i.status == 1){
-                        Author_Modal.save();
+                        Employee_Modal.save();
                     }else{
                         $.each(i, function(element, message){
                             if(element != 'status'){
@@ -120,7 +114,7 @@
                     swal('Oops!', "Something went wrong", 'error');
                 }
             })      
-        },        
+        },  
 
         save: function () {
             var message;            
@@ -142,7 +136,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url:'<?php echo base_url('Admin/Save'); ?>',
+                        url:'<?php echo base_url('Manager/Save'); ?>',
                         type: "POST",
                         data: {"employee": Employee_Modal.data()},
                         success: function(i){

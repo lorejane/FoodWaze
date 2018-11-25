@@ -29,24 +29,57 @@
                                 <label>Last Name</label>
                                 <input id="Lastname" name="Lastname" type="text" class="form-control" placeholder="Last Name" />
                             </div>
-                        </div>   
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Position</label>
+                                <input id="PositionId" name="PositionId" type="text" class="form-control" placeholder="Stall Number" />
+                            </div>
+                        </div> 
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Stall</label>
+                                <input id="StallId" name="StallId" type="text" class="form-control" placeholder="Stall Number" />
+                            </div>
+                        </div> 
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Password</label>
                                 <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
                             </div>
-                        </div>                                                
+                        </div>                                                 
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Employee_Modal.save()">Save</button>
+                <button type="button" class="btn btn-info" onclick="Employee_Modal.validate()">Save</button>
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal modal-center fade" id="modal-Remove" tabindex="-1">
+    <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-type-line">
+                <div class="col-md-12 col-sm-12">
+                    <center>
+                    <form id="modal-Remove-form" action="#" class="form-group mt-2">                                           
+                        <button type="button" class="btn btn-secondary " data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" onclick="Employee_Modal.delete()">Yes</button>
+                    </form>
+                </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var Employee_Modal = {
         data: function () {
@@ -55,15 +88,28 @@
                 EmployeeAccount: $('#EmployeeAccount').val(),              
                 Firstname: $('#Firstname').val(),
                 Lastname: $('#Lastname').val(),
+                PositionId: $('#PositionId').val(),
+                StallId: $('#StallId').val(),
                 Password: $('#Password').val()
             }
-        },
+        }, 
+
+        id: function () {
+                EmployeeId: $('#EmployeeId').val()                 
+        },         
 
         init: function () {            
             $('#modal-Employee-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             $('#modal-Employee').modal('show');
+        },
+
+        hot: function () {            
+            $('#modal-Remove-form')[0].reset();
+            $('input').removeClass('is-invalid').addClass('');
+            $('.invalid-feedback').remove();
+            $('#modal-Remove').modal('show');
         },
 
         new: function () {
@@ -78,7 +124,7 @@
             $('#rowActive').removeClass('invisible');          
             Employee_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Manager/Get/'); ?>" + id,
+                url: "<?php echo base_url('Admin/Get/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log(i);
@@ -86,10 +132,37 @@
                     $('#EmployeeAccount').val(i.EmployeeAccount);
                     $('#Firstname').val(i.Firstname);
                     $('#Lastname').val(i.Lastname);
+                    $('#PositionId').val(i.PositionId);
+                    $('#StallId').val(i.StallId);
                     $('#Password').val(i.Password);
                 }
             });           
         },
+
+        validate: function(){
+            $('.invalid-feedback').remove();
+            $('.is-invalid').removeClass('is-invalid');
+            $.ajax({
+                url:'<?php echo base_url('Admin/Validate'); ?>',
+                type: "POST",
+                data: {"employee": Employee_Modal.data()},
+                success: function(i){
+                    i = JSON.parse(i);                    
+                    if(i.status == 1){
+                        Employee_Modal.save();
+                    }else{
+                        $.each(i, function(element, message){
+                            if(element != 'status'){
+                                $('#' + element).addClass('is-invalid').parent().append(message);
+                            }
+                        });
+                    }
+                }, 
+                error: function(i){
+                    swal('Oops!', "Something went wrong", 'error');
+                }
+            })      
+        },        
 
         save: function () {
             var message;            
@@ -111,7 +184,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url:'<?php echo base_url('Manager/Save'); ?>',
+                        url:'<?php echo base_url('Admin/Save'); ?>',
                         type: "POST",
                         data: {"employee": Employee_Modal.data()},
                         success: function(i){
@@ -125,7 +198,30 @@
                     })                                     
                 }
             })
-        }
-    }
+        },
+
+        remove: function () {            
+            $('.modal-title').text('Delete Employee');  
+            $('#rowActive').removeClass('invisible');          
+            Employee_Modal.hot();   
+        },
+
+        delete: function () {
+                $.ajax({  
+                     url:'<?php echo base_url('Admin/Delete'); ?>', 
+                     method:"POST",  
+                     data:{"employee": Employee_Modal.data()},  
+                    success: function(i){
+                        swal('Deleted!', 'success');
+                        $('#modal-Remove').modal('hide');
+                        console.log(i);
+                        }, 
+                    error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
+                        }
+           }) 
+        }        
+
+}
 
 </script>

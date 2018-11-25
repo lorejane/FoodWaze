@@ -9,67 +9,33 @@
                         <span class="icon fa fa-home"></span>
                         <span class="title">Sales</span>
                     </a>
-                </li>                  
+            </li>    
 
-                 <a class="menu-link" href="#">
-                    <span class="icon ti-layout"></span>
-                    <span class="title">Manage Menu</span>
-                    <span class="arrow"></span>
-                </a>
+            <li class="menu-item active">
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('manager/Categories'); ?>">
+                        <span class="icon fa fa-home"></span>
+                        <span class="title">Manage Categories</span>
+                    </a>
+            </li>            
 
-
-                <ul class="menu-submenu">
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('manager/meal'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Meal</span>
-                        </a>
-                    </li>   
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('manager/pasta'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Pasta</span>
-                        </a>
-                    </li>   
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('manager/dessert'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Dessert</span>
-                        </a>
-                    </li>   
-
-                    <li class="menu-item">
-                        <a class="menu-link" href="<?php echo base_url('manager/drinks'); ?>">
-                            <span class="dot"></span>
-                            <span class="title">Drinks</span>
-                        </a>
-                    </li>  
-
-                </ul> 
-
-            </li>  
+            <li class="menu-item active">
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('manager/Menu'); ?>">
+                        <span class="icon fa fa-home"></span>
+                        <span class="title">Manage Menu</span>
+                    </a>
+            </li>                                 
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('manager/Accounts'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Manage Accounts</span>
                 </a>
-            </li>  
-            
-           <!-- <li class="menu-item active">
-                <a class="menu-link" href="<?php echo base_url('manager/Accounts'); ?>">
-                 
-                    <span class="title">Sales</span>
-                </a>
-            </li>     
-            -->       
-
+            </li>
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('home/logout'); ?>">
-                
                     <span class="title">Logout</span>
                 </a>
             </li>    
