@@ -12,11 +12,11 @@
                     <form id="modal-Menu-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="MenuId" name="MenuId" />          
                         <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Category ID</label>
-                                <input id="CategoryId" name="CategoryId" type="text" class="form-control" placeholder="Category ID" />
+                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
+                                <label>Category</label>
+                                <select id="CategoryId" name="CategoryId" data-provide="selectpicker" title="Choose Category" data-live-search="true" class="form-control show-tick"></select>
                             </div>
-                        </div>                         
+                        </div>                        
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
@@ -28,7 +28,7 @@
                                 <label>Price</label>
                                 <input id="Price" name="Price" type="text" class="form-control" placeholder="Price" />
                             </div>
-                        </div>                                                                                                  
+                  0      </div>                                                                                                  
                     </form>
                 </div>
             </div>
@@ -45,13 +45,26 @@
         data: function () {
             return {
                 MenuId: $('#MenuId').val(),                
-                CategoryId: $('#CategoryId').val(),
+                CategoryId: $('#CategoryId').selectpicker('val'),
                 Name: $('#Name').val(),              
                 Price: $('#Price').val()
             }
         },
 
-        init: function () {            
+        init: function () {  
+         $.ajax({
+                url: "<?php echo base_url('Manager/GetAll'); ?>",
+                async: false,
+                success: function(i){
+                    i = JSON.parse(i);          
+                    $('#CategoryId').empty();          
+                    $.each(i, function(index, data){                        
+                        $('#CategoryId').append('<option value = "' + data.CategoryId + '">' + data.CategoryName + '</option>');
+                    })
+                    $('#CategoryId').selectpicker('refresh');
+                }
+            })         
+
             $('#modal-Menu-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
