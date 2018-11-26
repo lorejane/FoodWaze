@@ -1,6 +1,6 @@
 <?php 
 
-	class Foodwaze_model extends CI_Model
+	class Foodwaze_model extends _BaseModel
 	{
 		
 		public function __construct()

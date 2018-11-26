@@ -34,14 +34,14 @@
                         <div class="row mb-2">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
                                 <label>Position</label>
-                                <input id="PositionId" name="PositionId" type="text" class="form-control" placeholder="Position Name" />
+                                <select id="PositionId" name="PositionId" data-provide="selectpicker" title="Choose Position" data-live-search="true" class="form-control show-tick"></select>
                             </div>
                         </div>
                     
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Stall</label>
-                                <input id="StallId" name="StallId" type="text" class="form-control" placeholder="Stall Number" />
+                                <select id="StallId" name="StallId" data-provide="selectpicker" title="Choose Stall" data-live-search="true" class="form-control show-tick"></select>
                             </div>
                         </div> 
                         <div class="row mb-2">
@@ -102,6 +102,31 @@
         },         
 
         init: function () {  
+            $.ajax({
+            url: "<?php echo base_url('Admin/GetAll'); ?>",
+            async: false,
+            success: function(i){
+                i = JSON.parse(i);          
+                $('#StallId').empty();          
+                $.each(i, function(index, data){                        
+                    $('#StallId').append('<option value = "' + data.StallId + '">' + data.Name + '</option>');
+                })
+                $('#StallId').selectpicker('refresh');
+            }
+        })   
+
+            $.ajax({
+            url: "<?php echo base_url('Admin/GetAllPos'); ?>",
+            async: false,
+            success: function(i){
+                i = JSON.parse(i);          
+                $('#PositionId').empty();          
+                $.each(i, function(index, data){                        
+                    $('#PositionId').append('<option value = "' + data.PositionId + '">' + data.PositionName + '</option>');
+                })
+                $('#PositionId').selectpicker('refresh');
+            }
+        })     
             $('#modal-Employee-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
