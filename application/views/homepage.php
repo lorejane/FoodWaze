@@ -24,7 +24,6 @@
             </a>
             </header>
                 <!-- END Topbar -->
-
         
 <!-- Main container -->
 <main class="main-container">
