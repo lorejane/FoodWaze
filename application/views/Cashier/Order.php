@@ -1,28 +1,28 @@
 <div class="row">
 	<div class="col-sm-8">
-		<div class="card">
- 	       <div class="card-body">
+		<div class="card" style="height:90%;">
+ 	       <div class="card-body" >
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#meal"><h3>Meal</h3></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#pasta"><h3>Pasta</h3></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#dessert"><h3>Dessert</h3></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#drinks"><h3>Drinks</h3></a>
-            </li>
-        </ul>
-                <!-- Tab panes -->
+
+    <ul class="nav flex-column">
+    	<li class="nav-item">
+	      	<?php foreach($categories as $items){
+				echo  '
+	            <a class="btn nav-link" data-toggle="tab" href="#'.$items->CategoryId.'">
+				 '.$items->CategoryName.'
+				</a>
+				 ';
+				} 
+						
+			?>
+		</li>
+
+    </ul>
         <div class="tab-content" style="height:70%;">   
-  			<div class="tab-pane fade active show" id="meal">        
+  			<div class="tab-pane fade active show" id="1">        
 					<?php foreach($cat1 as $items){
 						echo ' 
-						<div class="col-sm-3" onclick="Orders.MakeOrder()" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
+						<div class="col-sm-3" type="button" id="Orderbtn" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
 						<h4>'.$items->Name.'</h4>
 						<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 						<button class="b btn btn-success" data-id = "<?php echo $items->MenuId ?>"  data-name = "<?php echo $items->Name ?>" value = "'.$items->Price.'" >Add to cart</button>
@@ -31,10 +31,10 @@
 					} 
 					?>
 			</div>
-            <div class="tab-pane fade" id="pasta">
+            <div class="tab-pane fade" id="2">
 				<?php foreach($cat2 as $items){
 					echo ' 
-					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
+					<div class="col-sm-3" id="Orderbtn" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
 					<h4>'.$items->Name.'</h4>
 					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 					<button type="button" class = "b btn btn-success" data-id = "'.$items->MenuId.'" data-name =  "'.$items->Name.'" value =  "'.$items->Price.'">Add to cart</button>
@@ -43,7 +43,7 @@
 					} 
 				?>
             </div>
-            <div class="tab-pane fade" id="dessert">
+            <div class="tab-pane fade" id="3">
 				<?php foreach($cat3 as $items){
 					echo ' 
 					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
@@ -55,18 +55,19 @@
 					} 
 				?>
             </div>
-            <div class="tab-pane fade" id="drinks">
+            <div class="tab-pane fade" id="4">
 				<?php foreach($cat4 as $items){
 					echo ' 
 					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
 					<h4>'.$items->Name.'</h4>
 					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
-					<button type="button" class = "b btn btn-success" data-id = "'.$items->MenuId.'" data-name =  "'.$items->Name.'" value =  "'.$items->Price.'">Add to cart</button>
+					<button type="button" class = "b btn btn-success" data-id = "'.$items->MenuId.'" data-name =  "'.$items->Name.'" data-price =  "'.$items->Price.'">Add to cart</button>
 					</div>
 					';
 					} 
 				?>
             </div>
+
            </div> 
         </div>
    </div>
@@ -105,31 +106,6 @@
 </div>
 </div>
 <script>
-
-	var Orders = {
-        data: function () {
-            return {
-                MenuId: $(this).data("MenuId"),                
-                Name: $(this).data("Name"),              
-                Price: $(this).data("Price")
-            }
-        },
-
-    	MakeOrder: function (id) {
-		      $.ajax({
-		        url: "<?php echo base_url('Order/addToCart/'); ?>" + id,
-		        data:{"order": Orders.data()},
-                    success: function(i){
-                        swal('Good Job!', 'success');
-                        console.log(i);
-                    }, 
-                    error: function(i){
-                        swal('Oops!', "Something went wrong", 'error');
-                    }
-		      }); 
-
-    	}
-    }
 	$(document).ready(function(){
 
 		$('.add_Cart').click(function(){
