@@ -50,8 +50,6 @@ input[type="checkbox"][id^="cb"] {
     display: none;
   }
 
-
-
 .font-dosis{font-family:Dosis,Roboto,sans-serif}
 .bg-ui-general{background-image:url(../img/header/general.png)}
 .doc-btn-spacing .btn{margin-bottom:10px;margin-right:6px}
