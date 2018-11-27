@@ -1,6 +1,6 @@
 <?php 
 
-	class Order_model extends CI_Model
+	class Order_model extends _BaseModel
 	{
 		
 		public function __construct()

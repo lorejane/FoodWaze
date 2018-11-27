@@ -19,21 +19,26 @@
 	public function save($stall){
 			if($stall['StallId'] == 0){//insert			
 				$this->db->query("INSERT into stall "
-					."(Name, Picuture) VALUES ("                   
-						."'".$stall['Name']."',"
-						."'".$stall['Picture']."'"					
+					."(Name) VALUES ("                   
+						."'".$stall['Name']."'"				
 					.")"
 				);
 			}
 			else{//update
 				$this->db->query("UPDATE stall SET "
-	                ."Name = '".$stall['Name']."',"
-	                ."Picture = '".$stall['Picture']."'"
+	                ."Name = '".$stall['Name']."'"
 	                ."WHERE StallId = '".$stall['StallId']."'"
 				);			
 			}
 	    }
-	    
+	 
+	public function saveImage($StallId, $Image){
+		$this->db->query("UPDATE stall SET "                			
+			."Image = '".$Image."' "
+			."WHERE StallId = '".$StallId."'"
+		);	
+	}
+
 	public function getCustomerMenuMeal(){
 		return $this->db->query("SELECT * FROM menu WHERE StallId = '2' ")->result();
 		

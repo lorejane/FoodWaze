@@ -9,12 +9,12 @@
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <img style= "width:125px; height:125px;"  alt="" id="imgHERE"  class="img-rounded img-responsive" style="margin-top:25px;"/>
-                    <form action = "<?php echo base_url('Admin/UploadPicture'); ?>" enctype= "multipart/form-data" method = "POST">
-                    <input type="file" name="image" required accept = "image/*" id = "imageChooser" /><br />
-                    <input type = "submit" name = "submit" value = "change dp" />
-                    </form>
                     <form id="modal-Stall-form" action="#" class="form-group mt-2">
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
+                            </div>
+                        </div> 
                         <input type="hidden" id="StallId" name="StallId" />          
                             <div></div>                      
                         <div class="row mb-2">
@@ -33,41 +33,27 @@
         </div>
     </div>
 </div>
+
 <script>
-$(document).ready(function(){
-    $("#imageChooser").change(function(event){      
-        var tgt = event.target || window.event.srcElement, files = tgt.files;       
-        var fr = new FileReader();
-        fr.onload = function(){
-            // $("#imgHERE").children().remove();
-            $("#imgHERE").css('border', 'none').children('img').attr('src', fr.result);
-        }
-        fr.readAsDataURL(files[0]);
+    var imageChanged = false;
+
+    $(document).ready(function(){
+        $("#image").change(function(event){                     
+            var tgt = event.target || window.event.srcElement, files = tgt.files;       
+            var fr = new FileReader();
+            fr.onload = function(){
+                $("#imgDisplay").children('img').attr('src', fr.result);
+                imageChanged = true;
+            }
+            fr.readAsDataURL(files[0]);
+        });
     });
-});
 
-var currentImage = 0;
-var images = [
-    'a.jpg',
-    'b.jpg'
-];
-var imageElement = document.getElementById('yourImageTagId');
-
-function nextImage(){
-    currentImage = (currentImage + 1) % images.length;
-    imageElement.src = images[currentImage];
-}
-
-var timeoutId = setTimeout(nextImage, 1000);
-
-</script>
-<script>
     var Stall_Modal = {
         data: function () {
             return {
                 StallId: $('#StallId').val(),                
                 Name: $('#Name').val(),
-                Picture: $('#Picture').val()
             }
         },
 
@@ -85,18 +71,19 @@ var timeoutId = setTimeout(nextImage, 1000);
             Stall_Modal.init();
         },
 
-        edit: function (id) {            
+        edit: function (val) {            
             $('.modal-title').text('Edit Stall');  
             $('#rowActive').removeClass('invisible');          
             Stall_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Admin/GetStall/'); ?>" + id,
+                url: "<?php echo base_url('Admin/GetStall/'); ?>" + val,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log(i);
                     $('#StallId').val(i.StallId);
                     $('#Name').val(i.Name);
-                    $('#Picture').val(i.Picture);
+                     $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
+                    imageChanged = false;
                 }
             });           
         },
@@ -126,6 +113,23 @@ var timeoutId = setTimeout(nextImage, 1000);
             })      
         },  
 
+        upload: function(){         
+            var formData = new FormData($('#modal-Stall-form')[0]);            
+            $.ajax({
+                url: "<?php echo base_url("Admin/UploadImage"); ?>",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log('upload: ' + data);                 
+                },
+                error: function(data){
+                    console.log('upload: ' + data);
+                }
+            });
+        },
+
         save: function () {
             var message;            
             if ($('#StallId').val() == 0) {
@@ -136,7 +140,7 @@ var timeoutId = setTimeout(nextImage, 1000);
 
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for Stall',
+                text: 'Save changes for Menu',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',
@@ -150,6 +154,9 @@ var timeoutId = setTimeout(nextImage, 1000);
                         type: "POST",
                         data: {"stall": Stall_Modal.data()},
                         success: function(i){
+                            if(imageChanged){                               
+                            Stall_Modal.upload();
+                            }
                             swal('Good Job!', message, 'success');
                             $('#modal-Stall').modal('hide');
                             console.log(i);
@@ -161,6 +168,7 @@ var timeoutId = setTimeout(nextImage, 1000);
                 }
             })
         }
+
     }
 
 </script>

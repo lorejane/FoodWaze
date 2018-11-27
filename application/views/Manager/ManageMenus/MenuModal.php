@@ -28,7 +28,7 @@
                                 <label>Price</label>
                                 <input id="Price" name="Price" type="text" class="form-control" placeholder="Price" />
                             </div>
-                  0      </div>                                                                                                  
+                        </div>                                                                                                  
                     </form>
                 </div>
             </div>

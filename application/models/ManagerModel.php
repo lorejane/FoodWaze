@@ -19,7 +19,7 @@
 					."'".$employee['Firstname']."',"
 					."'".$employee['Lastname']."',"
 					."'3',"	
-					."'".$this->session->userdata('StallId')."'"
+					."'".$this->session->userdata('StallId')."',"
 					."'".$employee['Password']."'"						
 				.")"
 			);
