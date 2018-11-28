@@ -25,6 +25,8 @@
 		public function getPositionName($positionId){
 			return $this->db->query("SELECT PositionName FROM position WHERE PositionId = '".$positionId."'")->row()->PositionName;	
 		} 
+
+		// display item selected
 		private $menu = "menu";
 		public function readitem_f($condition=null){
 			$this->db->select('*');

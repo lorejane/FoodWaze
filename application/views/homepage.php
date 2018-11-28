@@ -14,9 +14,9 @@
             <h1 class="title"><strong>FoodWaze</strong></h1>
             </a>
            
-            <a class="card-title" href="<?php echo base_url("foodwaze/addtocart") ?>">
+            <!-- <a class="card-title" href="<?php echo base_url("foodwaze/addtocart") ?>">
             <button></button>
-            </a>
+            </a> -->
 
             <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
                 <i class="material-icons fullscreen-default">fullscreen</i>
@@ -34,7 +34,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-title"><strong>Ordering made EZ!</strong></div>
-        
+                    <!-- <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>     -->
 
                     <div class="card-body">
                     <!-- <form data-provide="wizard" novalidate="true"> -->
@@ -66,13 +66,8 @@
                                         <?php foreach($stall as $s): ?>
                                         
                                         <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
+                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="<?php echo $s->Name; ?>"><br /><?php echo $s->Name; ?></h4> </label>
                                         
-
-                                            <!--<div class="col-md-3 col-sm-6 stall" id="<?php echo $s->StallId; ?>">
-                                                <h4 title="nav-title"><?php echo $s->Name; ?></h4>
-                                                <img src="images_foodwaze/stall/stall1.jpg" alt="" style="width:200px">
-                                            </div>-->
                                         <?php endforeach; ?>
                                     </div>
 
@@ -82,7 +77,7 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                                <p class="text-center text-gray">What's your order?</p>
+                                <!-- <p class="text-center text-gray">What's your order?</p> -->
                                 <div class="card">
                                     <div class="card-body" id="menu-container">
 
@@ -129,6 +124,10 @@
                     <button class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
                     <button class="btn btn-secondary" data-wizard="next" type="button">Next</button>
                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
+
+
+
+
                 </div>
             <!-- </form> -->
 
@@ -158,8 +157,9 @@
 
             }
         </script>
-        <script>
-            
+
+
+        <script>    
             function menu(id) {
                   return $.ajax({
                         url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
