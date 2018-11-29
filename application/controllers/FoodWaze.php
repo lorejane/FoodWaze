@@ -35,8 +35,8 @@ class FoodWaze extends CI_Controller {
 					'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
 				);
 			}
-			print_r($rs);
-			// print_r($item);
+			// print_r($rs);
+			print_r($item);
             // print_r( $_SESSION['cart']);
         }
         public function addtocart()
