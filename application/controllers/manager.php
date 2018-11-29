@@ -83,7 +83,7 @@ class Manager extends _BaseController {
                     print_r($error);
                 }else{
                     $data = array('upload_data' => $this->upload->data());
-                    $this->Stall_model->saveImage($this->input->post('StallId'), $data['upload_data']['file_name']);
+                    $this->MenuModel->saveImage($this->input->post('MenuId'), $data['upload_data']['file_name']);
                     print_r($data);
                 }
             }

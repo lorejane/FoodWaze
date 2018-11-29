@@ -12,6 +12,11 @@
                     <form id="modal-Menu-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="MenuId" name="MenuId" />          
                         <div class="row mb-2">
+                            <div class="col-12">
+                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
+                            </div>
+                        </div> 
+                        <div class="row mb-2">
                             <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
                                 <label>Category</label>
                                 <select id="CategoryId" name="CategoryId" data-provide="selectpicker" title="Choose Category" data-live-search="true" class="form-control show-tick"></select>
@@ -41,6 +46,21 @@
 </div>
 
 <script>
+
+    var imageChanged = false;
+
+    $(document).ready(function(){
+        $("#image").change(function(event){                     
+            var tgt = event.target || window.event.srcElement, files = tgt.files;       
+            var fr = new FileReader();
+            fr.onload = function(){
+                $("#imgDisplay").children('img').attr('src', fr.result);
+                imageChanged = true;
+            }
+            fr.readAsDataURL(files[0]);
+        });
+    });
+
     var Menu_Modal = {
         data: function () {
             return {
@@ -91,6 +111,8 @@
                     $('#CategoryId').val(i.CategoryId);
                     $('#Name').val(i.Name);
                     $('#Price').val(i.Price);
+                    $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
+                    imageChanged = false;
                 }
             });           
         },
@@ -120,6 +142,23 @@
             })      
         },  
 
+        upload: function(){         
+            var formData = new FormData($('#modal-Menu-form')[0]);            
+            $.ajax({
+                url: "<?php echo base_url("Manager/UploadImage"); ?>",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log('upload: ' + data);                 
+                },
+                error: function(data){
+                    console.log('upload: ' + data);
+                }
+            });
+        },
+
         save: function () {
             var message;            
             if ($('#MenuId').val() == 0) {
@@ -144,6 +183,9 @@
                         type: "POST",
                         data: {"menu": Menu_Modal.data()},
                         success: function(i){
+                          if(imageChanged){                               
+                            Menu_Modal.upload();
+                            }
                             swal('Good Job!', message, 'success');
                             $('#modal-Menu').modal('hide');
                             console.log(i);

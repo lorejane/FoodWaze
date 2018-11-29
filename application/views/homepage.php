@@ -145,7 +145,7 @@
               mid=document.getElementById(id);
               $.ajax({
                 type:'post',
-                url:'<?php echo base_url("foodwaze/addtocart") ?>',
+                url:'<?php echo base_url("FoodWaze/addtocart") ?>',
                 data:{
                   item_id:id
                 },

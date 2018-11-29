@@ -91,7 +91,7 @@
                 EmployeeAccount: $('#EmployeeAccount').val(),              
                 Firstname: $('#Firstname').val(),
                 Lastname: $('#Lastname').val(),
-                PositionId: $('#PositionId').val(),
+                PositionId: $('#PositionId').selectpicker('val'),
                 StallId: $('#StallId').val(),
                 Password: $('#Password').val()
             }

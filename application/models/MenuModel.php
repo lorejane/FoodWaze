@@ -30,5 +30,13 @@
 					);			
 				}
 		    }
+
+		 public function saveImage($MenuId, $Image){
+			$this->db->query("UPDATE menu SET "                			
+				."Image = '".$Image."' "
+				."WHERE MenuId = '".$MenuId."'"
+			);	
+		}
+	   
 		    
 }
