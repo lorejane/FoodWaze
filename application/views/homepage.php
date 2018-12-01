@@ -85,7 +85,7 @@
                                         <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
                                         <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
                                         
-                                        
+
                                         <?php endforeach; ?>
                                     </div>
 
@@ -95,24 +95,53 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                                <p class="text-center text-gray">What's your order?</p>
                                 <div class="card">
                                     <div class="card-body">                                         
                                         <div class="row">
                                             <div class="col-6" id="menu-container">
 
-                                            </div>   
-                                            <div class="col-6 cart">
-                                                <div>
-                                                    <p class="text-center fs-35 text-muted">Your <strong class="text-primary">Cart</strong> </p>
-                                                </div>
-                                                <div id="mycart"></div>
                                             </div>
-                                        </div>                                        
-                                    </div>
+                                                <div class="col-6">
+                                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                                        <address>
+                                                            <strong>RKL Food Court</strong>
+                                                            <br>
+                                                            2135 Sunset Blvd
+                                                            <br>
+                                                            Pasay, PH 90026
+                                                            <br>
+                                                            <abbr title="Phone">P:</abbr> (213) 484-6829
+                                                        </address>   
+                                                    </div>
+
+                                                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                                        <p>
+                                                            <em><?php echo date("Y/m/d") . "<br>";?></em>
+                                                        </p>
+                                                        <p>
+                                                            <em>Receipt #: <?php $num = 1;
+                                                                $formattedNum = number_format($num)."<br>";
+                                                                echo $formattedNum; 
+                                                            ?></em>
+                                                        </p>
+                                                    </div> <!-- KAT!!! WAG MO NA GALAWIN -KAT-->
+                                                    
+                                                    <div class="col-6  cart">
+                                                            <div>
+                                                                <p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong> </p>
+                                                            </div>
+                                                        <div id="mycart"></div>
+                                                    </div><!-- show cart -->
+
+                                                    <br /><button type="reset" value="Reset"> Clear </button>
+
+                                            </div><!--col-6-->
+                                       
+                                        </div><!--row-->                                   
+                                    </div><!--card body-->
                                     
-                                </div>
-                            </div>							
+                                </div> <!--card-->
+                            </div><!--tab-->				
                             <!-- end step 2 -->
 
 
@@ -160,7 +189,15 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-	<script>
+    <script>
+        function clearcart(id)
+        {
+            url: "<?php echo base_url("foodwaze/clearcart/") ?>" + id, 
+        }
+
+    </script>
+    
+    <script>
 	function cart(id)
             {                
               var mid;
@@ -186,7 +223,8 @@
               });
 			  
             }
-	</script>
+    </script>
+    
         <script>
 			show_cart();
 			function show_cart() {
@@ -213,9 +251,9 @@
                             }
                         });
                 }
-		</script>
-        <script>
-			
+        </script>
+        
+        <script>	
             function menu(id) {
                   return $.ajax({
                         url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
@@ -277,7 +315,6 @@
               else {
                 $box.prop("checked", false);
               }
-            });
-            
+            });   
             
         </script>

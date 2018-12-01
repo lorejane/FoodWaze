@@ -31,6 +31,7 @@ class FoodWaze extends CI_Controller {
             session_destroy(); 
             exit();
         }
+        
         public function cart(){
 			$itemcart=$_SESSION['cart'];
 	   		$cart = array_column($itemcart, 'id');					
