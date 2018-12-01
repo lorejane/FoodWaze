@@ -1,8 +1,8 @@
 <?php 
 
-	class Foodwaze_model extends _BaseModel
+	class Foodwaze_model extends CI_Model
 	{
-		
+		private $menu = "menu";
 		public function __construct()
 		{
 			parent:: __construct();
@@ -23,21 +23,8 @@
 		}
 
 		public function getPositionName($positionId){
-			return $this->db->query("SELECT PositionName FROM position WHERE PositionId = '".$positionId."'")->row()->PositionName;	
+			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
 		} 
-
-		// display item selected
-		private $menu = "menu";
-		public function readitem_f($condition=null){
-			$this->db->select('*');
-			$this->db->from($this->menu);
-			if( isset($condition) ) 
-			{			
-				$this->db->where_in('menuid',$condition);
-			}		
-			$query=$this->db->get();
-			return $query->result_array();		
-		}
 
 		public function getStallName($stallId){
 			return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$stallId."'")->row()->Name;	
@@ -48,23 +35,11 @@
 			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
 			return $query;
 		}
-		
-		public function getCategories(){			
-			$query=$this->db->query('SELECT * FROM category')->result();
-			return $query;
-		}
-		
+
 		public function getCategory($stallId){			
 			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
 			return $query;
 		}
-
-		// // view price
-		// public function getPrice(){
-		// 	$query=$this->db->query('SELECT Price FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
-		// 	return $query;
-		// }
-		
 
 		// view stall list
 		public function getStall(){
@@ -72,5 +47,14 @@
 			return $stall;
 		}
 
-	
+		public function readitem_f($condition=null){
+			$this->db->select('*');
+			$this->db->from($this->menu);
+			if( isset($condition) ) 
+			{			
+				$this->db->where_in('menuid',$condition);
+			}		
+			$query=$this->db->get();
+			return $query->result_array();		
+		}
 	}

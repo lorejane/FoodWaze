@@ -1,4 +1,6 @@
 <!-- Preloader -->
+
+
 <div class="preloader">
       <div class="spinner-dots">
         <span class="dot1"></span>
@@ -9,14 +11,28 @@
 
             <!-- Topbar -->
             <header class="topbar">
+				<!--<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span id="total"> </span></a>
+				<div class="cart">
+				<ul class="dropdown-menu dropdown-cart" role="menu">
+				
+				  <li class="divider"></li>
+				  <li><a class="text-center" href="">View Cart</a></li>
+				  </ul>
+				  </div>
+				</li>
+			  </ul>-->
             <!-- <h1 class="card-title"><strong>FoodWaze</strong></h1> -->
             <a class="card-title" href="<?php echo base_url(); ?>">
             <h1 class="title"><strong>FoodWaze</strong></h1>
             </a>
            
-            <!-- <a class="card-title" href="<?php echo base_url("foodwaze/addtocart") ?>">
-            <button></button>
-            </a> -->
+
+                <!-- <a class="menu-item active" href="<?php echo base_url();?>">HOME</a>
+                <a class="menu-item" href="<?php echo base_url('customer/orderpage'); ?>">ORDER</a>
+                <a class="menu-item" href="<?php echo base_url('customer/aboutpage'); ?>">ABOUT</a>
+ -->
 
             <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
                 <i class="material-icons fullscreen-default">fullscreen</i>
@@ -24,17 +40,18 @@
             </a>
             </header>
                 <!-- END Topbar -->
+
         
 <!-- Main container -->
 <main class="main-container">
 	
     <div class="main-content">
         <div class="row">
-            <hr>
+            
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-title"><strong>Ordering made EZ!</strong></div>
-                    <!-- <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>     -->
+        
 
                     <div class="card-body">
                     <!-- <form data-provide="wizard" novalidate="true"> -->
@@ -66,7 +83,8 @@
                                         <?php foreach($stall as $s): ?>
                                         
                                         <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="<?php echo $s->Name; ?>"><br /><?php echo $s->Name; ?></h4> </label>
+                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
+                                        
                                         
                                         <?php endforeach; ?>
                                     </div>
@@ -77,14 +95,24 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                                <!-- <p class="text-center text-gray">What's your order?</p> -->
+                                <p class="text-center text-gray">What's your order?</p>
                                 <div class="card">
-                                    <div class="card-body" id="menu-container">
+                                    <div class="card-body">                                         
+                                        <div class="row">
+                                            <div class="col-6" id="menu-container">
 
+                                            </div>   
+                                            <div class="col-6 cart">
+                                                <div>
+                                                    <p class="text-center fs-35 text-muted">Your <strong class="text-primary">Cart</strong> </p>
+                                                </div>
+                                                <div id="mycart"></div>
+                                            </div>
+                                        </div>                                        
                                     </div>
+                                    
                                 </div>
-                            </div>
-
+                            </div>							
                             <!-- end step 2 -->
 
 
@@ -124,10 +152,6 @@
                     <button class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
                     <button class="btn btn-secondary" data-wizard="next" type="button">Next</button>
                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
-
-
-
-
                 </div>
             <!-- </form> -->
 
@@ -136,30 +160,62 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-        <script>
-			function cart(id)
+	<script>
+	function cart(id)
             {                
               var mid;
+              var name;
+              var price;
               mid=document.getElementById(id);
+              name=document.getElementById(id+"_name").value;
+              price=document.getElementById(id+"_price").value;
               $.ajax({
                 type:'post',
                 url:'<?php echo base_url("foodwaze/addtocart") ?>',
                 data:{
-                  item_id:id
+                  item_id:id,
+                  item_name:name,
+                  item_price:price
                 },
                 success:function(response) {
-                  $('.cap_status').html("Added to Cart").fadeIn('slow').delay(2000).fadeOut('slow');
+                  show_cart();				 
                 },
                 error: function(){
                     alert('ERROR!');
                 }
               });
-
+			  
             }
-        </script>
-
-
-        <script>    
+	</script>
+        <script>
+			show_cart();
+			function show_cart() {
+                  $.ajax({
+                            type: 'ajax',
+                            url: '<?php echo base_url()?>foodwaze/showcart',
+                            async: false,
+                            dataType: 'json',
+                            success: function(data){
+								console.log('---------DATA----------');
+								console.log(data);
+                                var i;	
+										var html = '';
+                                        var i;										
+                                        var total=0.0;
+                                        for(i=0; i<data.length; i++){
+                                            html += '<div>'+
+														'<p>'+data[i].Name+' '+data[i].Price+' x '+data[i].Qty+' '+data[i].Price*data[i].Qty+'</p>'+                                                        
+                                                    '</div>';
+                                                    total+=data[i].Price*data[i].Qty;
+                                        }
+                                        html += 'TOTAL: '+total;
+                                        $('#mycart').html(html);
+                            }
+                        });
+                }
+		</script>
+        <script>
+			
             function menu(id) {
                   return $.ajax({
                         url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
@@ -195,9 +251,9 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+data.CategoryName+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+data.CategoryName+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
                         element +='</ul>';
@@ -222,4 +278,6 @@
                 $box.prop("checked", false);
               }
             });
+            
+            
         </script>
