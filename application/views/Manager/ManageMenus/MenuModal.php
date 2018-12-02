@@ -106,9 +106,10 @@
                 url: "<?php echo base_url('Manager/GetMenu/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
+                    console.log("edit"); 
                     console.log(i);
                     $('#MenuId').val(i.MenuId);
-                    $('#CategoryId').val(i.CategoryId);
+                    $('#CategoryId').selectpicker('val',i.CategoryId);
                     $('#Name').val(i.Name);
                     $('#Price').val(i.Price);
                     $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
