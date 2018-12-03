@@ -92,7 +92,7 @@
                 Firstname: $('#Firstname').val(),
                 Lastname: $('#Lastname').val(),
                 PositionId: $('#PositionId').selectpicker('val'),
-                StallId: $('#StallId').val(),
+                StallId: $('#StallId').selectpicker('val'),
                 Password: $('#Password').val()
             }
         }, 
@@ -160,8 +160,8 @@
                     $('#EmployeeAccount').val(i.EmployeeAccount);
                     $('#Firstname').val(i.Firstname);
                     $('#Lastname').val(i.Lastname);
-                    $('#PositionId').val(i.PositionId);
-                    $('#StallId').val(i.StallId);
+                    $('#PositionId').selectpicker('val',i.PositionId);
+                    $('#StallId').selectpicker('val',i.StallId);
                     $('#Password').val(i.Password);
                 }
             });           
