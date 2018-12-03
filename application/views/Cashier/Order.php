@@ -22,7 +22,7 @@
   			<div class="tab-pane fade active show" id="1">        
 					<?php foreach($cat1 as $items){
 						echo ' 
-						<div class="col-sm-3" type="button" id="Orderbtn" style="padding:5px; border:1px solid #ccc;" align="center"><br/>
+						<div class="col-sm-3"  style="padding:5px; border:1px solid #ccc;" align="center"><br/>
 						<h4>'.$items->Name.'</h4>
 						<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 						<button class="b btn btn-success" data-id = "<?php echo $items->MenuId ?>"  data-name = "<?php echo $items->Name ?>" value = "'.$items->Price.'" >Add to cart</button>

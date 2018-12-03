@@ -36,6 +36,11 @@
 			return $query;
 		}
 
+		public function getCategories(){
+			$category=$this->db->query('SELECT * FROM category')->result();
+			return $category;
+		}		
+
 		public function getCategory($stallId){			
 			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
 			return $query;
