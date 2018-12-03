@@ -10,7 +10,7 @@ class Cashier extends CI_Controller {
 
 	public function Order(){
 		$this->load->view('include/header');
-		$data['categories'] = $this->foodwaze_model->getCategory();
+		$data['categories'] = $this->foodwaze_model->getCategories();
 		$data['cat1'] = $this->Order_model->getMenuMeal();
 		$data['cat2'] = $this->Order_model->getMenuPasta();
 		$data['cat3'] = $this->Order_model->getMenuDessert();
