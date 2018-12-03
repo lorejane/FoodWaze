@@ -41,6 +41,7 @@ class Admin extends _BaseController {
             }
         }    
     }
+    
 	public function Accounts()
 	{
 		$this->load->view('include/header');		
@@ -130,6 +131,7 @@ class Admin extends _BaseController {
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['
+                .'" <img src='.$data->Image.' >",'
                 .'"'.$data->StallId.'",'                
                 .'"'.$data->Name.'",'
             	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" class=\"btn btn-danger\" >Delete</a>"'

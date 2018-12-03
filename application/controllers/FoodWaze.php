@@ -23,7 +23,7 @@ class FoodWaze extends CI_Controller {
         }
         public function getMenu($stallId)
         {
-            echo $this->convert($this->foodwaze_model->getMenu($stallId));
+        echo $this->convert($this->foodwaze_model->getMenu($stallId));
         }
     
         public function clearcart()
