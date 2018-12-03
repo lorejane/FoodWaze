@@ -15,8 +15,7 @@
                                 <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
                             </div>
                         </div> 
-                        <input type="hidden" id="StallId" name="StallId" />          
-                            <div></div>                      
+                        <input type="hidden" id="StallId" name="StallId" />                              
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Stall Name</label>

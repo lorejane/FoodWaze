@@ -68,6 +68,10 @@
         margin: 5px;
         border: 1px solid rgba(0, 0, 0, .2);
       }
+      label{
+        margin:0;
+        padding:0;
+      }
 
 </style>
 	</head>

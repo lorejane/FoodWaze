@@ -17,7 +17,7 @@
 	}
 
 	public  function getStall(){ //display stalls
-		return $this->db->query("SELECT * FROM stall ")->result();
+		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 	}
 
 	public function getEmployee(){ //display employees
