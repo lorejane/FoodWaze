@@ -25,7 +25,7 @@
 						<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
 						<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
 						<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
-						<img src="pics/<?php echo $items->MenuId; ?>.jpg"> 
+						<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' > 
 						<h4>'.$items->Name.'</h4>
 						<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 						</div>
@@ -39,6 +39,7 @@
 					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
 					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
 					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
+					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
 					<h4>'.$items->Name.'</h4>
 					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 					</div>
@@ -52,6 +53,7 @@
 					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
 					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
 					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
+					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
 					<h4>'.$items->Name.'</h4>
 					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 					</div>
@@ -65,6 +67,7 @@
 					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
 					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
 					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
+					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
 					<h4>'.$items->Name.'</h4>
 					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
 					</div>

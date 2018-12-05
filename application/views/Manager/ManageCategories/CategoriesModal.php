@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Add Categories</h5>
+                <h5 class="modal-title">Add Category</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -46,7 +46,7 @@
 
         new: function () {
             $('#CategoriesId').val('0');            
-            $('.modal-title').text('Add Categories');            
+            $('.modal-title').text('Add Category');            
             $('#rowActive').addClass('invisible');
             Categories_Modal.init();
         },
@@ -101,7 +101,7 @@
 
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for Categories',
+                text: 'Save changes for Category',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',

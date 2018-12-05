@@ -24,6 +24,7 @@
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/generateTableMenus") ?>">
 							<thead>
 								<tr>
+									<th>Image</th>
 									<th>Category ID</th>
 									<th>Name</th>
 									<th>Price</th>	

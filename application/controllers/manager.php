@@ -197,6 +197,7 @@ class Manager extends _BaseController {
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
+                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->CategoryId.'",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                

@@ -17,8 +17,6 @@ class Admin extends _BaseController {
 	public function Stalls()
 	{	
 		$this->load->view('include/header');
-       // $data['stall'] = $this->Stall_model->_getStallName();
-		//$this->load->view('admin/ManageStalls/StallModal',$data);
         $this->load->view('admin/ManageStalls/Stalls');
 		$this->load->view('include/footer');
 
@@ -30,7 +28,7 @@ class Admin extends _BaseController {
                 $config['upload_path'] = './pics';
                 $config['allowed_types'] = 'gif|jpeg|jpg|png';
                 $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('image')){//lol imposibleng mag-error 'to
+                if (!$this->upload->do_upload('image')){
                     $error = array('error' => $this->upload->display_errors());            
                     print_r($error);
                 }else{
@@ -70,7 +68,7 @@ class Admin extends _BaseController {
     }
 
     public function Delete(){        
-        $this->AdminModel->delete($this->input->post('employee'));
+        $this->AdminModel->delete($this->input->post('id'));
     }
 
     public function SaveStall(){        
@@ -127,7 +125,6 @@ class Admin extends _BaseController {
 	}
 
 	public function GenerateTableStall(){
-		// print_r($this->Stall_model->getStall());
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['

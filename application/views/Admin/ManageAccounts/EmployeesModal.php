@@ -235,10 +235,12 @@
         },
 
         delete: function () {
+            var mid;
+            mid=document.getElementById(EmployeeId);
                 $.ajax({  
                      url:'<?php echo base_url('Admin/Delete'); ?>', 
                      method:"POST",  
-                     data:{"employee": Employee_Modal.data()},  
+                     data:{id:EmployeeId},  
                     success: function(i){
                         swal('Deleted!', 'success');
                         $('#modal-Remove').modal('hide');
