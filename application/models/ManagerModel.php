@@ -35,6 +35,13 @@
 			}
 	}
 
+  	public function saveImage($EmployeeId, $Image){
+		$this->db->query("UPDATE stall SET "                			
+			."Image = '".$Image."' "
+			."WHERE EmployeeId = '".$EmployeeId."'"
+		);	
+	}
+
 	public function getEmployeeManager(){ //display employees by stall
 		return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
 		

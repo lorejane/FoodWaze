@@ -52,4 +52,11 @@
 			);			
 		}
     }
+
+   	public function saveImage($EmployeeId, $Image){
+		$this->db->query("UPDATE stall SET "                			
+			."Image = '".$Image."' "
+			."WHERE EmployeeId = '".$EmployeeId."'"
+		);	
+	}
 }

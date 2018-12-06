@@ -61,8 +61,6 @@ class Manager extends _BaseController {
     public function GetCategory($id){        
         echo $this->convert($this->ManagerModel->_getCategories($id));
     }
-//edit 
-
 
     public function GetAll(){
         echo $this->convert($this->CategoriesModel->_list());
@@ -84,6 +82,24 @@ class Manager extends _BaseController {
                 }else{
                     $data = array('upload_data' => $this->upload->data());
                     $this->MenuModel->saveImage($this->input->post('MenuId'), $data['upload_data']['file_name']);
+                    print_r($data);
+                }
+            }
+        }    
+    }
+
+    public function UploadProfile(){
+        if(isset($_FILES['image']) && !empty($_FILES['image'])){
+            if($_FILES['image']['error'] != 4){
+                $config['upload_path'] = './pics';
+                $config['allowed_types'] = 'gif|jpeg|jpg|png';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image')){
+                    $error = array('error' => $this->upload->display_errors());            
+                    print_r($error);
+                }else{
+                    $data = array('upload_data' => $this->upload->data());
+                    $this->AdminModel->saveImage($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
                     print_r($data);
                 }
             }
@@ -170,13 +186,6 @@ class Manager extends _BaseController {
         $json .= ']}';
         echo $json;        
     }
-
-	public function delete_employee()
-	{
-        $u = $this->uri->segment(3);
-        $this->position_model->delete($u);
-        redirect('Manager/Accounts', 'refresh');
-	}
 	
     public function generateTableCategories(){
         $json = '{ "data": [';
@@ -210,4 +219,10 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
+    public function delete_employee()
+    {
+        $u = $this->uri->segment(3);
+        $this->position_model->delete($u);
+        redirect('Manager/Accounts', 'refresh');
+    }
 }

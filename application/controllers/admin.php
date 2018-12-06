@@ -22,31 +22,12 @@ class Admin extends _BaseController {
 
 	}
 
-    public function UploadImage(){
-        if(isset($_FILES['image']) && !empty($_FILES['image'])){
-            if($_FILES['image']['error'] != 4){
-                $config['upload_path'] = './pics';
-                $config['allowed_types'] = 'gif|jpeg|jpg|png';
-                $this->load->library('upload', $config);
-                if (!$this->upload->do_upload('image')){
-                    $error = array('error' => $this->upload->display_errors());            
-                    print_r($error);
-                }else{
-                    $data = array('upload_data' => $this->upload->data());
-                    $this->Stall_model->saveImage($this->input->post('StallId'), $data['upload_data']['file_name']);
-                    print_r($data);
-                }
-            }
-        }    
+    public function Accounts()
+    {
+        $this->load->view('include/header');        
+        $this->load->view('admin/ManageAccounts/EmployeeAccounts');
+        $this->load->view('include/footer');
     }
-    
-	public function Accounts()
-	{
-		$this->load->view('include/header');		
-		$this->load->view('admin/ManageAccounts/EmployeeAccounts');
-		$this->load->view('include/footer');
-	}
-
 	public function Get($id){        
         echo $this->convert($this->AdminModel->_get($id));
     }
@@ -67,13 +48,46 @@ class Admin extends _BaseController {
         $this->AdminModel->save($this->input->post('employee'));
     }
 
-    public function Delete(){        
-        $this->AdminModel->delete($this->input->post('id'));
-    }
-
     public function SaveStall(){        
         $this->Stall_model->save($this->input->post('stall'));
     }
+
+    public function UploadProfile(){
+        if(isset($_FILES['image']) && !empty($_FILES['image'])){
+            if($_FILES['image']['error'] != 4){
+                $config['upload_path'] = './pics';
+                $config['allowed_types'] = 'gif|jpeg|jpg|png';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image')){
+                    $error = array('error' => $this->upload->display_errors());            
+                    print_r($error);
+                }else{
+                    $data = array('upload_data' => $this->upload->data());
+                    $this->AdminModel->saveImage($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
+                    print_r($data);
+                }
+            }
+        }    
+    }
+
+    public function UploadImage(){
+        if(isset($_FILES['image']) && !empty($_FILES['image'])){
+            if($_FILES['image']['error'] != 4){
+                $config['upload_path'] = './pics';
+                $config['allowed_types'] = 'gif|jpeg|jpg|png';
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('image')){
+                    $error = array('error' => $this->upload->display_errors());            
+                    print_r($error);
+                }else{
+                    $data = array('upload_data' => $this->upload->data());
+                    $this->Stall_model->saveImage($this->input->post('StallId'), $data['upload_data']['file_name']);
+                    print_r($data);
+                }
+            }
+        }    
+    }
+    
 
     public function Validate(){
         $employee = $this->input->post('employee');
@@ -117,13 +131,6 @@ class Admin extends _BaseController {
         echo $str;
     }   
 
-	public function delete_user($EmployeeId)
-	{
-        $u = $this->uri->segment(3);
-        $this->position_model->delete($u);
-        redirect('admin/account', 'refresh');
-	}
-
 	public function GenerateTableStall(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
@@ -131,7 +138,7 @@ class Admin extends _BaseController {
                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->StallId.'",'                
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" class=\"btn btn-danger\" >Delete</a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -149,13 +156,24 @@ class Admin extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
                 .'"'.$this->foodwaze_model->getStallName($data->StallId).'",'    
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\"  class=\"btn btn-info\" >Update</a><a onclick = \"Employee_Modal.remove('.$data->EmployeeId.');\" class=\"btn btn-danger\" >Delete</a>"'
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.remove('.$data->EmployeeId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function Delete(){        
+        $this->AdminModel->delete($this->input->post('id'));
+    }
+
+    public function delete_user($EmployeeId)
+    {
+        $u = $this->uri->segment(3);
+        $this->position_model->delete($u);
+        redirect('admin/account', 'refresh');
     }
 
 }
