@@ -83,7 +83,7 @@
                                         <?php foreach($stall as $s): ?>
                                         
                                         <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
+                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px; padding:30px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
                                         
 
                                         <?php endforeach; ?>

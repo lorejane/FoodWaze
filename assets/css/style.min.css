@@ -47,7 +47,7 @@ input[type="checkbox"][id^="cb"] {
     padding: 10px;
     display: block;
     position: relative;
-    margin: 30px;
+    margin: 50px;
     cursor: pointer;
   }
   
