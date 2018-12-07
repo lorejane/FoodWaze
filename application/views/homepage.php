@@ -101,6 +101,7 @@
                                             <div class="col-6" id="menu-container">
 
                                             </div>
+                                            
                                                 <div class="col-6">
                                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                                         <address>
@@ -110,7 +111,7 @@
                                                             <br>
                                                             Pasay, PH 90026
                                                             <br>
-                                                            <abbr title="Phone">P:</abbr> (213) 484-6829
+                                                            <abbr title="Phone">P:</abbr> (09) 520-8929
                                                         </address>   
                                                     </div>
 
@@ -126,9 +127,10 @@
                                                         </p>
                                                     </div> <!-- KAT!!! WAG MO NA GALAWIN -KAT-->
                                                     
-                                                    <div class="col-6  cart">
+                                                    
+                                                    <div class="cart">
                                                             <div>
-                                                                <p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong> </p>
+                                                                <p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p>
                                                             </div>
                                                         <div id="mycart"></div>
                                                     </div><!-- show cart -->
@@ -196,7 +198,7 @@
         }
 
     </script>
-    
+
     <script>
 	function cart(id)
             {                
@@ -242,11 +244,11 @@
                                         var total=0.0;
                                         for(i=0; i<data.length; i++){
                                             html += '<div>'+
-														'<p>'+data[i].Name+' '+data[i].Price+' x '+data[i].Qty+' '+data[i].Price*data[i].Qty+'</p>'+                                                        
+                                            '<p style="padding:5px; border:1px solid #ccc;">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'</p>'+                                                        
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
-                                        html += 'TOTAL: '+total;
+                                        html +=  'TOTAL: '+total;
                                         $('#mycart').html(html);
                             }
                         });
