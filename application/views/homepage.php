@@ -20,17 +20,16 @@
 				  </ul>
 				  </div>
 				</li>
-			  </ul>-->
-            <!-- <h1 class="card-title"><strong>FoodWaze</strong></h1> -->
+			  </ul>-->           
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <h1 class="title"><strong>FoodWaze</strong></h1>
+            <h2 class="title"><strong>FoodWaze</strong></h2>
             </a>
            
-
             <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-                <i class="material-icons fullscreen-default">fullscreen</i>
-                <i class="material-icons fullscreen-active">fullscreen_exit</i>
+            <i class="material-icons fullscreen-default">fullscreen</i>
+            <i class="material-icons fullscreen-active">fullscreen_exit</i>
             </a>
+
             </header>
                 <!-- END Topbar -->
 
@@ -145,32 +144,22 @@
                             <!-- end step 2 -->
 
 
-                            <!-- step 3 -->
-
+                            <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                                <hr class="w-100px">
-
-
+                            
+                              
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Name</label>
-                                        <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer" id="input-1" required>
-                                            <div class="invalid-feedback"></div>
-                                        </div>
+                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 60px;">Name</label>                                
+                                        <input type="text" class="form-control" name="NameCustomer" style="width: 250px;">                                                                                                           
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Contact No.</label>
-                                        <div class="col-8 col-lg-7">
-                                                <input type="number" class="form-control" name="ContactNo" id="input-1" required max="11">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                </div>
-
-                                    
-
-                            </div>
+                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 25px;">Contact No.</label>
+                                        <input type="number" class="form-control" name="ContactNo" style="width: 250px;" required max="11">
+                                </div>                                                     
+   
+                        </div>
                             <!--end step 3 -->
                         </div>
                         <!-- card body -->
@@ -267,7 +256,7 @@
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
-                                        html +=  '<strong class="text-primary">TOTAL:</strong> '+total;
+                                        html +=  '<strong class="text-primary fs-15">TOTAL:</strong> '+total;
                                         $('#mycart').html(html);
                             }
                         });
