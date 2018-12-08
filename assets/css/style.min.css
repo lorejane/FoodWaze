@@ -1,3 +1,9 @@
+body {
+  background-image: url("images_foodwaze/bg_fw.jpeg");
+  background-repeat: no-repeat;
+}
+
+
 ul.dropdown-cart{
   min-width:250px;
 }
