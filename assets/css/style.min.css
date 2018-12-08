@@ -41,13 +41,14 @@ ul.dropdown-cart li .item-right button{
 
 input[type="checkbox"][id^="cb"] {
     display: none;
+    
   }
   
   label {
     padding: 10px;
     display: block;
     position: relative;
-    margin: 50px;
+    margin: 30px;
     cursor: pointer;
   }
   
@@ -66,11 +67,13 @@ input[type="checkbox"][id^="cb"] {
     line-height: 28px;
     transition-duration: 0.4s;
     transform: scale(0);
+    
   }
   
   label img {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
+    
   }
   
   :checked + label {
@@ -81,15 +84,17 @@ input[type="checkbox"][id^="cb"] {
     content: "✓";
     background-color: #33cabb;
     transform: scale(1);
+    
   }
   
   :checked + label img {
     transform: scale(0.9);
-    z-index: -1;
+    z-index: 0;
   }
   
   input[type=checkbox] {
     display: none;
+    
   }
 
 .font-dosis{font-family:Dosis,Roboto,sans-serif}
