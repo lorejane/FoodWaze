@@ -1,6 +1,4 @@
 <!-- Preloader -->
-
-
 <div class="preloader">
       <div class="spinner-dots">
         <span class="dot1"></span>
@@ -22,22 +20,16 @@
 				  </ul>
 				  </div>
 				</li>
-			  </ul>-->
-            <!-- <h1 class="card-title"><strong>FoodWaze</strong></h1> -->
+			  </ul>-->           
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <h1 class="title"><strong>FoodWaze</strong></h1>
+            <h2 class="title"><strong>FoodWaze</strong></h2>
             </a>
            
-
-                <!-- <a class="menu-item active" href="<?php echo base_url();?>">HOME</a>
-                <a class="menu-item" href="<?php echo base_url('customer/orderpage'); ?>">ORDER</a>
-                <a class="menu-item" href="<?php echo base_url('customer/aboutpage'); ?>">ABOUT</a>
- -->
-
             <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-                <i class="material-icons fullscreen-default">fullscreen</i>
-                <i class="material-icons fullscreen-active">fullscreen_exit</i>
+            <i class="material-icons fullscreen-default">fullscreen</i>
+            <i class="material-icons fullscreen-active">fullscreen_exit</i>
             </a>
+
             </header>
                 <!-- END Topbar -->
 
@@ -77,18 +69,22 @@
 
                             <div class="tab-content"> <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
+                                <!-- <div class="card-title text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</div> -->
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
-                            
-                                    <div class="row" id="filters">   
-                                        <?php foreach($stall as $s): ?>
-                                        
-                                        <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                        <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px"><h4 title="nav-title"><?php echo $s->Name; ?></h4> </label>
-                                        
-
-                                        <?php endforeach; ?>
-                                    </div>
-
+                                <div class="card">
+                                    <div class="card-body"> 
+                                        <div class="col-12">     
+                                            <div class="row" id="filters">   
+                                                <?php foreach($stall as $s): ?>
+                                                
+                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
+                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
+                                                
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div> <!--col-12-->
+                                </div> <!--card-body-->
+                            </div> <!--card-->
                             </div> <!-- end step 1 -->
 
                         
@@ -101,6 +97,7 @@
                                             <div class="col-6" id="menu-container">
 
                                             </div>
+                                            
                                                 <div class="col-6">
                                                     <div class="col-xs-6 col-sm-6 col-md-6">
                                                         <address>
@@ -110,13 +107,13 @@
                                                             <br>
                                                             Pasay, PH 90026
                                                             <br>
-                                                            <abbr title="Phone">P:</abbr> (213) 484-6829
+                                                            <abbr title="Phone">P:</abbr> (09) 520-8929
                                                         </address>   
                                                     </div>
 
                                                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                                         <p>
-                                                            <em><?php echo date("Y/m/d") . "<br>";?></em>
+                                                            <em><?php echo date("m/d/Y") . "<br>";?></em>
                                                         </p>
                                                         <p>
                                                             <em>Receipt #: <?php $num = 1;
@@ -126,9 +123,11 @@
                                                         </p>
                                                     </div> <!-- KAT!!! WAG MO NA GALAWIN -KAT-->
                                                     
-                                                    <div class="col-6  cart">
+                                                    
+                                                    <div class="cart">
                                                             <div>
-                                                                <p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong> </p>
+                                                            <!-- <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px; padding:20px; margin:10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label> -->
+                                                                <p class="text-center fs-30 text-muted"><strong class="text-primary"><?php echo $s->Name; ?></strong></p>
                                                             </div>
                                                         <div id="mycart"></div>
                                                     </div><!-- show cart -->
@@ -145,32 +144,22 @@
                             <!-- end step 2 -->
 
 
-                            <!-- step 3 -->
-
+                            <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                                <hr class="w-100px">
-
-
+                            
+                              
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Name</label>
-                                        <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer" id="input-1" required>
-                                            <div class="invalid-feedback"></div>
-                                        </div>
+                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 60px;">Name</label>                                
+                                        <input type="text" class="form-control" name="NameCustomer" style="width: 250px;">                                                                                                           
                                 </div>
 
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Contact No.</label>
-                                        <div class="col-8 col-lg-7">
-                                                <input type="number" class="form-control" name="ContactNo" id="input-1" required max="11">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                </div>
-
-                                    
-
-                            </div>
+                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 25px;">Contact No.</label>
+                                        <input type="number" class="form-control" name="ContactNo" style="width: 250px;" required max="11">
+                                </div>                                                     
+   
+                        </div>
                             <!--end step 3 -->
                         </div>
                         <!-- card body -->
@@ -192,11 +181,32 @@
     <script>
         function clearcart(id)
         {
-            url: "<?php echo base_url("foodwaze/clearcart/") ?>" + id, 
+
+            var mid;
+              var name;
+              var price;
+              mid=document.getElementById(id);
+              name=document.getElementById(id+"_name").value;
+              price=document.getElementById(id+"_price").value;
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("FoodWaze/clearcart") ?>',
+                data:{
+                  item_id:id,
+                  item_name:name,
+                  item_price:price
+                },
+                success:function(response) {
+                    clearcart();				 
+                },
+                error: function(){
+                    alert('ERROR!');
+                }
+              });
         }
 
     </script>
-    
+
     <script>
 	function cart(id)
             {                
@@ -242,11 +252,11 @@
                                         var total=0.0;
                                         for(i=0; i<data.length; i++){
                                             html += '<div>'+
-														'<p>'+data[i].Name+' '+data[i].Price+' x '+data[i].Qty+' '+data[i].Price*data[i].Qty+'</p>'+                                                        
+                                            '<p style="padding:4px; border:1px solid #ccc;">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'</p>'+                                                        
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
-                                        html += 'TOTAL: '+total;
+                                        html +=  '<strong class="text-primary fs-15">TOTAL:</strong> '+total;
                                         $('#mycart').html(html);
                             }
                         });
@@ -264,8 +274,8 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h4>'+data.Name+'</h4><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>   '); 
-                            });
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-6 items" style="width 200px; padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h4>'+data.Name+'</h4><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>   '); 
+                            }); //wag na galawin kat
                         }
                     }) 
                 }
@@ -289,9 +299,9 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
                         element +='</ul>';
