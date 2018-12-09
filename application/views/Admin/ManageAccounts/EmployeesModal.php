@@ -11,7 +11,11 @@
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-Employee-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="EmployeeId" name="EmployeeId" />          
-                        
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
+                            </div>
+                        </div>                         
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Account</label>
@@ -84,6 +88,20 @@
     </div>
 </div>
 <script>
+    var imageChanged = false;
+
+    $(document).ready(function(){
+        $("#image").change(function(event){                     
+            var tgt = event.target || window.event.srcElement, files = tgt.files;       
+            var fr = new FileReader();
+            fr.onload = function(){
+                $("#imgDisplay").children('img').attr('src', fr.result);
+                imageChanged = true;
+            }
+            fr.readAsDataURL(files[0]);
+        });
+    });
+
     var Employee_Modal = {
         data: function () {
             return {
@@ -192,6 +210,23 @@
             })      
         },        
 
+        upload: function(){         
+            var formData = new FormData($('#modal-Stall-form')[0]);            
+            $.ajax({
+                url: "<?php echo base_url("Admin/UploadProfile"); ?>",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log('upload: ' + data);                 
+                },
+                error: function(data){
+                    console.log('upload: ' + data);
+                }
+            });
+        },
+        
         save: function () {
             var message;            
             if ($('#EmployeeId').val() == 0) {
