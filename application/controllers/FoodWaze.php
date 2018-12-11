@@ -9,7 +9,7 @@ class FoodWaze extends CI_Controller {
 
         public function index()
         {
-            $data['stall'] = $this->foodwaze_model->getStall(); //stall list
+            $data['stall'] = $this->AdminModel->getStall(); //stall list
             $this->load->view('include/header');
             $this->load->view('homepage', $data); // for stall list
             $this->load->view('include/footer');
@@ -105,6 +105,7 @@ class FoodWaze extends CI_Controller {
         {
             echo $this->convert($this->foodwaze_model->getCategory($stallId));
         }
+
 
         //converts any query to json
         public function convert($param){

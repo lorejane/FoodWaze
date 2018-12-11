@@ -50,6 +50,7 @@
 
 <script>
     var Employee_Modal = {
+        
         data: function () {
             return {
                 EmployeeId: $('#EmployeeId').val(),                
