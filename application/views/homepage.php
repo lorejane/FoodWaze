@@ -9,25 +9,14 @@
 
             <!-- Topbar -->
             <header class="topbar">
-				<!--<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span id="total"> </span></a>
-				<div class="cart">
-				<ul class="dropdown-menu dropdown-cart" role="menu">
-				
-				  <li class="divider"></li>
-				  <li><a class="text-center" href="">View Cart</a></li>
-				  </ul>
-				  </div>
-				</li>
-			  </ul>-->           
+				         
             <a class="card-title" href="<?php echo base_url(); ?>">
             <h2 class="title"><strong>FoodWaze</strong></h2>
             </a>
            
-            <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-            <i class="material-icons fullscreen-default">fullscreen</i>
-            <i class="material-icons fullscreen-active">fullscreen_exit</i>
+            <a href="#" data-provide="fullscreen">
+            <i class="ion-android-expand fullscreen-default"></i>
+            <i class="ion-android-contract fullscreen-active"></i>
             </a>
 
             </header>
@@ -261,18 +250,18 @@
                                         
                                 // html += '<div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p>'
                                 //         '</div>';    
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") . "<br>";?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p></div>'
+                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
                                                 '</div>'; 
 
                                         for(i=0; i<data.length; i++){
+                                            // html += '<div style="background-color: #d3d3d3; margin: 5px 10px 25px;">'+
                                             html += '<div>'+
-                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0%;" value="-1" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0%;" value="X" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
-                                            
+                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="X" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 10%; margin: 2px;" value="X All" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
-                                        html += '<p style="border-top:1px solid #ccc;"><strong class="text-primary fs-15">TOTAL:</strong>  '+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary" value="Clear Cart"></a>';                                        
+                                        html += '<p style="border-top:1px solid #ccc;"><strong class="text-primary fs-15">TOTAL:</strong>'+total+
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
                                         
                             },
@@ -294,7 +283,7 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h4>'+data.Name+'</h4><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
                     }) 
@@ -319,9 +308,9 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-35 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
                         element +='</ul>';
