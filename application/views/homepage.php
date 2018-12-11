@@ -116,10 +116,7 @@
                                                             <em><?php echo date("m/d/Y") . "<br>";?></em>
                                                         </p>
                                                         <p>
-                                                            <em>Receipt #: <?php $num = 1;
-                                                                $formattedNum = number_format($num)."<br>";
-                                                                echo $formattedNum; 
-                                                            ?></em>
+                                                            <em>Receipt #: 1</em>
                                                         </p>
                                                     </div> <!-- KAT!!! WAG MO NA GALAWIN -KAT-->
                                                     
@@ -132,7 +129,8 @@
                                                         <div id="mycart"></div>
                                                     </div><!-- show cart -->
 
-                                                    <br /><button type="reset" value="Reset"> Clear </button>
+                                                    <br />
+                                                    <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><input type="button" value="Clear Cart"></a>
 
                                             </div><!--col-6-->
                                        
@@ -178,7 +176,7 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-    <script>
+    <!-- <script>
         function clearcart(id)
         {
 
@@ -205,7 +203,7 @@
               });
         }
 
-    </script>
+    </script> -->
 
     <script>
 	function cart(id)
@@ -233,9 +231,47 @@
               });
 			  
             }
+    function deletecart(id)
+            {     
+              var name;
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("FoodWaze/deletetocart") ?>',
+                data:{
+                  item_id:id,
+                  item_name:name
+                },
+                success:function(response) {
+                  show_cart();	
+                },
+                error: function(){
+                  alert('ERROR!');
+                }
+              });
+			  
+            }
+        function minus1(id)
+            {                
+              var name;
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("FoodWaze/minus1") ?>',
+                data:{
+                  item_id:id,
+                  item_name:name
+                },
+                success:function(data) {                    
+                  show_cart();	
+                },
+                error: function(){
+                    alert('ERROR!');
+                }
+              });
+			  
+            }
     </script>
     
-        <script>
+        <!-- <script>
 			show_cart();
 			function show_cart() {
                   $.ajax({
@@ -261,8 +297,38 @@
                             }
                         });
                 }
+        </script> -->
+        <script>
+			show_cart();
+            
+			function show_cart() {
+                  $.ajax({
+                            type: 'ajax',
+                            url: '<?php echo base_url()?>foodwaze/showcart',
+                            dataType: 'json',
+                            success: function(data){
+								console.log('---------DATA----------');
+								console.log(data);
+                                var i;	
+										var html = '';
+                                        var i;										
+                                        var total=0.0;
+                                        for(i=0; i<data.length; i++){
+                                            html += '<div>'+
+                                            '<p style="border-bottom:1px solid #ccc;">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" value="-1" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" value="X" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+                                                       
+                                                    '</div>';
+                                                    total+=data[i].Price*data[i].Qty;
+                                        }
+                                        html +=  'TOTAL: '+total;
+                                        $('#mycart').html(html);
+                            },
+                      error: function(){
+                    alert('ERROR!');
+                }
+                  });
+                }
         </script>
-        
+
         <script>	
             function menu(id) {
                   return $.ajax({

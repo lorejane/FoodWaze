@@ -23,15 +23,14 @@ class FoodWaze extends CI_Controller {
         }
         public function getMenu($stallId)
         {
-        echo $this->convert($this->foodwaze_model->getMenu($stallId));
+            echo $this->convert($this->foodwaze_model->getMenu($stallId));
         }
     
         public function clearcart()
         {
             session_destroy(); 
-            exit();
+            redirect(base_url('foodwaze'), 'refresh');
         }
-        
         public function cart(){
 			$itemcart=$_SESSION['cart'];
 	   		$cart = array_column($itemcart, 'id');					
@@ -67,23 +66,40 @@ class FoodWaze extends CI_Controller {
               }
         }
     
+        public function deletetocart()
+        {                        
+            $_SESSION['cart']['total']=$_SESSION['cart']['total']-$_SESSION['cart'][$_POST['item_id']]['qty'];                       unset($_SESSION['cart'][$_POST['item_id']]);            
+        }
+    
+        public function minus1()
+        {   
+            $_SESSION['cart'][$_POST['item_id']]['qty']=$_SESSION['cart'][$_POST['item_id']]['qty']-1;
+            $_SESSION['cart']['total']=$_SESSION['cart']['total']-1;
+            if($_SESSION['cart'][$_POST['item_id']]['qty']==0)
+            {
+                $_SESSION['cart']['total']=$_SESSION['cart']['total']-$_SESSION['cart'][$_POST['item_id']]['qty'];                   unset($_SESSION['cart'][$_POST['item_id']]);  
+            }
+                                                                       
+        }
         public function showcart()
         {           
-			$itemcart=$_SESSION['cart'];
-	   		$cart = array_column($itemcart, 'id');					
-			$rs = $this->foodwaze_model->readitem_f($cart);	
-			foreach($rs as $r)
-			{
-				$item[] = array(
-					'MenuId' => $r['MenuId'],
-					'Name' => $r['Name'],
-					'StallId' => $r['StallId'],
-					'Price' => $r['Price'],
-					'CategoryId' => $r['CategoryId'],
-					'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
-				);
-			}
-			echo json_encode($item);			
+            if($_SESSION['cart']!=null){
+                $itemcart=$_SESSION['cart'];
+                $cart = array_column($itemcart, 'id');					
+                $rs = $this->foodwaze_model->readitem_f($cart);	
+                foreach($rs as $r)
+                {
+                    $item[] = array(
+                        'Id' => $r['MenuId'],
+                        'Name' => $r['Name'],
+                        'StallId' => $r['StallId'],
+                        'Price' => $r['Price'],
+                        'CategoryId' => $r['CategoryId'],
+                        'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
+                    );
+                }
+                echo json_encode($item);	
+            }
         }
         public function getCategory($stallId)
         {
@@ -119,5 +135,6 @@ class FoodWaze extends CI_Controller {
                 return "No data";
             return $str;
         }
+        
         
 }

@@ -23,7 +23,7 @@
 		}
 
 		public function getPositionName($positionId){
-			return $this->db->query("SELECT PositionName FROM position WHERE PositionId = '".$positionId."'")->row()->PositionName;	
+			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
 		} 
 
 		public function getStallName($stallId){
@@ -35,11 +35,6 @@
 			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
 			return $query;
 		}
-
-		public function getCategories(){
-			$category=$this->db->query('SELECT * FROM category')->result();
-			return $category;
-		}		
 
 		public function getCategory($stallId){			
 			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
