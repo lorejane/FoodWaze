@@ -181,6 +181,7 @@
                     $('#PositionId').selectpicker('val',i.PositionId);
                     $('#StallId').selectpicker('val',i.StallId);
                     $('#Password').val(i.Password);
+
                 }
             });           
         },
@@ -270,12 +271,10 @@
         },
 
         delete: function () {
-            var mid;
-            mid=document.getElementById(EmployeeId);
                 $.ajax({  
                      url:'<?php echo base_url('Admin/Delete'); ?>', 
                      method:"POST",  
-                     data:{id:EmployeeId},  
+                     data:{"id": Employee_Modal.data()},  
                     success: function(i){
                         swal('Deleted!', 'success');
                         $('#modal-Remove').modal('hide');
