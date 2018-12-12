@@ -46,7 +46,7 @@
                     <center>
                     <form id="modal-Remove-form" action="#" class="form-group mt-2">                                           
                         <button type="button" class="btn btn-secondary " data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger" onclick="Employee_Modal.delete()">Yes</button>
+                        <button type="button" class="btn btn-danger" onclick="Stall_Modal.delete()">Yes</button>
                     </form>
                 </center>
                 </div>
@@ -161,14 +161,14 @@
         remove: function () {            
             $('.modal-title').text('Delete Employee');  
             $('#rowActive').removeClass('invisible');          
-            Employee_Modal.hot();   
+            Stall_Modal.hot();   
         },
 
         delete: function () {
                 $.ajax({  
                      url:'<?php echo base_url('Admin/Delete'); ?>', 
                      method:"POST",  
-                     data:{"id": Employee_Modal.data()},  
+                     data:{"id": Stall_Modal.data()},  
                     success: function(i){
                         swal('Deleted!', 'success');
                         $('#modal-Remove').modal('hide');
@@ -176,7 +176,10 @@
                         }, 
                     error: function(i){
                             swal('Oops!', "Something went wrong", 'error');
-        },
+        }
+
+    })
+    },
 
         save: function () {
             var message;            
@@ -216,7 +219,6 @@
                 }
             })
         }
-
     }
-
+    
 </script>
