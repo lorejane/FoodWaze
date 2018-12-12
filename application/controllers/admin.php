@@ -135,8 +135,8 @@ class Admin extends _BaseController {
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->StallId.'",'                
+                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
             	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.edit('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
             .']';            
