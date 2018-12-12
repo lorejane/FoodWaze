@@ -47,6 +47,28 @@
         </div>
     </div>
 </div>
+<div class="modal modal-center fade" id="modal-Remove" tabindex="-1">
+    <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-type-line">
+                <div class="col-md-12 col-sm-12">
+                    <center>
+                    <form id="modal-Remove-form" action="#" class="form-group mt-2">                                           
+                        <button type="button" class="btn btn-secondary " data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" onclick="Employee_Modal.delete()">Yes</button>
+                    </form>
+                </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var Employee_Modal = {
@@ -66,6 +88,13 @@
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             $('#modal-Employee').modal('show');
+        },
+        
+        hot: function () {            
+            $('#modal-Remove-form')[0].reset();
+            $('input').removeClass('is-invalid').addClass('');
+            $('.invalid-feedback').remove();
+            $('#modal-Remove').modal('show');
         },
 
         new: function () {
@@ -118,6 +147,24 @@
             })      
         },  
 
+        upload: function(){         
+            var formData = new FormData($('#modal-Stall-form')[0]);            
+            $.ajax({
+                url: "<?php echo base_url("Admin/UploadImage"); ?>",
+                type: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(data){
+                    console.log('upload: ' + data);                 
+                },
+                error: function(data){
+                    console.log('upload: ' + data);
+                }
+            });
+        },
+
+
         save: function () {
             var message;            
             if ($('#EmployeeId').val() == 0) {
@@ -152,7 +199,13 @@
                     })                                     
                 }
             })
-        }
+        },
+
+        remove: function () {            
+            $('.modal-title').text('Delete Employee');  
+            $('#rowActive').removeClass('invisible');          
+            Employee_Modal.hot();   
+        }   
     }
 
 

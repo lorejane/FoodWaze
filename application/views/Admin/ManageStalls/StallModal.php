@@ -32,6 +32,28 @@
         </div>
     </div>
 </div>
+<div class="modal modal-center fade" id="modal-Remove" tabindex="-1">
+    <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body form-type-line">
+                <div class="col-md-12 col-sm-12">
+                    <center>
+                    <form id="modal-Remove-form" action="#" class="form-group mt-2">                                           
+                        <button type="button" class="btn btn-secondary " data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-danger" onclick="Employee_Modal.delete()">Yes</button>
+                    </form>
+                </center>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var imageChanged = false;
@@ -61,6 +83,13 @@
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
             $('#modal-Stall').modal('show');
+        },
+        
+        hot: function () {            
+            $('#modal-Remove-form')[0].reset();
+            $('input').removeClass('is-invalid').addClass('');
+            $('.invalid-feedback').remove();
+            $('#modal-Remove').modal('show');
         },
 
         new: function () {
@@ -127,6 +156,26 @@
                     console.log('upload: ' + data);
                 }
             });
+        },
+
+        remove: function () {            
+            $('.modal-title').text('Delete Employee');  
+            $('#rowActive').removeClass('invisible');          
+            Employee_Modal.hot();   
+        },
+
+        delete: function () {
+                $.ajax({  
+                     url:'<?php echo base_url('Admin/Delete'); ?>', 
+                     method:"POST",  
+                     data:{"id": Employee_Modal.data()},  
+                    success: function(i){
+                        swal('Deleted!', 'success');
+                        $('#modal-Remove').modal('hide');
+                        console.log(i);
+                        }, 
+                    error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
         },
 
         save: function () {
