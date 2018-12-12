@@ -106,40 +106,4 @@ class FoodWaze extends _BaseController {
         {
             echo $this->convert($this->foodwaze_model->getCategory($stallId));
         }
-
-<<<<<<< HEAD
-=======
-
-        //converts any query to json
-        public function convert($param){
-            $str = '{';		
-            $counter = 0;				
-            foreach($param as $data => $record){
-                if($counter != 0){
-                    $str .= ',';
-                }
-                if(is_array($record) || is_object($record)){
-                    $str .= '"'.$counter.'":{';							
-                    $first = true;
-                    foreach($record as $column => $value){
-                        if(!$first){
-                            $str .= ',';
-                        }
-                        $str .= '"'.$column.'":"'.$value.'"';
-                        $first = false;
-                    }
-                    $str .= '}';				
-                }else{
-                    $str .= '"'.$data .'":"'.$record.'"';
-                }
-                $counter++;			
-            }
-            $str .= '}';
-            if($str == '{}')
-                return "No data";
-            return $str;
-        }
-        
-        
->>>>>>> 88ef7cbd3c91cf4a6e02e45089329eb426075e9e
 }
