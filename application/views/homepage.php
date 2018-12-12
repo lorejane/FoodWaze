@@ -9,25 +9,14 @@
 
             <!-- Topbar -->
             <header class="topbar">
-				<!--<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <span id="total"> </span></a>
-				<div class="cart">
-				<ul class="dropdown-menu dropdown-cart" role="menu">
-				
-				  <li class="divider"></li>
-				  <li><a class="text-center" href="">View Cart</a></li>
-				  </ul>
-				  </div>
-				</li>
-			  </ul>-->           
+				         
             <a class="card-title" href="<?php echo base_url(); ?>">
             <h2 class="title"><strong>FoodWaze</strong></h2>
             </a>
            
-            <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-            <i class="material-icons fullscreen-default">fullscreen</i>
-            <i class="material-icons fullscreen-active">fullscreen_exit</i>
+            <a href="#" data-provide="fullscreen">
+            <i class="ion-android-expand fullscreen-default"></i>
+            <i class="ion-android-contract fullscreen-active"></i>
             </a>
 
             </header>
@@ -99,40 +88,38 @@
                                             </div>
                                             
                                                 <div class="col-6">
-                                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                                    <!-- <div class="col-xs-6 col-sm-6 col-md-6">
                                                         <address>
                                                             <strong>RKL Food Court</strong>
-                                                            <br>
+                                                            <p>
                                                             2135 Sunset Blvd
                                                             <br>
                                                             Pasay, PH 90026
-                                                            <br>
+                                                            </p>
                                                             <abbr title="Phone">P:</abbr> (09) 520-8929
                                                         </address>   
-                                                    </div>
+                                                    </div> -->
+
+<!--                                                     
+                                                    <div class="col-xs-6 col-sm-6 col-md-6">
+                                                        <em>Receipt #: </em>
+                                                    </div>  
 
                                                     <div class="col-xs-6 col-sm-6 col-md-6 text-right">
                                                         <p>
-                                                            <em><?php echo date("m/d/Y") . "<br>";?></em>
+                                                            <em><?php echo date("Y/m/d") . "<br>";?></em>
                                                         </p>
-                                                        <p>
-                                                            <em>Receipt #: <?php $num = 1;
-                                                                $formattedNum = number_format($num)."<br>";
-                                                                echo $formattedNum; 
-                                                            ?></em>
-                                                        </p>
-                                                    </div> <!-- KAT!!! WAG MO NA GALAWIN -KAT-->
+                                                    </div> KAT!!! WAG MO NA GALAWIN -KAT -->
                                                     
                                                     
                                                     <div class="cart">
-                                                            <div>
-                                                            <!-- <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width:200px; padding:20px; margin:10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label> -->
-                                                                <p class="text-center fs-30 text-muted"><strong class="text-primary"><?php echo $s->Name; ?></strong></p>
-                                                            </div>
+                                                            <!-- <div>                                                            
+                                                                <p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p>
+                                                            </div> -->
                                                         <div id="mycart"></div>
-                                                    </div><!-- show cart -->
+                                                    </div>
 
-                                                    <br /><button type="reset" value="Reset"> Clear </button>
+                                                    <!-- <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary file-browser" value="Clear Cart"></a> -->
 
                                             </div><!--col-6-->
                                        
@@ -178,36 +165,8 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-    <script>
-        function clearcart(id)
-        {
-
-            var mid;
-              var name;
-              var price;
-              mid=document.getElementById(id);
-              name=document.getElementById(id+"_name").value;
-              price=document.getElementById(id+"_price").value;
-              $.ajax({
-                type:'post',
-                url:'<?php echo base_url("FoodWaze/clearcart") ?>',
-                data:{
-                  item_id:id,
-                  item_name:name,
-                  item_price:price
-                },
-                success:function(response) {
-                    clearcart();				 
-                },
-                error: function(){
-                    alert('ERROR!');
-                }
-              });
-        }
-
-    </script>
-
-    <script>
+  
+        <script>
 	function cart(id)
             {                
               var mid;
@@ -233,15 +192,53 @@
               });
 			  
             }
+    function deletecart(id)
+            {     
+              var name;
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("FoodWaze/deletetocart") ?>',
+                data:{
+                  item_id:id,
+                  item_name:name
+                },
+                success:function(response) {
+                  show_cart();	
+                },
+                error: function(){
+                  alert('ERROR!');
+                }
+              });
+			  
+            }
+        function minus1(id)
+            {                
+              var name;
+              $.ajax({
+                type:'post',
+                url:'<?php echo base_url("FoodWaze/minus1") ?>',
+                data:{
+                  item_id:id,
+                  item_name:name
+                },
+                success:function(data) {                    
+                  show_cart();	
+                },
+                error: function(){
+                    alert('ERROR!');
+                }
+              });
+			  
+            }
     </script>
     
         <script>
 			show_cart();
+            
 			function show_cart() {
                   $.ajax({
                             type: 'ajax',
                             url: '<?php echo base_url()?>foodwaze/showcart',
-                            async: false,
                             dataType: 'json',
                             success: function(data){
 								console.log('---------DATA----------');
@@ -250,16 +247,28 @@
 										var html = '';
                                         var i;										
                                         var total=0.0;
+                                        
+                                // html += '<div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p>'
+                                //         '</div>';    
+                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
+                                                '</div>'; 
+
                                         for(i=0; i<data.length; i++){
+                                            // html += '<div style="background-color: #d3d3d3; margin: 5px 10px 25px;">'+
                                             html += '<div>'+
-                                            '<p style="padding:4px; border:1px solid #ccc;">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'</p>'+                                                        
+                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="X" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 10%; margin: 2px;" value="X All" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
-                                        html +=  '<strong class="text-primary fs-15">TOTAL:</strong> '+total;
+                                        html += '<p style="border-top:1px solid #ccc;"><strong class="text-primary fs-15">TOTAL:</strong>'+total+
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
-                            }
-                        });
+                                        
+                            },
+                      error: function(){
+                    alert('ERROR!');
+                }
+                  });
                 }
         </script>
         
@@ -274,8 +283,8 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-6 items" style="width 200px; padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h4>'+data.Name+'</h4><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>   '); 
-                            }); //wag na galawin kat
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+                            });
                         }
                     }) 
                 }
@@ -299,9 +308,9 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
                         element +='</ul>';
