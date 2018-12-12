@@ -158,29 +158,6 @@
             });
         },
 
-        remove: function () {            
-            $('.modal-title').text('Delete Employee');  
-            $('#rowActive').removeClass('invisible');          
-            Stall_Modal.hot();   
-        },
-
-        delete: function () {
-                $.ajax({  
-                     url:'<?php echo base_url('Admin/Delete'); ?>', 
-                     method:"POST",  
-                     data:{"id": Stall_Modal.data()},  
-                    success: function(i){
-                        swal('Deleted!', 'success');
-                        $('#modal-Remove').modal('hide');
-                        console.log(i);
-                        }, 
-                    error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-        }
-
-    })
-    },
-
         save: function () {
             var message;            
             if ($('#StallId').val() == 0) {
@@ -218,7 +195,29 @@
                     })                                     
                 }
             })
-        }
+        },
+
+        remove: function () {            
+            $('.modal-title').text('Delete Category');  
+            $('#rowActive').removeClass('invisible');          
+            Categories_Modal.hot();   
+        },
+
+        delete: function () {
+                $.ajax({  
+                     url:'<?php echo base_url('Admin/Delete'); ?>', 
+                     method:"POST",  
+                     data:{"id": Stall_Modal.data()},  
+                    success: function(i){
+                        swal('Deleted!', 'success');
+                        $('#modal-Remove').modal('hide');
+                        console.log(i);
+                        }, 
+                    error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
+            }
+        })
+    }    
     }
     
 </script>
