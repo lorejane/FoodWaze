@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-class FoodWaze extends CI_Controller {
+include('_BaseController.php');
+use Respect\Validation\Validator as v;
+class FoodWaze extends _BaseController {
     public function __construct(){
 
         parent::__construct();
@@ -90,5 +91,4 @@ class FoodWaze extends CI_Controller {
             echo $this->convert($this->foodwaze_model->getCategory($stallId));
         }
 
-            $str = '{';		
 }
