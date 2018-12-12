@@ -138,7 +138,7 @@ class Admin extends _BaseController {
                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->StallId.'",'                
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" ><span class=\"icon fa fa-remove\"></a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.edit('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
