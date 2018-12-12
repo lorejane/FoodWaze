@@ -206,8 +206,8 @@ class Manager extends _BaseController {
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->CategoryId.'",'
+                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                
              .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Menu_Modal.remove('.$data->MenuId.');\" ><span class=\"icon fa fa-remove\"></a>"'
