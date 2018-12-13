@@ -63,7 +63,7 @@ class Admin extends _BaseController {
                     print_r($error);
                 }else{
                     $data = array('upload_data' => $this->upload->data());
-                    $this->AdminModel->saveImage($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
+                    $this->AdminModel->saveProfile($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
                     print_r($data);
                 }
             }
@@ -152,6 +152,7 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
+                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
