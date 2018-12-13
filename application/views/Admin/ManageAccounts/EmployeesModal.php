@@ -181,7 +181,8 @@
                     $('#PositionId').selectpicker('val',i.PositionId);
                     $('#StallId').selectpicker('val',i.StallId);
                     $('#Password').val(i.Password);
-
+                    $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
+                    imageChanged = false;
                 }
             });           
         },
@@ -212,7 +213,7 @@
         },        
 
         upload: function(){         
-            var formData = new FormData($('#modal-Stall-form')[0]);            
+            var formData = new FormData($('#modal-Employee-form')[0]);            
             $.ajax({
                 url: "<?php echo base_url("Admin/UploadProfile"); ?>",
                 type: "POST",
