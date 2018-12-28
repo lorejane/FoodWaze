@@ -48,10 +48,31 @@ class FoodWaze extends _BaseController {
                     'Quantity'=> $_SESSION['cart'][$cart[$x]]['qty']
                 );
                 $items[]=$item;
-            } 
+            }
+            // // Required field names
+            // $required = array('Name', 'Contact_Number');
+
+            // // Loop over field names, make sure each one exists and is not empty
+            // $error = false;
+            // foreach($required as $field) {
+            // if (empty($_POST[$field])) {
+            //     $error = true;
+            // }
+            // }
+
+            // if ($error) {
+            // echo "All fields are required.";
+            // } else {
+            // echo "Proceed...";
+            // }
+
             $this->foodwaze_model->addorderdetails($items);
             redirect(base_url(''), 'refresh');
+
+            
         }
+
+        
         public function clearcart()
         {
             session_destroy(); 

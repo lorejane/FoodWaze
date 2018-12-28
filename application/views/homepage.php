@@ -88,40 +88,12 @@
                                             </div>
                                             
                                                 <div class="col-6">
-                                                    <!-- <div class="col-xs-6 col-sm-6 col-md-6">
-                                                        <address>
-                                                            <strong>RKL Food Court</strong>
-                                                            <p>
-                                                            2135 Sunset Blvd
-                                                            <br>
-                                                            Pasay, PH 90026
-                                                            </p>
-                                                            <abbr title="Phone">P:</abbr> (09) 520-8929
-                                                        </address>   
-                                                    </div> -->
-
-<!--                                                     
-                                                    <div class="col-xs-6 col-sm-6 col-md-6">
-                                                        <em>Receipt #: </em>
-                                                    </div>  
-
-                                                    <div class="col-xs-6 col-sm-6 col-md-6 text-right">
-                                                        <p>
-                                                            <em><?php echo date("Y/m/d") . "<br>";?></em>
-                                                        </p>
-                                                    </div> KAT!!! WAG MO NA GALAWIN -KAT -->
-                                                    
                                                     
                                                     <div class="cart">
-                                                            <!-- <div>                                                            
-                                                                <p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p>
-                                                            </div> -->
                                                         <div id="mycart"></div>
                                                     </div>
 
-                                                    <!-- <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary file-browser" value="Clear Cart"></a> -->
-
-                                            </div><!--col-6-->
+                                                </div><!--col-6-->
                                        
                                         </div><!--row-->                                   
                                     </div><!--card body-->
@@ -153,6 +125,8 @@
                                 <div class="form-group row">
                                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
                                 </div>
+
+                                
                             </form>  
                         </div>
                             <!--end step 3 -->
@@ -296,6 +270,7 @@
                         }
                     }) 
                 }
+
             $("input:checkbox").on('click', function() {
               var $box = $(this);
               if ($box.is(":checked")) {
@@ -317,10 +292,11 @@
                             if(first){
                                 first = false;
                                 element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
-                            }else{
+                            } else{
                                 element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
+
                         element +='</ul>';
                         element +='<div class="tab-content">';
                         first = true;
@@ -328,10 +304,11 @@
                             if(first){
                                 first = false;
                                 element +='<div class="tab-pane fade active show" id="cat-' + data.CategoryId + '"></div>';                                     
-                            }else{
+                            } else{
                                 element +='<div class="tab-pane fade" id="cat-' + data.CategoryId + '"></div>';
                             }
                         })
+
                         element +='</div>';
                         $('#menu-container').html(element);
                         menu(id);
