@@ -58,7 +58,7 @@
 
                             <div class="tab-content"> <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
-                                <!-- <div class="card-title text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</div> -->
+                                
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                                 <div class="card">
                                     <div class="card-body"> 
@@ -134,18 +134,26 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                            
-                              
+                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                                <hr class="w-100px">
                                 <div class="form-group row">
-                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 60px;">Name</label>                                
-                                        <input type="text" class="form-control" name="NameCustomer" style="width: 250px;">                                                                                                           
+                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Name</label>
+                                        <div class="col-8 col-lg-7">
+                                            <input type="text" class="form-control" name="NameCustomer" id="input-1" required>
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 25px;">Contact No.</label>
-                                        <input type="number" class="form-control" name="ContactNo" style="width: 250px;" required max="11">
-                                </div>                                                     
-   
+                                    <label class="col-3 col-lg-2 col-form-label text-center require" for="input-1">Contact No.</label>
+                                        <div class="col-8 col-lg-7">
+                                                <input type="text" class="form-control" name="ContactNo" id="input-1" >
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
+                                </div>
+                            </form>  
                         </div>
                             <!--end step 3 -->
                         </div>
@@ -166,7 +174,9 @@
 </main>
 <!-- END Main container -->
   
-        <script>
+    
+    <script>
+    
 	function cart(id)
             {                
               var mid;
