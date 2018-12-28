@@ -24,8 +24,8 @@
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableStall") ?>">
 							<thead>
 								<tr>
-									<th>Image</th>
 									<th>Stall Number</th>
+									<th >Image</th>
 									<th>Name</th>
 									<th>Action</th>			
 								</tr>

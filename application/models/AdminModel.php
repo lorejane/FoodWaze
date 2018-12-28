@@ -53,10 +53,11 @@
 		}
     }
 
-   	public function saveImage($EmployeeId, $Image){
-		$this->db->query("UPDATE stall SET "                			
+   	public function saveProfile($EmployeeId, $Image){
+		$this->db->query("UPDATE employee SET "                			
 			."Image = '".$Image."' "
 			."WHERE EmployeeId = '".$EmployeeId."'"
 		);	
 	}
+
 }

@@ -178,7 +178,7 @@ class Manager extends _BaseController {
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\"  class=\"btn btn-info\" >Update</a><a href=\"'.base_url('Manager/delete_employee/'.$data->EmployeeId).'\" class=\"btn btn-danger\" >Delete</a>"'
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.remove('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -193,7 +193,7 @@ class Manager extends _BaseController {
            $json .= '['
                 .'"'.$data->CategoryId.'",'
                 .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\"  class=\"btn btn-info\" >Update</a><a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" class=\"btn btn-danger\" >Delete</a>"'
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.remove('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -206,11 +206,11 @@ class Manager extends _BaseController {
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->CategoryId.'",'
+                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                
-             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\"  class=\"btn btn-info\" >Update</a><a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" class=\"btn btn-danger\" >Delete</a>"'
+             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Menu_Modal.remove('.$data->MenuId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }

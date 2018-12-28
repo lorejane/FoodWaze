@@ -38,7 +38,7 @@
 		}
 
 		public function getPositionName($positionId){
-			return $this->db->query("SELECT Name FROM position WHERE PositionId = '".$positionId."'")->row()->Name;	
+			return $this->db->query("SELECT PositionName FROM position WHERE PositionId = '".$positionId."'")->row()->PositionName;	
 		} 
 
 		public function getStallName($stallId){

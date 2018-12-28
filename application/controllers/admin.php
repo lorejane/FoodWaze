@@ -63,7 +63,7 @@ class Admin extends _BaseController {
                     print_r($error);
                 }else{
                     $data = array('upload_data' => $this->upload->data());
-                    $this->AdminModel->saveImage($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
+                    $this->AdminModel->saveProfile($this->input->post('EmployeeId'), $data['upload_data']['file_name']);
                     print_r($data);
                 }
             }
@@ -135,10 +135,10 @@ class Admin extends _BaseController {
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->StallId.'",'                
+                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a href=\"'.base_url('manager/delete_employee/'.$data->StallId).'\" ><span class=\"icon fa fa-remove\"></a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.edit('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -152,6 +152,7 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
+                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
