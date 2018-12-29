@@ -58,7 +58,7 @@
 
                             <div class="tab-content"> <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
-                                <!-- <div class="card-title text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</div> -->
+                                
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                                 <div class="card">
                                     <div class="card-body"> 
@@ -134,18 +134,26 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                            
-                              
+                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                                <hr class="w-100px">
                                 <div class="form-group row">
-                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 60px;">Name</label>                                
-                                        <input type="text" class="form-control" name="NameCustomer" style="width: 250px;">                                                                                                           
+                                    <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
+                                        <div class="col-8 col-lg-7">
+                                            <input type="text" class="form-control" name="NameCustomer">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
                                 </div>
-
                                 <div class="form-group row">
-                                    <label class="col-form-label require" style="padding-left: 80px; padding-right: 25px;">Contact No.</label>
-                                        <input type="number" class="form-control" name="ContactNo" style="width: 250px;" required max="11">
-                                </div>                                                     
-   
+                                    <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
+                                        <div class="col-8 col-lg-7">
+                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
+                                </div>
+                            </form>  
                         </div>
                             <!--end step 3 -->
                         </div>
@@ -166,7 +174,9 @@
 </main>
 <!-- END Main container -->
   
-        <script>
+    
+    <script>
+    
 	function cart(id)
             {                
               var mid;
@@ -233,8 +243,8 @@
     </script>
     
         <script>
-			show_cart();
-            
+        
+			show_cart();            
 			function show_cart() {
                   $.ajax({
                             type: 'ajax',
@@ -247,9 +257,7 @@
 										var html = '';
                                         var i;										
                                         var total=0.0;
-                                        
-                                // html += '<div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p>'
-                                //         '</div>';    
+                                      
                                         html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
                                                 '</div>'; 
 

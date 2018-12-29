@@ -8,6 +8,21 @@
 			parent:: __construct();
 		}
 
+		function addorder($data){
+			$this->db->insert_batch('order', $data); 
+			return $this->db->insert_id();
+		}
+
+		function addorderdetails($data){
+			$this->db->insert_batch('orderdetails', $data); 
+		}
+
+		function getlastorder(){
+			$this->db->select('*');
+			$this->db->from('order');
+			return $this->db->insert_id('order_id');
+		}
+
 		public function getEmployeeDetails(){
 			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		}
