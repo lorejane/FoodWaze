@@ -138,7 +138,7 @@ class Admin extends _BaseController {
                 .'"'.$data->StallId.'",'                
                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.edit('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -157,7 +157,7 @@ class Admin extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
                 .'"'.$this->foodwaze_model->getStallName($data->StallId).'",'    
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.remove('.$data->EmployeeId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -166,15 +166,12 @@ class Admin extends _BaseController {
         echo $json;        
     }
 
-    public function Delete(){        
-        $this->AdminModel->delete($this->input->post('id'));
+    public function Delete($id){        
+        echo $this->convert($this->AdminModel->delete($id));
     }
 
-    public function delete_user($EmployeeId)
-    {
-        $u = $this->uri->segment(3);
-        $this->position_model->delete($u);
-        redirect('admin/account', 'refresh');
+    public function DeleteStall($id){        
+        echo $this->convert($this->Stall_model->delete($id));
     }
 
 }
