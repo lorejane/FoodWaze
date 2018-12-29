@@ -44,28 +44,6 @@
         </div>
     </div>
 </div>
-<div class="modal modal-center fade" id="modal-Remove" tabindex="-1">
-    <div class="modal-dialog modal-md ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Are you sure?</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body form-type-line">
-                <div class="col-md-12 col-sm-12">
-                    <center>
-                    <form id="modal-Remove-form" action="#" class="form-group mt-2">                                           
-                        <button type="button" class="btn btn-secondary " data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger" onclick="Menu_Modal.delete()">Yes</button>
-                    </form>
-                </center>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
 
@@ -113,13 +91,6 @@
             $('#modal-Menu').modal('show');
         },
         
-        hot: function () {            
-            $('#modal-Remove-form')[0].reset();
-            $('input').removeClass('is-invalid').addClass('');
-            $('.invalid-feedback').remove();
-            $('#modal-Remove').modal('show');
-        },
-
         new: function () {
             $('#MenuId').val('0');            
             $('.modal-title').text('Add Menu');            
@@ -145,6 +116,34 @@
                     imageChanged = false;
                 }
             });           
+        },
+        
+        delete: function (id) {             
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Employee',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:"<?php echo base_url('Manager/DeleteMenu/'); ?>" +id,
+                            success: function(i){
+                                swal('Deleted!', 'success');
+                                $('#Menu-table').DataTable().ajax.reload();
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                    })                                     
+                }
+            })
+
         },
 
         validate: function(){
@@ -226,29 +225,7 @@
                     })                                     
                 }
             })
-        },
-
-       remove: function () {            
-            $('.modal-title').text('Delete Category');  
-            $('#rowActive').removeClass('invisible');          
-            Menu_Modal.hot();   
-        },
-
-        delete: function () {
-                $.ajax({  
-                     url:'<?php echo base_url('Admin/Delete'); ?>', 
-                     method:"POST",  
-                     data:{"id": Stall_Modal.data()},  
-                    success: function(i){
-                        swal('Deleted!', 'success');
-                        $('#modal-Remove').modal('hide');
-                        console.log(i);
-                        }, 
-                    error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-            }
-        })
-    }
+        }
     }
 
 </script>
