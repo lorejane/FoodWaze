@@ -93,6 +93,34 @@
                 }
             });           
         },
+        
+        delete: function (id) {             
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Employee',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:"<?php echo base_url('Manager/DeleteCategories/'); ?>" +id,
+                            success: function(i){
+                                swal('Deleted!', 'success');
+                                $('#Categories-table').DataTable().ajax.reload();
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                    })                                     
+                }
+            })
+
+        },
 
         validate: function(){
             $('.invalid-feedback').remove();
@@ -153,29 +181,7 @@
                     })                                     
                 }
             })
-        },
-
-        remove: function () {            
-            $('.modal-title').text('Delete Category');  
-            $('#rowActive').removeClass('invisible');          
-            Categories_Modal.hot();   
-        },
-
-        delete: function () {
-                $.ajax({  
-                     url:'<?php echo base_url('Admin/Delete'); ?>', 
-                     method:"POST",  
-                     data:{"id": Stall_Modal.data()},  
-                    success: function(i){
-                        swal('Deleted!', 'success');
-                        $('#modal-Remove').modal('hide');
-                        console.log(i);
-                        }, 
-                    error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-            }
-        })
-    }
+        }
     }
 
 </script>
