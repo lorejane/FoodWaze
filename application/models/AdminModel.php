@@ -16,16 +16,13 @@
 		return $dbList;		
 	}
 
+
 	public  function getStall(){ //display stalls
 		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 	}
 
 	public function getEmployee(){ //display employees
 		return $this->db->query("SELECT * FROM employee")->result();
-	}
-
-	public function delete($id){		
-			$this->db->query("DELETE FROM employee WHERE EmployeeId = '".$id."' ");
 	}
 
 	public function save($employee){
