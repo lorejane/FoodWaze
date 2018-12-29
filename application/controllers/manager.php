@@ -70,6 +70,18 @@ class Manager extends _BaseController {
         echo $this->convert($this->ManagerModel->_getMenu($id));
     }
 
+    public function DeleteCategories($id){        
+        echo $this->convert($this->CategoriesModel->delete($id));
+    }
+
+    public function DeleteMenu($id){        
+        echo $this->convert($this->MenuModel->delete($id));
+    }
+
+    public function DeleteAccount($id){        
+        echo $this->convert($this->AdminModel->delete($id));
+    }
+
     public function UploadImage(){
         if(isset($_FILES['image']) && !empty($_FILES['image'])){
             if($_FILES['image']['error'] != 4){
@@ -178,7 +190,7 @@ class Manager extends _BaseController {
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.remove('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -193,7 +205,7 @@ class Manager extends _BaseController {
            $json .= '['
                 .'"'.$data->CategoryId.'",'
                 .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.remove('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -210,7 +222,7 @@ class Manager extends _BaseController {
                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                
-             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Menu_Modal.remove('.$data->MenuId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Menu_Modal.delete('.$data->MenuId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -219,10 +231,4 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
-    public function delete_employee()
-    {
-        $u = $this->uri->segment(3);
-        $this->position_model->delete($u);
-        redirect('Manager/Accounts', 'refresh');
-    }
 }
