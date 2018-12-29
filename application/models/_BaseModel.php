@@ -20,6 +20,12 @@ class _BaseModel extends CI_Model{
 		return $dbList;		
 	}
 
+	public function delete($id){
+		$dbList = $this->db->query("DELETE from ".$this->table." WHERE ".$this->identifier." = '".$id."'");
+		return $dbList;		
+	}
+
+
 	public function _list(){
 		$dbList = $this->db->query("SELECT * from ".$this->table)->result();
 		return $dbList;
