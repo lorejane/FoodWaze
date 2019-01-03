@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 12, 2018 at 05:50 AM
+-- Generation Time: Dec 28, 2018 at 09:35 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `foodwaze`
 --
-CREATE DATABASE IF NOT EXISTS `foodwaze` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `foodwaze`;
 
 -- --------------------------------------------------------
 
@@ -28,18 +26,12 @@ USE `foodwaze`;
 -- Table structure for table `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `CategoryId` int(10) NOT NULL AUTO_INCREMENT,
   `CategoryName` varchar(50) NOT NULL,
   PRIMARY KEY (`CategoryId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
---
--- Truncate table before insert `category`
---
-
-TRUNCATE TABLE `category`;
 --
 -- Dumping data for table `category`
 --
@@ -56,7 +48,6 @@ INSERT INTO `category` (`CategoryId`, `CategoryName`) VALUES
 -- Table structure for table `employee`
 --
 
-DROP TABLE IF EXISTS `employee`;
 CREATE TABLE IF NOT EXISTS `employee` (
   `Lastname` varchar(50) NOT NULL,
   `EmployeeAccount` varchar(50) NOT NULL,
@@ -69,11 +60,6 @@ CREATE TABLE IF NOT EXISTS `employee` (
   PRIMARY KEY (`EmployeeId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=67 ;
 
---
--- Truncate table before insert `employee`
---
-
-TRUNCATE TABLE `employee`;
 --
 -- Dumping data for table `employee`
 --
@@ -92,25 +78,18 @@ INSERT INTO `employee` (`Lastname`, `EmployeeAccount`, `Firstname`, `PositionId`
 -- Table structure for table `foodcourt`
 --
 
-DROP TABLE IF EXISTS `foodcourt`;
 CREATE TABLE IF NOT EXISTS `foodcourt` (
   `FoodcourtId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
   PRIMARY KEY (`FoodcourtId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Truncate table before insert `foodcourt`
---
-
-TRUNCATE TABLE `foodcourt`;
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `menu`
 --
 
-DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
   `MenuId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) NOT NULL,
@@ -121,11 +100,6 @@ CREATE TABLE IF NOT EXISTS `menu` (
   PRIMARY KEY (`MenuId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=40 ;
 
---
--- Truncate table before insert `menu`
---
-
-TRUNCATE TABLE `menu`;
 --
 -- Dumping data for table `menu`
 --
@@ -169,56 +143,63 @@ INSERT INTO `menu` (`MenuId`, `Name`, `StallId`, `Price`, `CategoryId`, `Image`)
 -- Table structure for table `order`
 --
 
-DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `OrderId` int(11) NOT NULL AUTO_INCREMENT,
   `StallId` int(11) NOT NULL,
-  `Name` int(11) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Contact_Number` int(11) NOT NULL,
   `Date` date NOT NULL,
   PRIMARY KEY (`OrderId`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Truncate table before insert `order`
+-- Dumping data for table `order`
 --
 
-TRUNCATE TABLE `order`;
+INSERT INTO `order` (`OrderId`, `StallId`, `Name`, `Contact_Number`, `Date`) VALUES
+(1, 1, 'kat', 909090, '2018-12-28'),
+(2, 1, 'melody', 9080506, '2018-12-28'),
+(3, 1, 'katmelody', 12344, '2018-12-28');
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `orderdetails`
 --
 
-DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE IF NOT EXISTS `orderdetails` (
+  `Orderdetails_ID` int(255) NOT NULL AUTO_INCREMENT,
   `OrderId` int(10) NOT NULL,
   `MenuId` int(10) NOT NULL,
-  `Quantity` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Quantity` int(10) NOT NULL,
+  PRIMARY KEY (`Orderdetails_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Truncate table before insert `orderdetails`
+-- Dumping data for table `orderdetails`
 --
 
-TRUNCATE TABLE `orderdetails`;
+INSERT INTO `orderdetails` (`Orderdetails_ID`, `OrderId`, `MenuId`, `Quantity`) VALUES
+(8, 9, 11, 1),
+(10, 11, 11, 1),
+(11, 12, 11, 1),
+(12, 13, 12, 1),
+(13, 3, 25, 1),
+(14, 3, 33, 1),
+(15, 3, 35, 1);
+
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `position`
 --
 
-DROP TABLE IF EXISTS `position`;
 CREATE TABLE IF NOT EXISTS `position` (
   `PositionId` int(10) NOT NULL AUTO_INCREMENT,
   `PositionName` varchar(100) NOT NULL,
   PRIMARY KEY (`PositionId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
---
--- Truncate table before insert `position`
---
-
-TRUNCATE TABLE `position`;
 --
 -- Dumping data for table `position`
 --
@@ -234,7 +215,6 @@ INSERT INTO `position` (`PositionId`, `PositionName`) VALUES
 -- Table structure for table `stall`
 --
 
-DROP TABLE IF EXISTS `stall`;
 CREATE TABLE IF NOT EXISTS `stall` (
   `StallId` int(10) NOT NULL AUTO_INCREMENT,
   `Name` varchar(100) NOT NULL,
@@ -243,16 +223,10 @@ CREATE TABLE IF NOT EXISTS `stall` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
--- Truncate table before insert `stall`
---
-
-TRUNCATE TABLE `stall`;
---
 -- Dumping data for table `stall`
 --
 
 INSERT INTO `stall` (`StallId`, `Name`, `Image`) VALUES
-(0, 'none', 'blocked.PNG'),
 (1, 'Mcdo', 'stall1.jpg'),
 (2, 'Jollibee', 'stall2.jpg'),
 (3, 'DQ', 'stall3.jpg'),
