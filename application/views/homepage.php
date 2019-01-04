@@ -36,23 +36,23 @@
                     <div class="card-body">
                     <!-- <form data-provide="wizard" novalidate="true"> -->
                         <div data-provide="wizard" data-navigateable="true">
-                            <ul class="nav nav-process nav-process-circle">
-                                <li class="nav-item">
-                                    <span class="nav-title">Step 1</span>
-                                    <a class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
-                                </li>
+                        <ul class="nav nav-process nav-process-circle">
+                            <li class="nav-item">
+                            <span class="nav-title">Step 1</span>
+                            <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <span class="nav-title">Step 2</span>
-                                    <a class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
-                                </li>
+                            <li class="nav-item">
+                            <span class="nav-title">Step 2</span>
+                            <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
+                            </li>
 
-                                <li class="nav-item">
-                                    <span class="nav-title">Step 3</span>
-                                    <a class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
-                                </li>
+                            <li class="nav-item">
+                            <span class="nav-title">Step 3</span>
+                            <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
+                            </li>
 
-                            </ul>
+                        </ul>
                         
 
                             <div class="tab-content"> <!-- step 1 -->
