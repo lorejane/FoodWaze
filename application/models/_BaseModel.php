@@ -25,7 +25,6 @@ class _BaseModel extends CI_Model{
 		return $dbList;		
 	}
 
-
 	public function _list(){
 		$dbList = $this->db->query("SELECT * from ".$this->table)->result();
 		return $dbList;
