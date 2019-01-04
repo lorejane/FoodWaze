@@ -228,40 +228,55 @@
             }
     </script>
     
-        <script>
-        
-			show_cart();            
-			function show_cart() {
+    <script>
+      show_cart();
+      function show_cart() {
+        document.getElementById("next").disabled = true;
                   $.ajax({
-                            type: 'ajax',
-                            url: '<?php echo base_url()?>foodwaze/showcart',
-                            dataType: 'json',
-                            success: function(data){
-								console.log('---------DATA----------');
-								console.log(data);
-                                var i;	
-										var html = '';
-                                        var i;										
+                        type: 'ajax',
+                        url: '<?php echo base_url()?>foodwaze/showcart',
+                        dataType: 'json',
+                        success: function(data){
+                console.log('---------CART DATA----------');
+                console.log(data);
+                                var i;  
+                    var html = '';
+                                        var i;      
                                         var total=0.0;
-                                      
+                                        
                                         html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
                                                 '</div>'; 
-
                                         for(i=0; i<data.length; i++){
-                                            // html += '<div style="background-color: #d3d3d3; margin: 5px 10px 25px;">'+
-                                            html += '<div>'+
-                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="X" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="fa fa-trash-alt" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
-                                                    '</div>';
-                                                    total+=data[i].Price*data[i].Qty;
+                                            if(data[i].Id=='no cart')
+                                            {
+                                                 html += '<div>'+
+                                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
+                                                        '</div>';
+                                                 total+=0;
+                                                 document.getElementById("next").disabled = true;
+                                            }
+                                            else
+                                            {
+                                                
+                                                html += '<div>'+
+                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-lg-9">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'</div><div class="col-lg-3"><input class="btn btn-primary right" type="button" value="-1" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input class="btn btn-danger right" type="button" value="X" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</div></div>'+
+                                                        '</div>';
+                                                        total+=data[i].Price*data[i].Qty;
+                                                  identifier=1;
+                                                  document.getElementById("next").disabled = false;
+                                            }
                                         }
-                                        html += '<p style="border-top:1px solid #ccc;"><strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
+                                        html +=  'TOTAL: '+total;
                                         $('#mycart').html(html);
-                                        
                             },
-                      error: function(){
-                    alert('ERROR!');
-                }
+                      error: function(response){
+                            var html;
+                            html = '<div>'+
+                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
+                                 '</div>';
+                           
+                                 $('#mycart').html(html);
+                        }
                   });
                 }
         </script>
@@ -283,14 +298,15 @@
                     }) 
                 }
 
-            $("input:checkbox").on('click', function() {
+            $("input:checkbox").on('click', function() {              
               var $box = $(this);
               if ($box.is(":checked")) {
+                document.getElementById("next").disabled = false;
                 var group = "input:checkbox[name='" + $box.attr("name") + "']";
                 $(group).prop("checked", false);
                 $box.prop("checked", true);      
                 id=$(this).attr('id');
-                console.log(id);    
+                console.log(id);                  
                 $.ajax({
                     url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
                     success: function(kat){
@@ -303,7 +319,7 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item active show"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             } else{
                                 element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
