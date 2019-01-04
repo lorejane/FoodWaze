@@ -1,8 +1,8 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-class Cashier extends CI_Controller {
+include('_BaseController.php');
+use Respect\Validation\Validator as v;
+class Cashier extends _BaseController {
 	public function __construct(){
 
 	parent::__construct();
@@ -18,70 +18,43 @@ class Cashier extends CI_Controller {
 		$this->load->view('Cashier/Order', $data);
 		$this->load->view('include/footer');
 	}
-    
-    public function clearcart()
-    {
-        session_destroy(); 
-        exit();
-    }
-    
-    public function cart(){
-		$itemcart=$_SESSION['cart'];
-   		$cart = array_column($itemcart, 'id');					
-		$rs = $this->foodwaze_model->readitem_f($cart);	
-		foreach($rs as $r)
-		{
-			$item[] = array(
-				'MenuId' => $r['MenuId'],
-				'Name' => $r['Name'],
-				'StallId' => $r['StallId'],
-				'Price' => $r['Price'],
-				'CategoryId' => $r['CategoryId'],
-				'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
-			);
-		}
-		print_r($rs);
-		print_r($item);
-	}
 
-    public function MakeOrder()
-    {            
-        if(isset($_POST['item_id']))
-          {
-            if(isset($_POST['item_id']))
-            {
-                $_SESSION['cart'][$_POST['item_id']]['id']=$_POST['item_id'];
-				$_SESSION['cart'][$_POST['item_id']]['name']=$_POST['item_name'];                    
-                $_SESSION['cart'][$_POST['item_id']]['price']=$_POST['item_price'];                    
-                $_SESSION['cart'][$_POST['item_id']]['qty']=$_SESSION['cart'][$_POST['item_id']]['qty']+1; 
-				$_SESSION['cart']['total']=$_SESSION['cart']['total']+1;
-            }
-            
-            echo count($_SESSION['cart']);
-          }
+	public function AddToCart(){
+		$x = $this->input->post('Order');
+        $order = array('id' => $x['id'], 'qty' => $x['qty'], 'price' => $x['price'], 'name' => $x['name']);
+        $this->cart->insert($order);
     }
-
-    public function ShowOrder()
-    {           
-		$itemcart=$_SESSION['cart'];
-   		$cart = array_column($itemcart, 'id');					
-		$rs = $this->foodwaze_model->readitem_f($cart);	
-		foreach($rs as $r)
-		{
-			$item[] = array(
-				'MenuId' => $r['MenuId'],
-				'Name' => $r['Name'],
-				'StallId' => $r['StallId'],
-				'Price' => $r['Price'],
-				'CategoryId' => $r['CategoryId'],
-				'Qty'=> $_SESSION['cart'][$r['MenuId']]['qty']
-			);
-		}
-		echo json_encode($item);			
+    
+    public function Remove($id){
+        $this->cart->remove($id);
     }
+    
+    public function RemoveAll(){
+        $this->cart->destroy();
+    }
+    
+    public function displayCartOrder(){
+    	echo $this->convert($this->cart->contents());
+    }
+   
     public function getCategory($stallId)
     {
         echo $this->convert($this->foodwaze_model->getCategory($stallId));
     }
 
+    public function GetOrders()
+    {
+        echo $this->convert($this->CashierModel->getOrder());
+    }
+
+    public function GetOrderDetails()
+    {
+    	// print_r($this->input->post('orderid'));
+        echo $this->convert($this->CashierModel->getOrderDetails($this->input->post('orderid')));
+    }
+
+    public function GetMenu($menuid)
+    {
+    	echo $this->convert($this->CashierModel->getMenu($menuid));
+    }
 }	
