@@ -27,7 +27,7 @@
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('home/logout'); ?>">
-                    <span class="icon fa fa-home"></span>
+                    <span class="icon fa fa-sign-out"></span>
                     <span class="title">Logout</span>
                 </a>
             </li>    
