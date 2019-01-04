@@ -266,7 +266,8 @@
                                                   document.getElementById("next").disabled = false;
                                             }
                                         }
-                                        html +=  'TOTAL: '+total;
+                                        html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
                             },
                       error: function(response){
