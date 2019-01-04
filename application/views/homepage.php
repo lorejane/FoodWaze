@@ -123,7 +123,7 @@
                                         </div>
                                 </div>
                                 <div class="form-group row">
-                                    <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
+                                <input type="submit" class="btn btn-success btn-sm" value="Submit" />
                                 </div>
 
                                 
@@ -136,8 +136,8 @@
                 <hr>
 
                 <div class="flexbox">
-                    <button class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
-                    <button class="btn btn-secondary" data-wizard="next" type="button">Next</button>
+                    <button class="btn btn-primary" data-wizard="prev" type="button">Back</button>
+                    <button class="btn btn-primary" data-wizard="next" type="button">Next</button>
                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
                 </div>
             <!-- </form> -->
@@ -150,7 +150,7 @@
   
     
     <script>
-    
+
 	function cart(id)
             {                
               var mid;
@@ -238,12 +238,12 @@
                                         for(i=0; i<data.length; i++){
                                             // html += '<div style="background-color: #d3d3d3; margin: 5px 10px 25px;">'+
                                             html += '<div>'+
-                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="X" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 10%; margin: 2px;" value="X All" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
+                                            data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="X" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" style="float: right; width: 0px; margin: 2px;" value="-1" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</p>'+
                                                     '</div>';
                                                     total+=data[i].Price*data[i].Qty;
                                         }
                                         html += '<p style="border-top:1px solid #ccc;"><strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-secondary" value="Clear Cart"></a>';                                        
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-bold btn-danger" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
                                         
                             },
@@ -265,7 +265,7 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
                     }) 
