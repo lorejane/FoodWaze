@@ -161,9 +161,26 @@
 <!-- END Main container -->
   
     
-    <script>
-
-	function cart(id)
+<script>
+  var identifier;
+  start();
+  function start(){
+    document.getElementById("tab1").disabled = true;
+    document.getElementById("tab2").disabled = true;
+    document.getElementById("tab3").disabled = true;
+    if (identifier>0) {
+      document.getElementById("next").disabled = false;
+    }
+    else
+      document.getElementById("next").disabled = true;
+  }
+  function back(){
+    document.getElementById("next").disabled = false;
+  }
+  function submitform(){
+    document.getElementById("fsubmit").click(); 
+  }
+  function cart(id)
             {                
               var mid;
               var name;
@@ -180,13 +197,13 @@
                   item_price:price
                 },
                 success:function(response) {
-                  show_cart();				 
+                  show_cart();         
                 },
                 error: function(){
                     alert('ERROR!');
                 }
               });
-			  
+        
             }
     function deletecart(id)
             {     
@@ -199,13 +216,13 @@
                   item_name:name
                 },
                 success:function(response) {
-                  show_cart();	
+                  show_cart();  
                 },
                 error: function(){
                   alert('ERROR!');
                 }
               });
-			  
+        
             }
         function minus1(id)
             {                
@@ -218,15 +235,16 @@
                   item_name:name
                 },
                 success:function(data) {                    
-                  show_cart();	
+                  show_cart();  
                 },
                 error: function(){
                     alert('ERROR!');
                 }
               });
-			  
+        
             }
     </script>
+    
     
     <script>
       show_cart();
