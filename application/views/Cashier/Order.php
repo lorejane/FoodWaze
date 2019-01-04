@@ -138,11 +138,12 @@ function refresh(){
 			i = JSON.parse(i);
 			console.log(i);
 			var element = '';
+			total = 0;
 			$.each(i, function(index, data){
                     element +='<p>' +data.name+' ' +data.qty+ ' ' +data.price+ ' = '+(data.qty * data.price)+' </p>';
-                
+                	total = Number(total) + Number(data.qty * data.price);
             })
-            element += "<h1><?php echo $this->cart->total(); ?></h1>";
+            element += '<h1>' + total + '</h1>';
             $("#mycart").html(element);
 	    }
 	})
