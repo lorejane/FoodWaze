@@ -1,82 +1,11 @@
-<div class="row">
+<div class="main-content">
 	<div class="col-sm-8">
 		<div class="card" style="height:90%;">
  	       <div class="card-body" >
-        <!-- Nav tabs -->
-
-    <ul class="nav flex-column">
-    	<li class="nav-item">
-	      	<?php foreach($categories as $items){
-				echo  '
-	            <a class="btn nav-link" data-toggle="tab" href="#'.$items->CategoryId.'">
-				 '.$items->CategoryName.'
-				</a>
-				 ';
-				} 
-						
-			?>
-		</li>
-
-    </ul>
-        <div class="tab-content" style="height:70%;">   
-  			<div class="tab-pane fade active show" id="1">        
-					<?php foreach($cat1 as $items){
-						echo ' 
-						<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
-						<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
-						<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
-						<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' > 
-						<h4>'.$items->Name.'</h4>
-						<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
-						</div>
-						';
-					} 
-					?>
-			</div>
-            <div class="tab-pane fade" id="2">
-				<?php foreach($cat2 as $items){
-					echo ' 
-					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
-					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
-					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
-					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
-					<h4>'.$items->Name.'</h4>
-					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
-					</div>
-					';
-					} 
-				?>
-            </div>
-            <div class="tab-pane fade" id="3">
-				<?php foreach($cat3 as $items){
-					echo ' 
-					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
-					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
-					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
-					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
-					<h4>'.$items->Name.'</h4>
-					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
-					</div>
-					';
-					} 
-				?>
-            </div>
-            <div class="tab-pane fade" id="4">
-				<?php foreach($cat4 as $items){
-					echo ' 
-					<div class="col-sm-3" style="padding:5px; border:1px solid #ccc;" align="center" value="Add To Cart" onclick="MakeOrder('.$items->MenuId.')" >
-					<input type="hidden" id="'.$items->MenuId.'_name"  value='.$items->Name.' >
-					<input type="hidden" id="'.$items->MenuId.'_price"  value='.$items->Price.'><br/>
-					<img style=\"width:20%;\" src='.base_url('pics/'.$items->Image).' >
-					<h4>'.$items->Name.'</h4>
-					<h4 style="color:red;">&#X20B1;'.$items->Price.'.00</h4>
-					</div>
-					';
-					} 
-				?>
-            </div>
-
-           </div> 
+ 	       	<div class="row">
+            <div id="menu-container">
+            </div>              
+        </div>          
         </div>
    </div>
 	</div>	
@@ -132,58 +61,90 @@
      	
 </script>
 
-<script>
-function MakeOrder(id)
-        {                
-          var mid;
-          var name;
-          var price;
-          mid=document.getElementById(id);
-          name=document.getElementById(id+"_name").value;
-          price=document.getElementById(id+"_price").value;
-          $.ajax({
-            type:'post',
-            url:'<?php echo base_url("Cashier/MakeOrder") ?>',
-            data:{
-              item_id:id,
-              item_name:name,
-              item_price:price
-            },
-            success:function(response) {
-              show_order();				 
-            },
-            error: function(){
-                alert('ERROR!');
-            }
-          });
-		  
+ <script>	
+function menu() {
+	$.ajax({
+        url: "<?php echo base_url('foodwaze/getCategory/'.$this->session->userdata('StallId')); ?>",        
+        success: function(kat){
+            kat = JSON.parse(kat);
+            console.log('---------CATEGORY----------');
+            console.log(kat);                                
+            var element = '';
+            element +=' <ul class="nav nav-tabs">';
+            var first = true;
+            $.each(kat, function(index, data){
+                if(first){
+                    first = false;
+                    element +='<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                } else{
+                    element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                }
+            })
+
+            element +='</ul>';
+            element +='<div class="tab-content">';
+            first = true;
+            $.each(kat, function(index, data){
+                if(first){
+                    first = false;
+                    element +='<div class="tab-pane fade active show" id="cat-' + data.CategoryId + '"></div>';                                     
+                } else{
+                    element +='<div class="tab-pane fade" id="cat-' + data.CategoryId + '"></div>';
+                }
+            })
+
+            element +='</div>';
+            $('#menu-container').html(element);
+
+            $.ajax({
+			    url: "<?php echo base_url('foodwaze/getMenu/'.$this->session->userdata('StallId')); ?>", 
+			    success: function(menu){
+			        menu=JSON.parse(menu);
+			        console.log(menu);
+			        // console.log(menu);
+			        $.each(menu, function(index, data){
+			            //console.log(data);
+			            //data.Price
+			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+			        });
+	        	    $('.ordermenu').click(function(){
+           				$.ajax({
+           					url: "<?php echo base_url('Cashier/AddToCart'); ?>",
+           					type: "POST",
+           					data: {
+           						Order: {
+           							id: $(this).data("id"),
+           							name: $(this).data("name"),
+           							qty: 1, 
+           							price: $(this).data("price")
+           						}
+           					},
+           					success: function(j){
+           						refresh();
+           					}
+           				})             	
+                    });
+			    }
+			})
         }
-</script>
-    
-<script>
-	show_order();
-	function show_order() {
-          $.ajax({
-                    type: 'ajax',
-                    url: '<?php echo base_url()?>Cashier/ShowOrder',
-                    async: false,
-                    dataType: 'json',
-                    success: function(data){
-						console.log('---------DATA----------');
-						console.log(data);
-                        var i;	
-								var html = '';
-                                var i;										
-                                var total=0.0;
-                                for(i=0; i<data.length; i++){
-                                    html += '<div >'+
-												'<p>'+data[i].Name+' '+data[i].Price+' x '+data[i].Qty+' = '+data[i].Price*data[i].Qty+'</p>'                                                       
-                                            '</div>';
-                                            total+=data[i].Price*data[i].Qty;
-                                }
-                                html += 'TOTAL: '+total;
-                                $('#mycart').html(html);
-                    }
-                });
-        }
-</script>
+    })
+	 
+} 
+
+function refresh(){
+	$.ajax({
+	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
+		success: function(i){
+			i = JSON.parse(i);
+			console.log(i);
+			var element = '';
+			$.each(i, function(index, data){
+                    element +='<p>' +data.Name+ '</p>';
+                
+            })
+	    }
+	})
+}
+
+menu();        
+ </script>   
