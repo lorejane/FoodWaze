@@ -35,7 +35,6 @@ class FoodWaze extends _BaseController {
                     'StallId' => $_SESSION['stallId'],
                     'Name'=> $_POST['NameCustomer'],
                     'Contact_Number'=> $_POST['ContactNo'],
-                    'Date'=> date("Y/m/d")
                 );
             $orders[]=$order;
             $last_id = $this->foodwaze_model->addorder($orders);
