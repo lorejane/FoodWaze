@@ -14,9 +14,8 @@
             <h2 class="title"><strong>FoodWaze</strong></h2>
             </a>
            
-            <a href="#" data-provide="fullscreen">
-            <i class="ion-android-expand fullscreen-default"></i>
-            <i class="ion-android-contract fullscreen-active"></i>
+            <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+                <i class="material-icons fullscreen-default">fullscreen</i>
             </a>
 
             </header>
@@ -122,6 +121,19 @@
                                             <div class="invalid-feedback"></div>
                                         </div>
                                 </div>
+
+                                <div class="hidden">
+                                    <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
+                                </div>
+                            </form>  
+                      </div>
+                <hr>
+                <div class="flexbox">
+                    <button onclick="back()" class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
+                    <button id="next" class="btn btn-secondary" data-wizard="next" onclick="start()" type="button">Next</button>
+                    <button onclick="submitform()" class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
+                </div>
+<!--                   
                                 <div class="form-group row">
                                 <input type="submit" class="btn btn-success btn-sm" value="Submit" />
                                 </div>
@@ -129,9 +141,9 @@
                                 
                             </form>  
                             </div>
-                                <!--end step 3 -->
+                            // end step 3
                         </div>
-                        <!-- card body -->
+                        // card body
                     </div>
                 <hr>
 
@@ -139,7 +151,7 @@
                     <button class="btn btn-primary" data-wizard="prev" type="button">Back</button>
                     <button class="btn btn-primary" data-wizard="next" type="button">Next</button>
                     <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
-                </div>
+                </div> -->
             <!-- </form> -->
 
             </div> <!-- end col -->
@@ -318,7 +330,29 @@
               }
               else {
                 $box.prop("checked", false);
+                document.getElementById("next").disabled = true;
               }
             });   
-            
+
+
+          function toggleFullScreen() {
+            if ((document.fullScreenElement && document.fullScreenElement !== null) ||    
+            (!document.mozFullScreen && !document.webkitIsFullScreen)) {
+              if (document.documentElement.requestFullScreen) {  
+                document.documentElement.requestFullScreen();  
+              } else if (document.documentElement.mozRequestFullScreen) {  
+                document.documentElement.mozRequestFullScreen();  
+              } else if (document.documentElement.webkitRequestFullScreen) {  
+                document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);  
+              }  
+            } else {  
+              if (document.cancelFullScreen) {  
+                document.cancelFullScreen();  
+              } else if (document.mozCancelFullScreen) {  
+                document.mozCancelFullScreen();  
+              } else if (document.webkitCancelFullScreen) {  
+                document.webkitCancelFullScreen();  
+              }  
+            }  
+          }
         </script>
