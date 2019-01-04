@@ -128,8 +128,8 @@
 
                                 
                             </form>  
-                        </div>
-                            <!--end step 3 -->
+                            </div>
+                                <!--end step 3 -->
                         </div>
                         <!-- card body -->
                     </div>
