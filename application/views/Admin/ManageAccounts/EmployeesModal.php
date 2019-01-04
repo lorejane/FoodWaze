@@ -49,11 +49,18 @@
                             </div>
                         </div> 
                         <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Password</label>
+                            <div class="col-10">
+                            <label>Password</label>
+                        </div>
+                        </div>
+
+                        <div class="row mb-2">
+                            <div class="col-11">
                                 <input id="Password" name="Password" type="password" class="form-control" placeholder="Password" />
+                                </div>
+                            <div class="col-1">
                                 <span class="icon fa fa-eye" onclick="changePwdView()"></span>
-                            </div>
+                                </div>
                         </div>                                                 
                     </form>
                 </div>

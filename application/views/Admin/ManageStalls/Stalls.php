@@ -7,6 +7,12 @@
 	</div>
 	</div>
 
+	 <div class="preloader">
+       <div class="spinner-linear">
+                  <div class="line"></div>
+                </div>
+    </div>
+
 	<div class="header-action">
 	<div class="buttons">
 		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Stall_Modal.new();"
@@ -20,7 +26,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
-						<table class="table table-responsive table-bordered display nowrap" id = "Stall-table" style="width:100%; overflow-x:auto;" 
+						<table class="table table-bordered display nowrap" id = "Stall-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableStall") ?>">
 							<thead>
 								<tr>

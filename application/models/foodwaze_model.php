@@ -9,7 +9,7 @@
 		}
 
 		function addorder($data){
-			$this->db->insert_batch('order', $data); 
+			$this->db->insert_batch('orders', $data); 
 			return $this->db->insert_id();
 		}
 
@@ -19,7 +19,7 @@
 
 		function getlastorder(){
 			$this->db->select('*');
-			$this->db->from('order');
+			$this->db->from('orders');
 			return $this->db->insert_id('order_id');
 		}
 

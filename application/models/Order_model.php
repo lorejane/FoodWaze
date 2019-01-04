@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 
 	class Order_model extends _BaseModel
 	{

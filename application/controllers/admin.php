@@ -136,9 +136,9 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['
                 .'"'.$data->StallId.'",'                
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
+                .'" <img style=\"width:30%; margin: 10px 250px;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit\"></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"icon fa fa-remove\"></a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit fa-2x\" data-toggle=\"tooltip\" title=\"EDIT\" ></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -152,7 +152,7 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
-                 .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
+                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
