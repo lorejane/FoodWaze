@@ -17,7 +17,7 @@
 		 CASH:&nbsp;<input id="idOfInput" type="text"  name="txt1" style="text-align:right;"><br/>
 		CHANGE:&nbsp;<input type="text" id="input"><br/> -->
 		 <div class="col-6  cart">
-            <div id="mycart"></div>
+            <div id="mycart" ></div>
         </div><!-- show cart -->
 	</div>
 	<!--
@@ -139,9 +139,11 @@ function refresh(){
 			console.log(i);
 			var element = '';
 			$.each(i, function(index, data){
-                    element +='<p>' +data.Name+ '</p>';
+                    element +='<p>' +data.name+' ' +data.qty+ ' ' +data.price+ ' = '+(data.qty * data.price)+' </p>';
                 
             })
+            element += "<h1><?php echo $this->cart->total(); ?></h1>";
+            $("#mycart").html(element);
 	    }
 	})
 }
