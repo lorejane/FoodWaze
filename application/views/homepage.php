@@ -297,10 +297,10 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'">'+
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'">'+
                                 '<h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1;'+data.Price+'.00</h4>'+
-                                '<i class="fa fa-shopping-cart btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')">'+
-                                //'<input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')">'+
+                                '<i class="fa fa-shopping-cart btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')"></i>'+ //cart lang
+                                //'<input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')">'+ //orig
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
