@@ -259,11 +259,11 @@
                                             {
                                                 
                                                 html += '<div>'+
-                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-lg-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
-                                                '</div><div class="col-lg-2">'+
+                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
+                                                '</div><div class="col-2">'+
                                                 //test                                                
-                                                '<i class="btn btn-danger fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
-                                                '<i class="btn btn-danger fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
+                                                '<i class="btn btn-danger btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
+                                                '<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
                                                 '</div></div>'+
                                                         '</div>';
                                                         total+=data[i].Price*data[i].Qty;
