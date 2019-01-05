@@ -38,18 +38,18 @@
                         <div data-provide="wizard" data-navigateable="true">
                         <ul class="nav nav-process nav-process-circle">
                             <li class="nav-item">
-                            <span class="nav-title">Step 1</span>
-                            <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
+                                <span class="nav-title">Step 1</span>
+                                <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
                             </li>
 
                             <li class="nav-item">
-                            <span class="nav-title">Step 2</span>
-                            <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
+                                <span class="nav-title">Step 2</span>
+                                <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
                             </li>
 
                             <li class="nav-item">
-                            <span class="nav-title">Step 3</span>
-                            <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
+                                <span class="nav-title">Step 3</span>
+                                <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
                             </li>
 
                         </ul>
@@ -129,29 +129,11 @@
                       </div>
                 <hr>
                 <div class="flexbox">
-                    <button onclick="back()" class="btn btn-secondary" data-wizard="prev" type="button">Back</button>
-                    <button id="next" class="btn btn-secondary" data-wizard="next" onclick="start()" type="button">Next</button>
+                    <button onclick="back()" class="btn btn-primary" data-wizard="prev" type="button">Back</button>
+                    <button id="next" class="btn btn-primary" data-wizard="next" onclick="start()" type="button">Next</button>
                     <button onclick="submitform()" class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
                 </div>
-<!--                   
-                                <div class="form-group row">
-                                <input type="submit" class="btn btn-success btn-sm" value="Submit" />
-                                </div>
 
-                                
-                            </form>  
-                            </div>
-                            // end step 3
-                        </div>
-                        // card body
-                    </div>
-                <hr>
-
-                <div class="flexbox">
-                    <button class="btn btn-primary" data-wizard="prev" type="button">Back</button>
-                    <button class="btn btn-primary" data-wizard="next" type="button">Next</button>
-                    <button class="btn btn-primary d-none" data-wizard="finish" type="submit">Submit</button>
-                </div> -->
             <!-- </form> -->
 
             </div> <!-- end col -->
@@ -277,7 +259,12 @@
                                             {
                                                 
                                                 html += '<div>'+
-                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-lg-9">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+'</div><div class="col-lg-3"><input class="btn btn-primary right" type="button" value="-1" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'">'+'<input class="btn btn-danger right" type="button" value="X" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'">'+'</div></div>'+
+                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-lg-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
+                                                '</div><div class="col-lg-2">'+
+                                                //test                                                
+                                                '<i class="btn btn-danger fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
+                                                '<i class="btn btn-danger fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
+                                                '</div></div>'+
                                                         '</div>';
                                                         total+=data[i].Price*data[i].Qty;
                                                   identifier=1;
