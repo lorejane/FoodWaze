@@ -29,7 +29,7 @@
         <div class="row">
             
             <div class="col-lg-12">
-                <div class="card">
+                <div class="card card-shadowed">
                     <div class="card-title"><strong>Ordering made EZ!</strong></div>
         
 
@@ -251,7 +251,8 @@
                                             {
                                                  html += '<div>'+
                                                 '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
-                                                        '</div>';
+                                                //'<pre>No Items in your Cart </pre>'+
+                                                '</div>';
                                                  total+=0;
                                                  document.getElementById("next").disabled = true;
                                             }
@@ -259,13 +260,11 @@
                                             {
                                                 
                                                 html += '<div>'+
-                                                '<div class="row" style="border-bottom:1px solid #ccc;"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
-                                                '</div><div class="col-2">'+
-                                                //test                                                
-                                                '<i class="btn btn-danger btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
+                                                '<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
+                                                '</div><div class="col-2"><div class="btn-group">'+
+                                                '<i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
                                                 '<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
-                                                '</div></div>'+
-                                                        '</div>';
+                                                '</div></div></div>';
                                                         total+=data[i].Price*data[i].Qty;
                                                   identifier=1;
                                                   document.getElementById("next").disabled = false;
@@ -279,8 +278,8 @@
                             var html;
                             html = '<div>'+
                                 '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
-                                 '</div>';
-                           
+                                //'<pre>No Items in your Cart </pre>'+
+                                '</div>';                           
                                  $('#mycart').html(html);
                         }
                   });
@@ -298,7 +297,11 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'"><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')"><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'">'+
+                                '<h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1;'+data.Price+'.00</h4>'+
+                                '<input type="button" class="btn btn-primary" fa fa-shopping-cart" value="Add To Cart" onclick="cart('+data.MenuId+')">'+
+                                //'<input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')">'+
+                                '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
                     }) 
@@ -325,9 +328,9 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             } else{
-                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-25 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
                         })
 
