@@ -42,11 +42,8 @@
 		} 
 
 		public function getStallName($stallId){
-			return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$stallId."'")->row()->Name;	
-		} 
-		
-		// view menu
-		public function getMenu($stallId){			
+
+
 			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
 			return $query;
 		}
@@ -72,4 +69,8 @@
 			$query=$this->db->get();
 			return $query->result_array();		
 		}
+
+		public function getMenu($stallid){
+		return $this->db->query("SELECT * FROM menu WHERE StallId = '".$stallid."' ")->result();	
+	}
 	}
