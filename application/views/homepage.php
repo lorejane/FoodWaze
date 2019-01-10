@@ -260,7 +260,8 @@
                                             {
                                                 
                                                 html += '<div>'+
-                                                '<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
+                                                //'<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
+                                                '<div class="row"><div class="col-8">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
                                                 '</div><div class="col-2"><div class="btn-group">'+
                                                 '<i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
                                                 '<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
@@ -271,7 +272,7 @@
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-w-lg btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
                             },
                       error: function(response){
