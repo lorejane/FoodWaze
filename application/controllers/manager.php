@@ -20,13 +20,6 @@ class Manager extends _BaseController {
         $this->load->view('include/footer');
     }
 
-    public function Categories(){
-
-        $this->load->view('include/header');
-        $this->load->view('Manager/ManageCategories/Categories');
-        $this->load->view('include/footer');
-    }
-
     public function Menu(){
 
         $this->load->view('include/header');
@@ -52,10 +45,6 @@ class Manager extends _BaseController {
         $this->ManagerModel->save($this->input->post('employee'));
     } 
 
-    public function SaveCategory(){        
-        $this->CategoriesModel->save($this->input->post('category'));
-    } 
-
     public function SaveMenu(){        
         $this->MenuModel->save($this->input->post('menu'));
     }     
@@ -64,20 +53,12 @@ class Manager extends _BaseController {
         echo $this->convert($this->ManagerModel->_get($id));
     }
 
-    public function GetCategory($id){        
-        echo $this->convert($this->ManagerModel->_getCategories($id));
-    }
-
     public function GetAll(){
         echo $this->convert($this->CategoriesModel->_list());
     }
 
     public function GetMenu($id){        
         echo $this->convert($this->ManagerModel->_getMenu($id));
-    }
-
-    public function DeleteCategories($id){        
-        echo $this->convert($this->CategoriesModel->delete($id));
     }
 
     public function DeleteMenu($id){        
@@ -143,28 +124,7 @@ class Manager extends _BaseController {
         }
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;
-    }   
-
-    public function ValidateCategories(){
-        $category = $this->input->post('category');
-        $str = '{';
-        $valid = true;
-        if(!v::notEmpty()->validate($category['CategoryName'])){
-            $str .= $this->invalid('CategoryName', 'Please input a value');;
-            $valid = false;
-        }
-        else{
-            $ifExist = $this->CategoriesModel->_exist('CategoryName', $category['CategoryName']);            
-            if(is_object($ifExist)){
-                if($ifExist->CategoryId != $category['CategoryId']){
-                    $str .= $this->invalid('CategoryName', 'Category already exist');
-                    $valid = false;
-                }
-            }
-        }
-        $str .= '"status":"'.($valid ? '1' : '0').'"}';
-        echo $str;
-    } 
+    }    
  
     public function ValidateMenus(){
         $menu = $this->input->post('menu');
@@ -197,21 +157,6 @@ class Manager extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
               .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
-            .']';            
-            $json .= ',';
-        }
-        $json = $this->removeExcessComma($json);
-        $json .= ']}';
-        echo $json;        
-    }
-	
-    public function generateTableCategories(){
-        $json = '{ "data": [';
-        foreach($this->ManagerModel->getCategories() as $data){                 
-           $json .= '['
-                .'"'.$data->CategoryId.'",'
-                .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }

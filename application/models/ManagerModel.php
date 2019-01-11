@@ -51,11 +51,6 @@
 		$dbList = $this->db->query("SELECT * FROM menu WHERE MenuId = '".$id."'")->row();
 		return $dbList;		
 	}
-	
-	public function _getCategories($id){ //update categories
-		$dbList = $this->db->query("SELECT * FROM category WHERE CategoryId = '".$id."'")->row();
-		return $dbList;		
-	}
 
 	public function getCategories(){//data-table
 		return $this->db->query("SELECT * FROM category")->result();
