@@ -18,7 +18,6 @@
         <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
         
         </li>
-</header>
 
 <!-- Notifications -->
 <div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
@@ -43,6 +42,7 @@
     </footer>
 </div>
 
+</header>
 
 <script>
     $(document).ready(function(){
@@ -88,6 +88,15 @@
 	           								success: function(k){
 	           									k = JSON.parse(k);
 	           									console.log(k);
+                                                var element = '';
+                                                total = 0;
+                                                $.each(i, function(index, data){
+                                                        element +='<p>' +data.name+' ' +data.qty+ ' ' +data.price+ ' = '+(data.qty * data.price)+'</p>';
+                                                        total = Number(total) + Number(data.qty * data.price);
+                                                })
+                                                element += '<h1>' + total + '</h1>';
+                                                $("#mycart").html(element);                                            
+
 	           								}				        
 	           							})
 	           						})
