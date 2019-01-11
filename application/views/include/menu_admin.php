@@ -19,7 +19,7 @@
                 </a>
             </li>   
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Admin/Stalls'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Manage Stalls</span>
