@@ -5,11 +5,11 @@
             
             <li class="menu-item active">
                 <li class="menu-item active">
-                    <a class="menu-link" href="<?php echo base_url('manager/Sales'); ?>">
+                    <a class="menu-link" href="<?php echo base_url('manager/Profile'); ?>">
                         <span class="icon fa fa-home"></span>
-                        <span class="title">Sales</span>
+                        <span class="title">Profile</span>
                     </a>
-            </li>    
+            </li> 
 
             <li class="menu-item active">
                 <li class="menu-item">
@@ -33,6 +33,14 @@
                     <span class="title">Manage Accounts</span>
                 </a>
             </li>
+
+            <li class="menu-item active">
+                <li class="menu-item">
+                    <a class="menu-link" href="<?php echo base_url('manager/Sales'); ?>">
+                        <span class="icon fa fa-home"></span>
+                        <span class="title">Sales</span>
+                    </a>
+            </li> 
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('home/logout'); ?>">
