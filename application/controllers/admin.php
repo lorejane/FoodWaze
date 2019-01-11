@@ -54,6 +54,10 @@ class Admin extends _BaseController {
     public function Save(){        
         $this->AdminModel->save($this->input->post('employee'));
     }
+    
+    public function SaveCategory(){        
+        $this->CategoriesModel->save($this->input->post('category'));
+    }
 
     public function SaveStall(){        
         $this->Stall_model->save($this->input->post('stall'));
