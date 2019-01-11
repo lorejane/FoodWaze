@@ -10,12 +10,7 @@ class Cashier extends _BaseController {
 
 	public function Order(){
 		$this->load->view('include/header');
-		$data['categories'] = $this->CashierModel->getCategories();
-		$data['cat1'] = $this->Order_model->getMenuMeal();
-		$data['cat2'] = $this->Order_model->getMenuPasta();
-		$data['cat3'] = $this->Order_model->getMenuDessert();
-		$data['cat4'] = $this->Order_model->getMenuDrinks();
-		$this->load->view('Cashier/Order', $data);
+		$this->load->view('Cashier/Order');
 		$this->load->view('include/footer');
 	}
 
