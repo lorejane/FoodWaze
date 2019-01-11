@@ -1,14 +1,13 @@
-<div class="main-content">
-	<div class="col-sm-8">
-		<div class="card" style="height:90%;">
- 	       <div class="card-body" >
- 	       	<div class="row">
+<div class="main-content" style="padding-top:5%;">
+ <div class="row">
+  <div class="col-sm-8">
+    <div class="card" style="height:90%;">
+         <div class="card-body" >
             <div id="menu-container">
             </div>              
         </div>          
         </div>
    </div>
-	</div>	
 <div class="col-sm-4">
 	<div>
 		<center><H3>RECEIPT</H3></center>
@@ -39,7 +38,6 @@
 		Amount:<input id="idOfInput" type="text"  name="txt1" style="text-align:right; width:15%;">
 	</form>
 	</div> -->
-</div>
 </div>
 </div>
 <script>
@@ -139,11 +137,13 @@ function refresh(){
 			console.log(i);
 			var element = '';
 			total = 0;
-			$.each(i, function(index, data){
-                    element +='<p>' +data.name+' ' +data.qty+ ' ' +data.price+ ' = '+(data.qty * data.price)+' </p>';
-                	total = Number(total) + Number(data.qty * data.price);
+      element +='<table class="table"> <thead> <tr> <th>Name</th> <th>Qty</th> <th>Price</th> <th>Total</th> <th></th> <th></th> </tr> </thead>';
+      $.each(i, function(index, data){
+                    element+='<tbody> <tr> <td>'+data.name+'</td>  <td>'+data.qty+'</td>  <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
+                    total = Number(total) + Number(data.qty * data.price);
             })
-            element += '<h1>' + total + '</h1>';
+            element += '</table>';
+            element += '<p> Total: '+total+' </p>' ;
             $("#mycart").html(element);
 	    }
 	})
