@@ -21,7 +21,7 @@
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
-						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployeeAdmin") ?>">
+						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployee") ?>">
 							<thead>
 								<tr>
 									<th>Employee ID</th>
