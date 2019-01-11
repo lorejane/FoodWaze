@@ -52,7 +52,7 @@ class Admin extends _BaseController {
     }
 
     public function GetCategory($id){        
-        echo $this->convert($this->ManagerModel->_getCategories($id));
+        echo $this->convert($this->AdminModel->_getCategories($id));
     }
 
     public function Save(){        
