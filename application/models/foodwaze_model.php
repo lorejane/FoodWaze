@@ -44,7 +44,10 @@
 		public function getStallName($stallId){
 
 
-			$query=$this->db->query('SELECT * FROM menu WHERE StallId = "'.$stallId.'"')->result();
+			$query=$this->db->query('SELECT * FROM stall WHERE StallId = "'.$stallId.'"')->row();
+			if(is_object($query)){
+				return $query->Name;
+			}
 			return $query;
 		}
 
