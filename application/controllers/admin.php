@@ -14,6 +14,13 @@ class Admin extends _BaseController {
 		redirect(base_url('login'));
 	}
 
+    public function Categories(){
+
+        $this->load->view('include/header');
+        $this->load->view('Admin/ManageCategories/Categories');
+        $this->load->view('include/footer');
+    }    
+
 	public function Stalls()
 	{	
 		$this->load->view('include/header');
