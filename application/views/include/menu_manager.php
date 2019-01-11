@@ -11,7 +11,7 @@
                     </a>
             </li>            
 
-            <li class="menu-item active">
+            <li class="menu-item">
                 <li class="menu-item">
                     <a class="menu-link" href="<?php echo base_url('manager/Menu'); ?>">
                         <span class="icon fa fa-home"></span>
