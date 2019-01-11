@@ -53,20 +53,12 @@ class Manager extends _BaseController {
         echo $this->convert($this->ManagerModel->_get($id));
     }
 
-    public function GetCategory($id){        
-        echo $this->convert($this->ManagerModel->_getCategories($id));
-    }
-
     public function GetAll(){
         echo $this->convert($this->CategoriesModel->_list());
     }
 
     public function GetMenu($id){        
         echo $this->convert($this->ManagerModel->_getMenu($id));
-    }
-
-    public function DeleteCategories($id){        
-        echo $this->convert($this->CategoriesModel->delete($id));
     }
 
     public function DeleteMenu($id){        
