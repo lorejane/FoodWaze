@@ -90,12 +90,14 @@
 	           									console.log(k);
                                                 var element = '';
                                                 total = 0;
+                                                element +='<table class= "table"> <thead> <tr> <th>Name</th> <th>Qty</th> <th>Price</th> <th>Totalusaw6th> <th></th> <th></th> </tr> </thead>';
                                                 $.each(i, function(index, data){
-                                                        element +='<p>' +data.name+' ' +data.qty+ ' ' +data.price+ ' = '+(data.qty * data.price)+'</p>';
-                                                        total = Number(total) + Number(data.qty * data.price);
-                                                })
-                                                element += '<h1>' + total + '</h1>';
-                                                $("#mycart").html(element);                                            
+                                                element+='<tbody> <tr> <td>'+data.name+'</td>  <td>'+data.qty+'</td>  <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
+                                                total = Number(total) + Number(data.qty * data.price);
+                                                    })
+                                                element += '</table>';
+                                                element += '<p> Total: '+total+' </p>' ;
+                                                $("#mycart").html(element);                                        
 
 	           								}				        
 	           							})
