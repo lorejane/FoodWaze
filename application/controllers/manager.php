@@ -45,10 +45,6 @@ class Manager extends _BaseController {
         $this->ManagerModel->save($this->input->post('employee'));
     } 
 
-    public function SaveCategory(){        
-        $this->CategoriesModel->save($this->input->post('category'));
-    } 
-
     public function SaveMenu(){        
         $this->MenuModel->save($this->input->post('menu'));
     }     
@@ -169,21 +165,6 @@ class Manager extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
               .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
-            .']';            
-            $json .= ',';
-        }
-        $json = $this->removeExcessComma($json);
-        $json .= ']}';
-        echo $json;        
-    }
-	
-    public function generateTableCategories(){
-        $json = '{ "data": [';
-        foreach($this->ManagerModel->getCategories() as $data){                 
-           $json .= '['
-                .'"'.$data->CategoryId.'",'
-                .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
             .']';            
             $json .= ',';
         }
