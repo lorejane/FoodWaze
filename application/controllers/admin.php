@@ -163,6 +163,21 @@ class Admin extends _BaseController {
         echo $str;
     }
 
+    public function generateTableCategories(){
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->getCategories() as $data){                 
+           $json .= '['
+                .'"'.$data->CategoryId.'",'
+                .'"'.$data->CategoryName.'",'              
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
 	public function GenerateTableStall(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
@@ -180,7 +195,6 @@ class Admin extends _BaseController {
     }	
 
     public function GenerateTableEmployee(){
-        // print_r($this->AdminModel->getEmployee());
         $json = '{ "data": [';
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
