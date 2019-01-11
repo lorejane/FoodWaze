@@ -244,7 +244,10 @@
                                         var i;      
                                         var total=0.0;
                                         
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
+                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div>'+
+                                        '<div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div>'+
+                                        '<div><p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p><br></div>'+
+                                        //'<div><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
                                                 '</div>'; 
                                         for(i=0; i<data.length; i++){
                                             if(data[i].Id=='no cart')
