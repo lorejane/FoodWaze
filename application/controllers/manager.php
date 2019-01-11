@@ -14,6 +14,12 @@ class Manager extends _BaseController {
 		redirect(base_url('login'));
 	}
 
+    public function Profile(){
+        $this->load->view('include/header');
+        $this->load->view('manager/Profile');
+        $this->load->view('include/footer');
+    }
+
     public function Categories(){
 
         $this->load->view('include/header');
