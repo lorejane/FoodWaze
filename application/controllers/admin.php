@@ -148,6 +148,7 @@ class Admin extends _BaseController {
     }	
 
     public function GenerateTableEmployee(){
+        // print_r($this->AdminModel->getEmployee());
         $json = '{ "data": [';
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
