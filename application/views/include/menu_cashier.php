@@ -80,28 +80,34 @@
 	           					data: {orderid:$(this).data("value")},
 	           					type: "POST",
 	           					success: function(j){
-	           						j = JSON.parse(j);
-	           						console.log(j);
-	           						$.each(j, function(index, data){
-	           							$.ajax({
-	           								url: "<?php echo base_url('Cashier/GetMenu/'); ?>" +data.MenuId,
-	           								success: function(k){
-	           									k = JSON.parse(k);
-	           									console.log(k);
-                                                var element = '';
-                                                total = 0;
-                                                element +='<table class= "table"> <thead> <tr> <th>Name</th> <th>Qty</th> <th>Price</th> <th>Totalusaw6th> <th></th> <th></th> </tr> </thead>';
-                                                $.each(i, function(index, data){
-                                                element+='<tbody> <tr> <td>'+data.name+'</td>  <td>'+data.qty+'</td>  <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
-                                                total = Number(total) + Number(data.qty * data.price);
-                                                    })
-                                                element += '</table>';
-                                                element += '<p> Total: '+total+' </p>' ;
-                                                $("#mycart").html(element);                                        
+                                    total = 0;
+                                    var element = '';
+                                    $("#mycart").html('<table class= "table"> <thead> <tr> <th>Name</th> <th>Qty</th> <th>Price</th> <th>Total</th> <th></th> </tr> </thead>');
+                                    $("#mycart").append('<tbody>');
+                                    j = JSON.parse(j);
+                                    console.log(j);
+                                    $.each(j, function(index, data){
+                                        $.ajax({
+                                            url: "<?php echo base_url('Cashier/GetMenu/'); ?>" +data.MenuId,
+                                            success: function(k){
+                                                k = JSON.parse(k);
+                                                console.log(k);
+                                                console.log('x ' + data.Quantity + " " + k[0].Name);
+                                                var xelement='<tr>'
+                                                +'<td>'+k[0].Name+'</td>'
+                                                +'<td>'+data.Quantity+'</td>'
+                                                +'<td>'+k[0].Price+'</td>'
+                                                +'<td>'+(data.Quantity * k[0].Price)+'</td>'
+                                                +'</tr>';
+                                                // +'<td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr>';
+                                                total = Number(total) + Number(data.Quantity * k.Price);
+                                                // console.log(element);
+                                                $("#mycart").append(xelement);
+                                            }                       
+                                        })
+                                    })
 
-	           								}				        
-	           							})
-	           						})
+                                    $("#mycart").append('</tbody></table><p> Total: '+total+' </p>');                                        
 	           					}
 	           				})             	
                         });
