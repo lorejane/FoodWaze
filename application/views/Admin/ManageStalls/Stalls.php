@@ -8,8 +8,9 @@
 	</div>
 
 	 <div class="preloader">
-       <div class="spinner-linear">
-                  <div class="line"></div>
+       <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
+                  <circle class="circle" cx="25" cy="25" r="25"></circle>
+                </svg>
                 </div>
     </div>
 
