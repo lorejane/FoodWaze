@@ -10,7 +10,7 @@
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-Employee-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="EmployeeId" name="EmployeeId" />          
+                       <input type="hidden" id="EmployeeId" name="EmployeeId" />       
                         <div class="row mb-2">
                             <div class="col-12">
                                 <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
@@ -87,6 +87,7 @@
             fr.readAsDataURL(files[0]);
         });
     });
+
 
     var Employee_Modal = {
         data: function () {
@@ -215,10 +216,10 @@
             })      
         },        
 
-        upload: function(){         
-            var formData = new FormData($('#modal-Employee-form')[0]);            
+         upload: function(){         
+            var formData = new FormData($('#modal-Stall-form')[0]);            
             $.ajax({
-                url: "<?php echo base_url("Admin/UploadProfile"); ?>",
+                url: "<?php echo base_url("Admin/UploadImage"); ?>",
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -231,7 +232,7 @@
                 }
             });
         },
-        
+
         save: function () {
             var message;            
             if ($('#EmployeeId').val() == 0) {

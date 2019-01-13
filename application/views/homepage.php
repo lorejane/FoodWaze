@@ -244,7 +244,10 @@
                                         var i;      
                                         var total=0.0;
                                         
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div><div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div><div><p class="text-center fs-30 text-muted"><strong class="text-primary">Receipt</strong></p><br></div>'+
+                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div>'+
+                                        '<div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div>'+
+                                        '<div><p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p><br></div>'+
+                                        //'<div><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
                                                 '</div>'; 
                                         for(i=0; i<data.length; i++){
                                             if(data[i].Id=='no cart')
@@ -258,10 +261,13 @@
                                             }
                                             else
                                             {
-                                                
+                                                // html += '<div>'+
+                                                // '<div class="row"><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
+                                                // '</div></div></div>'
                                                 html += '<div>'+
-                                                //'<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+
-                                                '<div class="row"><div class="col-8">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
+                                                //'<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+                                                
+                                                '<div class="row"><div class="col-10">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
+                                                //'</div><div class="col-2"> '+data[i].Price*data[i].Qty+ 
                                                 '</div><div class="col-2"><div class="btn-group">'+
                                                 '<i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
                                                 '<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
@@ -269,6 +275,25 @@
                                                         total+=data[i].Price*data[i].Qty;
                                                   identifier=1;
                                                   document.getElementById("next").disabled = false;
+                                                
+                                                
+                                                // html += '<div class="row"><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th>'+
+												// 	'<th class="text-center">Price</th><th class="text-center">Total</th>'+
+												// 	'</tr></thead>'+
+												// 	'</div>'; //wag galawin
+													
+												// html += '<div class="row">'+
+												// 	'<tbody><tr>'+
+												// 	'<td class="col-md-1" style="text-align: center"> '+data[i].Qty+' </td>'+
+                                                //     '<td class="col-md-9"><em> '+data[i].Name+' </em></td>'+													
+												// 	// '<td class="col-md-1 text-center"> '+data[i].Price+' </td>'+
+												// 	// '<td class="col-md-1 text-center"> '+data[i].Price*data[i].Qty+' </td>'+
+												// 	'</tr></tbody>'+
+												// 	// '<tr><td class="text-right"><sh4><trong> '+total+=data[i].Price*data[i].Qty;+
+												// 	// '</strong></h4></td></tr>'+
+												// 	'</div>';
+												// 		identifier=1;
+												// 		document.getElementById("next").disabled = false;
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+

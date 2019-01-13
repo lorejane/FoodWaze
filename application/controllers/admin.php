@@ -189,7 +189,7 @@ class Admin extends _BaseController {
                 .'"'.$data->StallId.'",'                
                 .'" <img style=\"width:30%; margin: 10px 250px;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
-            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit fa-2x\" data-toggle=\"tooltip\" title=\"EDIT\" ></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+            	.'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" data-provide=\"tooltip\" data-title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }
