@@ -208,7 +208,7 @@ class Admin extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
                 .'"'.$this->foodwaze_model->getStallName($data->StallId).'",'    
-                .'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" ><span class=\"icon fa fa-edit fa-2x\" data-toggle=\"tooltip\" title=\"EDIT\" ></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+                .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit fa-2x\" data-toggle=\"tooltip\" title=\"EDIT\" ></span></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"><span class=\"icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }
