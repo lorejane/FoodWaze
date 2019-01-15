@@ -15,14 +15,14 @@
     </div>
 
      <li class=" d-md-block">
-        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-bookbag"><i class="ti-briefcase"></i></span>
+        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>
         
         </li>
 
 <!-- Notifications -->
-<div id="qv-bookbag" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
+<div id="qv-pending" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
     <header class="quickview-header bg-info">
-    <p class="quickview-title lead">Bookbag</p>
+    <p class="quickview-title lead">Pending Orders</p>
     <span class="close"><i class="ti-close" style="color:white"></i></span>
     </header>
 
@@ -34,7 +34,7 @@
 
     <footer class="quickview-footer flexbox">
     <div>
-        <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a>
+        <!-- <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a> -->
     </div>
     <div>
         <button class="btn btn-outline btn-danger" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
@@ -93,16 +93,16 @@
                                                 k = JSON.parse(k);
                                                 console.log(k);
                                                 console.log('x ' + data.Quantity + " " + k[0].Name);
-                                                var xelement='<tr>'
+                                                var xelement = '<tr>'
                                                 +'<td>'+k[0].Name+'</td>'
                                                 +'<td>'+data.Quantity+'</td>'
                                                 +'<td>'+k[0].Price+'</td>'
                                                 +'<td>'+(data.Quantity * k[0].Price)+'</td>'
+                                                +'<td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr>';
                                                 +'</tr>';
-                                                // +'<td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr>';
                                                 total = Number(total) + Number(data.Quantity * k.Price);
                                                 // console.log(element);
-                                                $("#mycart").append(xelement);
+                                            $("#mycart").append(xelement);
                                             }                       
                                         })
                                     })
