@@ -17,6 +17,7 @@
     <link href="<?php echo base_url('assets/css/core.min.css' ); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/lorestyle.css' ); ?>" rel="stylesheet">
 
     <script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script> 
     <script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
@@ -78,6 +79,8 @@
 
 </style>
 	</head>
+
+
 <body>
 <?php     
   if($this->session->has_userdata('logged_in')){

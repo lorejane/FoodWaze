@@ -1,0 +1,37 @@
+.btnAddAction {
+    padding: 3px 10px;
+    cursor: pointer;
+    border: #CCC 1px solid;
+    background: #f3f0f0;
+}
+
+.input-cart-quantity {
+	padding: 6px;
+    margin: 0;
+    vertical-align: top;
+    border: #CCC 1px solid;
+    border-right: 0px;
+}
+
+#btnEmpty img{
+	margin-top:6px;
+	cursor:pointer;
+}
+
+.btn-increment-decrement {
+    display: inline-block;
+    padding: 5px 0px;
+    background: #e2e2e2;
+    width: 30px;
+    text-align: center;
+    cursor:pointer;
+}
+
+.input-quantity {
+	border: 0px;
+    width: 30px;
+    display: inline-block;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
