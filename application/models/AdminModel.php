@@ -11,11 +11,15 @@
 		);
 	}
 
+	public function _getCategories($id){ //update categories
+		$dbList = $this->db->query("SELECT * FROM category WHERE CategoryId = '".$id."'")->row();
+		return $dbList;		
+	}
+
 	public function _getStallName($id){ // update stalls
 		$dbList = $this->db->query("SELECT * FROM stall WHERE StallId = '".$id."'")->row();
 		return $dbList;		
 	}
-
 
 	public  function getStall(){ //display stalls
 		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
