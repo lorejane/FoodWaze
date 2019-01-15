@@ -131,28 +131,29 @@ function menu() {
     })
 	 
 } 
-function increment_quantity() {
+function increment_quantity(price) {
     var inputQuantityElement = $("#input-quantity");
     var newQuantity = parseInt($(inputQuantityElement).val())+1;
-    //var newPrice = newQuantity * price;
+    var newPrice = newQuantity * price;
+    save_to_db(newQuantity, newPrice);
 }
 
-function decrement_quantity() {
+function decrement_quantity(price) {
     var inputQuantityElement = $("#input-quantity");
     if($(inputQuantityElement).val() > 1) 
     {
     var newQuantity = parseInt($(inputQuantityElement).val()) - 1;
-    //var newPrice = newQuantity * price;
-    save_to_db(cart_id, newQuantity, newPrice);
+    var newPrice = newQuantity * price;
+    save_to_db(newQuantity, newPrice);
     }
 }
 
-function save_to_db(cart_id, new_quantity, newPrice) {
-  var inputQuantityElement = $("#input-quantity-"+cart_id);
-  var priceElement = $("#cart-price-"+cart_id);
+function save_to_db(new_quantity, newPrice) {
+  var inputQuantityElement = $("#input-quantity");
+  var priceElement = $("#cart-price");
     $.ajax({
-    url : "update_cart_quantity.php",
-    data : "cart_id="+cart_id+"&new_quantity="+new_quantity,
+    //url : "update_cart_quantity.php",
+    data : "&new_quantity="+new_quantity,
     type : 'post',
     success : function(response) {
       $(inputQuantityElement).val(new_quantity);
@@ -164,7 +165,7 @@ function save_to_db(cart_id, new_quantity, newPrice) {
             });
             $("#total-quantity").text(totalQuantity);
             var totalItemPrice = 0;
-            $("div[id*='cart-price-']").each(function() {
+            $("div[id*='cart-price']").each(function() {
                 var cart_price = $(this).text().replace("$","");
                 totalItemPrice = parseInt(totalItemPrice) + parseInt(cart_price);
             });
