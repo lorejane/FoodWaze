@@ -139,7 +139,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th></th> </tr> </thead>';
       $.each(i, function(index, data){
-                    element+='<tbody> <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
+                    element+='<tbody> <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td><td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
