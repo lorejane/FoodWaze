@@ -158,6 +158,21 @@ class Admin extends _BaseController {
         $str .= '"status":"'.($valid ? '1' : '0').'"}';
         echo $str;
     } 
+
+    public function generateTableCategories(){
+        $json = '{ "data": [';
+        foreach($this->AdminModel->getCategories() as $data){                 
+           $json .= '['
+                .'"'.$data->CategoryId.'",'
+                .'"'.$data->CategoryName.'",'              
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
  
 	public function GenerateTableStall(){
         $json = '{ "data": [';
