@@ -130,42 +130,43 @@ function menu() {
         }
     })
 	 
-} 
-function increment_quantity(price) {
-    var inputQuantityElement = $("#input-quantity");
-    var newQuantity = parseInt($(inputQuantityElement).val())+1;
-    var newPrice = newQuantity * price;
-    save_to_db(newQuantity, newPrice);
 }
 
-function decrement_quantity(price) {
-    var inputQuantityElement = $("#input-quantity");
+function increment_quantity(id, price) {
+    var inputQuantityElement = $("#input-quantity-"+id);
+    var newQuantity = parseInt($(inputQuantityElement).val())+1;
+    var newPrice = newQuantity * price;
+    save_to_db(id, newQuantity, newPrice);
+}
+
+function decrement_quantity(id, price) {
+    var inputQuantityElement = $("#input-quantity-"+id);
     if($(inputQuantityElement).val() > 1) 
     {
     var newQuantity = parseInt($(inputQuantityElement).val()) - 1;
     var newPrice = newQuantity * price;
-    save_to_db(newQuantity, newPrice);
+    save_to_db(id, newQuantity, newPrice);
     }
 }
 
-function save_to_db(new_quantity, newPrice) {
-  var inputQuantityElement = $("#input-quantity");
-  var priceElement = $("#cart-price");
+function save_to_db(id, new_quantity, newPrice) {
+  var inputQuantityElement = $("#input-quantity-"+id);
+  var priceElement = $("#cart-price-"+id);
     $.ajax({
     //url : "update_cart_quantity.php",
-    data : "&new_quantity="+new_quantity,
+    data : "id="+id+"&new_quantity="+new_quantity,
     type : 'post',
     success : function(response) {
       $(inputQuantityElement).val(new_quantity);
             $(priceElement).text("$"+newPrice);
             var totalQuantity = 0;
-            $("input[id*='input-quantity']").each(function() {
+            $("input[id*='input-quantity-']").each(function() {
                 var cart_quantity = $(this).val();
                 totalQuantity = parseInt(totalQuantity) + parseInt(cart_quantity);
             });
             $("#total-quantity").text(totalQuantity);
             var totalItemPrice = 0;
-            $("div[id*='cart-price']").each(function() {
+            $("div[id*='cart-price-']").each(function() {
                 var cart_price = $(this).text().replace("$","");
                 totalItemPrice = parseInt(totalItemPrice) + parseInt(cart_price);
             });
@@ -173,6 +174,7 @@ function save_to_db(new_quantity, newPrice) {
     }
   });
 }
+
 function refresh(){
 	$.ajax({
 	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
@@ -183,7 +185,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th></th> <th></th> </tr> </thead>';
       $.each(i, function(index, data){
-                    element+='<tbody> <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.price+')">-</div><input class="input-quantity" id="input-quantity" value='+data.qty+' ><div class="btn-increment-decrement" onClick="increment_quantity('+data.price+')">+</div></td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
+                    element+='<tbody> <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td> </td> <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
