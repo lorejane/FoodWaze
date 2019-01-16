@@ -16,13 +16,17 @@
 		return $dbList;		
 	}
 
+	//public function getStalll(){
+	//	return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
+	//}
+
+	public  function getStall(){ //display stalls without none
+		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
+		}
+
 	public function _getStallName($id){ // update stalls
 		$dbList = $this->db->query("SELECT * FROM stall WHERE StallId = '".$id."'")->row();
 		return $dbList;		
-	}
-
-	public  function getStall(){ //display stalls
-		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 	}
 
 	public function getEmployee(){ //display employees
