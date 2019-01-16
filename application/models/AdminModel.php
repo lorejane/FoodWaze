@@ -11,11 +11,6 @@
 		);
 	}
 
-	public function _getCategories($id){ //update categories
-		$dbList = $this->db->query("SELECT * FROM category WHERE CategoryId = '".$id."'")->row();
-		return $dbList;		
-	}
-
 	//public function getStalll(){
 	//	return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
 	//}
@@ -24,13 +19,23 @@
 		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 		}
 
-	public function _getStallName($id){ // update stalls
-		$dbList = $this->db->query("SELECT * FROM stall WHERE StallId = '".$id."'")->row();
+	public function getEmployee(){ //display employees
+		return $this->db->query("SELECT * FROM employee")->result();
+	}
+
+	public function getCategories(){//data-table
+		return $this->db->query("SELECT * FROM category")->result();
+		
+	}
+
+	public function _getCategories($id){ //update categories
+		$dbList = $this->db->query("SELECT * FROM category WHERE CategoryId = '".$id."'")->row();
 		return $dbList;		
 	}
 
-	public function getEmployee(){ //display employees
-		return $this->db->query("SELECT * FROM employee")->result();
+	public function _getStallName($id){ // update stalls
+		$dbList = $this->db->query("SELECT * FROM stall WHERE StallId = '".$id."'")->row();
+		return $dbList;		
 	}
 
 	public function save($employee){
