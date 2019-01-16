@@ -14,6 +14,14 @@ class Admin extends _BaseController {
 		redirect(base_url('login'));
 	}
 
+    public function Categories()
+    {   
+        $this->load->view('include/header');
+        $this->load->view('admin/ManageCategories/Categories');
+        $this->load->view('include/footer');
+
+    }
+
 	public function Stalls()
 	{	
 		$this->load->view('include/header');
@@ -88,7 +96,6 @@ class Admin extends _BaseController {
         }    
     }
     
-
     public function Validate(){
         $employee = $this->input->post('employee');
         $str = '{';
@@ -131,6 +138,27 @@ class Admin extends _BaseController {
         echo $str;
     }   
 
+    public function ValidateCategories(){
+        $category = $this->input->post('category');
+        $str = '{';
+        $valid = true;
+        if(!v::notEmpty()->validate($category['CategoryName'])){
+            $str .= $this->invalid('CategoryName', 'Please input a value');;
+            $valid = false;
+        }
+        else{
+            $ifExist = $this->CategoriesModel->_exist('CategoryName', $category['CategoryName']);            
+            if(is_object($ifExist)){
+                if($ifExist->CategoryId != $category['CategoryId']){
+                    $str .= $this->invalid('CategoryName', 'Category already exist');
+                    $valid = false;
+                }
+            }
+        }
+        $str .= '"status":"'.($valid ? '1' : '0').'"}';
+        echo $str;
+    } 
+ 
 	public function GenerateTableStall(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
