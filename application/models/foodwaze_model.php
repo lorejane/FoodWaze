@@ -32,11 +32,15 @@
 			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
 		}
 
-		public function getStalll(){
-	
-			return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
+		// view stall list
+		//public function getStall(){
+		//	$stall=$this->db->query('SELECT * FROM stall')->result();
+		//	return $stall;
+		//}		
+		public  function getStall(){ //display stalls without none
+			return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 		}
-
+		
 		public function getPositionName($positionId){
 			return $this->db->query("SELECT PositionName FROM position WHERE PositionId = '".$positionId."'")->row()->PositionName;	
 		} 
@@ -54,12 +58,6 @@
 		public function getCategory($stallId){			
 			$query=$this->db->query('SELECT * FROM category WHERE CategoryId in (SELECT CategoryId FROM menu WHERE StallId = "'.$stallId.'" group by CategoryId)')->result();
 			return $query;
-		}
-
-		// view stall list
-		public function getStall(){
-			$stall=$this->db->query('SELECT * FROM stall')->result();
-			return $stall;
 		}
 
 		public function readitem_f($condition=null){
