@@ -11,13 +11,21 @@
     </div>
 
     <div class="topbar-right">
-            <a class="dropdown-item" href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        
-    </div>
+        <a href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        
 
-     <li class=" d-md-block">
-        <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>
-        
+        <li class=" d-md-block">
+            <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>        
         </li>
+
+<div class="dropdown">
+  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span><i class="ti-briefcase"></i></span> </a>
+  <ul class="dropdown-menu">
+    <li><a href="#">HTML</a></li>
+    <li><a href="#">CSS</a></li>
+    <li><a href="#">JavaScript</a></li>
+  </ul>
+</div>
+    </div>
 
 <!-- Notifications -->
 <div id="qv-pending" class="quickview backdrop-dark" style="border-left: 1px solid #48b0f7;">
