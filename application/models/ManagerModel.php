@@ -42,6 +42,11 @@
 		);	
 	}
 
+	public function getManagerDetails(){ //display details nung naka login
+		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
+		
+	}
+
 	public function getEmployeeManager(){ //display employees by stall
 		return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
 		
@@ -50,11 +55,6 @@
 	public function _getMenu($id){ //update menu
 		$dbList = $this->db->query("SELECT * FROM menu WHERE MenuId = '".$id."'")->row();
 		return $dbList;		
-	}
-
-	public function getCategories(){//data-table
-		return $this->db->query("SELECT * FROM category")->result();
-		
 	}
 
 	public function getMenu(){ //display menu 
