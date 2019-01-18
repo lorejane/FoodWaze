@@ -19,6 +19,7 @@
             <div id="mycart" ></div>
         </div><!-- show cart -->
 	</div>
+  <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a>
 	<!--
 		<div class="row" style="height:45%;">
 		<form name="calcform">
