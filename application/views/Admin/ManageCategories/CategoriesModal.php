@@ -84,7 +84,7 @@
             $('#rowActive').removeClass('invisible');          
             Categories_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Manager/GetCategory/'); ?>" + id,
+                url: "<?php echo base_url('Admin/GetCategory/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log(i);
