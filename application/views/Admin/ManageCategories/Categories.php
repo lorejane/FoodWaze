@@ -20,7 +20,7 @@
 	<div class="card">
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
-						<table class="table table-responsive table-bordered display nowrap" id = "Categories-table" style="width:100%; overflow-x:auto;" 
+						<table class="table table-bordered display nowrap" id = "Categories-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Admin/generateTableCategories") ?>">
 							<thead>
 								<tr>

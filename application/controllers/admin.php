@@ -173,7 +173,7 @@ class Admin extends _BaseController {
            $json .= '['
                 .'"'.$data->CategoryId.'",'
                 .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }
@@ -208,13 +208,17 @@ class Admin extends _BaseController {
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
                 .'"'.$this->foodwaze_model->getStallName($data->StallId).'",'    
-                .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit fa-2x\" data-toggle=\"tooltip\" title=\"EDIT\" ></span></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"><span class=\"icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+                .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
         $json .= ']}';
         echo $json;        
+    }
+
+    public function GenerateEmployeeImage(){
+        echo $this->convert($this->AdminModel->getEmployeeImage());
     }
 
     public function Delete($id){        

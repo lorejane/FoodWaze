@@ -23,6 +23,11 @@
 		return $this->db->query("SELECT * FROM employee")->result();
 	}
 
+	public function getEmployeeImage(){
+		return $this->db->query("SELECT Image FROM employee WHERE EmployeeId = '".$EmployeeId."'")->row()->Image;	
+
+	}
+
 	public function getCategories(){//data-table
 		return $this->db->query("SELECT * FROM category")->result();
 		
@@ -69,5 +74,7 @@
 			."WHERE EmployeeId = '".$EmployeeId."'"
 		);	
 	}
+
+
 
 }

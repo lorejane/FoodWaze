@@ -12,24 +12,31 @@
     <nav class="sidebar-navigation">
         <ul class="menu">
 
+
             <li class="menu-item active">
+                <a class="menu-link">
+                    <span class="title">Food Waze</span>
+                </a>
+            </li>   
+    
+            <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Admin/Categories'); ?>">
                     <span class="icon fa fa-home"></span>
-                    <span class="title">Manage Categories</span>
+                    <span class="title">Categories</span>
                 </a>
             </li>   
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Admin/Stalls'); ?>">
                     <span class="icon fa fa-home"></span>
-                    <span class="title">Manage Stalls</span>
+                    <span class="title">Stalls</span>
                 </a>
             </li>   
 
             <li class="menu-item">
                 <a class="menu-link" href="<?php echo base_url('Admin/Accounts'); ?>">
                     <span class="icon fa fa-user"></span>
-                    <span class="title">Manage Accounts</span>
+                    <span class="title">Accounts</span>
                 </a>
             </li>            
 
