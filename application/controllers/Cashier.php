@@ -20,6 +20,12 @@ class Cashier extends _BaseController {
         $this->load->view('include/cash_footer');
     }
 
+    public function Profile(){
+        $this->load->view('include/header');
+        $this->load->view('Cashier/Profile');
+        $this->load->view('include/footer');
+    }
+
 	public function AddToCart(){
 		$x = $this->input->post('Order');
         $order = array('id' => $x['id'], 'qty' => $x['qty'], 'price' => $x['price'], 'name' => $x['name']);
