@@ -126,7 +126,7 @@
             $('.invalid-feedback').remove();
             $('.is-invalid').removeClass('is-invalid');
             $.ajax({
-                url:'<?php echo base_url('Manager/ValidateCategories'); ?>',
+                url:'<?php echo base_url('Admin/ValidateCategories'); ?>',
                 type: "POST",
                 data: {"category": Categories_Modal.data()},
                 success: function(i){
