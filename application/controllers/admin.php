@@ -52,8 +52,8 @@ class Admin extends _BaseController {
         echo $this->convert($this->AdminModel->_getStallName($id));
     }
     
-    public function GetCategory(){
-        echo $this->convert($this->CategoriesModel->_list());
+    public function GetCategory($id){        
+        echo $this->convert($this->AdminModel->_getCategories($id));
     }
 
     public function Save(){        
@@ -61,8 +61,8 @@ class Admin extends _BaseController {
     }
     
     public function SaveCategory(){        
-        $this->AdminModel->save($this->input->post('category'));
-    }
+        $this->CategoriesModel->save($this->input->post('category'));
+    } 
 
     public function SaveStall(){        
         $this->Stall_model->save($this->input->post('stall'));
