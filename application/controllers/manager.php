@@ -16,7 +16,8 @@ class Manager extends _BaseController {
 
     public function Profile(){
         $this->load->view('include/header');
-        $this->load->view('manager/Profile');
+        $data['arr'] = $this->ManagerModel->getManagerName();
+        $this->load->view('manager/Profile', $data);
         $this->load->view('include/footer');
     }
 
