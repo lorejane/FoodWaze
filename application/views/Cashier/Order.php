@@ -15,11 +15,11 @@
 		<!--TOTAL:&nbsp;<input type="text" id="input" readonly><br/><br/>
 		 CASH:&nbsp;<input id="idOfInput" type="text"  name="txt1" style="text-align:right;"><br/>
 		CHANGE:&nbsp;<input type="text" id="input"><br/> -->
-		 <div class="col-6  cart">
-            <div id="mycart" ></div>
-        </div><!-- show cart -->
-	</div>
   <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a>
+    <div class="col-6 cart" >
+            <div id="mycart" ></div>
+    </div><!-- show cart -->
+  </div>
 	<!--
 		<div class="row" style="height:45%;">
 		<form name="calcform">
@@ -184,9 +184,9 @@ function refresh(){
 			console.log(i);
 			var element = '';
 			total = 0;
-      element +='<table class="table"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th></th> <th></th> </tr> </thead>';
+      element +='<table class="table"style="height:200px;  overflow: "scroll";"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th></th> <th></th> </tr> </thead> <tbody>';
       $.each(i, function(index, data){
-                    element+='<tbody> <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div class="cart-info price" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> </tbody>';
+                    element+=' <tr>  <td>'+data.qty+'</td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
