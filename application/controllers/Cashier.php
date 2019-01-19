@@ -17,7 +17,7 @@ class Cashier extends _BaseController {
     public function Payment(){
         $this->load->view('include/header');
         $this->load->view('Cashier/Payment');
-        $this->load->view('include/footer');
+        //$this->load->view('include/footer');
     }
 
 	public function AddToCart(){

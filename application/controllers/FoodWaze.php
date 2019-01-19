@@ -4,7 +4,6 @@ include('_BaseController.php');
 use Respect\Validation\Validator as v;
 class FoodWaze extends _BaseController {
     public function __construct(){
-
         parent::__construct();
         }
 
