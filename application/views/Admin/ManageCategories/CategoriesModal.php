@@ -167,7 +167,7 @@
             }).then((result) => {
                 if (result.value) {
                     $.ajax({
-                        url:'<?php echo base_url('Manager/SaveCategory'); ?>',
+                        url:'<?php echo base_url('Admin/SaveCategory'); ?>',
                         type: "POST",
                         data: {"category": Categories_Modal.data()},
                         success: function(i){
