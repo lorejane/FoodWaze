@@ -11,7 +11,7 @@
     </div>
 
     <div class="topbar-right">
-        <a href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        
+        
 
         <li class=" d-md-block">
             <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>        
@@ -20,9 +20,9 @@
 <div class="dropdown">
   <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span><i class="ti-briefcase"></i></span> </a>
   <ul class="dropdown-menu">
-    <li><a href="#">HTML</a></li>
     <li><a href="#">CSS</a></li>
     <li><a href="#">JavaScript</a></li>
+    <li><a href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        </li>
   </ul>
 </div>
     </div>
