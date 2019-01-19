@@ -52,12 +52,16 @@ class Admin extends _BaseController {
         echo $this->convert($this->AdminModel->_getStallName($id));
     }
     
-    public function GetAll(){
+    public function GetCategory(){
         echo $this->convert($this->CategoriesModel->_list());
     }
 
     public function Save(){        
         $this->AdminModel->save($this->input->post('employee'));
+    }
+    
+    public function SaveCategory(){        
+        $this->AdminModel->save($this->input->post('category'));
     }
 
     public function SaveStall(){        
