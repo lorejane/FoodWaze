@@ -173,7 +173,7 @@ class Admin extends _BaseController {
            $json .= '['
                 .'"'.$data->CategoryId.'",'
                 .'"'.$data->CategoryName.'",'              
-             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Categories_Modal.delete('.$data->CategoryId.');\" ><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+             .'"<a onclick = \"Categories_Modal.edit('.$data->CategoryId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a>"'
             .']';            
             $json .= ',';
         }
