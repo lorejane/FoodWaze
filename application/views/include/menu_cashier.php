@@ -1,30 +1,25 @@
 
 <header class="topbar topbar-inverse">
     <div class="topbar-left">
-   
-
-    <a class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-        <i class="material-icons fullscreen-default">fullscreen</i>
-        <i class="material-icons fullscreen-active">fullscreen_exit</i>
-    </a>
+        <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+            <i class="material-icons fullscreen-default">fullscreen</i>
+        </a>
+        <a href="<?php echo base_url('Cashier/Order'); ?>">FoodWaze</a>
 
     </div>
 
-    <div class="topbar-right">
-        
-
+    <div class="topbar-right">        
+        <div class="dropdown">
+          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span><i class="ti-briefcase"></i></span> </a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo base_url('Cashier/Profile'); ?>">Profile</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="<?php echo base_url('home/Logout'); ?>">Logout<!-- <i class="ti-power-off" style="font-size:20; color:red;"></i> --></a></li>
+          </ul>
+        </div>
         <li class=" d-md-block">
             <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>        
         </li>
-
-<div class="dropdown">
-  <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span><i class="ti-briefcase"></i></span> </a>
-  <ul class="dropdown-menu">
-    <li><a href="#">CSS</a></li>
-    <li><a href="#">JavaScript</a></li>
-    <li><a href="<?php echo base_url('home/Logout'); ?>"><i class="ti-power-off" style="font-size:20; color:red;"></i></a>        </li>
-  </ul>
-</div>
     </div>
 
 <!-- Notifications -->
