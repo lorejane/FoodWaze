@@ -5,8 +5,7 @@
        
        <div>
 		<a class="btn btn-danger" href="<?php echo base_url('Cashier/Order'); ?>"
-		data-provide="tooltip">Back
-		 <!-- <span class="close"><i class="ti-close" style="color:white"></i></span> -->
+		data-provide="tooltip"><span class="close"><i class="ti-close" style="color:white"></i></span>
 		</a>
 		</div>
         <div class="card-body" >
