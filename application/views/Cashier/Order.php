@@ -15,11 +15,11 @@
 		<!--TOTAL:&nbsp;<input type="text" id="input" readonly><br/><br/>
 		 CASH:&nbsp;<input id="idOfInput" type="text"  name="txt1" style="text-align:right;"><br/>
 		CHANGE:&nbsp;<input type="text" id="input"><br/> -->
-  <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a>
-    <div class="col-6 cart" >
+		<div class="col-6 cart" >
             <div id="mycart" ></div>
     </div><!-- show cart -->
-  </div>
+	</div>
+  <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a>
 	<!--
 		<div class="row" style="height:45%;">
 		<form name="calcform">
@@ -159,7 +159,7 @@ function save_to_db(id, new_quantity, newPrice) {
     type : 'post',
     success : function(response) {
       $(inputQuantityElement).val(new_quantity);
-            $(priceElement).text("$"+newPrice);
+            $(priceElement).text(newPrice);
             var totalQuantity = 0;
             $("input[id*='input-quantity-']").each(function() {
                 var cart_quantity = $(this).val();
