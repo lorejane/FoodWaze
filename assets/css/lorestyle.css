@@ -35,3 +35,14 @@
     box-sizing: border-box;
     text-align: center;
 }
+
+
+
+.input-value {
+    border: 0px;
+    width: 50px;
+    display: inline-block;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+}
