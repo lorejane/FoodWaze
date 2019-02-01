@@ -13,6 +13,7 @@
           SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
           TAX<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
           DISCOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
+          <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select>
           TOTAL PRICE<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly>
         </div>
         <div class="col-sm-6">
