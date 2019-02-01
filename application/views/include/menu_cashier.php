@@ -65,53 +65,66 @@
                     $('#orders').empty();
                     if(i != '{}'){
                         i = JSON.parse(i);
-                        console.log(i);
                         $.each(i, function(index, data){                            
                             $('#orders').append(
-                                '<a class="orderx media media-new" data-value="'+data.OrderId+'" href="#">'
+                                // '<a class="orderx media media-new" data-value="'+data.OrderId+'" href="#">'
+                                '<a class="media media-new" href="#">'
                                     + '<div class="media-body">'
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
-                                        + '<p>' + data.DateTime + '</p>'                                        
+                                        + '<p>' + data.DateTime + '</p>'
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending()" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
                         });
                         $('.orderx').click(function(){
+                            // $.ajax({
+                            //     url: "<?php echo base_url('Cashier/RemoveAll'); ?>",
+                            //     success: function(i){
+                                    
+                            //     }
+                            // });
+                            var element ='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th>Action</th> <th></th> </tr> </thead> <tbody></tbody></table>';
+                            $("#mycart").html(element);
 	           				$.ajax({
 	           					url: "<?php echo base_url('Cashier/GetOrderDetails'); ?>",
 	           					data: {orderid:$(this).data("value")},
 	           					type: "POST",
 	           					success: function(j){
-                                    total = 0;
-                                    var element = '';
-                                    $("#mycart").html('<table class= "table"> <thead> <tr> <th>Name</th> <th>Qty</th> <th>Price</th> <th>Total</th> <th></th> </tr> </thead>');
-                                    $("#mycart").append('<tbody>');
                                     j = JSON.parse(j);
-                                    console.log(j);
+                                    console.table(j);
                                     $.each(j, function(index, data){
+                                        var total= 0;
                                         $.ajax({
                                             url: "<?php echo base_url('Cashier/GetMenu/'); ?>" +data.MenuId,
                                             success: function(k){
                                                 k = JSON.parse(k);
-                                                console.log(k);
-                                                console.log('x ' + data.Quantity + " " + k[0].Name);
-                                                var xelement = '<tr>'
-                                                +'<td>'+k[0].Name+'</td>'
-                                                +'<td>'+data.Quantity+'</td>'
-                                                +'<td>'+k[0].Price+'</td>'
-                                                +'<td>'+(data.Quantity * k[0].Price)+'</td>'
-                                                +'<td><i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data.Id+')" id="'+data.Id+'"></i></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr>';
-                                                +'</tr>';
-                                                total = Number(total) + Number(data.Quantity * k.Price);
-                                                // console.log(element);
-                                            $("#mycart").append(xelement);
+                                                console.table(k);
+                                                $.ajax({
+                                                    url: "<?php echo base_url('Cashier/AddToCart'); ?>",
+                                                    type: "POST",
+                                                    data: {
+                                                        Order: {
+                                                            Image: k[0].Image,
+                                                            id: k[0].MenuId,
+                                                            name: k[0].Name,
+                                                            qty: data.Quantity, 
+                                                            price: k[0].Price
+                                                        }
+                                                    },
+                                                    success: function(j){
+                                                        console.log(j);
+                                                        console.log("hHEHEEH");
+                                                    }
+                                                })
+                                                var elementx =' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.Quantity+'  readonly></td> <td>'+k[0].Name+'</td> <td>'+k[0].Price+'</td> <td>'+(data.Quantity * k[0].Price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.Quantity * k[0].Price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+k[0].Price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.Quantity+'  readonly><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+k[0].Price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart()"id=""></i><td></tr> ';
+                                                total = Number(total) + Number(data.Quantity * k[0].Price);        
+                                                $("#mycart table tbody").append(elementx);
                                             }                       
-                                        })
-                                    })
-
-                                    $("#mycart").append('</tbody></table><p> Total: '+total+' </p>');                                        
-	           					}
+                                        });
+                                    });    
+                                }
 	           				})             	
                         });
                     }   
@@ -122,5 +135,41 @@
 
     }
 
+    function deletepending(){             
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Employee',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:"<?php echo base_url('Cashier/DeletePendingOrders/'); ?>" +id,
+                            success: function(i){
+                                swal('Deleted!', 'success');
+                                $('#Menu-table').DataTable().ajax.reload();
+                                console.log(i);
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                    })                                     
+                }
+            })
+
+        }
+
+    function deleteaAll(){
+        $.ajax({
+            url: "<?php echo base_url('Cashier/RemoveAll'); ?>",
+            success: function(i){
+
+            }
+        });
+    }
 
 </script>
