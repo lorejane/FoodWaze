@@ -183,10 +183,10 @@
                                 //$('#Menu-table').DataTable().ajax.reload();
                                 console.log(i);
                               //  var mwen = $(dis).fadeOut(500, function() { $(dis).closest("a").remove(); });
-                            }, 
-                            error: function(i){
-                                swal('Oops!', "Something went wrong", 'error');
-                            }
+                            } 
+                            // error: function(i){
+                            //     swal('Oops!', "Something went wrong", 'error');
+                            // }
                     })                                     
                 }
             })
