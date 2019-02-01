@@ -193,7 +193,7 @@
 
         }
 
-    function deleteaAll(){
+    function deleteAll(){
         $.ajax({
             url: "<?php echo base_url('Cashier/RemoveAll'); ?>",
             success: function(i){
