@@ -50,10 +50,10 @@
 <script>
     $(document).ready(function(){
         Message.refresh();
-        // window.setInterval(function(){
-        // 	Message.refresh();
-        // 	console.log("hello");
-        // }, 2500)
+        window.setInterval(function(){
+        	Message.refresh();
+        	console.log("hello");
+        }, 2500)
     });
 
     var Message = {
@@ -73,7 +73,7 @@
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
                                         + '<p>' + data.DateTime + '</p>'
-                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending()" id="'+data.OrderId+'"></i></p>'                                        
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -135,10 +135,10 @@
 
     }
 
-    function deletepending(){             
+    function deletepending(id,dis){   
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for Employee',
+                text: 'Save changes for Pending Order',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',
@@ -151,8 +151,9 @@
                         url:"<?php echo base_url('Cashier/DeletePendingOrders/'); ?>" +id,
                             success: function(i){
                                 swal('Deleted!', 'success');
-                                $('#Menu-table').DataTable().ajax.reload();
+                                //$('#Menu-table').DataTable().ajax.reload();
                                 console.log(i);
+                                var mwen = $(dis).fadeOut(500, function() { $(dis).closest("a").remove(); });
                             }, 
                             error: function(i){
                                 swal('Oops!', "Something went wrong", 'error');
