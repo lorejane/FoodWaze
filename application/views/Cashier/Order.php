@@ -147,6 +147,15 @@ function save_to_db(id, new_quantity, newPrice) {
   });
 }
 
+  function deletecart(id){
+        $.ajax({
+            url: "<?php echo base_url('Cashier/Remove/'); ?>" +id,
+            success: function(i){
+              refresh();
+            }
+        });
+    }
+
 function refresh(){
 	$.ajax({
 	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
@@ -157,7 +166,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th>Action</th> <th></th> </tr> </thead> <tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td></tr> ';
+                    element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
