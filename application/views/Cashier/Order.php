@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-sm-4">
     	<div class="row" style="height:60%;" >
-    		<H3>RECEIPT</H3>
+    		<H3>RECEIPT</H3><br/>
     		<div class="cart" >
                 <div id="mycart"></div>
         </div><!-- show cart -->
@@ -10,15 +10,15 @@
       </div>
       <div class="row">
         <div class="col-sm-6">
-          SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='+data.qty+' readonly > <br/>
-          TAX<input class="input-value" id="input-quantity-'+data.id+'" value='+data.qty+' >  <br/>
-          DISCOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='+data.qty+' >  <br/>
-          TOTAL PRICE<input class="input-value" id="input-quantity-'+data.id+'" value='+data.qty+' readonly>
+          SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
+          TAX<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
+          DISCOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
+          TOTAL PRICE<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly>
         </div>
         <div class="col-sm-6">
-          RECEIVED AMOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='+data.qty+' ><br/>
-          <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
-          <a class="button"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
+          RECEIVED AMOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='' ><br/>
+          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
+          <a class="btn btn-danger"  href="<?php echo base_url('Cashier/Payment'); ?>">CANCEL</a> <br/>
         </div>
       </div>
     </div>
@@ -76,7 +76,7 @@ function menu() {
 			        $.each(menu, function(index, data){
 			            //console.log(data);
 			            //data.Price
-			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:50%;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
 			        });
 	        	    $('.ordermenu').click(function(){
            				$.ajax({
@@ -84,14 +84,16 @@ function menu() {
            					type: "POST",
            					data: {
            						Order: {
-           							id: $(this).data("id"),
+           							Image: $(this).data("Image"),
+                        id: $(this).data("id"),
            							name: $(this).data("name"),
            							qty: 1, 
            							price: $(this).data("price")
            						}
            					},
            					success: function(j){
-           						refresh();
+           						console.log(j);
+                      refresh();
            					}
            				})             	
                     });
@@ -153,9 +155,9 @@ function refresh(){
 			console.log(i);
 			var element = '';
 			total = 0;
-      element +='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th></th> <th></th> </tr> </thead> <tbody>';
+      element +='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th>Action</th> <th></th> </tr> </thead> <tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+' readonly><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td> </tr> ';
+                    element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td> <td>'+(data.qty * data.price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data.Id+')"id="'+data.Id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
