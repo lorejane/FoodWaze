@@ -136,5 +136,5 @@ $autoload['model'] = array(
 	'_BaseModel',
 	'foodwaze_model', 'MenuModel',
 	'CategoriesModel', 'CashierModel', 'PositionModel',
-	'AdminModel', 'ManagerModel' , 'Stall_model'
+	'AdminModel', 'ManagerModel' , 'Stall_model', 'PendingOrdersModel'
 	);
