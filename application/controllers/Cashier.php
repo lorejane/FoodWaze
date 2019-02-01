@@ -37,6 +37,10 @@ class Cashier extends _BaseController {
         $this->cart->insert($order);
     }
     
+    public function DeletePendingOrders($id){        
+        echo $this->convert($this->PendingOrdersModel->delete($id));
+    }
+
     public function Remove($id){
         $this->cart->remove($id);
     }
