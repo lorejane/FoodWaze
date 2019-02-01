@@ -14,6 +14,11 @@ class Cashier extends _BaseController {
 		$this->load->view('include/footer');
 	}
 
+    public function removeFromCart($id){     
+        $this->cart->remove($id);
+        redirect(base_url('Cashier/Order/'));
+    }
+
     public function Payment(){
         $this->load->view('include/header');
         $this->load->view('Cashier/Payment');
