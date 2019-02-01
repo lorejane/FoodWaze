@@ -51,7 +51,7 @@ class Cashier extends _BaseController {
     
     public function RemoveAll(){
         $this->cart->destroy();
-    redirect(base_url('Cashier/Order/'));
+        redirect(base_url('Cashier/Order/'));
     }
     
     // public function RemoveAll(){
