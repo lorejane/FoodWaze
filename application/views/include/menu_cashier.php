@@ -40,7 +40,7 @@
         <!-- <a class="btn btn-outline btn-info" href="<?php echo base_url('Bookbag/'); ?>">View Detailed Bookbag</a> -->
     </div>
     <div>
-        <button class="btn btn-outline btn-danger" onclick="Bookbag.removeAll()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
+        <button class="btn btn-outline btn-danger" onclick="deleteAllpending()" data-provide="tooltip" title="Remove all"><i class="fa fa-2x fa-trash"></i></>        
     </div>
     </footer>
 </div>
@@ -154,6 +154,35 @@
                                 //$('#Menu-table').DataTable().ajax.reload();
                                 console.log(i);
                                 var mwen = $(dis).fadeOut(500, function() { $(dis).closest("a").remove(); });
+                            }, 
+                            error: function(i){
+                                swal('Oops!', "Something went wrong", 'error');
+                            }
+                    })                                     
+                }
+            })
+
+        }
+
+    function deleteAllpending(){   
+            swal({
+                title: 'Confirm Submission',
+                text: 'Save changes for Pending Order',
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No! Cancel',
+                cancelButtonClass: 'btn btn-default',
+                confirmButtonText: 'Yes! Go for it',
+                confirmButtonClass: 'btn btn-info'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url:"<?php echo base_url('Cashier/DeleteAllPendingOrders/'); ?>" ,
+                            success: function(i){
+                                swal('Deleted!', 'success');
+                                //$('#Menu-table').DataTable().ajax.reload();
+                                console.log(i);
+                              //  var mwen = $(dis).fadeOut(500, function() { $(dis).closest("a").remove(); });
                             }, 
                             error: function(i){
                                 swal('Oops!', "Something went wrong", 'error');
