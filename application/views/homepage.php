@@ -105,7 +105,7 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                            <form action=<?php echo base_url('FoodWaze/checkout');?> method="post">
                                 <hr class="w-100px">
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
@@ -234,7 +234,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>foodwaze/showcart',
+                        url: '<?php echo base_url()?>FoodWaze/showcart',
                         dataType: 'json',
                         success: function(data){
                 console.log('---------CART DATA----------');
@@ -297,7 +297,7 @@
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
+                                        '<br><a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
                                         $('#mycart').html(html);
                             },
                       error: function(response){
@@ -315,7 +315,7 @@
         <script>	
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("FoodWaze/getMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -343,7 +343,7 @@
                 id=$(this).attr('id');
                 console.log(id);                  
                 $.ajax({
-                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("FoodWaze/getCategory/") ?>" + id, 
                     success: function(kat){
                         kat = JSON.parse(kat);
                         console.log('---------CATEGORY----------');
