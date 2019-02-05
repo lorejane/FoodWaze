@@ -323,15 +323,7 @@
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-<<<<<<< HEAD
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        '<div class="md-modal md-effect-16" id="modal-16">'+
-                                        '<div class="md-content"><h3>Receipt</h3>'+
-                                        '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
-                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Receipt"></a>'+
-=======
                                         '<br><a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
->>>>>>> 93580be51e62fa2d338ec36fc1366787e162c5d5
                                         $('#mycart').html(html);
                             },
                       error: function(response){
