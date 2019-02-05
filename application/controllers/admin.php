@@ -203,7 +203,7 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
-                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' >",'
+                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
