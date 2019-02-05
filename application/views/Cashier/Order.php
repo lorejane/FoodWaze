@@ -3,15 +3,18 @@
     <div class="col-sm-4">
     	<div class="row" style="height:60%;" >
     		<H3>RECEIPT</H3><br/>
-    		<div class="cart" >
-                <div id="mycart"></div>
+    		<div class="cart" id="customers" >
+
+                <div id="mycart">
+                <div>jc</div>
+                </div>
         </div><!-- show cart -->
 
       </div>
       <div class="row">
         <div class="col-sm-6">
-          SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
-          TAX<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
+          <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
+ -->          <!-- TAX<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/> -->
           DISCOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/>
           <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
           TOTAL PRICE<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly>
@@ -21,6 +24,7 @@
           <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
         </div>
+        <button onclick="javascript:demoFromHTML();">PDF</button>   
       </div>
     </div>
     <div class="col-sm-8">
@@ -148,23 +152,8 @@ function save_to_db(id, new_quantity, newPrice) {
   });
 }
 
-  function deletecartitem(id){
-        $.ajax({
-            url: "<?php echo base_url('Cashier/Remove/'); ?>" +id,
-            success: function(i){
-              refresh();
-            }
-        });
-    }
 
-  function DeleteAll(){
-    $.ajax({
-        url: "<?php echo base_url('Cashier/RemoveAll'); ?>",
-        success: function(i){
-          console.log(i);
-        }
-    });
-}
+
 
 function refresh(){
 	$.ajax({
@@ -187,6 +176,45 @@ function refresh(){
 }
 
 menu();      
+</script> 
+<script>
+function demoFromHTML() {
+    var pdf = new jsPDF('p', 'pt', 'letter');
+    // source can be HTML-formatted string, or a reference
+    // to an actual DOM element from which the text will be scraped.
+    source = $('#customers')[0];
 
+    // we support special element handlers. Register them with jQuery-style 
+    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+    // There is no support for any other type of selectors 
+    // (class, of compound) at this time.
+    specialElementHandlers = {
+        // element with id of "bypass" - jQuery style selector
+        '#bypassme': function (element, renderer) {
+            // true = "handled elsewhere, bypass text extraction"
+            return true
+        }
+    };
+    margins = {
+        top: 80,
+        bottom: 60,
+        left: 40,
+        width: 522
+    };
+    // all coords and widths are in jsPDF instance's declared units
+    // 'inches' in this case
+    pdf.fromHTML(
+    source, // HTML string or DOM elem ref.
+    margins.left, // x coord
+    margins.top, { // y coord
+        'width': margins.width, // max width of content on PDF
+        'elementHandlers': specialElementHandlers
+    },
 
- </script>   
+    function (dispose) {
+        // dispose: object with X, Y of the last line add to the PDF 
+        //          this allow the insertion of new lines after html
+        pdf.save('Test.pdf');
+    }, margins);
+}
+</script>  
