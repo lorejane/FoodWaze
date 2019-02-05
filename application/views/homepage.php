@@ -93,7 +93,7 @@
                                                         <div id="mycart"></div>
                                                     </div>
 
-                                                        <!-- modal -->
+                                                        <!-- modal
                                                         <div class="md-modal md-effect-16" id="modal-16">
                                                             <div class="md-content">
                                                                 <h3>Receipt</h3>
@@ -104,7 +104,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                                                                                
+                                                                                                                 -->
                                                         <!-- <button class="md-trigger" data-modal="modal-16">Cart</button> -->
 
                                                 </div><!--col-6-->
@@ -120,7 +120,7 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                            <form action=<?php echo base_url('FoodWaze/checkout');?> method="post">
+                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
                                 <hr class="w-100px">
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
@@ -265,7 +265,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>FoodWaze/showcart',
+                        url: '<?php echo base_url()?>foodwaze/showcart',
                         dataType: 'json',
                         success: function(data){
                 console.log('---------CART DATA----------');
@@ -284,8 +284,7 @@
                                             if(data[i].Id=='no cart')
                                             {
                                                  html += '<div>'+
-                                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
-                                                //'<pre>No Items in your Cart </pre>'+
+                                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+                                                
                                                 '</div>';
                                                  total+=0;
                                                  document.getElementById("next").disabled = true;
@@ -302,36 +301,14 @@
                                                   identifier=1;
                                                   document.getElementById("next").disabled = false;
                                                 
-                                                
-                                                // html += '<div class="row"><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th>'+
-												// 	'<th class="text-center">Price</th><th class="text-center">Total</th>'+
-												// 	'</tr></thead>'+
-												// 	'</div>'; //wag galawin
-													
-												// html += '<div class="row">'+
-												// 	'<tbody><tr>'+
-												// 	'<td class="col-md-1" style="text-align: center"> '+data[i].Qty+' </td>'+
-                                                //     '<td class="col-md-9"><em> '+data[i].Name+' </em></td>'+													
-												// 	// '<td class="col-md-1 text-center"> '+data[i].Price+' </td>'+
-												// 	// '<td class="col-md-1 text-center"> '+data[i].Price*data[i].Qty+' </td>'+
-												// 	'</tr></tbody>'+
-												// 	// '<tr><td class="text-right"><sh4><trong> '+total+=data[i].Price*data[i].Qty;+
-												// 	// '</strong></h4></td></tr>'+
-												// 	'</div>';
-												// 		identifier=1;
-												// 		document.getElementById("next").disabled = false;
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-<<<<<<< HEAD
                                         '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
                                         '<div class="md-modal md-effect-16" id="modal-16">'+
                                         '<div class="md-content"><h3>Receipt</h3>'+
                                         '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
                                         '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Receipt"></a>'+
-=======
-                                        '<br><a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
->>>>>>> 93580be51e62fa2d338ec36fc1366787e162c5d5
                                         $('#mycart').html(html);
                             },
                       error: function(response){
@@ -348,7 +325,7 @@
         <script>	
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("FoodWaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -356,8 +333,8 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" align="center" id="'+data.MenuId+'">'+
-                                '<h3 style="color:#20B2AA;">'+data.Name+'</h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
+                                '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
                                 '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
@@ -375,7 +352,7 @@
                 id=$(this).attr('id');
                 console.log(id);                  
                 $.ajax({
-                    url: "<?php echo base_url("FoodWaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
                     success: function(kat){
                         kat = JSON.parse(kat);
                         console.log('---------CATEGORY----------');
