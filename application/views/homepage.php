@@ -75,6 +75,7 @@
                             </div> <!--card-->
                             </div> <!-- end step 1 -->
 
+
                         
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
@@ -82,15 +83,29 @@
                                 <div class="card">
                                     <div class="card-body">                                         
                                         <div class="row">
-                                            <div class="col-6" id="menu-container">
+                                            <div class="col-md-6 col-sm-12" id="menu-container">
 
                                             </div>
                                             
-                                                <div class="col-6">
+                                                <div class="col-md-6 col-sm-12">
                                                     
                                                     <div class="cart">
                                                         <div id="mycart"></div>
                                                     </div>
+
+                                                        <!-- modal -->
+                                                        <div class="md-modal md-effect-16" id="modal-16">
+                                                            <div class="md-content">
+                                                                <h3>Receipt</h3>
+                                                                <div>
+                                                                    <p>Receipt</p>
+                                                                    
+                                                                    <button class="md-close">Close me!</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                                                                                
+                                                        <!-- <button class="md-trigger" data-modal="modal-16">Cart</button> -->
 
                                                 </div><!--col-6-->
                                        
@@ -141,13 +156,29 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-  
+
+
+
+<!-- classie.js by @desandro: https://github.com/desandro/classie -->
+        <script src="js/classie.js"></script>
+		<script src="js/modalEffects.js"></script>
+
+		<!-- for the blur effect -->
+		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
+		<script>
+			// this is important for IEs
+			var polyfilter_scriptpath = '/js/';
+		</script>
+		<script src="js/cssParser.js"></script>
+		<script src="js/css-filters-polyfill.js"></script>
+
+
     
 <script>
   var identifier;
   start();
   function start(){
-    document.getElementById("tab1").disabled = true;
+    document.getElementById("tab1").disabled = true; 
     document.getElementById("tab2").disabled = true;
     document.getElementById("tab3").disabled = true;
     if (identifier>0) {
@@ -187,25 +218,25 @@
               });
         
             }
-    function deletecart(id)
-            {     
-              var name;
-              $.ajax({
-                type:'post',
-                url:'<?php echo base_url("FoodWaze/deletetocart") ?>',
-                data:{
-                  item_id:id,
-                  item_name:name
-                },
-                success:function(response) {
-                  show_cart();  
-                },
-                error: function(){
-                  alert('ERROR!');
-                }
-              });
+    // function deletecart(id)
+    //         {     
+    //           var name;
+    //           $.ajax({
+    //             type:'post',
+    //             url:'<?php echo base_url("FoodWaze/deletetocart") ?>',
+    //             data:{
+    //               item_id:id,
+    //               item_name:name
+    //             },
+    //             success:function(response) {
+    //               show_cart();  
+    //             },
+    //             error: function(){
+    //               alert('ERROR!');
+    //             }
+    //           });
         
-            }
+    //         }
         function minus1(id)
             {                
               var name;
@@ -260,17 +291,12 @@
                                                  document.getElementById("next").disabled = true;
                                             }
                                             else
-                                            {
-                                                // html += '<div>'+
-                                                // '<div class="row"><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
-                                                // '</div></div></div>'
+                                            {                                            
                                                 html += '<div>'+
-                                                //'<div class="row"><div class="col-10">'+data[i].Name+' '+data[i].Qty+' x '+data[i].Price+' = '+data[i].Price*data[i].Qty+                                                
                                                 '<div class="row"><div class="col-10">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
-                                                //'</div><div class="col-2"> '+data[i].Price*data[i].Qty+ 
                                                 '</div><div class="col-2"><div class="btn-group">'+
-                                                '<i class="btn btn-warning btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
-                                                '<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
+                                                '<i class="btn btn-danger btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
+                                                //'<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
                                                 '</div></div></div>';
                                                         total+=data[i].Price*data[i].Qty;
                                                   identifier=1;
@@ -297,14 +323,21 @@
                                             }
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
+<<<<<<< HEAD
+                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
+                                        '<div class="md-modal md-effect-16" id="modal-16">'+
+                                        '<div class="md-content"><h3>Receipt</h3>'+
+                                        '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
+                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Receipt"></a>'+
+=======
                                         '<br><a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>';                                        
+>>>>>>> 93580be51e62fa2d338ec36fc1366787e162c5d5
                                         $('#mycart').html(html);
                             },
                       error: function(response){
                             var html;
                             html = '<div>'+
                                 '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+
-                                //'<pre>No Items in your Cart </pre>'+
                                 '</div>';                           
                                  $('#mycart').html(html);
                         }
@@ -323,10 +356,9 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" style="padding:5px; border:1px solid #ccc;" align="center" id="'+data.MenuId+'">'+
-                                '<h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1;'+data.Price+'.00</h4>'+
-                                '<i class="fa fa-shopping-cart btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')"></i>'+ //cart lang
-                                //'<input type="button" class="btn btn-primary" value="Add To Cart" onclick="cart('+data.MenuId+')">'+ //orig
+                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" align="center" id="'+data.MenuId+'">'+
+                                '<h3 style="color:#20B2AA;">'+data.Name+'</h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
+                                '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
@@ -374,6 +406,7 @@
 
                         element +='</div>';
                         $('#menu-container').html(element);
+						document.getElementById("next").click();
                         menu(id);
                     }
                 })                                                
