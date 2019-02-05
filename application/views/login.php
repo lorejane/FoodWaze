@@ -13,7 +13,7 @@
 <center>
 	<div class="card card-round card-shadowed px-50 py-30 w-400px mb-0" style="max-width: 100%;">
 	<h1>LOGIN</h1>
-		<form role="form" action="<?php echo base_url('home/login/submit')?>" method="post">
+		<form role="form" action="<?php echo base_url('Home/Login/submit')?>" method="post">
 	<?php if($errror = $this->session->flashdata('login_fail')):?>
 	<?php endif; ?>	
 			<div class="form-group">

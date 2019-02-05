@@ -2,6 +2,7 @@
   <html>
 	<head>
 		<title>FOODWAZE</title>
+
     <!-- for homepage -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -33,6 +34,11 @@
     <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/lorestyle.css' ); ?>" rel="stylesheet">
 
+    
+
+
+    <script src="<?php echo base_url('dist/jspdf.debug.js'); ?>"></script>
+    <script src="<?php echo base_url('dist/jspdf.min.js'); ?>"></script>
     <script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script> 
     <script src = "<?php echo base_url('assets/vendor/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
     <script src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
