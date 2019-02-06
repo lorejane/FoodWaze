@@ -275,7 +275,7 @@
                                         var i;      
                                         var total=0.0;
                                         
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em>Receipt #: </em></div>'+
+                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em> </em></div>'+
                                         '<div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div>'+
                                         '<div><p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p><br></div>'+
                                         //'<div><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
@@ -305,10 +305,10 @@
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
                                         '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        '<div class="md-modal md-effect-16" id="modal-16">'+
-                                        '<div class="md-content"><h3>Receipt</h3>'+
-                                        '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
-                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Receipt"></a>';
+                                        // '<div class="md-modal md-effect-16" id="modal-16">'+
+                                        // '<div class="md-content"><h3>Receipt</h3>'+
+                                        // '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
+                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Cart"></a>';
                                         $('#mycart').html(html);
                             },
                       error: function(response){
