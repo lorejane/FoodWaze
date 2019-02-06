@@ -333,7 +333,15 @@
                             $.each(menu, function(index, data){
                                 //console.log(data);
                                 //data.Price
-                                $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
+                                
+                                //ORIG
+                                // $('#cat-' + data.CategoryId).append('<div class="col-sm-4 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
+                                // '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
+                                // '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                // '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+                               
+                               //TEST FULL
+                                $('#cat-' + data.CategoryId).append('<div class="col-md-6 col-sm-12 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
                                 '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
                                 '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
