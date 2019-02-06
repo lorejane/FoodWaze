@@ -16,7 +16,7 @@ class Manager extends _BaseController {
 
     public function Profile(){
         $this->load->view('include/header');
-        $data['arr'] = $this->ManagerModel->getManagerName();
+        $data['result'] = $this->ManagerModel->getManagerDetails();
         $this->load->view('manager/Profile', $data);
         $this->load->view('include/footer');
     }
@@ -52,10 +52,6 @@ class Manager extends _BaseController {
 
     public function GetEmployee($id){        
         echo $this->convert($this->ManagerModel->_get($id));
-    }
-
-    public function GetAll(){
-        echo $this->convert($this->CategoriesModel->_list());
     }
 
     public function GetMenu($id){        

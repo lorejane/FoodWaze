@@ -27,9 +27,11 @@ class Cashier extends _BaseController {
 
     public function Profile(){
         $this->load->view('include/header');
-        $this->load->view('Cashier/Profile');
+        $data['res'] = $this->CashierModel->getEmployee();
+        $this->load->view('Cashier/Profile', $data);
         $this->load->view('include/footer');
     }
+
 
 	public function AddToCart(){
 		$x = $this->input->post('Order');
