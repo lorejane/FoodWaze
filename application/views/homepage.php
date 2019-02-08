@@ -97,7 +97,11 @@
                                                     </div>                                                    
 
                                                 </div><!--col-md-6 col-sm-12-->
-                                       
+                                                
+                                                
+                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="show_cart()">Cart Modal</button>
+                                                <!-- <i class="btn btn-danger btn-xs fa fa-close right" onclick="show_cart()"> -->
+
                                         </div><!--row-->                                   
                                     </div><!--card body-->
                                     
@@ -282,7 +286,7 @@
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
                                         '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Cart Modal</button>';
+                                        // '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Cart Modal</button>';
                                         $('#mycart').html(html);
                             },
                       error: function(response){
