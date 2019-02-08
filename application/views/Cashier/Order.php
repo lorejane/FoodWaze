@@ -25,7 +25,7 @@
         </div>
         <div class="col-sm-6">
           <div class="row">
-          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onblur="calculate()" value='' ><br/>
+          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onkeypress="myFunction()" onblur="calculate()" value='' ><br/>
           CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
           </div>
           <div class="row">
@@ -155,9 +155,6 @@ function save_to_db(id, new_quantity, newPrice) {
   });
 }
 
-
-
-
 function refresh(){
 	$.ajax({
 	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
@@ -225,6 +222,10 @@ function calculate()
     }
       
 }
+
+// function myFunction() {
+//   alert("You pressed a key inside the input field");
+// }
 
 </script> 
 <script>
