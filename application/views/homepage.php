@@ -60,19 +60,22 @@
                                 
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                                 <div class="card">
-                                    <div class="card-body"> 
-                                        <div class="col-12">     
-                                            <div class="row" id="filters">   
+                                    <div class="card-body">
+                                        <center>
+                                        <div class="col-12">
+                                            <div class="row" id="filters"> 
                                                 <?php foreach($stall as $s): ?>
                                                 
                                                 <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
+                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
+                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
                                                 
                                                 <?php endforeach; ?>
                                             </div>
                                         </div> <!--col-12-->
-                                </div> <!--card-body-->
-                            </div> <!--card-->
+                                        </center>
+                                    </div> <!--card-body-->
+                                </div> <!--card-->
                             </div> <!-- end step 1 -->
 
 
