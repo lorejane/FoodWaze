@@ -3,7 +3,7 @@
     <div class="col-sm-4">
     	<div class="row" style="height:60%;" >
     		<H3>RECEIPT</H3><br/>
-    		<div class="cart" id="customers" >
+    		<div class="cart"  >
 
                 <div id="mycart">
                 <div>jc</div>
@@ -11,20 +11,20 @@
         </div><!-- show cart -->
 
       </div>
-      <div class="row">
-        <div class="col-sm-6">
+      <div class="row" id="customers">
+        <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
- -->          <!-- TAX<input class="input-value" id="input-quantity-'+data.id+'" value='' >  <br/> -->
-          DISCOUNT<input class="input-value" id="input-quant" value='' >  <br/>
+ -->      DISCOUNT<input class="input-value" id="" value='' >  <br/>
           <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
-          TOTAL PRICE<input class="input-value" id="puretotal" value='' readonly>
+          TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
         </div>
         <div class="col-sm-6">
-          RECEIVED AMOUNT<input class="input-value" id="input-quantity-'+data.id+'" value='' ><br/>
+          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onblur="calculate()" value='' ><br/>
+          CHANGE<input class="input-value" id="change" value='' ><br/>
           <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
         </div>
-        <button onclick="javascript:demoFromHTML();">PDF</button>   
+        <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
       </div>
     </div>
     <div class="col-sm-8">
@@ -171,6 +171,7 @@ function refresh(){
 }
  
 menu();  
+
 function DeleteCart(id){
   console.log(id);
   $.ajax({
@@ -192,22 +193,23 @@ function computeSubTotal(){
   console.log(total);
 }
 
+
+calculate = function()
+{
+    var total = document.getElementById('puretotal').value;
+    var cash = document.getElementById('ReceivedAmnt').value; 
+    document.getElementById('change').value = parseInt(cash)-parseInt(total);
+     
+}
+
 </script> 
 <script>
 function demoFromHTML() {
     var pdf = new jsPDF('p', 'pt', 'letter');
-    // source can be HTML-formatted string, or a reference
-    // to an actual DOM element from which the text will be scraped.
     source = $('#customers')[0];
 
-    // we support special element handlers. Register them with jQuery-style 
-    // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-    // There is no support for any other type of selectors 
-    // (class, of compound) at this time.
     specialElementHandlers = {
-        // element with id of "bypass" - jQuery style selector
-        '#bypassme': function (element, renderer) {
-            // true = "handled elsewhere, bypass text extraction"
+       '#bypassme': function (element, renderer) {
             return true
         }
     };
@@ -217,8 +219,6 @@ function demoFromHTML() {
         left: 40,
         width: 522
     };
-    // all coords and widths are in jsPDF instance's declared units
-    // 'inches' in this case
     pdf.fromHTML(
     source, // HTML string or DOM elem ref.
     margins.left, // x coord
@@ -228,8 +228,8 @@ function demoFromHTML() {
     },
 
     function (dispose) {
-        // dispose: object with X, Y of the last line add to the PDF 
-        //          this allow the insertion of new lines after html
+    // document.getElementById("puretotal").innerHTML="Name"+document.getElementById("puretotal").value;
+    // console.log(puretotal);
         pdf.save('Test.pdf');
     }, margins);
 }
