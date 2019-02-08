@@ -21,4 +21,19 @@
 		return $this->db->query("SELECT * FROM menu WHERE MenuId = '".$menuid."' ")->result();	
 	}
 
+	public function getEmployee(){ //display details nung naka login
+		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
+		
 	}
+
+	public function SaveOrder(){
+		$this->db->query("INSERT into orders (StallId) VALUES ('".$this->session->userdata('StallId')."' ");
+	}
+
+	public function SaveOrders(){
+		$this->db->query("SELECT MAX(OrderId) FROM orders 
+		
+		");	
+	}
+
+}
