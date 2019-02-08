@@ -19,10 +19,14 @@
           TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
         </div>
         <div class="col-sm-6">
+          <div class="row">
           RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onblur="calculate()" value='' ><br/>
-          CHANGE<input class="input-value" id="change" value='' ><br/>
-          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> <br/>
+          CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
+          </div>
+          <div class="row">
+          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
+          </div>
         </div>
         <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
       </div>
@@ -194,12 +198,19 @@ function computeSubTotal(){
 }
 
 
-calculate = function()
+function calculate()
 {
     var total = document.getElementById('puretotal').value;
     var cash = document.getElementById('ReceivedAmnt').value; 
+    
+    if(total < cash) {
     document.getElementById('change').value = parseInt(cash)-parseInt(total);
+    }
+    else {
+      alert("Invalid");
+    }
      
+      
 }
 
 </script> 
