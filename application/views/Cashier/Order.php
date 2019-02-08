@@ -14,8 +14,13 @@
       <div class="row" id="customers">
         <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
- -->      DISCOUNT<input class="input-value" id="" value='' >  <br/>
-          <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
+ -->      DISCOUNT 
+          <select>
+            <option id="discount" value="20">Senior</option>
+            <option id="discount" value="20">PWD</option>
+            <option id="discount" value="0" selected>Regular</option>
+          </select><br/>
+                   <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
           TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
         </div>
         <div class="col-sm-6">
@@ -202,14 +207,22 @@ function calculate()
 {
     var total = document.getElementById('puretotal').value;
     var cash = document.getElementById('ReceivedAmnt').value; 
+    var discount = Number(document.getElementById("discount").value) / 100;    
     
-    if(total < cash) {
-    document.getElementById('change').value = parseInt(cash)-parseInt(total);
+    if(discount = 0){
+    var change = cash - totalValue;  
+    }
+    else{
+    var totalValue = total - (total * discount);
+    var change = cash - totalValue;
+    }
+
+    if(cash > totalValue) {
+    document.getElementById("change").value = change.toFixed(2);
     }
     else {
       alert("Invalid");
     }
-     
       
 }
 
