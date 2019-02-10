@@ -115,22 +115,52 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
+                            <hr class="w-100px">
+                            <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
                             <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
-                                <hr class="w-100px">
-                                <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
-                                        <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer">
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                </div>
+                             
+                            <div class="form-row">
+
+
+                  <!-- <div class="col-md-6"> -->
+                    <div class="form-group col-md-4">
+                      <label style="font-size:15px; margin:-5px;">Name (Minimum of 2 characters):</label>
+                      <input type="text" class="form-control form-control-lg" required name="NameCustomer" required minlength="2" maxlength="30">
+                    </div>
+                  <!-- </div>
+
+
+                  <div class="col-md-6">
+                    <hr class="d-md-none"> -->
+
+                    <div class="form-group col-md-3">
+                      <label style="font-size:15px; margin:-5px;">Contact Number</label>
+                      <input type="number" class="form-control form-control-lg" required name="ContactNo" minlength="7" maxlength="11">
+                      <!-- <div class="invalid-feedback">Please provide a valid value.</div> -->
+                    </div>
+                  </div>
+
+
+                <!-- </div> -->
+
+
+
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+
+
+                                    <label>Name (2 to 30 characters):</label>   
+                                    <input class="form-control "type="text" name="NameCustomer" required minlength="2" maxlength="30" size="30">
+
+                                       
+                               
                                 <div class="form-group row">
                                     <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
-                                        <div class="col-8 col-lg-7">
+                                        <div class="col-8 col-lg-8">
                                                 <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
                                             <div class="invalid-feedback"></div>
                                         </div>
-                                </div>
+                                </div> -->
 
                                 <div class="hidden">
                                     <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
