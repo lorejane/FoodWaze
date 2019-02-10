@@ -6,8 +6,8 @@
   padding: 30px;
 }
 #calcform{
-  padding: 10px;
-  width: 70px;
+  padding: 100px;
+  width: 90px;
   height: 50px;
 }
 
@@ -38,7 +38,7 @@
         </div>
         <div class="col-sm-6">
           <div class="row">
-          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmt" onblur="calculate()" value='' ><br/>
+          RECEIVED AMOUNT<input type="text" class="input-value"   name="txt1" id="ReceivedAmt" onblur="calculate()" value='' ><br/>
           CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
           </div>
           <div class="row">
@@ -59,6 +59,7 @@
     </div>
 
       <div id="calc">
+      <button class="btn btn-danger" id="hidecalc">X</button>
       <form name="calcform">
       <div class="row">
       <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
@@ -80,9 +81,9 @@
       <button type="reset" name="reset" class="keypad btn btn-danger">C</button>
       <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button>
       </div>
-      <!-- <button type="button" name="eqlbtn" value="=" onclick="txt1.value=eval(txt1.value)" class="keypad btn btn-default">=</button>
-      Amount:<input id="idOfInput" type="text"  name="txt1" style="text-align:right; width:15%;">
-       --></form>
+      <!--  <button type="button" name="eqlbtn" value="=" onclick="txt1.value=eval(txt1.value)" class="keypad btn btn-default">=</button> 
+      Amount:<input id="ReceivedAmt" type="text"  name="txt1" style="text-align:right; width:15%;"> -->
+       </form>
       </div>
 </div>
 <script>	
@@ -273,11 +274,35 @@ function calculate()
 $("#ReceivedAmt").click(function(){
   $("#calc").toggle();
 });
+
+$("#hidecalc").click(function(){
+  $("#calc").toggle();
+});
 // function myFunction() {
 //   alert("You pressed a key inside the input field");
 // }
-
 </script> 
+
+
+<script>
+  function displaynum(n1){
+      calcform.txt1.value=calcform.txt1.value+n1;
+    }
+    $(document).ready(function(){
+    $('.b').click(function(){
+          $('#input').val(Number($('#input').val()) + Number($(this).val()));
+      });
+
+      $('#idOfButtonToClick').click(function(){
+            var inputString = $('#ReceivedAmt').val();
+            var shortenedString = inputString.substr(0,(inputString.length -1));
+            $('#ReceivedAmt').val(shortenedString);
+        });
+
+    });
+      
+</script>
+
 <script>
 function demoFromHTML() {
     var pdf = new jsPDF('p', 'pt', 'letter');
