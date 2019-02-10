@@ -1,8 +1,9 @@
 <style>
 #calc{
   display: none;
-  position: relative;
+  position: absolute;
   background-color: gray;
+  margin-top: 30px;
   padding: 30px;
 }
 #calcform{
