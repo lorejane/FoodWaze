@@ -27,22 +27,13 @@
 	}
 
 	public function SaveOrder(){
-		$this->db->query("INSERT into orders (StallId) VALUES ('".$this->session->userdata('StallId')."') ");
+		$this->db->query("INSERT into orders (StallId) VALUES ('".$this->session->userdata('StallId')."' ");
 	}
 
 	public function SaveOrders(){
-		 $OrderId = $this->db->query("SELECT MAX(OrderId) FROM orders");
-		 return $OrderId;
-		foreach($this->cart->contents() as $menu) {
-		$this->db->query("INSERT into orderdetails "
-		 		."(OrderId, MenuId, Quantity) VALUES ("                   
-		 			."'".$OrderId['OrderId']."',"
-		 			."'".$menu['id']."',"
-		 			."'".$menu['qty']."'"
-		 		.")"
-		 	);
-		}
+		$this->db->query("SELECT MAX(OrderId) FROM orders 
+		
+		");	
+	}
 
-
-}
 }

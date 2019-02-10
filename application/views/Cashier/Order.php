@@ -1,18 +1,3 @@
-<style>
-#calc{
-  display: none;
-  position: absolute;
-  background-color: gray;
-  margin-top: 30px;
-  padding: 30px;
-}
-#calcform{
-  padding: 100px;
-  width: 90px;
-  height: 50px;
-}
-
-</style>
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -21,6 +6,7 @@
     		<div class="cart"  >
 
                 <div id="mycart">
+                <div>jc</div>
                 </div>
         </div><!-- show cart -->
 
@@ -29,46 +15,21 @@
         <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
  -->      DISCOUNT 
-          <select id="discount">
-            <option value="0" selected>Regular</option>
-            <option value="20">Senior</option>
-            <option value="20">PWD</option>
+          <select>
+            <option id="discount" value="20">Senior</option>
+            <option id="discount" value="20">PWD</option>
+            <option id="discount" value="0" selected>Regular</option>
           </select><br/>
+                   <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
           TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
         </div>
         <div class="col-sm-6">
           <div class="row">
-
-      <form name="calcform">
-      <div id="calc">
-      <button class="btn btn-danger" id="hidecalc">X</button>
-      <div class="row">
-      <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
-      <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
-      <button type="button" name="btn7" value="7" onclick="displaynum(btn7.value)" class="keypad btn btn-default">7</button>
-      </div>
-      <div class="row">
-      <button type="button" name="btn6" value="6" onclick="displaynum(btn6.value)" class="keypad btn btn-default">6</button>
-      <button type="button" name="btn5" value="5" onclick="displaynum(btn5.value)" class="keypad btn btn-default">5</button>
-      <button type="button" name="btn3" value="3" onclick="displaynum(btn3.value)" class="keypad btn btn-default">3</button>
-      </div>
-      <div class="row">
-      <button type="button" name="btn4" value="4" onclick="displaynum(btn4.value)" class="keypad btn btn-default">4</button>
-      <button type="button" name="btn2" value="2" onclick="displaynum(btn2.value)" class="keypad btn btn-default">2</button>
-      <button type="button" name="btn1" value="1" onclick="displaynum(btn1.value)" class="keypad btn btn-default">1</button>
-      </div>
-      <div class="row">
-      <button type="button" name="btn0" value="0" onclick="displaynum(btn0.value)" class="keypad btn btn-default">0</button>
-      <button type="reset" name="reset" class="keypad btn btn-danger">C</button>
-      <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button>
-      </div>
-      </div>
-          RECEIVED AMOUNT<input type="text"  style="text-align:right;" class="input-value"   name="txt1" id="ReceivedAmt" onblur="calculate()" value='' ><br/>
-       </form>
+          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onblur="calculate()" value='' ><br/>
           CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
           </div>
           <div class="row">
-            <button type="button" class="btn btn-info" onclick="Save_Orders.SaveOrder()">Save</button>
+          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
           </div>
         </div>
@@ -83,29 +44,9 @@
           </div>          
         </div>
     </div>
-</div>
-<script>
-    var Save_Orders = {
+  </div>
+ <script>	
 
-  data: function () {
-            return {
-                Orderss:$('#mycart').val()                         
-            }
-        },
-
-  SaveOrder: function () {  
-  $.ajax({
-    url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
-    type: "POST",
-    data: {"order": Save_Orders.data()},
-    success: function(i){
-      console.log("hehe"+Save_Orders.data);
-    }
-  })    
-  }
-}
-</script> 
-<script>	
 function menu() {
 	$.ajax({
         url: "<?php echo base_url('foodwaze/getCategory/'.$this->session->userdata('StallId')); ?>",        
@@ -214,6 +155,9 @@ function save_to_db(id, new_quantity, newPrice) {
   });
 }
 
+
+
+
 function refresh(){
 	$.ajax({
 	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
@@ -262,68 +206,27 @@ function computeSubTotal(){
 function calculate()
 {
     var total = document.getElementById('puretotal').value;
-    var cash = document.getElementById('ReceivedAmt').value; 
-    var discnt = document.getElementById('discount').value;   
-    var change = cash - total;  
-    var discount = discnt / 100;
-    var totalValue = total - (total * discount);
-    var dischange = cash - totalValue;
+    var cash = document.getElementById('ReceivedAmnt').value; 
+    var discount = Number(document.getElementById("discount").value) / 100;    
     
-    if(discnt = 0 ){
-      if(cash > total) {
-        document.getElementById("change").value = change.toFixed(2);
-        //console.log(change);
-      }
-      else {
-        //alert("Invalid");
-      }
+    if(discount = 0){
+    var change = cash - totalValue;  
     }
-  else{
-      if(cash > totalValue) {
-        document.getElementById("change").value = dischange.toFixed(2);
-        //console.log(change);
-      }
-      else {
-        //alert("Invalid");
-      }
+    else{
+    var totalValue = total - (total * discount);
+    var change = cash - totalValue;
+    }
+
+    if(cash > totalValue) {
+    document.getElementById("change").value = change.toFixed(2);
+    }
+    else {
+      alert("Invalid");
     }
       
 }
 
-$("#ReceivedAmt").click(function(){
-  $("#calc").toggle();
-});
-
-$("#hidecalc").click(function(){
-  $("#calc").toggle();
-});
-// function myFunction() {
-//   alert("You pressed a key inside the input field");
-// }
-</script>
-
-
-
-
-<script>
-  function displaynum(n1){
-      calcform.txt1.value=calcform.txt1.value+n1;
-    }
-    $(document).ready(function(){
-    $('.b').click(function(){
-          $('#input').val(Number($('#input').val()) + Number($(this).val()));
-      });
-
-      $('#idOfButtonToClick').click(function(){
-            var inputString = $('#ReceivedAmt').val();
-            var shortenedString = inputString.substr(0,(inputString.length -1));
-            $('#ReceivedAmt').val(shortenedString);
-        });
-
-    });
-      
-</script>
-
+</script> 
 <script>
 function demoFromHTML() {
     var pdf = new jsPDF('p', 'pt', 'letter');
