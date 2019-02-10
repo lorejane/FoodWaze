@@ -1,7 +1,7 @@
 <style>
 #calc{
   display: none;
-  position: absolute;
+  position: relative;
   background-color: gray;
   padding: 30px;
 }
@@ -20,7 +20,6 @@
     		<div class="cart"  >
 
                 <div id="mycart">
-                <div>jc</div>
                 </div>
         </div><!-- show cart -->
 
@@ -38,29 +37,10 @@
         </div>
         <div class="col-sm-6">
           <div class="row">
-          RECEIVED AMOUNT<input type="text" class="input-value"   name="txt1" id="ReceivedAmt" onblur="calculate()" value='' ><br/>
-          CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
-          </div>
-          <div class="row">
-          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
-          <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
-          </div>
-        </div>
-        <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
-      </div>
-    </div>
-    <div class="col-sm-8">
-        <div class="card" style="height:90%;">
-          <div class="card-body" >
-              <div id="menu-container">
-              </div>              
-          </div>          
-        </div>
-    </div>
 
+      <form name="calcform">
       <div id="calc">
       <button class="btn btn-danger" id="hidecalc">X</button>
-      <form name="calcform">
       <div class="row">
       <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
       <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
@@ -81,10 +61,27 @@
       <button type="reset" name="reset" class="keypad btn btn-danger">C</button>
       <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button>
       </div>
-      <!--  <button type="button" name="eqlbtn" value="=" onclick="txt1.value=eval(txt1.value)" class="keypad btn btn-default">=</button> 
-      Amount:<input id="ReceivedAmt" type="text"  name="txt1" style="text-align:right; width:15%;"> -->
-       </form>
       </div>
+          RECEIVED AMOUNT<input type="text"  style="text-align:right;" class="input-value"   name="txt1" id="ReceivedAmt" onblur="calculate()" value='' ><br/>
+       </form>
+          CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
+          </div>
+          <div class="row">
+          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
+          <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
+          </div>
+        </div>
+        <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
+      </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card" style="height:90%;">
+          <div class="card-body" >
+              <div id="menu-container">
+              </div>              
+          </div>          
+        </div>
+    </div>
 </div>
 <script>	
 function menu() {
