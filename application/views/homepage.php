@@ -8,14 +8,14 @@
 </div>       
 
             <!-- Topbar -->
-            <header class="topbar">
+            <header class="topbar" style="background-color:#b53b30;">
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <h2 class="title"><strong>FoodWaze</strong></h2>
+            <h2 class="title"><strong style="color:white;">FoodWaze</strong></h2>
             </a>
            
             
-            <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+            <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" style="color:white;" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
                 <i class="material-icons fullscreen-default">fullscreen</i>
             </a>
 
@@ -24,14 +24,14 @@
 
         
 <!-- Main container -->
-<main class="main-container">
+<main class="main-container" style="background-color:#fed42a;">
     
     <div class="main-content">
         <div class="row">
             
             <div class="col-lg-12">
                 <div class="card card-shadowed">
-                    <div class="card-title"><strong>Ordering made EZ!</strong></div>
+                    <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
         
 
                     <div class="card-body">
@@ -40,17 +40,17 @@
                         <div data-provide="wizard" data-navigateable="true">
                         <ul class="nav nav-process nav-process-circle">
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#ffe2d8;">Step 1</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 1</span>
                                 <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#ffe2d8;">Step 2</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 2</span>
                                 <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#ffe2d8;">Step 3</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 3</span>
                                 <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
                             </li>
 
@@ -85,7 +85,7 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                            <button type="button" class="btn btn-lg btn-round btn-danger" data-toggle="modal" data-target="#myModal" onclick="show_cart()">View Cart</button>
+                            <button type="button" class="btn btn-lg btn-round btn-primary" data-toggle="modal" data-target="#myModal" onclick="show_cart()">View Cart</button>
                                 <div class="card">
                                     <div class="card-body">                                         
                                         <div class="row">
@@ -148,8 +148,8 @@
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">      
                     <div class="modal-content">
-                        <div class="modal-header" style="border-bottom: 3px solid #20B2AA;">
-                        <center><h3 style="font-weight: 700;">Your Cart</h3></center>
+                        <div class="modal-header"  style="background-color: #b53b30; border-bottom: 3px solid white;">
+                        <center><h3 style="color:white; font-weight: 700;">Your Cart</h3></center>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -171,7 +171,7 @@
                             </table>
                             <h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3> 
                         <div class="modal-footer">
-                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>
+                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
                         </div>
                         </div>
@@ -183,7 +183,15 @@
 </main>
 <!-- END Main container -->
 
-
+<script>
+$(document).ready(function(){
+  $("").click(function(){
+    $("onclick="cart('+data.MenuId+')"").onclick("slow", function(){
+      alert("1 item added to cart");
+    });
+  });
+});
+</script>
     
 <script>
   var name ='';
@@ -321,7 +329,8 @@
                                //TEST FULL
                                 $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
                                 '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
-                                '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
