@@ -20,6 +20,7 @@
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link rel="stylesheet" type="text/css" href="css/default.css" />
+
 		<link rel="stylesheet" type="text/css" href="css/component.css" />
 		<script src="js/modernizr.custom.js"></script>
    
@@ -33,10 +34,11 @@
     <link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/lorestyle.css' ); ?>" rel="stylesheet">
-
+    <link rel="stylesheet" href="css/jquery.keypad.css">
     
 
-
+    <script src="dist/js/jquery.plugin.min.js"></script>
+    <script src="dist/js/jquery.keypad.js"></script>
     <script src="<?php echo base_url('dist/jspdf.debug.js'); ?>"></script>
     <script src="<?php echo base_url('dist/jspdf.min.js'); ?>"></script>
     <script src = "<?php echo base_url('assets/vendor/jquery/jquery.min.js'); ?>"></script> 
