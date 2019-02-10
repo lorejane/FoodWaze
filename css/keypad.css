@@ -1,0 +1,44 @@
+.menu{
+        border: 2px solid rgba(0, 0, 0, .2);
+      }
+      .glyphicon {
+        font-size: 100px;
+      }
+      .order {
+        float: left;
+        width: 65px;
+        height: 60px;
+        margin: 5px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+      #color_box {
+        width: 30px;
+        height: 30px;
+        margin: 2px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+      .click {
+        float: left;
+        width: 135px;
+        height: 120px;
+        margin: 3px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+      .value {
+        float: left;
+        width: 25px;
+        height: 25px;
+        margin: 5px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+      .keypad {
+        width: 37px;
+        height: 37px;
+        margin: 5px;
+        border: 1px solid rgba(0, 0, 0, .2);
+      }
+
+      label{
+        margin:0;
+        padding:0;
+      }
