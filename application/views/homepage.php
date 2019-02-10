@@ -156,7 +156,7 @@
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
                             <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;">Name of Stall</h2>
-                            <!-- <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
+                            <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
                              <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -169,7 +169,7 @@
                                 <tbody id="cartdata">
                                 </tbody>
                             </table>
-                            <h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3> --> 
+                            <h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3> 
                         <div class="modal-footer">
                             <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>
                         </div>
