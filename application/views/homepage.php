@@ -35,28 +35,29 @@
         
 
                     <div class="card-body">
-                    <!-- <form data-provide="wizard" novalidate="true"> -->
+                    <!-- <div class="card-body" style="background-color:#b53b30;"> -->
+                 
                         <div data-provide="wizard" data-navigateable="true">
                         <ul class="nav nav-process nav-process-circle">
                             <li class="nav-item">
-                                <span class="nav-title">Step 1</span>
+                                <span class="nav-title" style="color:#ffe2d8;">Step 1</span>
                                 <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title">Step 2</span>
+                                <span class="nav-title" style="color:#ffe2d8;">Step 2</span>
                                 <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title">Step 3</span>
+                                <span class="nav-title" style="color:#ffe2d8;">Step 3</span>
                                 <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
                             </li>
 
                         </ul>
                         
 
-                            <div class="tab-content"> <!-- step 1 -->
+                            <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
@@ -67,11 +68,10 @@
                                                 <?php foreach($stall as $s): ?>
                                                 
                                                 <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
-                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
-                                                
+                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
+                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
+                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
                                                 </div>
-
 
                                                 <?php endforeach; ?>
                                             </div>
@@ -184,21 +184,6 @@
 <!-- END Main container -->
 
 
-
-<!-- classie.js by @desandro: https://github.com/desandro/classie -->
-        <script src="js/classie.js"></script>
-		<script src="js/modalEffects.js"></script>
-
-		<!-- for the blur effect -->
-		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-		<script>
-			// this is important for IEs
-			var polyfilter_scriptpath = '/js/';
-		</script>
-		<script src="js/cssParser.js"></script>
-		<script src="js/css-filters-polyfill.js"></script>
-
-
     
 <script>
   var name ='';
@@ -291,18 +276,7 @@
                                     }
                                     else
                                     {
-                                        html += '<p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>';
-                                '<table class="table table-hover">'+
-                                '<thead><tr>'+
-                                '<th>Qty</th>'+
-                                '<th>Product name</th>'+
-                                '<th>Price</th>'+
-                                '<th><center>Remove</center></th>'+
-                                '</tr></thead>'+
-                                '<tbody id="cartdata"></tbody>'+'</table>'
-                                '<h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3>';
-                                        
-<<<<<<< HEAD
+                                             
                                         
                                         html += '<tr>'+
                                                 '<td>'+data[i].Qty+'</td>'+
@@ -317,43 +291,6 @@
                                     }
                                 }
                                 document.getElementById("total").innerHTML = total;
-=======
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em> </em></div>'+
-                                        '<div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div>'+
-                                        '<div><p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p><br></div>'+
-                                        //'<div><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
-                                                '</div>'; 
-                                        for(i=0; i<data.length; i++){
-                                            if(data[i].Id=='no cart')
-                                            {
-                                                 html += '<div>'+
-                                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+                                                
-                                                '</div>';
-                                                 total+=0;
-                                                 document.getElementById("next").disabled = true;
-                                            }
-                                            else
-                                            {                                            
-                                                html += '<div>'+
-                                                '<div class="row"><div class="col-10">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
-                                                '</div><div class="col-2"><div class="btn-group">'+
-                                                '<i class="btn btn-danger btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
-                                                //'<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
-                                                '</div></div></div>';
-                                                        total+=data[i].Price*data[i].Qty;
-                                                  identifier=1;
-                                                  document.getElementById("next").disabled = false;
-                                                
-                                            }
-                                        }
-                                        html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        // '<div class="md-modal md-effect-16" id="modal-16">'+
-                                        // '<div class="md-content"><h3>Receipt</h3>'+
-                                        // '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
-                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Cart"></a>';
-                                        $('#mycart').html(html);
->>>>>>> 32d9296496f7045c4fac3c7538a8207e025dd8dc
                             },
                       error: function(response){
                             var html;
