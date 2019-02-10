@@ -33,16 +33,16 @@
 	public function SaveOrders(){
 		 $OrderId = $this->db->query("SELECT MAX(OrderId) FROM orders");
 		 return $OrderId;
-		//  $item = $this->cart->contents();
 		foreach($this->cart->contents() as $menu) {
 		$this->db->query("INSERT into orderdetails "
 		 		."(OrderId, MenuId, Quantity) VALUES ("                   
-		 			."'".$menu['MenuId']."',"
-		 			."'".$menu['Quantity']."',"
-		 			."'".$menu['OrderId']."'"
+		 			."'".$OrderId['OrderId']."',"
+		 			."'".$menu['id']."',"
+		 			."'".$menu['qty']."'"
 		 		.")"
 		 	);
 		}
+
 
 }
 }
