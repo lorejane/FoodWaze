@@ -67,7 +67,7 @@
           CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
           </div>
           <div class="row">
-          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
+            <button type="button" class="btn btn-info" onclick="Save_Orders.SaveOrder()">Save</button>
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
           </div>
         </div>
@@ -83,6 +83,27 @@
         </div>
     </div>
 </div>
+<script>
+    var Save_Orders = {
+
+  data: function () {
+            return {
+                Orderss:$('#mycart').val()                         
+            }
+        },
+
+  SaveOrder: function () {  
+  $.ajax({
+    url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
+    type: "POST",
+    data: {"order": Save_Orders.data()},
+    success: function(i){
+      console.log("hehe"+Save_Orders.data);
+    }
+  })    
+  }
+}
+</script> 
 <script>	
 function menu() {
 	$.ajax({
@@ -278,7 +299,9 @@ $("#hidecalc").click(function(){
 // function myFunction() {
 //   alert("You pressed a key inside the input field");
 // }
-</script> 
+</script>
+
+
 
 
 <script>
