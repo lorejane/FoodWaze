@@ -60,7 +60,7 @@
                             <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
-                                <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
+                                <p class="text-center fs-35 text-muted">Pick a <strong class="text-primary">Stall</strong>.</p>
                                 <div class="card">
                                     <div class="card-body"> 
                                         <div class="col-12">     
@@ -150,12 +150,12 @@
                     <div class="modal-content">
                         <div class="modal-header"  style="background-color: #b53b30; border-bottom: 3px solid white;">
                         <center><h3 style="color:white; font-weight: 700;">Your Cart</h3></center>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal"style="color:white;">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
-                            <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;">Name of Stall</h2>
+                            <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;"></h2>
                             <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
                              <table class="table table-hover">
                                 <thead>
@@ -169,7 +169,7 @@
                                 <tbody id="cartdata">
                                 </tbody>
                             </table>
-                            <h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3> 
+                            <h3 style="font-weight: 700;  text-align: right; border-bottom: 1px solid; border-top: 1px solid;"><strong>Total:  <strong style="color:#b53b30;">&#X20B1;<span id="total"></span></strong></strong></h3> 
                         <div class="modal-footer">
                             <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
@@ -183,15 +183,7 @@
 </main>
 <!-- END Main container -->
 
-<script>
-$(document).ready(function(){
-  $("").click(function(){
-    $("onclick="cart('+data.MenuId+')"").onclick("slow", function(){
-      alert("1 item added to cart");
-    });
-  });
-});
-</script>
+
     
 <script>
   var name ='';
