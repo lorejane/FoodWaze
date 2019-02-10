@@ -15,17 +15,17 @@
         <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
  -->      DISCOUNT 
-          <select>
-            <option id="discount" value="20">Senior</option>
-            <option id="discount" value="20">PWD</option>
-            <option id="discount" value="0" selected>Regular</option>
+          <select id="discount">
+            <option value="0" selected>Regular</option>
+            <option value="20">Senior</option>
+            <option value="20">PWD</option>
           </select><br/>
                    <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
           TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
         </div>
         <div class="col-sm-6">
           <div class="row">
-          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onkeypress="myFunction()" onblur="calculate()" value='' ><br/>
+          RECEIVED AMOUNT<input class="input-value" id="defaultKeypad" onblur="calculate()" value='' ><br/>
           CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
           </div>
           <div class="row">
@@ -203,22 +203,30 @@ function computeSubTotal(){
 function calculate()
 {
     var total = document.getElementById('puretotal').value;
-    var cash = document.getElementById('ReceivedAmnt').value; 
-    var discount = Number(document.getElementById("discount").value) / 100;    
-    
-    if(discount = 0){
-    var change = cash - totalValue;  
-    }
-    else{
+    var cash = document.getElementById('defaultKeypad').value; 
+    var discnt = document.getElementById('discount').value;   
+    var change = cash - total;  
+    var discount = discnt / 100;
     var totalValue = total - (total * discount);
-    var change = cash - totalValue;
+    var dischange = cash - totalValue;
+    
+    if(discnt = 0 ){
+      if(cash > total) {
+        document.getElementById("change").value = change.toFixed(2);
+        //console.log(change);
+      }
+      else {
+        alert("Invalid");
+      }
     }
-
-    if(cash > totalValue) {
-    document.getElementById("change").value = change.toFixed(2);
-    }
-    else {
-      alert("Invalid");
+  else{
+      if(cash > totalValue) {
+        document.getElementById("change").value = dischange.toFixed(2);
+        //console.log(change);
+      }
+      else {
+        alert("Invalid");
+      }
     }
       
 }
