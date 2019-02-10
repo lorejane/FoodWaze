@@ -70,7 +70,7 @@
 <?php     
   if($this->session->has_userdata('logged_in')){
     if($this->session->has_userdata('is_admin')){
-      include('menu_admin.php');
+      include('headersample.php');
     }else if($this->session->has_userdata('is_manager')){
       include('menu_manager.php');
     }else if($this->session->has_userdata('is_cashier')){

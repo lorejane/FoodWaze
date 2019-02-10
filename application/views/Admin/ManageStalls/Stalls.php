@@ -1,9 +1,11 @@
+<main style="background-color: #574b4b" class="main-container">
+      
 <header class="header">
-<div class="container">
+<div style="background-color: #fd2951"class="container">
 	<div class="header-info">
 	<div class="left">
 		<br>
-		<h2 class="header-title"><strong>StallS</strong></h2>
+		<h2 class="header-title fs-60 text-white"><strong>Stalls</strong></h2>
 	</div>
 	</div>
 
@@ -16,7 +18,7 @@
 
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Stall_Modal.new();"
+		<a class="btn btn-float btn-lg btn-lightest float-md-right text-danger" onclick="Stall_Modal.new();"
 				data-toggle="modal" data-target="#modal-Stall" data-provide="tooltip" data-original-title="Add Stall">
 				<i class="ti-plus"></i>
 		</a>
@@ -25,22 +27,24 @@
 </div>
 </header><!--/.header -->
 	<div class="card">
-		<div class="card-body">
-			<div class="table-responsive" style="padding-top:20px;">
-						<table class="table table-bordered display nowrap" id = "Stall-table" style="width:100%; overflow-x:auto;" 
+		<div  class="card-body text-white">
+			<div class="table-responsive bg-yellow " style="padding-top:20px; ">
+						<table class="table table-bordered display nowrap fs-20 text-white" id = "Stall-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableStall") ?>">
 							<thead>
-								<tr>
-									<th>Stall Number</th>
-									<th >Image</th>
-									<th>Name</th>
-									<th>Action</th>			
+								<tr class="bg-lightest">
+									<th class="text-dark">Stall Number</th>
+									<th class="text-dark">Image</th>
+									<th class="text-dark">Name</th>
+									<th class="text-dark">Action</th>			
 								</tr>
 							</thead>
 						</table>            			
 			</div>
 		</div>
 	</div>
+
+</main>
 
 <?php include("StallModal.php");?>
 
