@@ -62,13 +62,13 @@
                                 
                                 <p class="text-center fs-35 text-muted">Pick a <strong class="text-primary">Stall</strong>.</p>
                                 <div class="card">
-                                    <div class="card-body">
-                                        <center>
-                                        <div class="col-12">
-                                            <div class="row" id="filters"> 
+                                    <div class="card-body"> 
+                                        <div class="col-12">     
+                                            <div class="row" id="filters">   
                                                 <?php foreach($stall as $s): ?>
+                                                
                                                 <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
-                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
+                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
                                                 <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
                                                 <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
                                                 </div>
@@ -76,9 +76,8 @@
                                                 <?php endforeach; ?>
                                             </div>
                                         </div> <!--col-12-->
-                                        </center>
-                                    </div> <!--card-body-->
-                                </div> <!--card-->
+                                </div> <!--card-body-->
+                            </div> <!--card-->
                             </div> <!-- end step 1 -->
 
 
@@ -98,15 +97,6 @@
                                                 <div class="col-12">
                                                     
                                                     <div class="cart">
-                                                        <div id="mycart"></div>
-                                                    </div>                                                    
-
-                                                </div><!--col-md-6 col-sm-12-->
-                                                
-                                                
-                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="show_cart()">Cart Modal</button>
-                                                <!-- <i class="btn btn-danger btn-xs fa fa-close right" onclick="show_cart()"> -->
-
                                                         <div id="mycart"></div>                                                        
                                                     </div>                                                    
                                                     
@@ -126,31 +116,16 @@
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
                             <hr class="w-100px">
+                            <div class="card card-shadowed" style="padding: 30px;">
                             <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
-                            <form action=<?php echo base_url('FoodWaze/checkout');?> method="post">
-                                <hr class="w-100px">
-                               
-                                <div class="form-group row">
-                                    <label class="col-3 col-lg-2 text-center">Name</label>
-                                        <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer" required/>
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-3 col-lg-2 text-center">Contact No.</label>
-                                        <div class="col-8 col-lg-7">
-                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11" required/>
-                                            <div class="invalid-feedback"></div>
-                                        </div>
-                                </div>                             
-
+                            <!-- <div class="card card-shadowed"> -->
+                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
                              
-                            <div class="form-row">
+                            <div class="form-row col-10">
 
 
                   <!-- <div class="col-md-6"> -->
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-6">
                       <label style="font-size:15px; margin:-5px;">Name (Minimum of 2 characters):</label>
                       <input type="text" class="form-control form-control-lg" required name="NameCustomer" required minlength="2" maxlength="30">
                     </div>
@@ -160,7 +135,7 @@
                   <div class="col-md-6">
                     <hr class="d-md-none"> -->
 
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-4">
                       <label style="font-size:15px; margin:-5px;">Contact Number</label>
                       <input type="number" class="form-control form-control-lg" required name="ContactNo" minlength="7" maxlength="11">
                       <!-- <div class="invalid-feedback">Please provide a valid value.</div> -->
@@ -168,7 +143,7 @@
                   </div>
 
 
-                <!-- </div> -->
+                </div><!-- shadow card -->
 
 
 
@@ -228,7 +203,7 @@
                             </table>
                             <h3 style="font-weight: 700;  text-align: right; border-bottom: 1px solid; border-top: 1px solid;"><strong>Total:  <strong style="color:#b53b30;">&#X20B1;<span id="total"></span></strong></strong></h3> 
                         <div class="modal-footer">
-                            <a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
+                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
                         </div>
                         </div>
@@ -262,7 +237,6 @@
   function submitform(){
     document.getElementById("fsubmit").click(); 
   }
- 
   function cart(id)
             {                
               var mid;
@@ -316,7 +290,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>FoodWaze/showcart',
+                        url: '<?php echo base_url()?>foodwaze/showcart',
                         dataType: 'json',
                         success: function(data){
                                 console.log('---------CART DATA----------');
@@ -361,7 +335,7 @@
         <script>    
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("FoodWaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -398,7 +372,7 @@
                 name=$(this).attr('name');
                 console.log(name);                  
                 $.ajax({
-                    url: "<?php echo base_url("FoodWaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
                     success: function(kat){
                         document.getElementById("stallname").innerHTML = name;
                         kat = JSON.parse(kat);
