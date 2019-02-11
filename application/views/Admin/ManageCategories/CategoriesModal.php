@@ -83,21 +83,6 @@
             })      
         },  
 
-        edit: function (val) {            
-            $('.modal-title').text('Edit Category');  
-            $('#rowActive').removeClass('invisible');          
-            Categories_Modal.init();
-            $.ajax({
-                url: "<?php echo base_url('Admin/GetCategory/'); ?>" + val,
-                success: function(i){
-                    i = JSON.parse(i);
-                    console.log(i);
-                    $('#CategoryId').val(i.CategoryId);
-                    $('#CategoryName').val(i.CategoryName);
-                }
-            });           
-        },
-
         save: function () {
             var message;            
             if ($('#CategoryId').val() == 0) {

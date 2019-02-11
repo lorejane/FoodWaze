@@ -33,6 +33,12 @@
     <link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/lorestyle.css' ); ?>" rel="stylesheet">
+    
+<!-- modal -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
 
     <script src="<?php echo base_url('dist/jspdf.debug.js'); ?>"></script>
     <script src="<?php echo base_url('dist/jspdf.min.js'); ?>"></script>
@@ -70,7 +76,7 @@
 <?php     
   if($this->session->has_userdata('logged_in')){
     if($this->session->has_userdata('is_admin')){
-      include('menu_admin.php');
+      include('headersample.php');
     }else if($this->session->has_userdata('is_manager')){
       include('menu_manager.php');
     }else if($this->session->has_userdata('is_cashier')){
