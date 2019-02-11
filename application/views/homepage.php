@@ -60,19 +60,22 @@
                                 
                                 <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
                                 <div class="card">
-                                    <div class="card-body"> 
-                                        <div class="col-12">     
-                                            <div class="row" id="filters">   
+                                    <div class="card-body">
+                                        <center>
+                                        <div class="col-12">
+                                            <div class="row" id="filters"> 
                                                 <?php foreach($stall as $s): ?>
-                                                
+                                                <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
                                                 <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
-                                                
+                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
+                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
+                                                </div>
                                                 <?php endforeach; ?>
                                             </div>
                                         </div> <!--col-12-->
-                                </div> <!--card-body-->
-                            </div> <!--card-->
+                                        </center>
+                                    </div> <!--card-body-->
+                                </div> <!--card-->
                             </div> <!-- end step 1 -->
 
 
@@ -91,24 +94,14 @@
                                                     
                                                     <div class="cart">
                                                         <div id="mycart"></div>
-                                                    </div>
+                                                    </div>                                                    
 
-                                                        <!-- modal
-                                                        <div class="md-modal md-effect-16" id="modal-16">
-                                                            <div class="md-content">
-                                                                <h3>Receipt</h3>
-                                                                <div>
-                                                                    <p>Receipt</p>
-                                                                    
-                                                                    <button class="md-close">Close me!</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                                                                                 -->
-                                                        <!-- <button class="md-trigger" data-modal="modal-16">Cart</button> -->
+                                                </div><!--col-md-6 col-sm-12-->
+                                                
+                                                
+                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="show_cart()">Cart Modal</button>
+                                                <!-- <i class="btn btn-danger btn-xs fa fa-close right" onclick="show_cart()"> -->
 
-                                                </div><!--col-6-->
-                                       
                                         </div><!--row-->                                   
                                     </div><!--card body-->
                                     
@@ -122,20 +115,22 @@
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
                             <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
                                 <hr class="w-100px">
+                               
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
+                                    <label class="col-3 col-lg-2 text-center">Name</label>
                                         <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer">
+                                            <input type="text" class="form-control" name="NameCustomer" required/>
                                             <div class="invalid-feedback"></div>
                                         </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
+                                    <label class="col-3 col-lg-2 text-center">Contact No.</label>
                                         <div class="col-8 col-lg-7">
-                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
+                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11" required/>
                                             <div class="invalid-feedback"></div>
                                         </div>
-                                </div>
+                                </div>                             
+
 
                                 <div class="hidden">
                                     <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
@@ -158,21 +153,6 @@
 <!-- END Main container -->
 
 
-
-<!-- classie.js by @desandro: https://github.com/desandro/classie -->
-        <script src="js/classie.js"></script>
-		<script src="js/modalEffects.js"></script>
-
-		<!-- for the blur effect -->
-		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-		<script>
-			// this is important for IEs
-			var polyfilter_scriptpath = '/js/';
-		</script>
-		<script src="js/cssParser.js"></script>
-		<script src="js/css-filters-polyfill.js"></script>
-
-
     
 <script>
   var identifier;
@@ -193,6 +173,7 @@
   function submitform(){
     document.getElementById("fsubmit").click(); 
   }
+ 
   function cart(id)
             {                
               var mid;
@@ -305,10 +286,7 @@
                                         }
                                         html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
                                         '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        // '<div class="md-modal md-effect-16" id="modal-16">'+
-                                        // '<div class="md-content"><h3>Receipt</h3>'+
-                                        // '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
-                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Cart"></a>';
+                                        // '<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Cart Modal</button>';
                                         $('#mycart').html(html);
                             },
                       error: function(response){
