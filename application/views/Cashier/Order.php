@@ -97,9 +97,9 @@
   $.ajax({
     url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
     type: "POST",
-    data: {"order": Save_Orders.data()},
+   // data: {"order": Save_Orders.data()},
     success: function(i){
-      console.log("hehe"+Save_Orders.data);
+      console.log("hehe");
     }
   })    
   }
