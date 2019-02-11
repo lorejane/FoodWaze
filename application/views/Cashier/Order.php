@@ -47,6 +47,19 @@
   </div>
  <script>	
 
+  SaveOrder: function () {  
+  $.ajax({
+    url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
+    type: "POST",
+   // data: {"order": Save_Orders.data()},
+    success: function(i){
+      console.log("hehe");
+    }
+  })    
+  }
+}
+</script> 
+<script>	
 function menu() {
 	$.ajax({
         url: "<?php echo base_url('foodwaze/getCategory/'.$this->session->userdata('StallId')); ?>",        

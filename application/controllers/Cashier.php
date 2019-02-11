@@ -32,6 +32,10 @@ class Cashier extends _BaseController {
         $this->load->view('include/footer');
     }
 
+    public function SaveOrder(){        
+        $this->CashierModel->SaveOrder();
+        $this->CashierModel->SaveOrders($this->cart->contents());
+    }
 
 	public function AddToCart(){
 		$x = $this->input->post('Order');

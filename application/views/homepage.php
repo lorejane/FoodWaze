@@ -8,14 +8,14 @@
 </div>       
 
             <!-- Topbar -->
-            <header class="topbar">
+            <header class="topbar" style="background-color:#b53b30;">
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <h2 class="title"><strong>FoodWaze</strong></h2>
+            <h2 class="title"><strong style="color:white;">FoodWaze</strong></h2>
             </a>
            
             
-            <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
+            <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" style="color:white;" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
                 <i class="material-icons fullscreen-default">fullscreen</i>
             </a>
 
@@ -24,60 +24,61 @@
 
         
 <!-- Main container -->
-<main class="main-container">
+<main class="main-container" style="background-color:#fed42a;">
     
     <div class="main-content">
         <div class="row">
             
             <div class="col-lg-12">
                 <div class="card card-shadowed">
-                    <div class="card-title"><strong>Ordering made EZ!</strong></div>
+                    <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
         
 
                     <div class="card-body">
-                    <!-- <form data-provide="wizard" novalidate="true"> -->
+                    <!-- <div class="card-body" style="background-color:#b53b30;"> -->
+                 
                         <div data-provide="wizard" data-navigateable="true">
                         <ul class="nav nav-process nav-process-circle">
                             <li class="nav-item">
-                                <span class="nav-title">Step 1</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 1</span>
                                 <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title">Step 2</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 2</span>
                                 <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title">Step 3</span>
+                                <span class="nav-title" style="color:#b53b30;">Step 3</span>
                                 <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
                             </li>
 
                         </ul>
                         
 
-                            <div class="tab-content"> <!-- step 1 -->
+                            <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
-                                <p class="text-center fs-35 text-muted">Pick a  <strong class="text-primary">stall</strong>.</p>
+                                <p class="text-center fs-35 text-muted">Pick a <strong class="text-primary">Stall</strong>.</p>
                                 <div class="card">
-                                    <div class="card-body"> 
-                                        <div class="col-12">     
-                                            <div class="row" id="filters">   
+                                    <div class="card-body">
+                                        <center>
+                                        <div class="col-12">
+                                            <div class="row" id="filters"> 
                                                 <?php foreach($stall as $s): ?>
-                                                
                                                 <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
                                                 <input type="checkbox" id="<?php echo $s->StallId; ?>" name="stall" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 10px; "><h4 title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4> </label>
-                                                
+                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
+                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
                                                 </div>
-
 
                                                 <?php endforeach; ?>
                                             </div>
                                         </div> <!--col-12-->
-                                </div> <!--card-body-->
-                            </div> <!--card-->
+                                        </center>
+                                    </div> <!--card-body-->
+                                </div> <!--card-->
                             </div> <!-- end step 1 -->
 
 
@@ -85,7 +86,7 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                            <button type="button" class="btn btn-lg btn-round btn-danger" data-toggle="modal" data-target="#myModal" onclick="show_cart()">View Cart</button>
+                            <button type="button" class="btn btn-lg btn-round btn-primary" data-toggle="modal" data-target="#myModal" onclick="show_cart()">View Cart</button>
                                 <div class="card">
                                     <div class="card-body">                                         
                                         <div class="row">
@@ -97,6 +98,15 @@
                                                 <div class="col-12">
                                                     
                                                     <div class="cart">
+                                                        <div id="mycart"></div>
+                                                    </div>                                                    
+
+                                                </div><!--col-md-6 col-sm-12-->
+                                                
+                                                
+                                                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" onclick="show_cart()">Cart Modal</button>
+                                                <!-- <i class="btn btn-danger btn-xs fa fa-close right" onclick="show_cart()"> -->
+
                                                         <div id="mycart"></div>                                                        
                                                     </div>                                                    
                                                     
@@ -115,22 +125,69 @@
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
                             <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
-                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                            <hr class="w-100px">
+                            <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
+                            <form action=<?php echo base_url('FoodWaze/checkout');?> method="post">
                                 <hr class="w-100px">
+                               
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Name</label>
+                                    <label class="col-3 col-lg-2 text-center">Name</label>
                                         <div class="col-8 col-lg-7">
-                                            <input type="text" class="form-control" name="NameCustomer">
+                                            <input type="text" class="form-control" name="NameCustomer" required/>
                                             <div class="invalid-feedback"></div>
                                         </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
+                                    <label class="col-3 col-lg-2 text-center">Contact No.</label>
                                         <div class="col-8 col-lg-7">
+                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11" required/>
+                                            <div class="invalid-feedback"></div>
+                                        </div>
+                                </div>                             
+
+                             
+                            <div class="form-row">
+
+
+                  <!-- <div class="col-md-6"> -->
+                    <div class="form-group col-md-4">
+                      <label style="font-size:15px; margin:-5px;">Name (Minimum of 2 characters):</label>
+                      <input type="text" class="form-control form-control-lg" required name="NameCustomer" required minlength="2" maxlength="30">
+                    </div>
+                  <!-- </div>
+
+
+                  <div class="col-md-6">
+                    <hr class="d-md-none"> -->
+
+                    <div class="form-group col-md-3">
+                      <label style="font-size:15px; margin:-5px;">Contact Number</label>
+                      <input type="number" class="form-control form-control-lg" required name="ContactNo" minlength="7" maxlength="11">
+                      <!-- <div class="invalid-feedback">Please provide a valid value.</div> -->
+                    </div>
+                  </div>
+
+
+                <!-- </div> -->
+
+
+
+                            <!-- <div class="col-md-6">
+                                <div class="form-group">
+
+
+                                    <label>Name (2 to 30 characters):</label>   
+                                    <input class="form-control "type="text" name="NameCustomer" required minlength="2" maxlength="30" size="30">
+
+                                       
+                               
+                                <div class="form-group row">
+                                    <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
+                                        <div class="col-8 col-lg-8">
                                                 <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
                                             <div class="invalid-feedback"></div>
                                         </div>
-                                </div>
+                                </div> -->
 
                                 <div class="hidden">
                                     <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
@@ -148,15 +205,15 @@
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">      
                     <div class="modal-content">
-                        <div class="modal-header" style="border-bottom: 3px solid #20B2AA;">
-                        <center><h3 style="font-weight: 700;">Your Cart</h3></center>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <div class="modal-header"  style="background-color: #b53b30; border-bottom: 3px solid white;">
+                        <center><h3 style="color:white; font-weight: 700;">Your Cart</h3></center>
+                        <button type="button" class="close" data-dismiss="modal"style="color:white;">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
-                            <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;">Name of Stall</h2>
-                            <!-- <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
+                            <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;"></h2>
+                            <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
                              <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -169,9 +226,9 @@
                                 <tbody id="cartdata">
                                 </tbody>
                             </table>
-                            <h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3> --> 
+                            <h3 style="font-weight: 700;  text-align: right; border-bottom: 1px solid; border-top: 1px solid;"><strong>Total:  <strong style="color:#b53b30;">&#X20B1;<span id="total"></span></strong></strong></h3> 
                         <div class="modal-footer">
-                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>
+                            <a href="<?php echo base_url("FoodWaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
                         </div>
                         </div>
@@ -182,21 +239,6 @@
     </div><!-- end content -->
 </main>
 <!-- END Main container -->
-
-
-
-<!-- classie.js by @desandro: https://github.com/desandro/classie -->
-        <script src="js/classie.js"></script>
-		<script src="js/modalEffects.js"></script>
-
-		<!-- for the blur effect -->
-		<!-- by @derSchepp https://github.com/Schepp/CSS-Filters-Polyfill -->
-		<script>
-			// this is important for IEs
-			var polyfilter_scriptpath = '/js/';
-		</script>
-		<script src="js/cssParser.js"></script>
-		<script src="js/css-filters-polyfill.js"></script>
 
 
     
@@ -220,6 +262,7 @@
   function submitform(){
     document.getElementById("fsubmit").click(); 
   }
+ 
   function cart(id)
             {                
               var mid;
@@ -273,7 +316,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>foodwaze/showcart',
+                        url: '<?php echo base_url()?>FoodWaze/showcart',
                         dataType: 'json',
                         success: function(data){
                                 console.log('---------CART DATA----------');
@@ -291,18 +334,7 @@
                                     }
                                     else
                                     {
-                                        html += '<p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>';
-                                '<table class="table table-hover">'+
-                                '<thead><tr>'+
-                                '<th>Qty</th>'+
-                                '<th>Product name</th>'+
-                                '<th>Price</th>'+
-                                '<th><center>Remove</center></th>'+
-                                '</tr></thead>'+
-                                '<tbody id="cartdata"></tbody>'+'</table>'
-                                '<h3 style="color: #000; font-weight: 700; letter-spacing: 2px; text-align: right;"><strong>Total: &#X20B1;<span id="total"></span></strong></h3>';
-                                        
-<<<<<<< HEAD
+                                             
                                         
                                         html += '<tr>'+
                                                 '<td>'+data[i].Qty+'</td>'+
@@ -317,43 +349,6 @@
                                     }
                                 }
                                 document.getElementById("total").innerHTML = total;
-=======
-                                        html += '<div class="col-xs-6 col-sm-6 col-md-6"><em> </em></div>'+
-                                        '<div class="col-xs-6 col-sm-6 col-md-6 text-right"><p><em><?php echo date("Y/m/d") ?></em></p></div>'+
-                                        '<div><p class="text-center fs-30 text-muted">Your <strong class="text-primary">Order</strong></p><br></div>'+
-                                        //'<div><table class="table table-hover"><thead><tr><th>Qty</th><th>Product</th><th>Price</th><th>Total</th></thead></tr></th>'+
-                                                '</div>'; 
-                                        for(i=0; i<data.length; i++){
-                                            if(data[i].Id=='no cart')
-                                            {
-                                                 html += '<div>'+
-                                                '<p style="border-bottom:1px solid #ccc;"> No Items in your Cart </p>'+                                                
-                                                '</div>';
-                                                 total+=0;
-                                                 document.getElementById("next").disabled = true;
-                                            }
-                                            else
-                                            {                                            
-                                                html += '<div>'+
-                                                '<div class="row"><div class="col-10">'+data[i].Qty+' '+data[i].Name+' '+data[i].Price+' '+data[i].Price*data[i].Qty+
-                                                '</div><div class="col-2"><div class="btn-group">'+
-                                                '<i class="btn btn-danger btn-xs fa fa-close right" onclick="minus1('+data[i].Id+')" id="'+data[i].Id+'"></i>'+
-                                                //'<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletecart('+data[i].Id+')"id="'+data[i].Id+'"></i>'+
-                                                '</div></div></div>';
-                                                        total+=data[i].Price*data[i].Qty;
-                                                  identifier=1;
-                                                  document.getElementById("next").disabled = false;
-                                                
-                                            }
-                                        }
-                                        html += '<strong class="text-primary fs-15">TOTAL:</strong>'+total+
-                                        '<br><a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-danger" value="Clear Cart"></a>'+
-                                        // '<div class="md-modal md-effect-16" id="modal-16">'+
-                                        // '<div class="md-content"><h3>Receipt</h3>'+
-                                        // '<div><p>Receipt</p><button class="md-close">Close me!</button></div></div></div>'+
-                                        '<a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Cart"></a>';
-                                        $('#mycart').html(html);
->>>>>>> 32d9296496f7045c4fac3c7538a8207e025dd8dc
                             },
                       error: function(response){
                             var html;
@@ -366,7 +361,7 @@
         <script>    
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("FoodWaze/getMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -384,7 +379,8 @@
                                //TEST FULL
                                 $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
                                 '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
-                                '<i class="fa fa-plus btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
                         }
@@ -402,7 +398,7 @@
                 name=$(this).attr('name');
                 console.log(name);                  
                 $.ajax({
-                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("FoodWaze/getCategory/") ?>" + id, 
                     success: function(kat){
                         document.getElementById("stallname").innerHTML = name;
                         kat = JSON.parse(kat);
