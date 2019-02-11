@@ -72,12 +72,6 @@
                                                 <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
                                                 <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
                                                 </div>
-                                                
-                                                <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
-                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
-                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
-                                                </div>
 
                                                 <?php endforeach; ?>
                                             </div>
