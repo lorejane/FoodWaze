@@ -1,36 +1,62 @@
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
-    	<div class="row" style="height:60%;" >
-    		<H3>RECEIPT</H3><br/>
-    		<div class="cart"  >
-
-                <div id="mycart">
-                <div>jc</div>
-                </div>
-        </div><!-- show cart -->
-
+    	<div class="row">
+    		<div class="col-sm-12"  style="height:12%;" >
+          <center>
+            <H3>FOODWAZE</H3>
+            <h5>Manila City</h5>
+            <em><?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?></em>&nbsp;|
+            <em>Today is&nbsp;<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?></em>
+          </center>
+        </div>
       </div>
-      <div class="row" id="customers">
+      <div class="row" style="padding-top:8px; height:5%;" >
+        <!-- <div class="col-sm-12"> -->
+        <table class="col-sm-12">
+         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:aquamarine;"> <tr>  <th width="10%">Qty</th>  <th width="30%">Name</th> <th width="20%">Price</th> <th width="20%">Total</th> <th></th> <th width="20%">Action</th> </tr> </thead> 
+       </table>
+<!--      
+</div> -->
+      </div>
+      <div clas="row " style="height:50%; overflow-y:auto; " >
+                <div id="mycart">
+                <!-- <div>jc</div> -->
+                </div>
+      </div>
+      <!-- <br/> -->
+      <div class="row" id="customers" style=" border: 3px dotted rgba(0, 0, 0, .2);">
         <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
  -->      DISCOUNT 
-          <select>
-            <option id="discount" value="20">Senior</option>
-            <option id="discount" value="20">PWD</option>
-            <option id="discount" value="0" selected>Regular</option>
+          <select id="discount">
+            <option value="20">Senior</option>
+            <option value="20">PWD</option>
+            <option value="0" selected>Regular</option>
           </select><br/>
-                   <!-- <select id="DiscountId" name="DiscountId" data-provide="selectpicker" title="Discount" data-live-search="true" class="form-control show-tick"></select> -->
-          TOTAL PRICE<p><input class="input-value" id="puretotal" name="puretotal" readonly></p>
+          TOTAL PRICE<input class="input-value" id="puretotal" name="puretotal" readonly>
+          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">RECEIPT</a>  <br/>
+          <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a>
         </div>
         <div class="col-sm-6">
           <div class="row">
-          RECEIVED AMOUNT<input class="input-value" id="ReceivedAmnt" onblur="calculate()" value='' ><br/>
-          CHANGE<input class="input-value" id="change" value='' readonly/> <br/>
-          </div>
-          <div class="row">
-          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">PAYMENT</a> 
-          <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a> <br/>
+                <form name="calcform">
+      <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
+      <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
+      <button type="button" name="btn7" value="7" onclick="displaynum(btn7.value)" class="keypad btn btn-default">7</button>
+      <button type="button" name="btn6" value="6" onclick="displaynum(btn6.value)" class="keypad btn btn-default">6</button>
+      <button type="button" name="btn5" value="5" onclick="displaynum(btn5.value)" class="keypad btn btn-default">5</button>
+      <button type="button" name="btn3" value="3" onclick="displaynum(btn3.value)" class="keypad btn btn-default">3</button>
+      <button type="button" name="btn4" value="4" onclick="displaynum(btn4.value)" class="keypad btn btn-default">4</button>
+      <button type="button" name="btn2" value="2" onclick="displaynum(btn2.value)" class="keypad btn btn-default">2</button>
+      <button type="button" name="btn0" value="0" onclick="displaynum(btn0.value)" class="keypad btn btn-default">0</button>
+      <button type="button" name="btn1" value="1" onclick="displaynum(btn1.value)" class="keypad btn btn-default">1</button>
+      <button type="reset" name="reset" class="keypad btn btn-danger">C</button>
+      <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button><br/>
+      <!-- Amount:<input id="idOfInput" type="text"  name="txt1" style="text-align:right; width:15%;"> -->
+          CASH<input type="text"  name="txt1" style="text-align:right; width:15%;" class="input-value" id="ReceivedAmnt" value='' >
+      </form>
+          CHANGE<input class="input-value" onblur="calculate()" id="change" value='' readonly/> <br/>
           </div>
         </div>
         <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
@@ -47,7 +73,7 @@
   </div>
  <script>	
 
-  SaveOrder: function () {  
+  SaveOrder: function() {  
   $.ajax({
     url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
     type: "POST",
@@ -57,8 +83,25 @@
     }
   })    
   }
-}
 </script> 
+<script>
+  function displaynum(n1){
+      calcform.txt1.value=calcform.txt1.value+n1;
+    }
+    $(document).ready(function(){
+    $('.b').click(function(){
+          $('#input').val(Number($('#input').val()) + Number($(this).val()));
+      });
+
+      $('#idOfButtonToClick').click(function(){
+            var inputString = $('#ReceivedAmnt').val();
+            var shortenedString = inputString.substr(0,(inputString.length -1));
+            $('#ReceivedAmnt').val(shortenedString);
+        });
+
+    });
+      
+</script>
 <script>	
 function menu() {
 	$.ajax({
@@ -103,7 +146,7 @@ function menu() {
 			        $.each(menu, function(index, data){
 			            //console.log(data);
 			            //data.Price
-			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:50%;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:20%;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
 			        });
 	        	    $('.ordermenu').click(function(){
            				$.ajax({
@@ -179,7 +222,7 @@ function refresh(){
 			console.log(i);
 			var element = '';
 			total = 0;
-      element +='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th>Action</th> <th></th> </tr> </thead> <tbody>';
+      element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
                     element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td>  <td><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
@@ -220,21 +263,22 @@ function calculate()
 {
     var total = document.getElementById('puretotal').value;
     var cash = document.getElementById('ReceivedAmnt').value; 
-    var discount = Number(document.getElementById("discount").value) / 100;    
-    
+    var discount = document.getElementById('discount').value;
+    var disc = discount / 100;    
+    var totalValue = total - (total * disc);
+    var change = total - cash ;
+    var dischange = cash - totalValue ;
+
     if(discount = 0){
-    var change = cash - totalValue;  
+      if(cash > totalValue) {  
+      document.getElementById("change").value = change.toFixed(2);
+      }
+      else{
+        alert("Invalid input");
+      }
     }
     else{
-    var totalValue = total - (total * discount);
-    var change = cash - totalValue;
-    }
-
-    if(cash > totalValue) {
-    document.getElementById("change").value = change.toFixed(2);
-    }
-    else {
-      alert("Invalid");
+    document.getElementById("change").value = dischange.toFixed(2);
     }
       
 }
