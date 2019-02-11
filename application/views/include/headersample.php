@@ -10,7 +10,7 @@
 
 
     <!-- Sidebar style="background-color: #881A18;"  -->
-    <aside style="background-color: #0f0a0a;" class="sidebar sidebar-icons-right sidebar-icons-boxed text-lightest sidebar-color-yellow">
+    <aside style="background-color: #1b1919 ;" class="sidebar sidebar-icons-right sidebar-icons-boxed text-lightest sidebar-color-yellow">
       <header class="sidebar-header bg-lightest b-3 border-dark">
         <span class="logo">
           <a><img src="../pics/logo.png" alt="logo"></a>
@@ -25,7 +25,7 @@
           <div class="dropdown">
             <span class="dropdown-toggle no-caret" data-toggle="dropdown"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></span>
             <div class="dropdown-menu open-top-center">
-              <a class="dropdown-item" href="#"><i class="ti-user"></i> Profile</a>
+              <a class="dropdown-item" href="<?php echo base_url('Admin/Stalls'); ?>"><i class="ti-user"></i> Profile</a>
               <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
               <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
               <div class="dropdown-divider"></div>
