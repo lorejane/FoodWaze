@@ -28,6 +28,13 @@ class Manager extends _BaseController {
         $this->load->view('include/footer');
     }
 
+     public function Profiles(){
+
+        $this->load->view('include/header');
+        $this->load->view('Manager/Profile');
+        $this->load->view('include/footer');
+    }
+
     public function Accounts()
     {
         $this->load->view('include/header');

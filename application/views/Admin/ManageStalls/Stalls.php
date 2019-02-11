@@ -1,7 +1,7 @@
-<main style="background-color: #574b4b" class="main-container">
+<main class="main-container">
       
 <header class="header">
-<div style="background-color: #fd2951"class="container">
+<div style="background-color: #fd2951" class="container">
 	<div class="header-info">
 	<div class="left">
 		<br>
@@ -27,16 +27,16 @@
 </div>
 </header><!--/.header -->
 	<div class="card">
-		<div  class="card-body text-white">
-			<div class="table-responsive bg-yellow " style="padding-top:20px; ">
-						<table class="table table-bordered display nowrap fs-20 text-white" id = "Stall-table" style="width:100%; overflow-x:auto;" 
+		<div class="card-body text-white">
+			<div class="table-responsive bg-lightest " style="padding-top:20px; ">
+						<table class="table table-bordered display nowrap fs-20 text-dark" id = "Stall-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableStall") ?>">
 							<thead>
-								<tr class="bg-lightest">
-									<th class="text-dark">Stall Number</th>
-									<th class="text-dark">Image</th>
-									<th class="text-dark">Name</th>
-									<th class="text-dark">Action</th>			
+								<tr style="background-color: #0f0a0a;">
+									<th class="text-yellow">Stall Number</th>
+									<th class="text-yellow">Image</th>
+									<th class="text-yellow">Name</th>
+									<th class="text-yellow">Action</th>			
 								</tr>
 							</thead>
 						</table>            			
