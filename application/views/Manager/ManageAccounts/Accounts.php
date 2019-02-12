@@ -25,6 +25,7 @@
 							<thead>
 								<tr>
 									<th>Employee ID</th>
+									<th>Images</th>
 									<th>Account</th>
 									<th>Name</th>			
 									<th>Position</th>
