@@ -53,6 +53,20 @@
 </div>
 
 <script>
+    var imageChanged = false;
+
+    $(document).ready(function(){
+        $("#image").change(function(event){                     
+            var tgt = event.target || window.event.srcElement, files = tgt.files;       
+            var fr = new FileReader();
+            fr.onload = function(){
+                $("#imgDisplay").children('img').attr('src', fr.result);
+                imageChanged = true;
+            }
+            fr.readAsDataURL(files[0]);
+        });
+    });
+    
     var Employee_Modal = {
         
         data: function () {
