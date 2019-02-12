@@ -169,7 +169,7 @@
         upload: function(){         
             var formData = new FormData($('#modal-Employee-form')[0]);            
             $.ajax({
-                url: "<?php echo base_url("Admin/UploadImage"); ?>",
+                url: "<?php echo base_url("Manager/UploadImage"); ?>",
                 type: "POST",
                 data: formData,
                 processData: false,
