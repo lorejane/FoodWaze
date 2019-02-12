@@ -56,6 +56,10 @@ class Manager extends _BaseController {
     public function SaveMenu(){        
         $this->MenuModel->save($this->input->post('menu'));
     }     
+    
+    public function GetAll(){
+        echo $this->convert($this->CategoriesModel->_list());
+    }
 
     public function GetEmployee($id){        
         echo $this->convert($this->ManagerModel->_get($id));
