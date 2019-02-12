@@ -76,7 +76,7 @@
 <?php     
   if($this->session->has_userdata('logged_in')){
     if($this->session->has_userdata('is_admin')){
-      include('headersample.php');
+      include('menu_admin.php');
     }else if($this->session->has_userdata('is_manager')){
       include('menu_manager.php');
     }else if($this->session->has_userdata('is_cashier')){

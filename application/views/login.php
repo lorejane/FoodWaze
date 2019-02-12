@@ -6,8 +6,16 @@
 			<link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
 			<link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
 	</head>
-<body>
+    
+<div class="preloader">
+      <div class="spinner-dots">
+        <span class="dot1"></span>
+        <span class="dot2"></span>
+        <span class="dot3"></span>
+      </div>
+    </div><body>
 	
+
 <main class="main-container"><div class="min-h-fullscreen bg-img center-vh" style="background-image: url(../images_foodwaze/bg_fw.jpg);" data-overlay="5">
 
 <center>

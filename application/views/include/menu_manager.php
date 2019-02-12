@@ -10,7 +10,7 @@
 
 
     <!-- Sidebar style="background-color: #881A18;"  -->
-    <aside style="background-color: #0f0a0a;" class="sidebar sidebar-icons-right sidebar-icons-boxed text-lightest sidebar-color-yellow">
+    <aside style="background-color: #0f0a0a;" class="sidebar sidebar-icons-right sidebar-expand-lg sidebar-icons-boxed text-lightest sidebar-color-yellow">
       <header class="sidebar-header bg-lightest b-3 border-dark">
         <span class="logo">
           <a><img src="../pics/logo.png" alt="logo"></a>
@@ -89,49 +89,6 @@
           <div class="topbar-left">
             <button class="topbar-btn sidebar-toggler">&#9776;</button>
             <h3 class="topbar-title text-white">FOODWAZE</h3>
-
-            <div class="topbar-divider d-none d-md-block"></div>
-
-            <div class="dropdown d-none d-md-block">
-              <div class="dropdown-menu dropdown-grid">
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="compact_camera"></span>
-                  <span class="title">Camera</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="stack_of_photos"></span>
-                  <span class="title">Gallery</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="folder"></span>
-                  <span class="title">Files</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="start"></span>
-                  <span class="title">Video</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="music"></span>
-                  <span class="title">Music</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="news"></span>
-                  <span class="title">News</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="contacts"></span>
-                  <span class="title">Contacts</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="download"></span>
-                  <span class="title">Download</span>
-                </a>
-                <a class="dropdown-item" href="#">
-                  <span data-i8-icon="settings"></span>
-                  <span class="title">Settings</span>
-                </a>
-              </div>
-            </div>
           </div>
 
           <div class="topbar-right">

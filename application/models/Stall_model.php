@@ -20,7 +20,7 @@
 			if($stall['StallId'] == 0){//insert			
 				$this->db->query("INSERT into stall "
 					."(Name) VALUES ("                   
-						."'".$stall['Name']."'"				
+					."'".$stall['Name']."'"				
 					.")"
 				);
 			}

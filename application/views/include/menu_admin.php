@@ -1,47 +1,56 @@
-<aside class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg">
-    <!--
-    <header class="sidebar-header">
-        <a class="logo-icon" href="../index.html"><img <?php echo base_url('../assets/img/logo-icon-light.png'); ?> alt="logo icon"></a>
+    
+    
+<div class="preloader">
+      <div class="spinner-dots">
+        <span class="dot1"></span>
+        <span class="dot2"></span>
+        <span class="dot3"></span>
+      </div>
+    </div>
+
+<aside style="background-color: #1b1919 ;" class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg text-lightest sidebar-color-yellow sidebar">     
+      <header class="sidebar-header bg-lightest b-3 border-dark">
         <span class="logo">
-            <a href="../index.html"><img <?php echo base_url('../assets/img/logo-light.png'); ?> alt="logo"></a>
+          <a><img src="../pics/logo.png" alt="logo"></a>
         </span>
+        <a><img src="../pics/foodwazelogoo.png" alt="logo icon"></a>
         <span class="sidebar-toggle-fold"></span>
-    </header>
-    -->
+      </header>
     
     <nav class="sidebar-navigation">
-        <ul class="menu">
+         <div class="sidebar-profile">
+            <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></a>
+          <div class="profile-info">
+            <h4>Maryam Amiri</h4>
+            <p>Web developer</p>
+          </div>
+        </div>
 
-
-            <li class="menu-item active">
-                <a class="menu-link">
-                    <span class="title">Food Waze</span>
-                </a>
-            </li>   
-    
+        <ul class="menu menu-lg menu-bordery">
+      
             <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Admin/Categories'); ?>">
+                <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Categories'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Categories</span>
                 </a>
             </li>   
 
             <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Admin/Stalls'); ?>">
+                <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Stalls'); ?>">
                     <span class="icon fa fa-home"></span>
                     <span class="title">Stalls</span>
                 </a>
             </li>   
 
             <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Admin/Accounts'); ?>">
+                <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Accounts'); ?>">
                     <span class="icon fa fa-user"></span>
                     <span class="title">Accounts</span>
                 </a>
             </li>            
 
             <li class="menu-item">
-                <a class="menu-link" href="<?php echo base_url('Home/Logout'); ?>">
+                <a class="menu-link hover-yellow" href="<?php echo base_url('Home/Logout'); ?>">
                     <span class="icon fa fa-sign-out"></span>
                     <span class="title">Logout</span>
                 </a>

@@ -30,6 +30,14 @@ class Admin extends _BaseController {
 
 	}
 
+    public function Profile()
+    {   
+        $this->load->view('include/header');
+        $this->load->view('admin/profile');
+        $this->load->view('include/footer');
+
+    }
+
     public function Accounts()
     {
         $this->load->view('include/header');        
