@@ -46,6 +46,7 @@ class Home extends CI_Controller {
 
 	public function Logout(){
 		$this->session->sess_destroy();
+		//$this->session->set_userdata(array('EmployeeAccount' => '', 'is_logged_in' => ''));
 		redirect(base_url('Home/Login'));		
 	}
 
