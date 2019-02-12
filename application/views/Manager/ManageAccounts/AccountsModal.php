@@ -11,7 +11,11 @@
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-Employee-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="EmployeeId" name="EmployeeId" />          
-                        
+                         <div class="row mb-2">
+                            <div class="col-12">
+                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
+                            </div>
+                        </div>    
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Account</label>
@@ -49,6 +53,20 @@
 </div>
 
 <script>
+    var imageChanged = false;
+
+    $(document).ready(function(){
+        $("#image").change(function(event){                     
+            var tgt = event.target || window.event.srcElement, files = tgt.files;       
+            var fr = new FileReader();
+            fr.onload = function(){
+                $("#imgDisplay").children('img').attr('src', fr.result);
+                imageChanged = true;
+            }
+            fr.readAsDataURL(files[0]);
+        });
+    });
+
     var Employee_Modal = {
         
         data: function () {
@@ -89,6 +107,8 @@
                     $('#Firstname').val(i.Firstname);
                     $('#Lastname').val(i.Lastname);
                     $('#Password').val(i.Password);
+                    $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
+                    imageChanged = false;
                 }
             });           
         },
@@ -147,9 +167,9 @@
         },  
 
         upload: function(){         
-            var formData = new FormData($('#modal-Stall-form')[0]);            
+            var formData = new FormData($('#modal-Employee-form')[0]);            
             $.ajax({
-                url: "<?php echo base_url("Admin/UploadImage"); ?>",
+                url: "<?php echo base_url("Manager/UploadImage"); ?>",
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -188,6 +208,9 @@
                         type: "POST",
                         data: {"employee": Employee_Modal.data()},
                         success: function(i){
+                            if(imageChanged){                               
+                                Employee_Modal.upload();
+                            }
                             swal('Good Job!', message, 'success');
                             $('#modal-Employee').modal('hide');
                             console.log(i);
