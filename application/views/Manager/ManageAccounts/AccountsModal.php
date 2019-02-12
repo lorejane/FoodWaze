@@ -11,7 +11,11 @@
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-Employee-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="EmployeeId" name="EmployeeId" />          
-                        
+                         <div class="row mb-2">
+                            <div class="col-12">
+                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
+                            </div>
+                        </div>    
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Account</label>
