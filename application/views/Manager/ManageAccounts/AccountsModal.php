@@ -208,6 +208,9 @@
                         type: "POST",
                         data: {"employee": Employee_Modal.data()},
                         success: function(i){
+                            if(imageChanged){                               
+                                Employee_Modal.upload();
+                            }
                             swal('Good Job!', message, 'success');
                             $('#modal-Employee').modal('hide');
                             console.log(i);
