@@ -1,3 +1,4 @@
+
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -35,7 +36,7 @@
             <option value="0" selected>Regular</option>
           </select><br/>
           TOTAL PRICE<input class="input-value" id="puretotal" name="puretotal" readonly>
-          <a class="btn btn-info"  href="<?php echo base_url('Cashier/Payment'); ?>">RECEIPT</a>  <br/>
+          <button class="btn btn-info"  onclick="Save_Order.SaveOrder()" >RECEIPT</button>  <br/>
           <a class="btn btn-danger"  href="<?php echo base_url('Cashier/RemoveAll'); ?>" >CANCEL</a>
         </div>
         <div class="col-sm-6">
@@ -72,17 +73,24 @@
     </div>
   </div>
  <script>	
-
-  SaveOrder: function() {  
+var Save_Order = {
+        data: function () {
+            return {
+                //CategoryId: $('#CategoryId').val(),                           
+                CategoryName: $('#CategoryName').val()
+            }
+        },
+SaveOrder: function () {
   $.ajax({
-    url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
-    type: "POST",
-   // data: {"order": Save_Orders.data()},
-    success: function(i){
+      url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
+      type: "POST",
+      //data: {"category": Categories_Modal.data()},
+      success: function(i){
       console.log("hehe");
     }
   })    
   }
+}
 </script> 
 <script>
   function displaynum(n1){

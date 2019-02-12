@@ -71,7 +71,7 @@
           </li>
 
           <li class="menu-item">
-            <a class="menu-link hover-yellow" href="<?php echo base_url('home/login'); ?>">
+            <a class="menu-link hover-yellow" href="<?php echo base_url('Home/Logout'); ?>">
               <span class="title">Logout</span>
               <span class="icon ti-logout"></span>
             </a>

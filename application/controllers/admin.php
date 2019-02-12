@@ -11,7 +11,7 @@ class Admin extends _BaseController {
 
 	public function index()
 	{
-		redirect(base_url('login'));
+		redirect(base_url('Login'));
 	}
 
     public function Categories()

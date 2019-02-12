@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class home extends CI_Controller {
+class Home extends CI_Controller {
 	public function __construct(){
 
 	parent::__construct();
@@ -11,14 +11,14 @@ class home extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('include/header');
-		$this->load->view('login');
+		$this->load->view('Login');
 		$this->load->view('include/footer');
 	}
 
-	public function login($submit = null){
+	public function Login($submit = null){
 	
 		if ($submit == null){
-			$this->load->view('login');	
+			$this->load->view('Login');	
 			return true;
 		}
 
@@ -31,22 +31,22 @@ class home extends CI_Controller {
         $position = $this->session->userdata('PositionId');
         if($position == 1){
 			$this->session->set_userdata(array('is_admin' => true));
-            redirect('admin/Stalls');
+            redirect('Admin/Stalls');
         }else if($position == 2){
 			$this->session->set_userdata(array('is_manager' => true));
-            redirect('manager/Profile');
+            redirect('Manager/Profile');
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
             redirect('Cashier/Order');
         }else{
         	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
-        	redirect('home/login');
+        	redirect('Home/Login');
     	}
 	}
 
-	public function logout(){
+	public function Logout(){
 		$this->session->sess_destroy();
-		redirect(base_url('home/login'));		
+		redirect(base_url('Home/Login'));		
 	}
 
 }
