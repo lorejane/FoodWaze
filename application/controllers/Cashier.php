@@ -35,6 +35,7 @@ class Cashier extends _BaseController {
     public function SaveOrder(){        
         $this->CashierModel->SaveOrder();
         $this->CashierModel->SaveOrders();
+        //$this->CashierModel->SaveReceipt($this->input->post('receipt'));
     }
 
 	public function AddToCart(){
