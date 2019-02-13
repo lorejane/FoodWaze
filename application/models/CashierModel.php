@@ -31,15 +31,33 @@
 	}
 
 	public function SaveOrders(){
-		$menu = $this->db->query("SELECT MAX(OrderId) FROM orders");
+		$orderid = $this->db->query("SELECT MAX(OrderId) FROM orders")->row()->OrderId;
 		foreach($this->cart->contents() as $menu) {
 		$this->db->query("INSERT into orderdetails "
-		 		."(OrderId, MenuId, Quantity) VALUES ("                   
-		 			."'".$menu['OrderId']."',"
-		 			."'".$menu['MenuId']."',"
-		 			."'".$menu['Quantity']."'"
+		 		."(OrderId, MenuId, Quantity) VALUES ("
+		 			.'"'.$orderid.'",'                   
+		 			//."'"$menu->$orderid"',"	
+		 			."'".$menu['id']."',"
+		 			."'".$menu['qty']."'"
 		 		.")"
 		 	);
 		}
-}
+		print_r($orderid);
+	}
+
+	public function SaveReceipt($receipt){
+		$this->db->query("INSERT into receiptmanagement "
+				."(OrderId, Total, Cash, Change, Discount, PositionId, StallId) VALUES ("	
+					."'3',"	
+					."'".$receipt['discount']."',"
+					."'".$receipt['puretotal']."',"
+					."'".$receipt['ReceivedAmnt']."',"
+					."'".$receipt['change']."',"
+					."'".$this->session->userdata('PositionId')."',"
+					//."'".$this->session->userdata('EmployeeAccount')."',"
+					."'".$this->session->userdata('StallId')."'"						
+				.")"
+			);
+		print_r($receipt);
+	}
 }
