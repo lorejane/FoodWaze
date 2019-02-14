@@ -34,7 +34,7 @@ class Admin extends _BaseController {
     {   
         $this->load->view('include/header');
         $data['profile'] = $this->AdminModel->getEmployeeDetails();
-        $this->load->view('Admin/profile', $data);
+        $this->load->view('Admin/Profile', $data);
         $this->load->view('include/footer');
 
     }
