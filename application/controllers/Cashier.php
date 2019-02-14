@@ -32,9 +32,17 @@ class Cashier extends _BaseController {
         $this->load->view('include/footer');
     }
 
-    public function SaveOrder(){        
-        $this->CashierModel->SaveOrder();
-        $this->CashierModel->SaveReceipt($this->input->post('receipt'));
+    public function SaveOrder($discount, $puretotal, $ReceivedAmnt, $change){        
+        //$this->CashierModel->SaveOrder();
+        //var_dump($discount);
+
+        $array = array(
+            'Discount' => $discount,
+            'Total' => $puretotal,
+            'Cash' => $ReceivedAmnt,
+            'Change' => $change
+            );
+        $id = $this->CashierModel->SaveReceipt($array);
     }
 
 	public function AddToCart(){
