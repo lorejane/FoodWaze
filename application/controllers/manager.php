@@ -17,7 +17,7 @@ class Manager extends _BaseController {
     public function Profile(){
         $this->load->view('include/header');
         $data['result'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('manager/Profile', $data);
+        $this->load->view('Manager/Profile', $data);
         $this->load->view('include/footer');
     }
 
@@ -45,7 +45,7 @@ class Manager extends _BaseController {
     
     public function Sales(){
         $this->load->view('include/header');
-        $this->load->view('manager/sales');
+        $this->load->view('Manager/sales');
         $this->load->view('include/footer');
     }
 
