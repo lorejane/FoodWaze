@@ -17,7 +17,7 @@ class Admin extends _BaseController {
     public function Categories()
     {   
         $this->load->view('include/header');
-        $this->load->view('admin/ManageCategories/Categories');
+        $this->load->view('Admin/ManageCategories/Categories');
         $this->load->view('include/footer');
 
     }
@@ -25,7 +25,7 @@ class Admin extends _BaseController {
 	public function Stalls()
 	{	
 		$this->load->view('include/header');
-        $this->load->view('admin/ManageStalls/Stalls');
+        $this->load->view('Admin/ManageStalls/Stalls');
 		$this->load->view('include/footer');
 
 	}
@@ -33,7 +33,8 @@ class Admin extends _BaseController {
     public function Profile()
     {   
         $this->load->view('include/header');
-        $this->load->view('admin/profile');
+        $data['profile'] = $this->AdminModel->getEmployeeDetails();
+        $this->load->view('Admin/profile', $data);
         $this->load->view('include/footer');
 
     }
@@ -41,7 +42,7 @@ class Admin extends _BaseController {
     public function Accounts()
     {
         $this->load->view('include/header');        
-        $this->load->view('admin/ManageAccounts/EmployeeAccounts');
+        $this->load->view('Admin/ManageAccounts/EmployeeAccounts');
         $this->load->view('include/footer');
     }
 	public function Get($id){        
