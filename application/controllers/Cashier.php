@@ -27,7 +27,7 @@ class Cashier extends _BaseController {
 
     public function Profile(){
         $this->load->view('include/header');
-        $data['res'] = $this->CashierModel->getEmployee();
+        $data['profile'] = $this->CashierModel->getEmployeeDetails();
         $this->load->view('Cashier/Profile', $data);
         $this->load->view('include/footer');
     }
