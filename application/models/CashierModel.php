@@ -21,7 +21,7 @@
 		return $this->db->query("SELECT * FROM menu WHERE MenuId = '".$menuid."' ")->result();	
 	}
 
-	public function getEmployee(){ //display details nung naka login
+	public function getEmployeeDetails(){ //display details nung naka login
 		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		
 	}
