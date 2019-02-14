@@ -76,10 +76,11 @@ input[type="checkbox"][id^="cb"] {
     
   }
   
-  label img {
+  label img:hover {
     transition-duration: 0.2s;
     transform-origin: 50% 50%;
     
+    transform: scale(1.2); 
   }
   
   :checked + label {
