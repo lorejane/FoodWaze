@@ -67,7 +67,8 @@
                 ."Firstname = '".$employee['Firstname']."',"
                 ."Lastname = '".$employee['Lastname']."',"
                 ."PositionId = '".$employee['PositionId']."',"
-                ."StallId = '".$employee['StallId']."'"
+                ."StallId = '".$employee['StallId'].",'"
+                ."Password = '".$employee['Password'].",'"
                 ."WHERE EmployeeId = '".$employee['EmployeeId']."'"
 			);			
 		}
@@ -79,7 +80,5 @@
 			."WHERE EmployeeId = '".$EmployeeId."'"
 		);	
 	}
-
-
 
 }
