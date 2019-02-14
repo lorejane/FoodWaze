@@ -15,6 +15,11 @@
 	//	return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
 	//}
 
+	public function getEmployeeDetails(){ //display details nung naka login
+		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
+		
+	}
+
 	public  function getStall(){ //display stalls without none
 		return $this->db->query("SELECT * FROM stall where StallId > 0")->result();
 		}
