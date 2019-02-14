@@ -23,10 +23,6 @@
 			return $this->db->insert_id('order_id');
 		}
 
-		public function getEmployeeDetails(){
-			return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
-		}
-
 		public function getPosition(){
 	
 			return $this->db->query("SELECT * FROM position WHERE PositionId = '".$this->session->userdata('PositionId')."'")->row();
