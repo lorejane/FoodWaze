@@ -10,6 +10,8 @@
 			)
 		);
 	}
+
+
 	public function save($category){
 		if($category['CategoryId'] == 0){//insert			
 			$this->db->query("INSERT into category "
