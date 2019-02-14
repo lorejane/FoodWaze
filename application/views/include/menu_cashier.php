@@ -87,7 +87,7 @@
                             // });
                             deleteAll();
 
-                            var element ='<table class="table-responsive table-hover"  style="height:50%;"> <thead> <tr>  <th>Qty</th>  <th>Name</th> <th>Price</th> <th>Total</th> <th></th> <th>Action</th> <th></th> </tr> </thead> <tbody></tbody></table>';
+                            var element ='<table class="table-responsive table-hover"  ><tbody></tbody></table>';
                             $("#mycart").html(element);
                             $.ajax({
                                 url: "<?php echo base_url('Cashier/GetOrderDetails'); ?>",
