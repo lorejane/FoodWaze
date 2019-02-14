@@ -31,12 +31,17 @@
 	}
 
 	public function SaveOrders(){
-		$orderid = $this->db->query("SELECT MAX(OrderId) FROM orders")->row()->OrderId;
+		$this->db->query("INSERT into orders "
+			."(StallId, IsActive) VALUES ("
+		 			."'".$this->session->userdata('StallId')."',"	
+		 			."'0'"
+		 			.")" 
+				);
+		$orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
 		foreach($this->cart->contents() as $menu) {
 		$this->db->query("INSERT into orderdetails "
 		 		."(OrderId, MenuId, Quantity) VALUES ("
-		 			.'"'.$orderid.'",'                   
-		 			//."'"$menu->$orderid"',"	
+		 			."'".$orderid."',"	
 		 			."'".$menu['id']."',"
 		 			."'".$menu['qty']."'"
 		 		.")"
