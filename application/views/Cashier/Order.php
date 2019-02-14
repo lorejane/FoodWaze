@@ -8,7 +8,7 @@
 }
 }
 </style>
-<form name="calcform" action="#" >
+<form name="calcform" action="Cashier/SaveOrder" >
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -49,7 +49,7 @@
             <option value="20">PWD</option>
           </select><br/>
           TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
-          
+          <button type="button" class="btn btn-info" onclick="SaveOrder()">Save</button>
         </div>
         <div class="col-sm-6">
           <div class="row">
@@ -73,8 +73,8 @@
                     <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button>
                     </div>
                     <div class="row">
-                    CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" value='' >
-                    CHANGE<input type="text" class="int input-value" name="change" onblur="calculate()" id="change" value='' readonly/>
+                    CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" >
+                    CHANGE<input type="text" class="int input-value" name="change" onblur="calculate()" id="change"  readonly/>
                   </div>
           </div>
         </div>
@@ -84,8 +84,8 @@
     </div>
     <div class="col-sm-8">
         <div class="card" style="height:70%;">
-          <div class="card-body" >
-              <div id="menu-container">
+          <div class="card-body" style="height:40%; scroll-y:auto;">
+              <div id="menu-container" >
               </div>              
           </div>          
         </div>
@@ -104,29 +104,21 @@
     </div>
   </div>
 </form>
-<button type="button" class="btn btn-info" onclick="Save.SaveOrder()">Save</button>
  <script>	
-var Save = {
-  data: function () {
-      return {
-          discount: $('#discount').val(),                           
-          puretotal: $('#puretotal').val(),
-          ReceivedAmnt: $('#ReceivedAmnt').val(),
-          change: $('#change').val() 
-      }
-  },
-
-  SaveOrder: function() {
+  function SaveOrder() {
+    var discount = document.getElementById('discount').value;                         
+    var puretotal = document.getElementById('puretotal').value;
+    var ReceivedAmnt = document.getElementById('ReceivedAmnt').value;
+    var change = document.getElementById('change').value; 
     $.ajax({
-        url:'<?php echo base_url('Cashier/SaveOrder'); ?>',
+        url:"<?php echo base_url('Cashier/SaveOrder'); ?>/"+discount+"/"+puretotal+"/"+ReceivedAmnt+"/"+change,
         type: "POST",
-        data: {"receipt": Save.data()},
+       
         success: function(i){
         console.log("hehe");
       }
     })    
   }
-}
 </script> 
 <script>
   function displaynum(n1){
