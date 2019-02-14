@@ -8,6 +8,7 @@
 }
 }
 </style>
+<form name="calcform" action="#" >
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -40,18 +41,19 @@
       <div class="row" id="customers" style="border: 3px dotted rgba(0, 0, 0, .2);">
         <div class="col-sm-6" >
           <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
- -->      DISCOUNT 
+ -->      
+        DISCOUNT 
           <select type="text" name="discount" id="discount">
             <option value="0" selected>Regular</option>
             <option value="20">Senior</option>
             <option value="20">PWD</option>
           </select><br/>
           TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
-          <button class="btn btn-info"  onclick="Save.SaveOrder()" >RECEIPT</button>  <br/>
+          
         </div>
         <div class="col-sm-6">
           <div class="row">
-                <form name="calcform">
+                <!-- <form name="calcform"> -->
                   <div class="row">
                     <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
                     <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
@@ -72,13 +74,13 @@
                     </div>
                     <div class="row">
                     CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" value='' >
-                </form>
                     CHANGE<input type="text" class="int input-value" name="change" onblur="calculate()" id="change" value='' readonly/>
                   </div>
           </div>
         </div>
         <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
       </div>
+                
     </div>
     <div class="col-sm-8">
         <div class="card" style="height:70%;">
@@ -101,6 +103,8 @@
         </div>
     </div>
   </div>
+</form>
+<button type="button" class="btn btn-info" onclick="Save.SaveOrder()">Save</button>
  <script>	
 var Save = {
   data: function () {
@@ -266,7 +270,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td>'+data.name+'</td> <td>'+data.price+'</td>  <td><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
