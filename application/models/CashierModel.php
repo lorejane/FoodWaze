@@ -46,19 +46,21 @@
 		print_r($orderid);
 	}
 
-	public function SaveReceipt($receipt){
-		$this->db->query("INSERT into receiptmanagement "
-				."(OrderId, Total, Cash, Change, Discount, PositionId, StallId) VALUES ("	
-					."'3',"	
-					."'".$receipt['discount']."',"
-					."'".$receipt['puretotal']."',"
-					."'".$receipt['ReceivedAmnt']."',"
-					."'".$receipt['change']."',"
-					."'".$this->session->userdata('PositionId')."',"
-					//."'".$this->session->userdata('EmployeeAccount')."',"
-					."'".$this->session->userdata('StallId')."'"						
-				.")"
-			);
-		print_r($receipt);
+	public function SaveReceipt($array){
+		$this->db->insert('receiptmanagement', $array);
+		return $this->db->insert_id();
+		// $this->db->query("INSERT into receiptmanagement "
+		// 		."(OrderId, Discount, Total, Cash, Change, PositionId, StallId) VALUES ("	
+		// 			."'3',"	
+		// 			."'".$discount['discount']."',"
+		// 			."'".$puretotal['puretotal']."',"
+		// 			."'".$ReceivedAmnt['ReceivedAmnt']."',"
+		// 			."'".$change['change']."',"
+		// 			."'".$this->session->userdata('PositionId')."',"
+		// 			//."'".$this->session->userdata('EmployeeAccount')."',"
+		// 			."'".$this->session->userdata('StallId')."'"						
+		// 		.")"
+		// 	);
+		// print_r($receipt);
 	}
 }
