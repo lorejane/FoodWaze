@@ -27,14 +27,22 @@ class Cashier extends _BaseController {
 
     public function Profile(){
         $this->load->view('include/header');
-        $data['res'] = $this->CashierModel->getEmployee();
+        $data['profile'] = $this->CashierModel->getEmployeeDetails();
         $this->load->view('Cashier/Profile', $data);
         $this->load->view('include/footer');
     }
 
-    public function SaveOrder(){        
-        $this->CashierModel->SaveOrder();
-        $this->CashierModel->SaveOrders();
+    public function SaveOrder($discount, $puretotal, $ReceivedAmnt, $change){        
+        //$this->CashierModel->SaveOrder();
+        //var_dump($discount);
+
+        $array = array(
+            'Discount' => $discount,
+            'Total' => $puretotal,
+            'Cash' => $ReceivedAmnt,
+            'Change' => $change
+            );
+        $id = $this->CashierModel->SaveReceipt($array);
     }
 
 	public function AddToCart(){
