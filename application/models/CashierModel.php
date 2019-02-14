@@ -27,10 +27,6 @@
 	}
 
 	public function SaveOrder(){
-		$this->db->query("INSERT into orders (StallId) VALUES ('".$this->session->userdata('StallId')."') ");
-	}
-
-	public function SaveOrders(){
 		$this->db->query("INSERT into orders "
 			."(StallId, IsActive) VALUES ("
 		 			."'".$this->session->userdata('StallId')."',"	
