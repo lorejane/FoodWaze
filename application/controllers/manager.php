@@ -17,7 +17,7 @@ class Manager extends _BaseController {
     public function Profile(){
         $this->load->view('include/header');
         $data['profile'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('Manager/Profile', $data);
+        $this->load->view('manager/ManagerProfile', $data);
         $this->load->view('include/footer');
     }
 
@@ -31,7 +31,7 @@ class Manager extends _BaseController {
      public function Profiles(){
 
         $this->load->view('include/header');
-        $this->load->view('Manager/Profile');
+        $this->load->view('Manager/ManagerProfile');
         $this->load->view('include/footer');
     }
 
@@ -56,7 +56,7 @@ class Manager extends _BaseController {
     public function SaveMenu(){        
         $this->MenuModel->save($this->input->post('menu'));
     }     
-    
+
     public function GetAll(){
         echo $this->convert($this->CategoriesModel->_list());
     }
@@ -161,7 +161,6 @@ class Manager extends _BaseController {
         foreach($this->ManagerModel->getEmployeeManager() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
-                .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
@@ -179,10 +178,10 @@ class Manager extends _BaseController {
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
                 .'"'.$data->CategoryId.'",'
-                .'" <img style=\"width:20%;\" src='.base_url('pics/'.$data->Image).' >",'
+                .'" <img style=\"width:40%; margin: 5px 115px;\" src='.base_url('pics/'.$data->Image).' >",'
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                
-             .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Menu_Modal.delete('.$data->MenuId.');\" ><span class=\"icon fa fa-remove\"></a>"'
+               .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Menu_Modal.delete('.$data->MenuId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
             .']';            
             $json .= ',';
         }

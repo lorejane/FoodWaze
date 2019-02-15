@@ -1,5 +1,5 @@
 <!-- Preloader -->
-<div class="preloader">
+<div class="preloader" >
       <div class="spinner-dots">
         <span class="dot1"></span>
         <span class="dot2"></span>
@@ -8,10 +8,11 @@
 </div>       
 
             <!-- Topbar -->
-            <header class="topbar" style="background-color:#b53b30;">
+            <header class="topbar" style="background-color:#b53b30; box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); ">
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <h2 class="title"><strong style="color:white;">FoodWaze</strong></h2>
+            <!-- <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px"> -->
+            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #706763;">FoodWaze</strong></h1>
             </a>
            
             
@@ -24,8 +25,8 @@
 
         
 <!-- Main container -->
-<main class="main-container" style="background-color:#fed42a;">
-    
+<main class="main-container">
+<!-- <main class="main-container" style="background-image: url(../pics/yellow3.png); background-color:wheat;"> -->
     <div class="main-content">
         <div class="row">
             
@@ -40,17 +41,17 @@
                         <div data-provide="wizard" data-navigateable="true">
                         <ul class="nav nav-process nav-process-circle">
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30;">Step 1</span>
+                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 1</span>
                                 <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30;">Step 2</span>
+                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 2</span>
                                 <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
                             </li>
 
                             <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30;">Step 3</span>
+                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 3</span>
                                 <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
                             </li>
 
@@ -60,7 +61,7 @@
                             <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
-                                <p class="text-center fs-35 text-muted">Pick a <strong class="text-primary">Stall</strong>.</p>
+                                <p class="text-center fs-35 text-muted">Choose a <strong class="text-primary">Stall</strong></p>
                                 <div class="card">
                                     <div class="card-body"> 
                                         <div class="col-12">     
@@ -70,7 +71,7 @@
                                                 <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
                                                 <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
                                                 <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
-                                                <strong><h4 style="color:grey;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h4></strong></label>
+                                                <strong><h3 style="color:#b53b30; font-family: black jack;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h3></strong></label>
                                                 </div>
 
                                                 <?php endforeach; ?>
@@ -85,8 +86,8 @@
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
                             <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
-                            <button type="button" class="btn btn-lg btn-round btn-primary" data-toggle="modal" data-target="#myModal" onclick="show_cart()">View Cart</button>
-                                <div class="card">
+                            <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
+                                <div class="card"> 
                                     <div class="card-body">                                         
                                         <div class="row">
                                             <div class="col-sm-12" id="menu-container">
@@ -94,13 +95,13 @@
                                             </div>
                                             
                                                 <!-- <div class="col-md-6 col-sm-12"> -->
-                                                <div class="col-12">
+                                                <!-- <div class="col-12">
                                                     
                                                     <div class="cart">
                                                         <div id="mycart"></div>                                                        
                                                     </div>                                                    
                                                     
-                                                </div><!--col-md-6 col-sm-12-->
+                                                </div>col-md-6 col-sm-12 -->
                                                 
                                                 
           
@@ -180,14 +181,14 @@
             <div class="modal fade" id="myModal" role="dialog">
                 <div class="modal-dialog">      
                     <div class="modal-content">
-                        <div class="modal-header"  style="background-color: #b53b30; border-bottom: 3px solid white;">
-                        <center><h3 style="color:white; font-weight: 700;">Your Cart</h3></center>
+                        <div class="modal-header" style="background-color: #b53b30; border-bottom: box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                        <center><h3 style="color:white; font-weight: 500;">Your Cart</h3></center>
                         <button type="button" class="close" data-dismiss="modal"style="color:white;">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
-                            <h2 class="text-center" id="stallname" style="color: #20B2AA; font-weight: 500;"></h2>
+                            <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;"></h2>
                             <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
                              <table class="table table-hover">
                                 <thead>
@@ -216,7 +217,10 @@
 <!-- END Main container -->
 
 
-    
+
+
+
+
 <script>
   var name ='';
   var identifier;
@@ -351,8 +355,9 @@
                                 // '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                                
                                //TEST FULL
-                                $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="border:1px solid #ccc; padding: 10px;" align="center" id="'+data.MenuId+'">'+
-                                '<h3 style="color:#20B2AA;"><strong>'+data.Name+'</strong></h3><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5><p style="color:#20B2AA;">'+data.ItemDescription+'</p>'+
+                                $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="padding: 10px; " align="center" id="'+data.MenuId+'">'+                            
+                                '<img style="width: 150px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
+                                '<h4 style="color:#20B2AA; margin-top: 12px;"><strong style="color:#b53b30; font-family: black jack;">'+data.Name+'</strong></h4><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5>'+
                                 '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
