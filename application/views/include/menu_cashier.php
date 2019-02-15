@@ -73,7 +73,7 @@
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
                                         + '<p>' + data.DateTime + '</p>'
-                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'" onclick="removepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -87,7 +87,7 @@
                             // });
                             deleteAll();
 
-                            var element ='<table class="table-responsive table-hover"  ><tbody></tbody></table>';
+                            var element ='<table class="table-responsive table-hover"><tbody></tbody></table>';
                             $("#mycart").html(element);
                             $.ajax({
                                 url: "<?php echo base_url('Cashier/GetOrderDetails'); ?>",
@@ -120,7 +120,7 @@
                                                         console.log("hHEHEEH");
                                                     }
                                                 })
-                                                var elementx =' <tr>  <td><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.Quantity+'  readonly></td> <td>'+k[0].Name+'</td> <td>'+k[0].Price+'</td> <td>'+(data.Quantity * k[0].Price)+'</td> <td><div id="cart-price-'+data.id+'">'+(data.Quantity * k[0].Price)+'</div></td>  <td><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+k[0].Price+')">-</div><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+k[0].Price+')">+</div></td> <td> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                                                var elementx =' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.Quantity+'  readonly></td> <td width="35%">'+k[0].Name+'</td> <td width="15%">'+k[0].Price+'</td> <td width="15%">'+(data.Quantity * k[0].Price)+'</td> <td width="15%"><div id="cart-price-'+data.id+'">'+(data.Quantity * k[0].Price)+'</div></td>  <td width="10%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+k[0].Price+')">-</div><div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+k[0].Price+')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                                                 total = Number(total) + Number(data.Quantity * k[0].Price);        
                                                 $("#mycart table tbody").append(elementx);
                                             }                       
@@ -148,6 +148,18 @@ function DeleteCart(id){
   });
 }   
 
+    function removepending(id,dis){   
+                $.ajax({
+                    url:"<?php echo base_url('Cashier/DeletePendingOrders/'); ?>" +id,
+                        success: function(i){
+                            console.log(i);
+                            var mwen = $(dis).fadeOut(500, function() { $(dis).closest("a").remove(); });
+                        }, 
+                        error: function(i){
+                            swal('Oops!', "Something went wrong", 'error');
+                        }
+                })                                     
+            }
 
     function deletepending(id,dis){   
             swal({
