@@ -12,7 +12,7 @@
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
             <!-- <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px"> -->
-            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #20b2aa;">FoodWaze</strong></h1>
+            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #00FFFF;">FoodWaze</strong></h1>
             </a>
            
             
