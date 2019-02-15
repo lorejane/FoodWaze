@@ -33,10 +33,12 @@ class Cashier extends _BaseController {
     }
 
     public function SaveOrder($discount, $puretotal, $ReceivedAmnt, $change){        
-        //$this->CashierModel->SaveOrder();
+        $this->CashierModel->SaveOrder();
         //var_dump($discount);
-
+        $orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
         $array = array(
+            'StallId' => $this->session->userdata('StallId'),
+            'OrderId' => $orderid,
             'Discount' => $discount,
             'Total' => $puretotal,
             'Cash' => $ReceivedAmnt,
@@ -49,6 +51,16 @@ class Cashier extends _BaseController {
 		$x = $this->input->post('Order');
         $order = array('id' => $x['id'], 'qty' => $x['qty'], 'price' => $x['price'], 'name' => $x['name']);
         $this->cart->insert($order);
+    }
+
+    public function UpdateCart($rowid,$qty){
+        $data = array(
+        'rowid' => $rowid,
+        // 'id' => $id,
+        'qty' => $qty,
+        // 'name' => $name
+        );
+        $this->cart->update($data);
     }
     
     public function DeletePendingOrders($id){        
