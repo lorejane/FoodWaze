@@ -31,7 +31,7 @@
         <div class="row">
             
             <div class="col-lg-12">
-                <div class="card card-shadowed">
+                <div class="card card-shadowed" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
                     <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
         
 
@@ -85,7 +85,7 @@
                         
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
-                            <p class="text-center fs-30 text-muted"><strong class="text-primary">Order</strong> up!</p>
+                            <p class="text-center fs-30 text-muted"><strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Order</strong> up!</p>
                             <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
                                 <div class="card"> 
                                     <div class="card-body">                                         
@@ -115,7 +115,7 @@
 
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
-                            <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
+                            <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">yourself</strong></p>
                             <hr class="w-100px">
                             <div class="card card-shadowed" style="padding: 30px;">
                             <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
@@ -188,7 +188,7 @@
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
-                            <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;"></h2>
+                            <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;text-shadow: 1px 2px 2px #706763;"></h2>
                             <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
                              <table class="table table-hover">
                                 <thead>
