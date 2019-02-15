@@ -112,7 +112,7 @@
     var change = document.getElementById('change').value; 
     $.ajax({
         url:"<?php echo base_url('Cashier/SaveOrder'); ?>/"+discount+"/"+puretotal+"/"+ReceivedAmnt+"/"+change,
-        type: "POST",
+        type: "get",
        
         success: function(i){
         console.log("hehe");
@@ -215,20 +215,33 @@ function menu() {
 	 
 }
 
-function increment_quantity(id, price) {
+function mwuehehe(newQuantity,rowid)
+{
+  $.ajax({
+      url:"<?php echo base_url('Cashier/UpdateCart/')?>"+rowid+"/"+newQuantity,
+      success:function(){
+    }
+  })
+}
+
+function increment_quantity(id, price, rowid) {
     var inputQuantityElement = $("#input-quantity-"+id);
     var newQuantity = parseInt($(inputQuantityElement).val())+1;
     var newPrice = newQuantity * price;
     save_to_db(id, newQuantity, newPrice);
+    mwuehehe(newQuantity,rowid);
+    refresh();
 }
 
-function decrement_quantity(id, price) {
+function decrement_quantity(id, price, rowid) {
     var inputQuantityElement = $("#input-quantity-"+id);
     if($(inputQuantityElement).val() > 1) 
     {
     var newQuantity = parseInt($(inputQuantityElement).val()) - 1;
     var newPrice = newQuantity * price;
     save_to_db(id, newQuantity, newPrice);
+    mwuehehe(newQuantity,rowid);
+    refresh();
     }
 }
 
@@ -262,7 +275,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
