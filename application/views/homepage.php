@@ -12,7 +12,7 @@
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
             <!-- <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px"> -->
-            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #706763;">FoodWaze</strong></h1>
+            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #20b2aa;">FoodWaze</strong></h1>
             </a>
            
             
@@ -26,8 +26,8 @@
         
 <!-- Main container -->
 <main class="main-container">
-<!-- <main class="main-container" style="background-image: url(../pics/yellow3.png); background-color:wheat;"> -->
-    <div class="main-content">
+
+    <div class="main-content" style="background-image: url(images_foodwaze/rnw.jpg); background-size: auto;">
         <div class="row">
             
             <div class="col-lg-12">
@@ -61,7 +61,7 @@
                             <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
-                                <p class="text-center fs-35 text-muted">Choose a <strong class="text-primary">Stall</strong></p>
+                                <p class="text-center fs-30 text-muted">Choose a <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Stall</strong></p>
                                 <div class="card">
                                     <div class="card-body"> 
                                         <div class="col-12">     
@@ -85,7 +85,7 @@
                         
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
-                            <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
+                            <p class="text-center fs-30 text-muted"><strong class="text-primary">Order</strong> up!</p>
                             <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
                                 <div class="card"> 
                                     <div class="card-body">                                         
@@ -115,7 +115,7 @@
 
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
-                            <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
+                            <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
                             <hr class="w-100px">
                             <div class="card card-shadowed" style="padding: 30px;">
                             <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
@@ -356,7 +356,7 @@
                                
                                //TEST FULL
                                 $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="padding: 10px; " align="center" id="'+data.MenuId+'">'+                            
-                                '<img style="width: 150px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
+                                '<img style="width: 150px;  border-radius: 8px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
                                 '<h4 style="color:#20B2AA; margin-top: 12px;"><strong style="color:#b53b30; font-family: black jack;">'+data.Name+'</strong></h4><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5>'+
                                 '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 
