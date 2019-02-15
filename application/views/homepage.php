@@ -182,14 +182,14 @@
                 <div class="modal-dialog">      
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #b53b30; border-bottom: box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                        <center><h3 style="color:white; font-weight: 500;">Your Cart</h3></center>
+                        <center><h3 style="color:white; font-weight: 500; text-shadow: 1px 2px 2px #20b2aa;">Your Cart</h3></center>
                         <button type="button" class="close" data-dismiss="modal"style="color:white;">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
                             <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;text-shadow: 1px 2px 2px #706763;"></h2>
-                            <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
+                            <!-- <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p> -->
                              <table class="table table-hover">
                                 <thead>
                                 <tr>
