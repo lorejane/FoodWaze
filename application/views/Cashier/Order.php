@@ -8,7 +8,7 @@
 }
 }
 </style>
-<form name="calcform" action="Cashier/SaveOrder" >
+<form name="calcform" id="smdiv">
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -78,10 +78,11 @@
                   </div>
           </div>
         </div>
-        <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
+         
       </div>
                 
     </div>
+</form>
     <div class="col-sm-8">
         <div class="card" style="height:70%;">
           <div class="card-body" style="height:40%; scroll-y:auto;">
@@ -103,7 +104,8 @@
         </div>
     </div>
   </div>
-</form>
+
+<button id="pdf">PDF</button>  
  <script>	
   function SaveOrder() {
     var discount = document.getElementById('discount').value;                         
@@ -336,33 +338,35 @@ function calculate()
 
 </script> 
 <script>
-function demoFromHTML() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
-    source = $('#customers')[0];
+$('form').on('submit', function(evt){
+  evt.preventDefault();
+});
+$('#pdf').click(function () {
+  var menu = '';
+ $.ajax({
+  url: '<?php echo base_url("Cashier/DisplayCart/"); ?>',
+  success: function(i){
+    i=JSON.parse(i);
+    console.log(i);
+    $.each(i, function(index, data){
+      menu += data.id + " - " + data.name + " x " + data.qty + " - " + (data.qty * data.price) + '\n';
+    });
+  console.log(menu);
+  var name = $('input[name="name"]').val();
+  var puretotal = $('form#smdiv input[name="puretotal"]').val();
+  var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
+  var Change = $('form#smdiv input[name="change"]').val();
 
-    specialElementHandlers = {
-       '#bypassme': function (element, renderer) {
-            return true
-        }
-    };
-    margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-    };
-    pdf.fromHTML(
-    source, // HTML string or DOM elem ref.
-    margins.left, // x coord
-    margins.top, { // y coord
-        'width': margins.width, // max width of content on PDF
-        'elementHandlers': specialElementHandlers
-    },
+  var pdf = new jsPDF();
+  pdf.text(5, 5, 'FOODWAZE');
+  pdf.text(5, 10, 'Receipt'+ name);
+  pdf.text(5, 15, 'Total: '+ total);
+  pdf.text(5, 20, 'Total: '+ puretotal);
+  pdf.text(5, 25, 'Cash: '+ Cash);
+  pdf.text(5, 30, 'Change: '+ Change);
+  pdf.save('Receipt.pdf');
+  }
+ }) 
 
-    function (dispose) {
-    // document.getElementById("puretotal").innerHTML="Name"+document.getElementById("puretotal").value;
-    // console.log(puretotal);
-        pdf.save('Test.pdf');
-    }, margins);
-}
+}); 
 </script>  
