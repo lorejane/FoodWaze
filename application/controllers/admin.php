@@ -191,7 +191,7 @@ class Admin extends _BaseController {
         echo $json;        
     }
  
-	public function GenerateTableStall(){
+	public function GenerateStall(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getStall() as $data){
             $json .= '['
@@ -212,7 +212,7 @@ class Admin extends _BaseController {
         foreach($this->AdminModel->getEmployee() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
-                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
+                .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'
@@ -236,6 +236,8 @@ class Admin extends _BaseController {
 
     public function DeleteStall($id){        
         echo $this->convert($this->Stall_model->delete($id));
+        echo $this->convert($this->MenuModel->deleteMenu($id));
+        echo $this->convert($this->AdminModel->deleteEmployee($id));
     }
 
 }
