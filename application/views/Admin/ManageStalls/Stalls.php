@@ -1,6 +1,6 @@
 <main class="main-container">
 
-<header class="header bg-pale-purple">
+<header class="header bg-purple">
 <div class="container bg-img h-200px" style="background-image: url(../pics/stalls.png)" >
 	<div class="header-info">
 
@@ -25,7 +25,7 @@
 </div>
 </header><!--/.header -->
 	<div class="col-12">	
-		<div class="card-body card-shadowed bl-3 border-yellow">
+		<div class="card-body bg-lightest card-shadowed bl-3 border-yellow">
 			<div class="table-responsive" style="padding-top:20px; ">
 						<table class="table table-bordered display nowrap fs-20 text-dark" id = "Stall-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateStall") ?>">
@@ -39,6 +39,7 @@
 							</thead>
 						</table>            			
 			</div>
+		</div>
 		</div>
 	
 

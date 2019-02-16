@@ -22,7 +22,7 @@
             <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
             <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
-            <p>WAdmin</p>
+            <p>Admin</p>
           </div>
         </div>
 

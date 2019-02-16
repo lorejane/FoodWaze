@@ -1,10 +1,12 @@
 
-<header class="topbar topbar-inverse">
+<header style="background-color: #ea2828" class="topbar">
     <div class="topbar-left">
+         <a href="<?php echo base_url('Cashier/Order'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
+        
         <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
             <i class="material-icons fullscreen-default">fullscreen</i>
         </a>
-        <a href="<?php echo base_url('Cashier/Order'); ?>">FoodWaze</a>
+         
 
     </div>
 
