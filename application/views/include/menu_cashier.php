@@ -73,7 +73,7 @@
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
                                         + '<p>' + data.DateTime + '</p>'
-                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'" onclick="removepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i> <i class="btn btn-warning btn-xs fa fa-print right" onclick="minus1('+data.Id+')" id="'+data.OrderId+'"></i> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'" onclick="removepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
