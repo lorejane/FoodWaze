@@ -37,6 +37,7 @@ class Cashier extends _BaseController {
         //var_dump($discount);
         $orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
         $array = array(
+            'EmployeeId' => $this->session->userdata('EmployeeId'),
             'StallId' => $this->session->userdata('StallId'),
             'OrderId' => $orderid,
             'Discount' => $discount,
@@ -61,6 +62,10 @@ class Cashier extends _BaseController {
         // 'name' => $name
         );
         $this->cart->update($data);
+    }
+
+    public function DisplayCart(){
+        echo $this->convert($this->cart->contents());
     }
     
     public function DeletePendingOrders($id){        
