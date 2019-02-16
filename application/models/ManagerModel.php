@@ -62,9 +62,31 @@
 		
 	}
 
-	public function delete($MenuId){
-		$this->db->where(['MenuId' => $MenuId]);
-		return $this->db->delete('menu');
+	public function getMenuName($menuid){
+		return $this->db->query("SELECT Name FROM menu WHERE MenuId = '".$menuid."' ")->row()->Name;
+	}
 
+	public function TotalOrders(){
+		return $this->db->query("SELECT COUNT(OrderId) as OrderId FROM orders WHERE IsActive = 0 AND StallId = '".$this->session->userdata('StallId')."' ")->row()->OrderId;
+			}
+
+	public function TotalSales(){
+		return $this->db->query("SELECT SUM(Total) as Total FROM receiptmanagement WHERE StallId = '".$this->session->userdata('StallId')."' ")->row()->Total;
+			}
+
+	public function TotalSalesByCashier(){
+		return $this->db->query("SELECT SUM(Total) as Total, EmployeeId from receiptmanagement WHERE StallId = '".$this->session->userdata('StallId')."' Group by EmployeeId")->result();
+	}
+
+	public function getEmployee($getEmployee){ //display employees by stall
+		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$getEmployee."' ")->row();	
+	}
+
+	public function MostSaleable(){
+		return $this->db->query("SELECT sum(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."') group by MenuId order by Quantity DESC LIMIT 5 ")->result();
+	}
+
+	public function LeastSaleable(){
+		return $this->db->query("SELECT sum(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."')group by MenuId order by Quantity ASC LIMIT 5 ")->result();
 	}
 }		
