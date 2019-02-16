@@ -21,7 +21,7 @@
          <div class="sidebar-profile">
             <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></a>
           <div class="profile-info">
-            <h4>Maryam Amiri</h4>
+            <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
             <p>Web developer</p>
           </div>
         </div>
