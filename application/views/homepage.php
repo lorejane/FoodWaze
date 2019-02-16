@@ -12,7 +12,7 @@
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
             <!-- <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px"> -->
-            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #706763;">FoodWaze</strong></h1>
+            <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #00FFFF;">FoodWaze</strong></h1>
             </a>
            
             
@@ -26,12 +26,12 @@
         
 <!-- Main container -->
 <main class="main-container">
-<!-- <main class="main-container" style="background-image: url(../pics/yellow3.png); background-color:wheat;"> -->
-    <div class="main-content">
+
+    <div class="main-content" style="background-image: url(images_foodwaze/rnw.jpg); background-size: auto;">
         <div class="row">
             
             <div class="col-lg-12">
-                <div class="card card-shadowed">
+                <div class="card card-shadowed" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
                     <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
         
 
@@ -61,7 +61,7 @@
                             <div class="tab-content" > <!-- step 1 -->
                                 <div class="tab-pane fade active show" id="wizard-navable-1">
                                 
-                                <p class="text-center fs-35 text-muted">Choose a <strong class="text-primary">Stall</strong></p>
+                                <p class="text-center fs-30 text-muted">Choose a <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Stall</strong></p>
                                 <div class="card">
                                     <div class="card-body"> 
                                         <div class="col-12">     
@@ -85,7 +85,7 @@
                         
                             <!-- step 2 -->
                             <div class="tab-pane fade" id="wizard-navable-2">
-                            <p class="text-center fs-35 text-muted"><strong class="text-primary">Order</strong> up!</p>
+                            <p class="text-center fs-30 text-muted"><strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Order</strong> up!</p>
                             <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
                                 <div class="card"> 
                                     <div class="card-body">                                         
@@ -115,12 +115,12 @@
 
                             <!-- step 3 -->                            
                             <div class="tab-pane fade" id="wizard-navable-3">
-                            <p class="text-center fs-35 text-muted">Tell us about <strong class="text-primary">yourself</strong></p>
+                            <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">yourself</strong></p>
                             <hr class="w-100px">
                             <div class="card card-shadowed" style="padding: 30px;">
                             <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
                             <!-- <div class="card card-shadowed"> -->
-                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                            <form action=<?php echo base_url('FoodWaze/Checkout');?> method="post">
                              
                             <div class="form-row col-10">
 
@@ -182,14 +182,14 @@
                 <div class="modal-dialog">      
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: #b53b30; border-bottom: box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
-                        <center><h3 style="color:white; font-weight: 500;">Your Cart</h3></center>
+                        <center><h3 style="color:white; font-weight: 500; text-shadow: 1px 2px 2px #20b2aa;">Your Cart</h3></center>
                         <button type="button" class="close" data-dismiss="modal"style="color:white;">&times;</button>
                         </div>
                         <div class="modal-body">
                             <!-- <p>445 Mount Eden Road, Sta. Circa, Manila</p>
                             <p><em>(02)782-8410/09041832245</em></p> -->
-                            <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;"></h2>
-                            <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p>
+                            <h2 class="text-center" id="stallname" style="color: #b53b30; font-weight: 500; font-family: black jack;text-shadow: 1px 2px 2px #706763;"></h2>
+                            <!-- <p class="text-right"><em><?php echo date("Y/m/d") ?></em></p> -->
                              <table class="table table-hover">
                                 <thead>
                                 <tr>
@@ -204,7 +204,7 @@
                             </table>
                             <h3 style="font-weight: 700;  text-align: right; border-bottom: 1px solid; border-top: 1px solid;"><strong>Total:  <strong style="color:#b53b30;">&#X20B1;<span id="total"></span></strong></strong></h3> 
                         <div class="modal-footer">
-                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
+                            <a href="<?php echo base_url("FoodWaze/Clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
                         </div>
                         </div>
@@ -294,7 +294,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>foodwaze/showcart',
+                        url: '<?php echo base_url()?>FoodWaze/Showcart',
                         dataType: 'json',
                         success: function(data){
                                 console.log('---------CART DATA----------');
@@ -339,7 +339,7 @@
         <script>    
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("FoodWaze/GetMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -356,8 +356,8 @@
                                
                                //TEST FULL
                                 $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="padding: 10px; " align="center" id="'+data.MenuId+'">'+                            
-                                '<img style="width: 150px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
-                                '<h4 style="color:#20B2AA; margin-top: 12px;"><strong style="color:#b53b30; font-family: black jack;">'+data.Name+'</strong></h4><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5>'+
+                                '<img style="width: 120px; height: 120px; border-radius: 8px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
+                                '<h4 style="margin-top: 12px;"><strong style="color:#b53b30; font-family: black jack;">'+data.Name+'</strong></h4><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5>'+
                                 '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
@@ -377,7 +377,7 @@
                 name=$(this).attr('name');
                 console.log(name);                  
                 $.ajax({
-                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("FoodWaze/GetCategory/") ?>" + id, 
                     success: function(kat){
                         document.getElementById("stallname").innerHTML = name;
                         kat = JSON.parse(kat);

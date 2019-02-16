@@ -28,7 +28,7 @@
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Menu-table" style="width:100%; overflow-x:auto;" 
-						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/generateTableMenus") ?>">
+						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateTableMenus") ?>">
 							<thead>
 								<tr style="background-color: #0f0a0a;" class="text-yellow">
 									<th>Category ID</th>

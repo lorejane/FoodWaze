@@ -34,7 +34,7 @@ class Home extends CI_Controller {
             redirect('Admin/Stalls');
         }else if($position == 2){
 			$this->session->set_userdata(array('is_manager' => true));
-            redirect('Manager/Profile');
+            redirect('Manager/Sales');
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
             redirect('Cashier/Order');

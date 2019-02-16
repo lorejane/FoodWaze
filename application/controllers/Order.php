@@ -6,12 +6,12 @@ class Order extends CI_Controller {
 		parent::__construct();				
 	}
 
-	public function addToCart(){		
+	public function AddToCart(){		
 		$this->input->post('order');
 		echo $this->displayCart();		
 	}
 
-	public function displayCart(){
+	public function DisplayCart(){
 		$str = '
 		<thead>
 		  <tr>
@@ -35,16 +35,16 @@ class Order extends CI_Controller {
 		return $str.'</tbody>';
 	}
 
-	public function removeFromCart($rowid){		
+	public function RemoveFromCart($rowid){		
 		$this->cart->remove($rowid);
 		redirect(base_url('Order/'));
 	}
 
-	public function emptyCart(){
+	public function EmptyCart(){
 		$this->cart->destroy();
 		redirect(base_url('Order/'));
 	}
-	public function dashboard(){
+	public function Dashboard(){
 		//$this->session->unset_userdata('sf');
 		$this->load->view('include/header');
 		$data['cat1'] = $this->Stall_model->getCustomerMenuMeal();
@@ -55,7 +55,7 @@ class Order extends CI_Controller {
 		$this->load->view('include/footer');
 	}
 
-    public function do_upload()
+    public function Do_upload()
     {
             $config['upload_path']          = './bootstrap/images/';
             $config['allowed_types']        = 'gif|jpg|png';

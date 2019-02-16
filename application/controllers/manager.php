@@ -15,9 +15,9 @@ class Manager extends _BaseController {
 	}
 
     public function Profile(){
-        $this->load->view('include/header');
+        $this->load->view('include/header');        
         $data['profile'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('manager/ManagerProfile', $data);
+        $this->load->view('Manager/ManagerProfile', $data);
         $this->load->view('include/footer');
     }
 
@@ -45,7 +45,9 @@ class Manager extends _BaseController {
     
     public function Sales(){
         $this->load->view('include/header');
-        $this->load->view('Manager/sales');
+        $data['totalorders'] = $this->ManagerModel->TotalOrders();
+        $data['totalprice'] = $this->ManagerModel->TotalSales();
+        $this->load->view('Manager/Sales', $data);
         $this->load->view('include/footer');
     }
 
@@ -161,7 +163,7 @@ class Manager extends _BaseController {
         foreach($this->ManagerModel->getEmployeeManager() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
-                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
+                .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
@@ -174,7 +176,7 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
-    public function generateTableMenus(){
+    public function GenerateTableMenus(){
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
@@ -183,6 +185,52 @@ class Manager extends _BaseController {
                 .'"'.$data->Name.'",'
                 .'"'.$data->Price.'",'                
                .'"<a onclick = \"Menu_Modal.edit('.$data->MenuId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Menu_Modal.delete('.$data->MenuId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateMostSaleable(){
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->MostSaleable() as $data){
+            $json .= '['
+                .'"'.$this->ManagerModel->getMenuName($data->MenuId).'",'
+                .'"'.$data->Quantity.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateLeastSaleable(){
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->LeastSaleable() as $data){
+            $json .= '['
+                .'"'.$this->ManagerModel->getMenuName($data->MenuId).'",'
+                .'"'.$data->Quantity.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateTotalByEmployee(){
+        //print_r($this->ManagerModel->TotalSalesByCashier());
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->TotalSalesByCashier() as $data){
+            // print_r($data);115px`1 
+            $emperador = $this->ManagerModel->getEmployee($data->EmployeeId);
+            $json .= '['
+                .'"'.$data->EmployeeId.'",'
+                .'"'.$emperador->Lastname.','.$emperador->Firstname.'",'
+                .'"'.$data->Total.'"'
             .']';            
             $json .= ',';
         }

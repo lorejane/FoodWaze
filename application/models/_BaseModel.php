@@ -25,6 +25,16 @@ class _BaseModel extends CI_Model{
 		return $dbList;		
 	}
 
+	public function deleteMenu($id){
+		$dbList = $this->db->query("DELETE from ".$this->table." WHERE StallId = '".$id."'");
+		return $dbList;		
+	}
+
+	public function deleteEmployee($id){
+		$dbList = $this->db->query("DELETE from ".$this->table." WHERE StallId = '".$id."'");
+		return $dbList;		
+	}
+
 	public function deleteAll(){
 		$dbList = $this->db->query("DELETE from ".$this->table)->result();
 		return $dbList;

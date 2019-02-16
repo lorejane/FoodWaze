@@ -11,10 +11,6 @@
 		);
 	}
 
-	//public function getStalll(){
-	//	return $this->db->query("SELECT * FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
-	//}
-
 	public function getEmployeeDetails(){ //display details nung naka login
 		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row();
 		
@@ -25,7 +21,7 @@
 		}
 
 	public function getEmployee(){ //display employees
-		return $this->db->query("SELECT * FROM employee")->result();
+		return $this->db->query("SELECT * FROM employee WHERE StallId != '".$this->session->userdata('StallId')."'")->result();
 	}
 
 	public function getEmployeeImage(){

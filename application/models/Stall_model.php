@@ -39,8 +39,4 @@
 		);	
 	}
 
-	public function getCustomerMenuMeal(){
-		return $this->db->query("SELECT * FROM menu WHERE StallId = '2' ")->result();
-		
-	}
 }

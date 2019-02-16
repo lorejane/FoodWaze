@@ -33,10 +33,13 @@ class Cashier extends _BaseController {
     }
 
     public function SaveOrder($discount, $puretotal, $ReceivedAmnt, $change){        
-        //$this->CashierModel->SaveOrder();
+        $this->CashierModel->SaveOrder();
         //var_dump($discount);
-
+        $orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
         $array = array(
+            'EmployeeId' => $this->session->userdata('EmployeeId'),
+            'StallId' => $this->session->userdata('StallId'),
+            'OrderId' => $orderid,
             'Discount' => $discount,
             'Total' => $puretotal,
             'Cash' => $ReceivedAmnt,
@@ -49,6 +52,20 @@ class Cashier extends _BaseController {
 		$x = $this->input->post('Order');
         $order = array('id' => $x['id'], 'qty' => $x['qty'], 'price' => $x['price'], 'name' => $x['name']);
         $this->cart->insert($order);
+    }
+
+    public function UpdateCart($rowid,$qty){
+        $data = array(
+        'rowid' => $rowid,
+        // 'id' => $id,
+        'qty' => $qty,
+        // 'name' => $name
+        );
+        $this->cart->update($data);
+    }
+
+    public function DisplayCart(){
+        echo $this->convert($this->cart->contents());
     }
     
     public function DeletePendingOrders($id){        
@@ -72,11 +89,11 @@ class Cashier extends _BaseController {
     //     $this->cart->destroy();
     // }
     
-    public function displayCartOrder(){
+    public function DisplayCartOrder(){
     	echo $this->convert($this->cart->contents());
     }
    
-    public function getCategory($stallId)
+    public function GetCategory($stallId)
     {
         echo $this->convert($this->foodwaze_model->getCategory($stallId));
     }

@@ -10,7 +10,7 @@
 	}
 
 	public function getOrder(){
-		return $this->db->query("SELECT * FROM orders WHERE IsActive = '1' ")->result();	
+		return $this->db->query("SELECT * FROM orders WHERE IsActive = '1' AND StallId = '".$this->session->userdata('StallId')."'")->result();	
 	}
 
 	public function getOrderDetails($id){

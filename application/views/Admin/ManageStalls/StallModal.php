@@ -90,7 +90,7 @@
         delete: function (id) {             
             swal({
                 title: 'Confirm Submission',
-                text: 'Save changes for Employee',
+                text: 'Save changes for Stall',
                 type: 'warning',
                 showCancelButton: true,
                 cancelButtonText: 'No! Cancel',

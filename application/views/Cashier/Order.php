@@ -8,7 +8,7 @@
 }
 }
 </style>
-<form name="calcform" action="Cashier/SaveOrder" >
+<form name="calcform" id="smdiv">
 <div class="main-content" style="padding-top:5%;">
   <div class="row">
     <div class="col-sm-4">
@@ -48,7 +48,7 @@
             <option value="20">Senior</option>
             <option value="20">PWD</option>
           </select><br/>
-          TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
+          TOTAL PRICE<input type="number" class="int input-value" id="puretotal" name="puretotal" readonly>
           <button type="button" class="btn btn-info" onclick="SaveOrder()">Save</button>
         </div>
         <div class="col-sm-6">
@@ -74,14 +74,15 @@
                     </div>
                     <div class="row">
                     CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" >
-                    CHANGE<input type="text" class="int input-value" name="change" onblur="calculate()" id="change"  readonly/>
+                    CHANGE<input type="text" class="int input-value" name="change" onclick="calculate()" id="change"  readonly/>
                   </div>
           </div>
         </div>
-        <!-- <button onclick="javascript:demoFromHTML();">PDF</button> -->   
+         
       </div>
                 
     </div>
+</form>
     <div class="col-sm-8">
         <div class="card" style="height:70%;">
           <div class="card-body" style="height:40%; scroll-y:auto;">
@@ -103,7 +104,21 @@
         </div>
     </div>
   </div>
-</form>
+
+<input id="pdf" type="submit" value="hjkasdhs"/>  
+ <script>
+$(document).ready(function () {
+    $('input[type="submit"]').attr('disabled', true);
+    $('input[type="text"]').on('keyup', function () {
+        var text_value = $('input[name="ReceivedAmnt"]').val();
+        if (text_value != '') {
+            $('input[type="submit"]').attr('disabled', false);
+        } else {
+            $('input[type="submit"]').attr('disabled', true);
+        }
+    });
+});
+</script>
  <script>	
   function SaveOrder() {
     var discount = document.getElementById('discount').value;                         
@@ -112,7 +127,7 @@
     var change = document.getElementById('change').value; 
     $.ajax({
         url:"<?php echo base_url('Cashier/SaveOrder'); ?>/"+discount+"/"+puretotal+"/"+ReceivedAmnt+"/"+change,
-        type: "POST",
+        type: "get",
        
         success: function(i){
         console.log("hehe");
@@ -135,10 +150,9 @@
             $('#ReceivedAmnt').val(shortenedString);
         });
 
-    });
+    }); 
       
 </script>
-
   <script>
    
 function Sizes() {
@@ -146,7 +160,7 @@ function Sizes() {
 }	
 function menu() {
 	$.ajax({
-        url: "<?php echo base_url('foodwaze/getCategory/'.$this->session->userdata('StallId')); ?>",        
+        url: "<?php echo base_url('FoodWaze/CetCategory/'.$this->session->userdata('StallId')); ?>",        
         success: function(kat){
             kat = JSON.parse(kat);
             console.log('---------CATEGORY----------');
@@ -179,7 +193,7 @@ function menu() {
             $('#menu-container').html(element);
 
             $.ajax({
-			    url: "<?php echo base_url('foodwaze/getMenu/'.$this->session->userdata('StallId')); ?>", 
+			    url: "<?php echo base_url('FoodWaze/GetMenu/'.$this->session->userdata('StallId')); ?>", 
 			    success: function(menu){
 			        menu=JSON.parse(menu);
 			        console.log(menu);
@@ -215,20 +229,33 @@ function menu() {
 	 
 }
 
-function increment_quantity(id, price) {
+function mwuehehe(newQuantity,rowid)
+{
+  $.ajax({
+      url:"<?php echo base_url('Cashier/UpdateCart/')?>"+rowid+"/"+newQuantity,
+      success:function(){
+    }
+  })
+}
+
+function increment_quantity(id, price, rowid) {
     var inputQuantityElement = $("#input-quantity-"+id);
     var newQuantity = parseInt($(inputQuantityElement).val())+1;
     var newPrice = newQuantity * price;
     save_to_db(id, newQuantity, newPrice);
+    mwuehehe(newQuantity,rowid);
+    refresh();
 }
 
-function decrement_quantity(id, price) {
+function decrement_quantity(id, price, rowid) {
     var inputQuantityElement = $("#input-quantity-"+id);
     if($(inputQuantityElement).val() > 1) 
     {
     var newQuantity = parseInt($(inputQuantityElement).val()) - 1;
     var newPrice = newQuantity * price;
     save_to_db(id, newQuantity, newPrice);
+    mwuehehe(newQuantity,rowid);
+    refresh();
     }
 }
 
@@ -254,7 +281,7 @@ function save_to_db(id, new_quantity, newPrice) {
 
 function refresh(){
 	$.ajax({
-	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
+	   	url: "<?php echo base_url('Cashier/DisplayCartOrder'); ?>",
 		success: function(i){
 			i = JSON.parse(i);
 			console.log(i);
@@ -262,7 +289,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
@@ -323,33 +350,60 @@ function calculate()
 
 </script> 
 <script>
-function demoFromHTML() {
-    var pdf = new jsPDF('p', 'pt', 'letter');
-    source = $('#customers')[0];
+$('form').on('submit', function(evt){
+  evt.preventDefault();
+});
+$('#pdf').click(function () {
+  var menu = '';
+ $.ajax({
+  url: '<?php echo base_url("Cashier/DisplayCart/"); ?>',
+  success: function(i){
+    i=JSON.parse(i);
+    console.log(i);
+    $.each(i, function(index, data){
+      menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
 
-    specialElementHandlers = {
-       '#bypassme': function (element, renderer) {
-            return true
-        }
-    };
-    margins = {
-        top: 80,
-        bottom: 60,
-        left: 40,
-        width: 522
-    };
-    pdf.fromHTML(
-    source, // HTML string or DOM elem ref.
-    margins.left, // x coord
-    margins.top, { // y coord
-        'width': margins.width, // max width of content on PDF
-        'elementHandlers': specialElementHandlers
-    },
+    });
+  var discount = $('form#smdiv select[name="discount"]').val();
+  var puretotal = $('form#smdiv input[name="puretotal"]').val();
+  var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
+  var Change = $('form#smdiv input[name="change"]').val();
+  var VAT = parseFloat(puretotal * 0.12);
+  var VATable = parseFloat(puretotal - VAT);
+  var VATExempt;
+  var TotalDue;
 
-    function (dispose) {
-    // document.getElementById("puretotal").innerHTML="Name"+document.getElementById("puretotal").value;
-    // console.log(puretotal);
-        pdf.save('Test.pdf');
-    }, margins);
-}
+  if(discount == 0){
+      VATExempt = 0;
+  }
+  else{
+    VATExempt = parseFloat(VATable);
+  }
+
+  if(VATExempt == 0){
+    TotalDue = parseFloat(puretotal);
+  }
+  else{
+    TotalDue = parseFloat(VATExempt * .8);
+  }
+
+  var pdf = new jsPDF();
+  pdf.text(90, 5, 'FOODWAZE');
+  pdf.text(5, 10, 'Receipt');
+  pdf.text(5, 15, menu);
+  pdf.text(5, 70, '------------------');
+  pdf.text(5, 85, 'VATable: '+ VATable);
+  pdf.text(5, 90, 'VAT Exempt: '+ VATExempt);
+  pdf.text(5, 95, 'VAT: '+ VAT);
+  pdf.text(5, 100, '------------------');
+  pdf.text(5, 105, 'Total: '+ TotalDue );
+  pdf.text(5, 119, 'Cash: '+ Cash);
+  pdf.text(5, 115, 'Change: '+ Change);
+  pdf.save('Receipt.pdf');
+
+  console.log(menu);
+  }
+ }) 
+
+}); 
 </script>  
