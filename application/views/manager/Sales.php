@@ -16,7 +16,7 @@
                 <span class="float-right"><a class="btn btn-xs btn-primary" href="#">View</a></span>
               </h6>
               <br>
-              <p class="fs-28 fw-100">2,354</p>
+              <p class="fs-28 fw-100"><?php echo $totalorders ?></p>
               <div class="progress">
                 <div class="progress-bar" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -34,7 +34,7 @@
                 <span class="float-right"><a class="btn btn-xs btn-primary" href="#">View</a></span>
               </h6>
               <br>
-              <p class="fs-28 fw-100">653</p>
+              <p class="fs-28 fw-100"><?php echo $totalprice ?></p>
               <div class="progress">
                 <div class="progress-bar bg-warning" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
@@ -85,6 +85,40 @@
 
                 <canvas id="chart-js-2" height="130" data-provide="chartjs"></canvas>
               </div>
+
+            <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
+            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateMostSaleable") ?>">
+              <thead>
+                <tr>
+                  <th>Menu</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+            </table> 
+
+          <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
+            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateLeastSaleable") ?>">
+              <thead>
+                <tr>
+                  <th>Menu</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+            </table>   
+
+          <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
+            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateTotalByEmployee") ?>">
+              <thead>
+                <tr>
+                  <th>Employee ID</th>
+                  <th>Name</th>
+                  <th>Sales</th>
+                </tr>
+              </thead>
+            </table>     
+
+      </div>
+
             </div>
           </div>
 
