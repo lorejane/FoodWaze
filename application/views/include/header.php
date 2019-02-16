@@ -8,7 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Responsive admin dashboard and web application ui kit. This twitter bootstrap plugin builds a wizard out of a formatter tabbable structure. It allows to build a wizard functionality using buttons to go through the different wizard steps and using events allows to hook into each step individually.">
     <meta name="keywords" content="wizard">
-
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Black+Jack">
 
 <!--modal-->
     <meta charset="UTF-8" />
@@ -33,6 +34,7 @@
     <link href="<?php echo base_url('assets/css/app.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/style.min.css'); ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/lorestyle.css' ); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/katstyle.css' ); ?>" rel="stylesheet">
     
 <!-- modal -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
