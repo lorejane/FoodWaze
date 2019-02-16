@@ -48,7 +48,7 @@
 	}
 
 	public function getEmployeeManager(){ //display employees by stall
-		return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
+		return $this->db->query("SELECT * FROM employee WHERE StallId = '".$this->session->userdata('StallId')."' AND EmployeeId != '".$this->session->userdata('EmployeeId')."' ")->result();
 		
 	}
 
