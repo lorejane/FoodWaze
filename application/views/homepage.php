@@ -120,7 +120,7 @@
                             <div class="card card-shadowed" style="padding: 30px;">
                             <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
                             <!-- <div class="card card-shadowed"> -->
-                            <form action=<?php echo base_url('foodwaze/checkout');?> method="post">
+                            <form action=<?php echo base_url('FoodWaze/Checkout');?> method="post">
                              
                             <div class="form-row col-10">
 
@@ -204,7 +204,7 @@
                             </table>
                             <h3 style="font-weight: 700;  text-align: right; border-bottom: 1px solid; border-top: 1px solid;"><strong>Total:  <strong style="color:#b53b30;">&#X20B1;<span id="total"></span></strong></strong></h3> 
                         <div class="modal-footer">
-                            <a href="<?php echo base_url("foodwaze/clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
+                            <a href="<?php echo base_url("FoodWaze/Clearcart/") ?>"><br><input type="button" class="btn btn-sm btn-outline btn-round btn-primary" value="Clear Cart"></a>
                         </div>
                         </div>
                         </div>
@@ -294,7 +294,7 @@
         document.getElementById("next").disabled = true;
                   $.ajax({
                         type: 'ajax',
-                        url: '<?php echo base_url()?>foodwaze/showcart',
+                        url: '<?php echo base_url()?>FoodWaze/Showcart',
                         dataType: 'json',
                         success: function(data){
                                 console.log('---------CART DATA----------');
@@ -339,7 +339,7 @@
         <script>    
             function menu(id) {
                   return $.ajax({
-                        url: "<?php echo base_url("foodwaze/getMenu/") ?>" + id, 
+                        url: "<?php echo base_url("FoodWaze/GetMenu/") ?>" + id, 
                         success: function(menu){
                             menu=JSON.parse(menu);
                             console.log('---------MENU----------');
@@ -377,7 +377,7 @@
                 name=$(this).attr('name');
                 console.log(name);                  
                 $.ajax({
-                    url: "<?php echo base_url("foodwaze/getCategory/") ?>" + id, 
+                    url: "<?php echo base_url("FoodWaze/GetCategory/") ?>" + id, 
                     success: function(kat){
                         document.getElementById("stallname").innerHTML = name;
                         kat = JSON.parse(kat);
