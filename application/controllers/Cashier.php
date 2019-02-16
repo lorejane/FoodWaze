@@ -105,7 +105,6 @@ class Cashier extends _BaseController {
 
     public function GetOrderDetails()
     {
-    	// print_r($this->input->post('orderid'));
         echo $this->convert($this->CashierModel->getOrderDetails($this->input->post('orderid')));
     }
 

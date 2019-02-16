@@ -47,7 +47,7 @@ class Manager extends _BaseController {
         $this->load->view('include/header');
         $data['totalorders'] = $this->ManagerModel->TotalOrders();
         $data['totalprice'] = $this->ManagerModel->TotalSales();
-        $this->load->view('Manager/Sales', $data);
+        $this->load->view('Manager/Dashboard', $data);
         $this->load->view('include/footer');
     }
 

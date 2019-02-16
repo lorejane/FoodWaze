@@ -1,12 +1,11 @@
-    
-    
 <div class="preloader">
+    
       <div class="spinner-dots">
         <span class="dot1"></span>
         <span class="dot2"></span>
         <span class="dot3"></span>
       </div>
-    </div>
+</div>
 
 <aside style="background-color: #1b1919 ;" class="sidebar sidebar-icons-right sidebar-icons-boxed sidebar-expand-lg text-lightest sidebar-color-yellow sidebar">     
       <header class="sidebar-header bg-lightest b-3 border-dark">
@@ -23,6 +22,7 @@
           <div class="profile-info">
             <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
             <p>Admin</p>
+            
           </div>
         </div>
 
