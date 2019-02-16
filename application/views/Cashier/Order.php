@@ -74,7 +74,7 @@
                     </div>
                     <div class="row">
                     CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" >
-                    CHANGE<input type="text" class="int input-value" name="change" onblur="calculate()" id="change"  readonly/>
+                    CHANGE<input type="text" class="int input-value" name="change" onclick="calculate()" id="change"  readonly/>
                   </div>
           </div>
         </div>
@@ -349,22 +349,47 @@ $('#pdf').click(function () {
     i=JSON.parse(i);
     console.log(i);
     $.each(i, function(index, data){
-      menu += data.id + " - " + data.name + " x " + data.qty + " - " + (data.qty * data.price) + '\n';
+      menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
+
     });
-  console.log(menu);
-  var name = $('input[name="name"]').val();
+  var discount = $('form#smdiv select[name="discount"]').val();
   var puretotal = $('form#smdiv input[name="puretotal"]').val();
   var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
   var Change = $('form#smdiv input[name="change"]').val();
+  var VAT = parseFloat(puretotal * 0.12);
+  var VATable = parseFloat(puretotal - VAT);
+  var VATExempt;
+  var TotalDue;
+
+  if(discount == 0){
+      VATExempt = 0;
+  }
+  else{
+    VATExempt = parseFloat(VATable);
+  }
+
+  if(VATExempt == 0){
+    TotalDue = parseFloat(puretotal);
+  }
+  else{
+    TotalDue = parseFloat(VATExempt * .8);
+  }
 
   var pdf = new jsPDF();
-  pdf.text(5, 5, 'FOODWAZE');
-  pdf.text(5, 10, 'Receipt'+ name);
-  pdf.text(5, 15, 'Total: '+ total);
-  pdf.text(5, 20, 'Total: '+ puretotal);
-  pdf.text(5, 25, 'Cash: '+ Cash);
-  pdf.text(5, 30, 'Change: '+ Change);
+  pdf.text(90, 5, 'FOODWAZE');
+  pdf.text(5, 10, 'Receipt');
+  pdf.text(5, 15, menu);
+  pdf.text(5, 70, '------------------');
+  pdf.text(5, 85, 'VATable: '+ VATable);
+  pdf.text(5, 90, 'VAT Exempt: '+ VATExempt);
+  pdf.text(5, 95, 'VAT: '+ VAT);
+  pdf.text(5, 100, '------------------');
+  pdf.text(5, 105, 'Total: '+ TotalDue );
+  pdf.text(5, 119, 'Cash: '+ Cash);
+  pdf.text(5, 115, 'Change: '+ Change);
   pdf.save('Receipt.pdf');
+
+  console.log(menu);
   }
  }) 
 
