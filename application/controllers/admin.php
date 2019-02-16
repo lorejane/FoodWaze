@@ -176,7 +176,7 @@ class Admin extends _BaseController {
         echo $str;
     } 
 
-    public function generateTableCategories(){
+    public function GenerateTableCategories(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getCategories() as $data){                 
            $json .= '['
