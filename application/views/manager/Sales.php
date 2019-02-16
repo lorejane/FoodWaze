@@ -17,7 +17,7 @@
           </div>
 
            <div class="col-md-6 col-xl-4">
-            <div class="card card-body">
+            <div class="card card-body bl-3 border-info">
               <h6 class="text-uppercase text-gray">Weekly Sales</h6>
               <div class="flexbox mt-2">
 
@@ -28,28 +28,19 @@
           </div>
 
            <div class="col-md-6 col-xl-4">
-            <div class="card card-body">
+            <div class="card card-body bl-3 border-danger">
               <h6 class="text-uppercase text-gray">Daily Sales</h6>
               <div class="flexbox mt-2">
 
-                <span class="fa fa-rub text-info fs-30"></span>
+                <span class="fa fa-rub text-danger fs-30"></span>
                 <p class="fs-50 fw-100"><?php echo $totalorders ?></p>
               </div>
             </div>
           </div>
 
-
-
-
-        
-
-
-
-
           
 
 
-          <div class="col-md-12">
             <div class="card">
               
 
@@ -87,12 +78,10 @@
       </div>
 
             </div>
-          </div>
+          
 
 
 </div>
 </div>
-</main>
-
 
 
