@@ -30,7 +30,7 @@
 		<div class="card-body text-white">
 			<div class="table-responsive bg-lightest " style="padding-top:20px; ">
 						<table class="table table-bordered display nowrap fs-20 text-dark" id = "Stall-table" style="width:100%; overflow-x:auto;" 
-						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableStall") ?>">
+						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateStall") ?>">
 							<thead>
 								<tr style="background-color: #0f0a0a;">
 									<th class="text-yellow">Stall Number</th>
