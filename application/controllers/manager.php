@@ -17,7 +17,7 @@ class Manager extends _BaseController {
     public function Profile(){
         $this->load->view('include/header');        
         $data['profile'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('manager/ManagerProfile', $data);
+        $this->load->view('Manager/ManagerProfile', $data);
         $this->load->view('include/footer');
     }
 
@@ -176,7 +176,7 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
-    public function generateTableMenus(){
+    public function GenerateTableMenus(){
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['
