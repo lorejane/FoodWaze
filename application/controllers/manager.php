@@ -161,11 +161,12 @@ class Manager extends _BaseController {
         foreach($this->ManagerModel->getEmployeeManager() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
+                 .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
-            .']';            
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+            .']';           
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);

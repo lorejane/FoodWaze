@@ -23,7 +23,7 @@
 
         <div class="sidebar-profile">
           <div class="dropdown">
-            <span class="dropdown-toggle no-caret" data-toggle="dropdown"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></span>
+            <span class="dropdown-toggle no-caret" data-toggle="dropdown"><img class="avatar" src="../pics/logo.png" alt="..."></span>
             <div class="dropdown-menu open-top-center">
               <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
               <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
@@ -33,8 +33,8 @@
             </div>
           </div>
           <div class="profile-info">
-            <h4>Maryam Amiri</h4>
-            <p>Web developer</p>
+            <h4>Lore Katrina Florendo</h4>
+            <p>Manager</p>
           </div>
         </div>
 
@@ -72,8 +72,9 @@
 
           <li class="menu-item">
             <a class="menu-link hover-yellow" href="<?php echo base_url('Home/Logout'); ?>">
-              <span class="title">Logout</span>
-              <span class="icon ti-logout"></span>
+               <span class="icon fa fa-sign-out"></span>      
+               <span class="title">Logout</span>
+             
             </a>
           </li>
 
@@ -94,7 +95,7 @@
           <div class="topbar-right">
             <ul class="topbar-btns">
               <li class="dropdown">
-                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../assets/img/avatar/1.jpg" alt="..."></span>
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
                   <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
