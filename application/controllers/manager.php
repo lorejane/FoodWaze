@@ -163,6 +163,7 @@ class Manager extends _BaseController {
         foreach($this->ManagerModel->getEmployeeManager() as $data){
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
+                .'" <img style=\"width:50%;\" src='.base_url('pics/'.$data->Image).' class=\"img-circle\" >",'
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
@@ -224,7 +225,7 @@ class Manager extends _BaseController {
         //print_r($this->ManagerModel->TotalSalesByCashier());
         $json = '{ "data": [';
         foreach($this->ManagerModel->TotalSalesByCashier() as $data){
-            // print_r($data);
+            // print_r($data);115px`1 
             $emperador = $this->ManagerModel->getEmployee($data->EmployeeId);
             $json .= '['
                 .'"'.$data->EmployeeId.'",'
