@@ -63,8 +63,7 @@
                 ."Firstname = '".$employee['Firstname']."',"
                 ."Lastname = '".$employee['Lastname']."',"
                 ."PositionId = '".$employee['PositionId']."',"
-                ."StallId = '".$employee['StallId'].",'"
-                ."Password = '".$employee['Password'].",'"
+                ."StallId = '".$employee['StallId']."'"
                 ."WHERE EmployeeId = '".$employee['EmployeeId']."'"
 			);			
 		}
@@ -76,5 +75,17 @@
 			."WHERE EmployeeId = '".$EmployeeId."'"
 		);	
 	}
+
+	public function Stalls(){
+		return $this->db->query("SELECT COUNT(StallId) as StallId FROM stall")->row()->StallId;
+	}
+
+	public function Managers(){
+		return $this->db->query("SELECT COUNT(EmployeeId) as EmployeeId FROM employee WHERE PositionId = 2 ")->row()->EmployeeId;
+	}
+
+	public function Cashiers(){
+		return $this->db->query("SELECT COUNT(EmployeeId) as EmployeeId FROM employee WHERE PositionId = 3 ")->row()->EmployeeId;
+	}		
 
 }

@@ -84,8 +84,8 @@
     </div>
 </form>
     <div class="col-sm-8">
-        <div class="card" style="height:70%;">
-          <div class="card-body" style="height:40%; scroll-y:auto;">
+        <div class="card">
+          <div class="card-body">
               <div id="menu-container" >
               </div>              
           </div>          
@@ -178,7 +178,7 @@ function menu() {
             })
 
             element +='</ul>';
-            element +='<div class="tab-content">';
+            element +='<div class="tab-content" style="scroll-y:auto;">';
             first = true;
             $.each(kat, function(index, data){
                 if(first){
@@ -201,7 +201,7 @@ function menu() {
 			        $.each(menu, function(index, data){
 			            //console.log(data);
 			            //data.Price
-			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:20%;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5>'+data.Name+'</h5><h4 style="color:red;">&#X20B1; '+data.Price+'.00</h4><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="height:20%; padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:100px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5 style="background-color:#FFE694;">'+data.Name+'</h5><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
 			        });
 	        	    $('.ordermenu').click(function(){
            				$.ajax({
