@@ -1,17 +1,24 @@
+<main class="main-container bg-pale-purple">
+
 <header class="header">
-<div class="container">
+<div class="container bg-img h-250px" style="background-image: url(../pics/menu.png)" >
 	<div class="header-info">
-	<div class="left">
-		<br>
-		<h2 class="header-title"><strong>Menu</strong></h2>
+
 	</div>
 	</div>
 
+	 <div class="preloader">
+       <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
+                  <circle class="circle" cx="25" cy="25" r="25"></circle>
+                </svg>
+                </div>
+    </div>
+
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Menu_Modal.new();"
-		data-toggle="modal" data-target="#modal-Menu" data-provide="tooltip" data-original-title="Add Account">
-		<i class="ti-plus"></i>
+		<a class="btn btn-float btn-lg btn-lightest float-md-right text-danger" onclick="Menu_Modal.new();"
+				data-toggle="modal" data-target="#modal-Menu" data-provide="tooltip" data-original-title="Add Menu">
+				<i class="ti-plus"></i>
 		</a>
 	</div>
 	</div>
@@ -21,9 +28,9 @@
 		<div class="card-body">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Menu-table" style="width:100%; overflow-x:auto;" 
-						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/generateTableMenus") ?>">
+						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateTableMenus") ?>">
 							<thead>
-								<tr>
+								<tr style="background-color: #0f0a0a;" class="text-yellow">
 									<th>Category ID</th>
 									<th>Image</th>
 									<th>Name</th>

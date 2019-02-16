@@ -17,7 +17,7 @@ class Manager extends _BaseController {
     public function Profile(){
         $this->load->view('include/header');        
         $data['profile'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('manager/ManagerProfile', $data);
+        $this->load->view('Manager/ManagerProfile', $data);
         $this->load->view('include/footer');
     }
 
@@ -167,8 +167,8 @@ class Manager extends _BaseController {
                 .'"'.$data->EmployeeAccount.'",'
                 .'"'.$data->Lastname.', '.$data->Firstname.'",'
                 .'"'.$this->foodwaze_model->getPositionName($data->PositionId).'",'               
-              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" ><span class=\"icon fa fa-edit\"></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"  ><span class=\"icon fa fa-remove\"></a>"'
-            .']';            
+              .'"<a onclick = \"Employee_Modal.edit('.$data->EmployeeId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Employee_Modal.delete('.$data->EmployeeId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+            .']';           
             $json .= ',';
         }
         $json = $this->removeExcessComma($json);
@@ -176,7 +176,7 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
-    public function generateTableMenus(){
+    public function GenerateTableMenus(){
         $json = '{ "data": [';
         foreach($this->ManagerModel->getMenu() as $data){                 
            $json .= '['

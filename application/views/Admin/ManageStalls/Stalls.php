@@ -1,11 +1,9 @@
 <main class="main-container">
-      
-<header class="header">
-<div style="background-color: #fd2951" class="container">
+
+<header class="header bg-pale-purple">
+<div class="container bg-img h-200px" style="background-image: url(../pics/stalls.png)" >
 	<div class="header-info">
-	<div class="left">
-		<br>
-		<h2 class="header-title fs-60 text-white"><strong>Stalls</strong></h2>
+
 	</div>
 	</div>
 
@@ -26,9 +24,9 @@
 	</div>
 </div>
 </header><!--/.header -->
-	<div class="card">
-		<div class="card-body text-white">
-			<div class="table-responsive bg-lightest " style="padding-top:20px; ">
+	<div class="col-12">	
+		<div class="card-body card-shadowed bl-3 border-yellow">
+			<div class="table-responsive" style="padding-top:20px; ">
 						<table class="table table-bordered display nowrap fs-20 text-dark" id = "Stall-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateStall") ?>">
 							<thead>
@@ -42,9 +40,7 @@
 						</table>            			
 			</div>
 		</div>
-	</div>
-
-</main>
+	
 
 <?php include("StallModal.php");?>
 

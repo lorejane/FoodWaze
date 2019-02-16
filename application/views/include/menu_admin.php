@@ -19,10 +19,10 @@
     
     <nav class="sidebar-navigation">
          <div class="sidebar-profile">
-            <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></a>
+            <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
             <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
-            <p>Web developer</p>
+            <p>WAdmin</p>
           </div>
         </div>
 
@@ -30,7 +30,7 @@
       
             <li class="menu-item">
                 <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Categories'); ?>">
-                    <span class="icon fa fa-home"></span>
+                    <span class="icon fa fa-file-text-o"></span>
                     <span class="title">Categories</span>
                 </a>
             </li>   

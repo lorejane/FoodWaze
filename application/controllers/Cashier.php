@@ -89,11 +89,11 @@ class Cashier extends _BaseController {
     //     $this->cart->destroy();
     // }
     
-    public function displayCartOrder(){
+    public function DisplayCartOrder(){
     	echo $this->convert($this->cart->contents());
     }
    
-    public function getCategory($stallId)
+    public function GetCategory($stallId)
     {
         echo $this->convert($this->foodwaze_model->getCategory($stallId));
     }

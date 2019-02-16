@@ -1,42 +1,50 @@
-<header class="header"> <!--header-inverse para madilim bg-ui-general-->
-<div class="container">
+<main class="main-container bg-lightest">
+      
+<header class="header">
+<div class="container bg-img h-200px" style="background-image: url(../pics/employee.png)" >
 	<div class="header-info">
-	<div class="left">
-		<br>
-		<h2 class="header-title"><strong>EMPLOYEES</strong></h2>
+
 	</div>
 	</div>
 
+	 <div class="preloader">
+       <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
+                  <circle class="circle" cx="25" cy="25" r="25"></circle>
+                </svg>
+                </div>
+    </div>
+
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-info float-md-right text-white" onclick="Employee_Modal.new();"
-		data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Employee">
-		<i class="ti-plus"></i>
+		<a class="btn btn-float btn-lg btn-lightest float-md-right text-danger" onclick="Employee_Modal.new();"
+				data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Employee">
+				<i class="ti-plus"></i>
 		</a>
 	</div>
 	</div>
 </div>
-</header><!--/.header -->
-	<div class="card">
-		<div class="card-body">
+</header><!--/.<!--/.header -->
+	<div class="col-12">
+		<div class="card-body card-shadowed bl-3 border-yellow">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployee") ?>">
 							<thead>
-								<tr>
-									<th>Employee ID</th>
-									<th>Images</th>
-									<th>Account</th>
-									<th>Name</th>			
-									<th>Position</th>
-									<th>Stall</th>
-									<th>Action</th>
+								<tr style="background-color: #0f0a0a;">
+									<th class="text-yellow">Employee ID</th>
+									<th class="text-yellow">Images</th>
+									<th class="text-yellow">Account</th>
+									<th class="text-yellow">Name</th>			
+									<th class="text-yellow">Position</th>
+									<th class="text-yellow">Stall</th>
+									<th class="text-yellow">Action</th>
 								</tr>
 							</thead>
 						</table>            			
 			</div>
 		</div>
 	</div>
+</div>
 
 <?php include("EmployeesModal.php");?>
 
