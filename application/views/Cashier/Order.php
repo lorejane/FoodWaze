@@ -48,7 +48,7 @@
             <option value="20">Senior</option>
             <option value="20">PWD</option>
           </select><br/>
-          TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
+          TOTAL PRICE<input type="number" class="int input-value" id="puretotal" name="puretotal" readonly>
           <button type="button" class="btn btn-info" onclick="SaveOrder()">Save</button>
         </div>
         <div class="col-sm-6">
@@ -105,7 +105,20 @@
     </div>
   </div>
 
-<button id="pdf">PDF</button>  
+<input id="pdf" type="submit" value="hjkasdhs"/>  
+ <script>
+$(document).ready(function () {
+    $('input[type="submit"]').attr('disabled', true);
+    $('input[type="text"]').on('keyup', function () {
+        var text_value = $('input[name="ReceivedAmnt"]').val();
+        if (text_value != '') {
+            $('input[type="submit"]').attr('disabled', false);
+        } else {
+            $('input[type="submit"]').attr('disabled', true);
+        }
+    });
+});
+</script>
  <script>	
   function SaveOrder() {
     var discount = document.getElementById('discount').value;                         
@@ -137,10 +150,9 @@
             $('#ReceivedAmnt').val(shortenedString);
         });
 
-    });
+    }); 
       
 </script>
-
   <script>
    
 function Sizes() {
@@ -148,7 +160,7 @@ function Sizes() {
 }	
 function menu() {
 	$.ajax({
-        url: "<?php echo base_url('foodwaze/getCategory/'.$this->session->userdata('StallId')); ?>",        
+        url: "<?php echo base_url('FoodWaze/CetCategory/'.$this->session->userdata('StallId')); ?>",        
         success: function(kat){
             kat = JSON.parse(kat);
             console.log('---------CATEGORY----------');
@@ -181,7 +193,7 @@ function menu() {
             $('#menu-container').html(element);
 
             $.ajax({
-			    url: "<?php echo base_url('foodwaze/getMenu/'.$this->session->userdata('StallId')); ?>", 
+			    url: "<?php echo base_url('FoodWaze/GetMenu/'.$this->session->userdata('StallId')); ?>", 
 			    success: function(menu){
 			        menu=JSON.parse(menu);
 			        console.log(menu);
@@ -269,7 +281,7 @@ function save_to_db(id, new_quantity, newPrice) {
 
 function refresh(){
 	$.ajax({
-	   	url: "<?php echo base_url('Cashier/displayCartOrder'); ?>",
+	   	url: "<?php echo base_url('Cashier/DisplayCartOrder'); ?>",
 		success: function(i){
 			i = JSON.parse(i);
 			console.log(i);
