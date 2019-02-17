@@ -1,6 +1,6 @@
-<main class="main-container bg-lightest">
+<main class="main-container">
       
-<header class="header">
+<header class="header  bg-purple">
 <div class="container bg-img h-200px" style="background-image: url(../pics/employee.png)" >
 	<div class="header-info">
 
@@ -25,7 +25,7 @@
 </div>
 </header><!--/.<!--/.header -->
 	<div class="col-12">
-		<div class="card-body card-shadowed bl-3 border-yellow">
+		<div class="card-body bg-lightest card-shadowed bl-3 border-yellow">
 			<div class="table-responsive" style="padding-top:20px;">
 						<table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateTableEmployee") ?>">

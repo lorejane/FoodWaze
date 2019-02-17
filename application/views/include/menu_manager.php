@@ -85,35 +85,8 @@
     <!-- END Sidebar -->
 
 
-    <!-- Topbar -->
-    <header style="background-color: #cf1b1b"class="topbar topbar">
-          <div class="topbar-left">
-            <button class="topbar-btn sidebar-toggler">&#9776;</button>
-            <h3 class="topbar-title text-white">FOODWAZE</h3>
-          </div>
 
-          <div class="topbar-right">
-            <ul class="topbar-btns">
-              <li class="dropdown">
-                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
-                  <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-                  <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#"><i class="ti-power-off"></i> Logout</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-              <!-- Notifications -->
-            <!-- Main container -->
-    
-        </header>
-    <!-- END Topbar -->
-
-
+  
    
 
      

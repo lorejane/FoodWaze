@@ -1,6 +1,6 @@
 <main class="main-container bg-pale-purple">
 
-<header class="header">
+<header class="header bg-pale-purple">
 <div class="container bg-img h-250px" style="background-image: url(../pics/categories.png)" >
 	<div class="header-info">
 
@@ -24,9 +24,8 @@
 	</div>
 </div>
 </header>
-	
-	<div class="card col-11	">	
-		<div style="center" class="card-body card-shadowed bl-3 border-yellow">
+		<div class="col-12">
+		<div class="card-body bg-lightest card-shadowed bl-3 border-yellow">
 			<div class="table-responsive" style="padding-top:10px;">
 						<table class="table table-bordered display nowrap" id = "Categories-table" style="width:100%; overflow-x:auto;" 
 						cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Admin/generateTableCategories") ?>">
@@ -40,6 +39,7 @@
 						</table>            			
 			</div>
 		</div>
+	
 	</div>
 	
 

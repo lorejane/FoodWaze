@@ -20,8 +20,9 @@
          <div class="sidebar-profile">
             <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
-            <h4>CJ></h4>
-            <p>WAdmin</p>
+            <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
+            <p>Admin</p>
+            
           </div>
         </div>
 

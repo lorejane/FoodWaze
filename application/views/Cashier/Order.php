@@ -173,9 +173,9 @@ function menu() {
             $.each(kat, function(index, data){
                 if(first){
                     first = false;
-                    element +='<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                    element +='<li class="nav-item active"><a class="nav nav-link nav-tabs-danger" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                 } else{
-                    element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-30 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                    element +='<li class="nav-item"><a class="nav nav-link nav-tabs-danger" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                 }
             })
 
