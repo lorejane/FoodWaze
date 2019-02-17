@@ -71,6 +71,11 @@ class Admin extends _BaseController {
     public function GetStall($id){        
         echo $this->convert($this->AdminModel->_getStallName($id));
     }
+
+    public function GetEmpImage($id){        
+        echo $this->convert($this->AdminModel->_getEmployeeImage($id));
+    }
+
     
     public function GetCategory($id){        
         echo $this->convert($this->AdminModel->_getCategories($id));
@@ -245,10 +250,16 @@ class Admin extends _BaseController {
         echo $this->convert($this->AdminModel->delete($id));
     }
 
+    public function EmpLastname($id){
+        echo $this->convert($this->AdminModel->getEmployeeName($id));
+    }
+
     public function DeleteStall($id){        
         echo $this->convert($this->Stall_model->delete($id));
         echo $this->convert($this->MenuModel->deleteMenu($id));
         echo $this->convert($this->AdminModel->deleteEmployee($id));
     }
+
+    
 
 }

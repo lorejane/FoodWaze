@@ -17,8 +17,8 @@
       </header>
     
     <nav class="sidebar-navigation">
-         <div class="sidebar-profile"
-            <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
+         <div class="sidebar-profile">
+            <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('manager/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
             <h4><?php echo $this->session->userdata('EmpLastname');?></h4>
             <p>Admijjjjn</p>

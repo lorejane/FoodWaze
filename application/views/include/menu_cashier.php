@@ -1,11 +1,13 @@
 
 <header style="background-color: #d02020" class="topbar">
     <div class="topbar-left">
-        <a href="<?php echo base_url('Cashier/Order'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
-        
-         <a onclick="toggleFullScreen()" class="topbar-btn d-md-block">
+        <a onclick="toggleFullScreen()" class="topbar-btn d-md-block">
           <button class="btn btn-square btn-outline btn-yellow "> <i class="ti-fullscreen"></i></button>
         </a>
+        <a><img src="../pics/foodwazelogoo.png" alt="logo icon"></a>
+        <span class="sidebar-toggle-fold"></span>
+
+         
          
 
     </div>

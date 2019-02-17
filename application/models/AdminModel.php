@@ -25,7 +25,12 @@
 	}
 
 	public function getEmployeeImage(){
-		return $this->db->query("SELECT Image FROM employee WHERE EmployeeId = '".$EmployeeId."'")->row()->Image;	
+		return $this->db->query("SELECT Image FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->row()->Image;
+
+	}
+
+	public function getEmployeeName(){
+		return $this->db->query("SELECT Lastname FROM employee WHERE EmployeeId = '".$EmployeeId."'")->row()->Lastname;	
 
 	}
 
@@ -87,5 +92,11 @@
 	public function Cashiers(){//total
 		return $this->db->query("SELECT COUNT(EmployeeId) as EmployeeId FROM employee WHERE PositionId = 3 ")->row()->EmployeeId;
 	}		
+
+	public function getSumemployee(){
+		return $this->db->query("SELECT COUNT(EmployeeId) as EmployeeId FROM employee ");
+    
+   		
+}
 
 }
