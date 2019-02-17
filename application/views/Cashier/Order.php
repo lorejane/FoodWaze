@@ -48,8 +48,9 @@
             <option value="20">Senior</option>
             <option value="20">PWD</option>
           </select><br/>
-          TOTAL PRICE<input type="number" class="int input-value" id="puretotal" name="puretotal" readonly>
-          <button type="button" class="btn btn-info" onclick="SaveOrder()">Save</button>
+          TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
+          <input id="pdf" type="button" class="btn btn-info" onclick="SaveOrder()" value="Save"/>
+          <!-- <input id="pdf" type="submit" value="hjkasdhs"/>  --> 
         </div>
         <div class="col-sm-6">
           <div class="row">
@@ -105,21 +106,21 @@
     </div>
   </div>
 
-<input id="pdf" type="submit" value="hjkasdhs"/>  
  <script>
 $(document).ready(function () {
-    $('input[type="submit"]').attr('disabled', true);
-    $('input[type="text"]').on('keyup', function () {
+    $('input[type="button"]').attr('disabled', true);
+    $('input').on('focus', function () {
         var text_value = $('input[name="ReceivedAmnt"]').val();
         if (text_value != '') {
-            $('input[type="submit"]').attr('disabled', false);
+            $('input[type="button"]').attr('disabled', false);
         } else {
-            $('input[type="submit"]').attr('disabled', true);
+            $('input[type="button"]').attr('disabled', true);
         }
     });
 });
 </script>
- <script>	
+ <script> 
+
   function SaveOrder() {
     var discount = document.getElementById('discount').value;                         
     var puretotal = document.getElementById('puretotal').value;
@@ -128,12 +129,13 @@ $(document).ready(function () {
     $.ajax({
         url:"<?php echo base_url('Cashier/SaveOrder'); ?>/"+discount+"/"+puretotal+"/"+ReceivedAmnt+"/"+change,
         type: "get",
-       
         success: function(i){
-        console.log("hehe");
-      }
+          //swal('DONE!', 'success');
+          Remove();
+          }
     })    
   }
+
 </script> 
 <script>
   function displaynum(n1){
@@ -201,7 +203,7 @@ function menu() {
 			        $.each(menu, function(index, data){
 			            //console.log(data);
 			            //data.Price
-			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="height:20%; padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:100px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5 style="background-color:#FFE694;">'+data.Name+'</h5><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
+			            $('#cat-' + data.CategoryId).append('<div class="ordermenu col-sm-3 items" style="height:22%; padding:5px; border:1px solid #ccc;" align="center" data-Image="'+data.Image+'" data-id="'+data.MenuId+'" data-name="'+data.Name+'" data-price="'+data.Price+'" ><img style="width:100px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" > <h5 style="background-color:#FFE694;">'+data.Name+'</h5><input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
 			        });
 	        	    $('.ordermenu').click(function(){
            				$.ajax({
@@ -310,6 +312,15 @@ function DeleteCart(id){
         refresh();
     }
   });
+}
+
+function Remove(){
+  $.ajax({
+      url: "<?php echo base_url('Cashier/RemoveAll'); ?>",
+      success: function(i){
+        // refresh();
+    }
+  });
 }   
 
 function computeSubTotal(){
@@ -400,7 +411,6 @@ $('#pdf').click(function () {
   pdf.text(5, 119, 'Cash: '+ Cash);
   pdf.text(5, 115, 'Change: '+ Change);
   pdf.save('Receipt.pdf');
-
   console.log(menu);
   }
  }) 
