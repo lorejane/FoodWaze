@@ -20,21 +20,12 @@
       </header>
 
       <nav class="sidebar-navigation">
-
         <div class="sidebar-profile">
-          <div class="dropdown">
-            <span class="dropdown-toggle no-caret" data-toggle="dropdown"><img class="avatar" src="../pics/logo.png" alt="..."></span>
-            <div class="dropdown-menu open-top-center">
-              <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
-              <a class="dropdown-item" href="#"><i class="ti-settings"></i> Settings</a>
-              <a class="dropdown-item" href="#"><i class="ti-help"></i> Help</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#"><i class="ti-power-off"></i> Logout</a>
-            </div>
-          </div>
+            <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('manager/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
-            <h4>Lore Katrina Florendo</h4>
+            <h4><?php echo $this->session->userdata('Em'); ?></h4>
             <p>Manager</p>
+            
           </div>
         </div>
 

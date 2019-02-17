@@ -8,9 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Responsive admin dashboard and web application ui kit. This twitter bootstrap plugin builds a wizard out of a formatter tabbable structure. It allows to build a wizard functionality using buttons to go through the different wizard steps and using events allows to hook into each step individually.">
     <meta name="keywords" content="wizard">
-    <link rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Black+Jack">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Black+Jack">
+    <link rel="shortcut icon" type="image/png" href="../pics/iconadd.png">
 <!--modal-->
     <meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 

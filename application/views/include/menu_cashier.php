@@ -1,26 +1,25 @@
 
-<header style="background-color: #ea2828" class="topbar">
+<header style="background-color: #d02020" class="topbar">
     <div class="topbar-left">
-         <a href="<?php echo base_url('Cashier/Order'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
+        <a href="<?php echo base_url('Cashier/Order'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
         
-        <a onclick="toggleFullScreen()" class="topbar-btn d-none d-md-block" href="#" data-provide="fullscreen tooltip" title="Fullscreen">
-            <i class="material-icons fullscreen-default">fullscreen</i>
+         <a onclick="toggleFullScreen()" class="topbar-btn d-md-block">
+          <button class="btn btn-square btn-outline btn-yellow "> <i class="ti-fullscreen"></i></button>
         </a>
          
 
     </div>
 
     <div class="topbar-right">        
-        <div class="dropdown">
-          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span><i class="ti-user"></i></span> </a>
-          <ul class="dropdown-menu">
-            <li><a href="<?php echo base_url('Cashier/Profile'); ?>">Profile</a></li>
-            <!-- <li><a href="#">CSS</a></li> -->
-            <li><a href="<?php echo base_url('home/Logout'); ?>">Logout<!-- <i class="ti-power-off" style="font-size:20; color:red;"></i> --></a></li>
-          </ul>
-        </div>
+       <div class="dropdown">
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
+                  <a class="dropdown-item" href="<?php echo base_url('Home/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
+                </div>
+              </div>
         <li class=" d-md-block">
-            <span class="topbar-btn has-new" data-toggle="quickview" data-target="#qv-pending"><i class="ti-briefcase"></i></span>        
+            <button class="btn btn-square btn-outline btn-info" data-toggle="quickview" data-target="#qv-pending"><i class="fa fa-cart-arrow-down fa-2x"></i></button>        
         </li>
     </div>
 
