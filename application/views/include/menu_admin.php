@@ -19,7 +19,7 @@
     
     <nav class="sidebar-navigation">
          <div class="sidebar-profile">
-            <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
+            <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
             <h4><?php echo $this->session->userdata('EmployeeAccount'); ?></h4>
             <p>WAdmin</p>
@@ -27,6 +27,13 @@
         </div>
 
         <ul class="menu menu-lg menu-bordery">
+
+            <li class="menu-item">
+                <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Dashboard'); ?>">
+                    <span class="icon fa fa-file-text-o"></span>
+                    <span class="title">Dashboard</span>
+                </a>
+            </li>   
       
             <li class="menu-item">
                 <a class="menu-link hover-yellow" href="<?php echo base_url('Admin/Categories'); ?>">
