@@ -33,9 +33,6 @@
             </div>
           </div>
 
-
-
-
           <div class="col-md-6 col-xl-4">
             <div class="card card-body">
               <h6>
