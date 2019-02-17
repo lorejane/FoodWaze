@@ -14,6 +14,17 @@ class Admin extends _BaseController {
 		redirect(base_url('Login'));
 	}
 
+    public function Dashboard()
+    {   
+        $this->load->view('include/header');
+        $data['totalstalls'] = $this->AdminModel->Stalls();
+        $data['totalmanagers'] = $this->AdminModel->Managers();
+        $data['totalcashiers'] = $this->AdminModel->Cashiers();
+        $this->load->view('Admin/Dashboard', $data);
+        $this->load->view('include/footer');
+
+    }
+
     public function Categories()
     {   
         $this->load->view('include/header');
