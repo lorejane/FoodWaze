@@ -16,7 +16,7 @@
 
               <div class="card-body row">
                 <form id="modal-Employee-form" action="#" class="form-group mt-2">
-                       <input type="hidden" id="EmployeeId" name="EmployeeId" />   
+                       <input type="hidden" id="EmployeeId" name="EmployeeId" value="<?php echo $this->session->userdate('EmployeeId') ?>" />   
                             <div class="col-6">
                                 <label>Account</label>
                                 <input id="EmployeeAccount" name="EmployeeAccount" type="text" class="form-control" placeholder="Account" value="<?php echo $profile->EmployeeAccount ?>" />
@@ -95,8 +95,6 @@
                     $('#EmployeeAccount').val(i.EmployeeAccount);
                     $('#Firstname').val(i.Firstname);
                     $('#Lastname').val(i.Lastname);
-                    $('#PositionId').selectpicker('val',i.PositionId);
-                    $('#StallId').selectpicker('val',i.StallId);
                     $('#Password').val(i.Password);
                     $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
                     imageChanged = false;
