@@ -53,10 +53,10 @@ input[type="checkbox"][id^="cb"] {
   }
   
   label {
-    padding: 10px;
+    /*padding: 10px;*/
     display: block;
     position: relative;
-    margin: 30px;
+    margin: 5px;
     cursor: pointer;
   }
   
