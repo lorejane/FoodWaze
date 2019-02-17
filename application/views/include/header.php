@@ -2,7 +2,7 @@
   <html>
 	<head>
 		<title>FOODWAZE</title>
-     
+
     <!-- for homepage -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,6 +11,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Black+Jack">
     <link rel="shortcut icon" type="image/png" href="../pics/iconadd.png">
 <!--modal-->
+    <meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Nifty Modal Window Effects</title>
+		<meta name="description" content="Nifty Modal Window Effects with CSS Transitions and Animations" />
+		<meta name="keywords" content="modal, window, overlay, modern, box, css transition, css animation, effect, 3d, perspective" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
 
 		<link rel="stylesheet" type="text/css" href="css/component.css" />   
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -39,7 +48,7 @@
     <script src="<?php echo base_url('bootstrap/js/bootstrap.min.js'); ?>"></script>
     <script src="<?php echo base_url('bootstrap/js/bootstrap.js'); ?>"></script> 
     <script src="<?php echo base_url('bootstrap/js/jquery.min.js'); ?>"></script>
-	<script src="<?php echo base_url('bootstrap/js/modernizr.custom.js')?>"></script>
+
 	</head>
 
 <script>
