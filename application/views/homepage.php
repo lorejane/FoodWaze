@@ -258,6 +258,7 @@
                   item_price:price
                 },
                 success:function(response) {
+                  swal('Added!', 'success');
                   show_cart();         
                 },
                 error: function(){
