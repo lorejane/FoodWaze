@@ -263,6 +263,13 @@
                 },
                 success:function(response) {
                   show_cart();         
+				  var notification = new NotificationFx({
+                                    message : '<p>Added to Cart </p>',
+                                    layout : 'growl',
+                                    effect : 'scale',
+                                    type : 'success'
+                                  });
+                                setInterval(notification.show(), 500);
                 },
                 error: function(){
                     alert('ERROR!');
@@ -330,13 +337,7 @@
                                     }
                                 }
                                 document.getElementById("total").innerHTML = total;
-                                var notification = new NotificationFx({
-                                    message : '<p>Added to Cart </p>',
-                                    layout : 'growl',
-                                    effect : 'scale',
-                                    type : 'success'
-                                  });
-                                setInterval(notification.show(), 500);
+                                
                             },
                       error: function(response){
                             var html;
