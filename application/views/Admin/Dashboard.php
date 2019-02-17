@@ -19,7 +19,7 @@
                       <img src="../pics/slider3.png" alt="...">
                     </div>
                       <div class="swiper-slide">
-                      <img src="../pics/slider5 .png" alt="...">
+                      <img src="../pics/slider5.png" alt="...">
                     </div>
 
                   </div>
@@ -82,35 +82,55 @@
           </div>
 
 
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="card-title"><strong>Earnings</strong></h5>
-                <a class="btn btn-xs btn-secondary" href="../widget/chart.html">More Charts</a>
-              </div>
-
-              <div class="card-body">
-                <ul class="list-inline text-center gap-items-4 mb-30">
-                  <li class="list-inline-item">
-                    <span class="badge badge-lg badge-dot mr-1" style="background-color: #b1bccb"></span>
-                    <span>Advertising</span>
-                  </li>
-                  <li class="list-inline-item">
-                    <span class="badge badge-lg badge-dot mr-1" style="background-color: #01c4cc"></span>
-                    <span>Hosting</span>
-                  </li>
-                </ul>
-
-                <canvas id="chart-js-2" height="130" data-provide="chartjs"></canvas>
-              </div>
-
-            </div>
-          </div>
 
 
+<div class="card col-md-6">
+  
+  <h4 class="card-title">
+                <Strong>List of Categories</strong>
+                <span class="float-right"><a class="btn btn-xs btn-primary text-white" href="<?php echo base_url('Admin/Categories'); ?>" >See More</a></span>
+                <h4>
+    <div class="card-body bg-lightest card-shadowed bl-3 border-yellow">
+      <div class="table-responsive" style="padding-top:10px;">
+            <table class="table table-bordered display nowrap" id = "Categories-table" style="width:100%; overflow-x:auto;" 
+            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Admin/generateTableCategories") ?>">
+              <thead>
+                <tr style="background-color: #0f0a0a;">
+                  <th class="text-yellow">Category ID</th>
+                  <th class="text-yellow">Category Name</th>     
+                </tr>
+              </thead>
+            </table>                  
+      </div>
+    </div>
+  </div>
+
+
+
+<div class="card col-md-6">  
+  <h4 class="card-title">
+                <Strong>List of Stalls</strong>
+                <span class="float-right"><a class="btn btn-xs btn-primary text-white" href="<?php echo base_url('Admin/Stalls'); ?>" >See More</a></span>
+                <h4>
+
+    <div class="card-body bg-lightest card-shadowed bl-3 border-yellow">
+      <div class="table-responsive" style="padding-top:20px; ">
+            <table class="table table-bordered display nowrap fs-20 text-dark" id = "Stall-table" style="width:100%; overflow-x:auto;" 
+            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("admin/GenerateStallDashboard") ?>">
+              <thead>
+                <tr style="background-color: #0f0a0a;">
+                  <th class="text-yellow">Stall Number</th>
+                  <th class="text-yellow">Name</th>
+                </tr>
+              </thead>
+            </table>                  
+      </div>
+    </div>
+    </div>
 </div>
-</div>
+
 </main>
+
 
 
 

@@ -223,6 +223,21 @@ class Admin extends _BaseController {
         echo $json;        
     }	
 
+    public function GenerateStallDashboard(){
+        $json = '{ "data": [';
+        foreach($this->AdminModel->getStall() as $data){
+            $json .= '['
+                .'"'.$data->StallId.'",'                
+                .'"'.$data->Name.'",'
+                .'"<a onclick = \"Stall_Modal.edit('.$data->StallId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-edit fa-2x\"></span></a><a onclick = \"Stall_Modal.delete('.$data->StallId.');\"><span class=\"btn btn-float btn-danger icon fa fa-remove fa-2x\" data-toggle=\"tooltip\" title=\"DELETE\"></a>"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }   
+
     public function GenerateTableEmployee(){
         $json = '{ "data": [';
         foreach($this->AdminModel->getEmployee() as $data){
