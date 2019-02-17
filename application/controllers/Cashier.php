@@ -79,7 +79,7 @@ class Cashier extends _BaseController {
     public function Remove($id){
         $this->cart->remove($id);
     }
-    
+
     public function RemoveAll(){
         $this->cart->destroy();
         redirect(base_url('Cashier/Order/'));
