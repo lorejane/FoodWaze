@@ -63,7 +63,7 @@
 	}
 
 	public function getMenuName($menuid){
-		return $this->db->query("SELECT Name FROM menu WHERE MenuId = '".$menuid."' ")->row()->Name;
+		return $this->db->query("SELECT Name FROM menu AS Name WHERE MenuId = '".$menuid."' ")->row()->Name;
 	}
 
 	public function TotalOrders(){
@@ -83,10 +83,10 @@
 	}
 
 	public function MostSaleable(){
-		return $this->db->query("SELECT sum(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."') group by MenuId order by Quantity DESC LIMIT 5 ")->result();
+		return $this->db->query("SELECT SUM(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."') group by MenuId order by Quantity DESC LIMIT 5 ")->result();
 	}
 
 	public function LeastSaleable(){
-		return $this->db->query("SELECT sum(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."')group by MenuId order by Quantity ASC LIMIT 5 ")->result();
+		return $this->db->query("SELECT SUM(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."')group by MenuId order by Quantity ASC LIMIT 5 ")->result();
 	}
 }		
