@@ -16,7 +16,7 @@
 
 	<div class="header-action">
 	<div class="buttons">
-		<a class="btn btn-float btn-lg btn-lightest float-md-right text-danger" onclick="Employees_Modal.new();"
+		<a class="btn btn-float btn-lg btn-lightest float-md-right text-danger" onclick="Employee_Modal.new();"
 				data-toggle="modal" data-target="#modal-Employee" data-provide="tooltip" data-original-title="Add Employee">
 				<i class="ti-plus"></i>
 		</a>
