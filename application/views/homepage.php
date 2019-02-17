@@ -217,18 +217,21 @@
 <!-- END Main container -->
 
 
-
-
-
+<script src="<?php echo base_url('bootstrap/js/classie.js')?>"></script>
+<script src="<?php echo base_url('bootstrap/js/notificationFx.js')?>"></script>
 
 <script>
+
   var name ='';
   var identifier;
   start();
   function start(){
+
+    $("input:checkbox").prop("checked", false);
     document.getElementById("tab1").disabled = true; 
     document.getElementById("tab2").disabled = true;
     document.getElementById("tab3").disabled = true;
+    document.getElementById("next").disabled = true;
     if (identifier>0) {
       document.getElementById("next").disabled = false;
     }
@@ -236,7 +239,8 @@
       document.getElementById("next").disabled = true;
   }
   function back(){
-    document.getElementById("next").disabled = false;
+    //document.getElementById("next").disabled = false;
+    $("input:checkbox").prop("checked", false);
   }
   function submitform(){
     document.getElementById("fsubmit").click(); 
@@ -258,7 +262,6 @@
                   item_price:price
                 },
                 success:function(response) {
-                  swal('Added!', 'success');
                   show_cart();         
                 },
                 error: function(){
@@ -313,7 +316,6 @@
                                     }
                                     else
                                     {
-                                             
                                         
                                         html += '<tr>'+
                                                 '<td>'+data[i].Qty+'</td>'+
@@ -328,10 +330,21 @@
                                     }
                                 }
                                 document.getElementById("total").innerHTML = total;
+                                var notification = new NotificationFx({
+                                    message : '<p>Added to Cart </p>',
+                                    layout : 'growl',
+                                    effect : 'scale',
+                                    type : 'success'
+                                  });
+                                setInterval(notification.show(), 500);
                             },
                       error: function(response){
                             var html;
-                            html +='No item in cart';
+                            html ='No item in cart';
+                            $('#cartdata').html(html);
+                            total=0;
+                            document.getElementById("total").innerHTML = total;
+                            document.getElementById("next").disabled = true;
                         }
                   });
                 }
@@ -370,8 +383,8 @@
             $("input:checkbox").on('click', function() {              
               var $box = $(this);
               if ($box.is(":checked")) {
-                document.getElementById("next").disabled = false;
-                var group = "input:checkbox[name='" + $box.attr("name") + "']";
+                document.getElementById("next").disabled = true;
+                var group = 'input:checkbox[name="' + $box.attr("name") + '"]';
                 $(group).prop("checked", false);
                 $box.prop("checked", true);      
                 id=$(this).attr('id');
@@ -410,11 +423,19 @@
 
                         element +='</div>';
                         $('#menu-container').html(element);
-                        document.getElementById("next").click();
+                        document.getElementById("next").disabled = false;
+                        document.getElementById("next").click();   
+                        $.ajax({
+                            url: "<?php echo base_url("FoodWaze/Clearsession") ?>",
+                            success: function(response){
+                                console.log(response);
+                                
+                                document.getElementById("next").disabled = true;
+                            }
+                        })
                         menu(id);
                     }
-                })                                                
-                 
+                })    
               }
               else {
                 $box.prop("checked", false);

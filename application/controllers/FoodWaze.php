@@ -77,6 +77,16 @@ class FoodWaze extends _BaseController {
             session_destroy(); 
             redirect(base_url('foodwaze'), 'refresh');
         }
+        public function Clearsession()
+        {
+            //
+            if(isset($_SESSION['cart'])){
+                unset($_SESSION['cart']); 
+            }
+            else{
+                echo 'no cart';
+            }
+        }
 
         public function Cart(){
 			$itemcart=$_SESSION['cart'];
