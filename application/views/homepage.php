@@ -262,9 +262,13 @@
                   item_price:price
                 },
                 success:function(response) {
-                  show_cart();         
+                  show_cart();        
+                  // swal("1 Item Added")
+                  // timer: 2000,
+                  swal("Here's a message!")
+                  
 				  var notification = new NotificationFx({
-                                    message : '<p>Added to Cart </p>',
+                                    message : '<p>1 Item Added</p>',
                                     layout : 'growl',
                                     effect : 'scale',
                                     type : 'success'
@@ -373,7 +377,7 @@
                                 $('#cat-' + data.CategoryId).append('<div class="col-lg-3 col-xs-3 items" style="padding: 10px; " align="center" id="'+data.MenuId+'">'+                            
                                 '<img style="width: 120px; height: 120px; border-radius: 8px;" src="<?php echo base_url("pics/'+data.Image+'"); ?>" >'+
                                 '<h4 style="margin-top: 12px;"><strong style="color:#b53b30; font-family: black jack;">'+data.Name+'</strong></h4><h5 style="color:grey;">&#X20B1;'+data.Price+'.00</h5>'+
-                                '<i class="btn btn-primary fa fa-plus" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
+                                '<i class="btn btn-primary" style="font-size: 12px; font-family: Roboto;" onclick="cart('+data.MenuId+')"> Add to Cart</i>'+ //+ sign
                                 
                                 '<input type="hidden" id="'+data.MenuId+'_name" value="'+data.Name+'"><input type="hidden" id="'+data.MenuId+'_price" value="'+data.Price+'"></div>'); 
                             });
@@ -404,7 +408,7 @@
                         $.each(kat, function(index, data){
                             if(first){
                                 first = false;
-                                element +='<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                                element +='<li class="nav-item"><a class="nav-link active"" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             } else{
                                 element +='<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                             }
