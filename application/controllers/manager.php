@@ -14,6 +14,13 @@ class Manager extends _BaseController {
 		redirect(base_url('Login'));
 	}
 
+    public function SidebarProfile(){
+       // $this->load->view('include/header');        
+        $data['profile'] = $this->ManagerModel->getManagerDetails();
+        $this->load->view('include/menu_manager', $data);
+        //$this->load->view('include/footer');
+    }
+
     public function Profile(){
         $this->load->view('include/header');        
         $data['profile'] = $this->ManagerModel->getManagerDetails();
@@ -42,14 +49,6 @@ class Manager extends _BaseController {
         $this->load->view('include/footer');
         
     } 
-    public function Dashboard(){
-        $this->load->view('include/header');
-        $data['totalorders'] = $this->ManagerModel->TotalOrders();
-        $data['totalprice'] = $this->ManagerModel->TotalSales();
-        $this->load->view('Manager/Dashboard', $data);
-        $this->load->view('include/footer');
-    }
-
     
     public function Sales(){
         $this->load->view('include/header');
