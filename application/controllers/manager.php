@@ -47,7 +47,7 @@ class Manager extends _BaseController {
         $this->load->view('include/header');
         $data['totalorders'] = $this->ManagerModel->TotalOrders();
         $data['totalprice'] = $this->ManagerModel->TotalSales();
-        $this->load->view('Manager/Dashboard', $data);
+        $this->load->view('Manager/Sales', $data);
         $this->load->view('include/footer');
     }
 
@@ -231,6 +231,27 @@ class Manager extends _BaseController {
                 .'"'.$data->EmployeeId.'",'
                 .'"'.$emperador->Lastname.','.$emperador->Firstname.'",'
                 .'"'.$data->Total.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateReceiptTbl($from = null, $to = null){
+        $additionalCondition = '';
+        if($from != null){
+            $additionalCondition .= " AND DateTime BETWEEN '".$from."' AND '".$to."'";
+        }
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->displayReceiptTbl($additionalCondition) as $data){
+            $emp = $this->ManagerModel->getEmployee($data->EmployeeId);
+            $json .= '['
+                .'"'.$emp->Lastname.', '.$emp->Firstname.'",'
+                .'"'.$data->OrderId.'",'
+                .'"'.$data->Total.'",'                
+                .'"'.$data->DateTime.'"'
             .']';            
             $json .= ',';
         }
