@@ -40,11 +40,9 @@
 
           
 
-
-            <div class="card">
-              
-
-            <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
+            <div class="row gap-x gap-items-5">
+            <div class="card col-sl-6">
+            <table class="table table-responsive table-sm table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
             cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateMostSaleable") ?>">
               <thead>
                 <tr>
@@ -53,8 +51,10 @@
                 </tr>
               </thead>
             </table> 
+          </div>
 
-          <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
+           <div class="card col-msl-6">
+          <table class="table  table-responsive table-sm  table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
             cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateLeastSaleable") ?>">
               <thead>
                 <tr>
@@ -63,6 +63,8 @@
                 </tr>
               </thead>
             </table>   
+          </div>
+        </div>
 
           <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
             cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateTotalByEmployee") ?>">

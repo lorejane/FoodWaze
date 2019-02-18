@@ -63,7 +63,7 @@
 	}
 
 	public function getMenuName($menuid){
-		return $this->db->query("SELECT Name FROM menu AS Name WHERE MenuId = '".$menuid."' ")->row()->Name;
+		return $this->db->query("SELECT Name FROM menu WHERE MenuId = '".$menuid."' ")->row()->Name;
 	}
 
 	public function TotalOrders(){
