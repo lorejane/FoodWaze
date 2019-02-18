@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-Employee-form" action="#" class="form-group mt-2">
+                    <form id="modal-Employee-form" enctype="multipart/form-data" class="form-group mt-2">
                        <input type="hidden" id="EmployeeId" name="EmployeeId" />       
                         <div class="row mb-2">
                             <div class="col-12">
@@ -75,7 +75,6 @@
 
 <script>
     var imageChanged = false;
-
     $(document).ready(function(){
         $("#image").change(function(event){                     
             var tgt = event.target || window.event.srcElement, files = tgt.files;       
@@ -86,6 +85,8 @@
             }
             fr.readAsDataURL(files[0]);
         });
+        
+        Employee_Modal.init();      
     });
 
 

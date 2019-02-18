@@ -13,10 +13,17 @@
 		return $this->db->query("SELECT * FROM orders WHERE IsActive = '1' AND StallId = '".$this->session->userdata('StallId')."'")->result();	
 	}
 
+	public function updateOrder($id){
+		return $this->db->query("UPDATE orders SET IsActive='0' WHERE OrderId = '".$id."' ");	
+
+	}
+
 	public function getOrderDetails($id){
 		return $this->db->query("SELECT * FROM orderdetails WHERE OrderId = '".$id."' ")->result();	
 	}
 	
+
+
 	public function getMenu($menuid){
 		return $this->db->query("SELECT * FROM menu WHERE MenuId = '".$menuid."' ")->result();	
 	}

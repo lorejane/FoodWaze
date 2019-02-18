@@ -76,7 +76,7 @@
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
                                         + '<p>' + data.DateTime + '</p>'
-                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'" onclick="removepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right" data-active="'+data.IsActive+'" onclick="pending('+data.OrderId+',this)" data-value="'+data.OrderId+'" id="'+data.OrderId+'"></i>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -88,8 +88,8 @@
                                     
                             //     }
                             // });
-                            deleteAll();
 
+                            deleteAll();
                             var element ='<table class="table-responsive table-hover"><tbody></tbody></table>';
                             $("#mycart").html(element);
                             $.ajax({
@@ -230,5 +230,20 @@ function DeleteCart(id){
             }
         });
     }
+
+    function pending(id,dis){
+        $.ajax({
+            url: "<?php echo base_url('Cashier/Pending/'); ?>"+id,
+            type: "post",
+            success: function(i){
+
+
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
+
 
 </script>
