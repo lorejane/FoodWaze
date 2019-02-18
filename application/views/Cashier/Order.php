@@ -3,6 +3,9 @@
   display: none;
  } 
 
+#rmvbtn{
+  display: none;
+}
 .int{
   width: 20%;
 }
@@ -173,9 +176,9 @@ function menu() {
             $.each(kat, function(index, data){
                 if(first){
                     first = false;
-                    element +='<li class="nav-item active"><a class="nav nav-link nav-tabs-danger" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                    element +='<li class="nav-item active"><a class="nav nav-link nav-tabs-danger" data-toggle="tab" href="#cat-'+data.CategoryId+'" ><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                 } else{
-                    element +='<li class="nav-item"><a class="nav nav-link nav-tabs-danger" data-toggle="tab" href="#cat-'+data.CategoryId+'"><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
+                    element +='<li class="nav-item"><a class="nav nav-link nav-tabs-danger" id="rmv" value="'+data.CategoryId+'" data-toggle="tab" href="#cat-'+data.CategoryId+'"><input type="hidden" id="rmv" value="'+data.CategoryId+'" /><h3>'+'<p class="text-center fs-12 text-muted">'+data.CategoryName+'</p>'+'</h3></a></li>';
                 }
             })
 
@@ -229,6 +232,10 @@ function menu() {
         }
     })
 	 
+}
+
+function rmv(){
+  var rmv = document.getElementById("rmv").value;
 }
 
 function mwuehehe(newQuantity,rowid)
@@ -291,7 +298,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td> <td id="rmvbtn"><i class="btn btn-danger btn-xs fa fa-trash right"</i></td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
