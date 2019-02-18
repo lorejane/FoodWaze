@@ -5,31 +5,22 @@
 
 
 
-           <div class="col-md-6 col-xl-4">
+           
+
+           <div class="col-md-6 col-xl-6">
             <div class="card card-body bl-3 border-yellow">
-              <h6 class="text-uppercase text-gray">Monthly Sales</h6>
+              <h6 class="text-uppercase text-gray">Total Sales</h6>
               <div class="flexbox mt-2">
 
-                <span class="fa fa-rub text-warning fs-30"></span>
-                <p class="fs-50 fw-100"><?php echo $totalorders ?></p>
-              </div>
-            </div>
-          </div>
-
-           <div class="col-md-6 col-xl-4">
-            <div class="card card-body bl-3 border-info">
-              <h6 class="text-uppercase text-gray">Weekly Sales</h6>
-              <div class="flexbox mt-2">
-
-                <span class="fa fa-rub text-info fs-30"></span>
+                <span class="fa fa-rub text-yellow fs-50"></span>
                 <p class="fs-50 fw-100"><?php echo $totalprice ?></p>
               </div>
             </div>
           </div>
 
-           <div class="col-md-6 col-xl-4">
+           <div class="col-md-6 col-xl-6">
             <div class="card card-body bl-3 border-danger">
-              <h6 class="text-uppercase text-gray">Daily Sales</h6>
+              <h6 class="text-uppercase text-gray">Total Orders</h6>
               <div class="flexbox mt-2">
 
                 <span class="fa fa-rub text-danger fs-30"></span>
@@ -38,12 +29,14 @@
             </div>
           </div>
 
-          
+         
+         <div class="col-lg-6">
+            <div class="card b-3 border-yellow">
+              <h4 class="card-title"><strong>Most Sale Item</strong></h4>
 
-            <div class="row gap-x gap-items-5">
-            <div class="card col-sl-6">
-            <table class="table table-responsive table-sm table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
-            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateMostSaleable") ?>">
+              <div class="card-body">
+                <div class="table-responsive" style="padding-right:10 px">
+                <table class="table table-lg table-bordered" id = "Employee-table" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateMostSaleable") ?>">
               <thead>
                 <tr>
                   <th>Menu</th>
@@ -51,20 +44,36 @@
                 </tr>
               </thead>
             </table> 
+                </DIV>
+              </div>
+            </div>
           </div>
+ 
+          <div class="col-lg-6">
+            <div class="card b-3 border-danger">
+              <h4 class="card-title"><strong>Less Sale Item</strong></h4>
 
-           <div class="card col-msl-6">
-          <table class="table  table-responsive table-sm  table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
-            cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateLeastSaleable") ?>">
+              <div class="card-body ">
+                <div class="table-responsive" style="padding-top:10px;">
+                <table class="table table-lg table-bordered" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateLeastSaleable") ?>">
               <thead>
                 <tr>
                   <th>Menu</th>
                   <th>Quantity</th>
                 </tr>
               </thead>
-            </table>   
+            </table> 
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+
+
+
+
+ 
+<!--HELLO 
+          
 
           <table class="table table-responsive table-bordered display nowrap" id = "Employee-table" style="width:100%; overflow-x:auto;" 
             cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateTotalByEmployee") ?>">
@@ -81,7 +90,7 @@
 
             </div>
           
-
+-->
 
 </div>
 </div>

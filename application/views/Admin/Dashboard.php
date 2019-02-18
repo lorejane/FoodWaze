@@ -48,7 +48,7 @@
             <div class="card card-body bl-3 border-danger">
               <h6 class="text-uppercase text-gray">Number of Stalls</h6>
               <div class="flexbox mt-2">
-                <span class="fa fa-users text-danger fs-50"></span>
+                <span class="fa fa-home text-danger fs-50"></span>
                 <span class="fs-60"><?php echo $totalstalls ?></span>
               </div>
             </div>
