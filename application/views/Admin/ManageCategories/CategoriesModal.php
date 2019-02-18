@@ -58,6 +58,21 @@
             Categories_Modal.init();
         },
 
+        edit: function (id) {            
+            $('.modal-title').text('Edit Categories');  
+            $('#rowActive').removeClass('invisible');          
+            Categories_Modal.init();
+            $.ajax({
+                url: "<?php echo base_url('Admin/GetCategory/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    console.log(i);
+                    $('#CategoryId').val(i.CategoryId);
+                    $('#CategoryName').val(i.CategoryName);
+                }
+            });           
+        },
+ 
         validate: function(){
             $('.invalid-feedback').remove();
             $('.is-invalid').removeClass('is-invalid');
