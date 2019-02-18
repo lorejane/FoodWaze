@@ -32,24 +32,23 @@
         <ul class="menu menu-lg menu-bordery">
 
           <li class="menu-item">
-            <a class="menu-link hover-yellow" href="#">
+            <a class="menu-link hover-yellow" href="<?php echo base_url('manager/Dashboard'); ?>">
               <span class="icon ti-home"></span>
-              <span class="title">
-                <span>Dashboard</span>
+              <span class="title">Dashboard
               </span>
             </a>
           </li>
 
           <li class="menu-item">
             <a class="menu-link hover-yellow" href="<?php echo base_url('manager/Menu'); ?>">
-              <span class="icon ti-briefcase"></span>
+              <span class="icon fa fa-list-alt"></span>
               <span class="title">Menu</span>
             </a>
           </li>
 
           <li class="menu-item">
             <a class="menu-link hover-yellow" href="<?php echo base_url('manager/Sales'); ?>">
-              <span class="icon ti-user"></span>
+              <span class="icon fa fa-line-chart"></span>
               <span class="title">Sales</span>
             </a>
           </li>
