@@ -89,4 +89,12 @@
 	public function LeastSaleable(){
 		return $this->db->query("SELECT SUM(Quantity) as Quantity, MenuId FROM orderdetails WHERE OrderId IN (SELECT OrderId from orders where StallId = '".$this->session->userdata('StallId')."')group by MenuId order by Quantity ASC LIMIT 5 ")->result();
 	}
+
+	public function displayReceiptTbl($where){
+		return $this->db->query("SELECT * FROM receiptmanagement WHERE StallId =  '".$this->session->userdata('StallId')."' ".$where)->result();
+	}
+
+	public function SalePerEmployee(){
+		$this->db->query("");
+	}
 }		
