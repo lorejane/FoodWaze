@@ -4,19 +4,14 @@
         <a onclick="toggleFullScreen()" class="topbar-btn d-md-block">
           <button class="btn btn-square btn-outline btn-yellow "> <i class="ti-fullscreen"></i></button>
         </a>
-        <a><img src="../pics/foodwazelogoo.png" alt="logo icon"></a>
-        <span class="sidebar-toggle-fold"></span>
-
-         
-         
-
+        <a  href="<?php echo base_url('Cashier/Order'); ?>"><img src="../pics/foodwazelogoo.png" alt="logo icon"></a>       
     </div>
 
     <div class="topbar-right">        
        <div class="dropdown">
                 <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a class="dropdown-item" href="<?php echo base_url('manager/Profile'); ?>"><i class="ti-user"></i> Profile</a>
+                  <a class="dropdown-item" href="<?php echo base_url('Cashier/Profile'); ?>"><i class="ti-user"></i> Profile</a>
                   <a class="dropdown-item" href="<?php echo base_url('Home/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
                 </div>
               </div>
@@ -76,7 +71,7 @@
                                         + '<p>' + data.OrderId + '</p>'                                        
                                         + '<p>' + data.Name + '</p>'                                        
                                         + '<p>' + data.DateTime + '</p>'
-                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right"  data-value="'+data.OrderId+'" onclick="removepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
+                                        + '<p><i class="orderx btn-info btn-xs fa fa-edit right" data-active="'+data.IsActive+'" onclick="pending('+data.OrderId+',this)" data-value="'+data.OrderId+'" id="'+data.OrderId+'"></i>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="deletepending('+data.OrderId+',this)" id="'+data.OrderId+'"></i></p>'                                        
                                     + '</div>'                                        
                                 + '</a>'
                             );
@@ -88,8 +83,8 @@
                                     
                             //     }
                             // });
-                            deleteAll();
 
+                            deleteAll();
                             var element ='<table class="table-responsive table-hover"><tbody></tbody></table>';
                             $("#mycart").html(element);
                             $.ajax({
@@ -230,5 +225,20 @@ function DeleteCart(id){
             }
         });
     }
+
+    function pending(id,dis){
+        $.ajax({
+            url: "<?php echo base_url('Cashier/Pending/'); ?>"+id,
+            type: "post",
+            success: function(i){
+
+
+            },
+            error: function(error){
+                console.log(error);
+            }
+        });
+    }
+
 
 </script>

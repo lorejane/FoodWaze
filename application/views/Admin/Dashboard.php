@@ -35,48 +35,31 @@
         <div class="row">
           
  <div class="col-md-6 col-xl-4">
-            <div class="card card-body">
-              <h6>
-                <span class="text-uppercase">Number of Manager</span>
-                <span class="float-right"><a class="btn btn-xs btn-primary" >View</a></span>
-              </h6>
-              <br>
-              <p class="fs-28 fw-100"><?php echo $totalmanagers?></p>
-              <div class="progress">
-                <div class="progress-bar" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="card card-body bl-3 border-yellow">
+              <h6 class="text-uppercase text-gray">Number of Manager</h6>
+              <div class="flexbox mt-2">
+                <span class="fa fa-users text-yellow fs-50"></span>
+                <span class="fs-60"><?php echo $totalmanagers ?></span>
               </div>
-              <div class="text-gray fs-12">
-            </div>
-          </div>
-          </div>
-
-          <div class="col-md-6 col-xl-4">
-            <div class="card card-body">
-              <h6>
-                <span class="text-uppercase">No.of Stalls</span>
-                <span class="float-right"><a class="btn btn-xs btn-primary" href="<?php echo base_url('Admin/Stalls'); ?>" >View</a></span>
-              </h6>
-              <br>
-              <p class="fs-28 fw-100"><?php echo $totalstalls ?></p>
-              <div class="progress">
-                <div class="progress-bar bg-warning" role="progressbar" style="width: 65%; height: 4px;" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-              <div class="text-gray fs-12"></div>
             </div>
           </div>
 
-          <div class="col-md-6 col-xl-4">
-            <div class="card card-body">
-              <h6>
-                <span class="text-uppercase">Number of Cashier</span>
-                <span class="float-right"><a class="btn btn-xs btn-primary" href="#">View</a></span>
-              </h6>
-              <br>
-              <p class="fs-28 fw-100"><?php echo $totalcashiers ?></p>
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 4px;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+           <div class="col-md-6 col-xl-4">
+            <div class="card card-body bl-3 border-danger">
+              <h6 class="text-uppercase text-gray">Number of Stalls</h6>
+              <div class="flexbox mt-2">
+                <span class="fa fa-home text-danger fs-50"></span>
+                <span class="fs-60"><?php echo $totalstalls ?></span>
               </div>
-              <div class="flexbox text-gray fs-12">
+            </div>
+          </div>
+
+           <div class="col-md-6 col-xl-4">
+            <div class="card card-body bl-3 border-info" >
+              <h6 class="text-uppercase text-gray">Number of Cashiers</h6>
+              <div class="flexbox mt-2">
+                <span class="fa fa-users text-info fs-50"></span>
+                <span class="fs-60"><?php echo $totalcashiers ?></span>
               </div>
             </div>
           </div>
@@ -84,7 +67,7 @@
 
 
 
-<div class="card col-md-6">
+<div class="card col-md-12">
   
   <h4 class="card-title">
                 <Strong>List of Categories</strong>
@@ -107,7 +90,7 @@
 
 
 
-<div class="card col-md-6">  
+<div class="card col-md-12">  
   <h4 class="card-title">
                 <Strong>List of Stalls</strong>
                 <span class="float-right"><a class="btn btn-xs btn-primary text-white" href="<?php echo base_url('Admin/Stalls'); ?>" >See More</a></span>

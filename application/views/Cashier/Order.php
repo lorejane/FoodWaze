@@ -1,8 +1,4 @@
 <style>
-#SML{
-  display: none;
- } 
-
 .int{
   width: 20%;
 }
@@ -13,10 +9,12 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="row">
-        <div class="col-sm-12"  style="height:12%;" >
+        <div class="col-sm-12"  style="height:10%;" >
           <center>
-            <H3>FOODWAZE</H3>
-            <h5>Manila City</h5>
+            <H3><strong>FoodWaze</strong></H3>
+            <input type="hidden" value="<?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?>" id="date" />
+            <input type="hidden" value="<?php $timestamp = time(); echo date("D", $timestamp) ?>" id="day" />
+            <input type="hidden" value="<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?>" id="time" />
             <em><?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?></em>&nbsp;|
             <em>Today is&nbsp;<?php $timestamp = time(); echo date("D", $timestamp) ?>,</em>
             <em>&nbsp;<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?></em>
@@ -24,13 +22,11 @@
         </div>
           <a href="<?php echo base_url('Cashier/RemoveAll'); ?>" >Empty Cart</a>
       </div>
-      <div class="row" style="padding-top:8px; height:5%;" >
+      <div class="row" style="padding-top:5px; height:5%;" >
         <!-- <div class="col-sm-12"> -->
         <table class="col-sm-12">
-         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:aquamarine;"> <tr>  <th width="10%">Qty</th>  <th width="30%">Name</th> <th width="20%">Price</th> <th width="20%">Total</th> <th></th> <th width="20%">Action</th> </tr> </thead> 
+         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:#FFE694;"> <tr>  <th width="10%">Qty</th>  <th width="35%">Name</th> <th width="15%">Price</th> <th width="15%">Total</th> <th width="25%">Action</th> </tr> </thead> 
        </table>
-<!--      
-</div> -->
       </div>
       <div clas="row " style="padding-bottom:10px; height:40%; overflow-y:auto; " >
                 <div id="mycart">
@@ -38,45 +34,53 @@
                 </div>
       </div>
       <!-- <br/> -->
-      <div class="row" id="customers" style="border: 3px dotted rgba(0, 0, 0, .2);">
-        <div class="col-sm-6" >
-          <!-- SUB TOTAL<input class="input-value" id="input-quantity-'+data.id+'" value='' readonly > <br/>
- -->      
+      <div class="row" id="customers" style="border: 3px dotted rgba(0, 0, 0, .2); margin-top:5%;">
+        <div class="col-sm-8" >
+        <div class="row" style="height:5%; padding:5%;">
         DISCOUNT 
           <select type="text" name="discount" id="discount">
             <option value="0" selected>Regular</option>
             <option value="20">Senior</option>
             <option value="20">PWD</option>
-          </select><br/>
+          </select>
+        </div>
+        <div class="row" style="height:5%; padding:5%;">
           TOTAL PRICE<input type="text" class="int input-value" id="puretotal" name="puretotal" readonly>
+          </div>
+        <div class="row" style="height:5%; padding:5%;">
+          CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" >
+          </div>
+        <div class="row" style="height:5%; padding:5%;">
+          CHANGE<input type="text" class="int input-value" name="change" onclick="calculate()" id="change"  readonly/>
+          </div>
+        <div class="row" style="height:5%; padding:5%;">
           <input id="pdf" type="button" class="btn btn-info" onclick="SaveOrder()" value="Save"/>
           <!-- <input id="pdf" type="submit" value="hjkasdhs"/>  --> 
         </div>
-        <div class="col-sm-6">
+      </div>
+        <div class="col-sm-4" style="padding:1%;">
           <div class="row">
                 <!-- <form name="calcform"> -->
                   <div class="row">
-                    <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
-                    <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
                     <button type="button" name="btn7" value="7" onclick="displaynum(btn7.value)" class="keypad btn btn-default">7</button>
+                    <button type="button" name="btn8" value="8" onclick="displaynum(btn8.value)" class="keypad btn btn-default">8</button>
+                    <button type="button" name="btn9" value="9" onclick="displaynum(btn9.value)" class="keypad btn btn-default">9</button>
+                    </div>
+                    <div class="row">
+                    <button type="button" name="btn4" value="4" onclick="displaynum(btn4.value)" class="keypad btn btn-default">4</button>
+                    <button type="button" name="btn5" value="5" onclick="displaynum(btn5.value)" class="keypad btn btn-default">5</button>
                     <button type="button" name="btn6" value="6" onclick="displaynum(btn6.value)" class="keypad btn btn-default">6</button>
                     </div>
                     <div class="row">
-                    <button type="button" name="btn5" value="5" onclick="displaynum(btn5.value)" class="keypad btn btn-default">5</button>
-                    <button type="button" name="btn3" value="3" onclick="displaynum(btn3.value)" class="keypad btn btn-default">3</button>
-                    <button type="button" name="btn4" value="4" onclick="displaynum(btn4.value)" class="keypad btn btn-default">4</button>
+                    <button type="button" name="btn1" value="1" onclick="displaynum(btn1.value)" class="keypad btn btn-default">1</button>
                     <button type="button" name="btn2" value="2" onclick="displaynum(btn2.value)" class="keypad btn btn-default">2</button>
+                    <button type="button" name="btn3" value="3" onclick="displaynum(btn3.value)" class="keypad btn btn-default">3</button>
                     </div>
                     <div class="row">
                     <button type="button" name="btn0" value="0" onclick="displaynum(btn0.value)" class="keypad btn btn-default">0</button>
-                    <button type="button" name="btn1" value="1" onclick="displaynum(btn1.value)" class="keypad btn btn-default">1</button>
                     <button type="reset" name="reset" class="keypad btn btn-danger">C</button>
                     <button type="button" id="idOfButtonToClick" class="keypad btn btn-danger">X</button>
                     </div>
-                    <div class="row">
-                    CASH<input type="text"  name="ReceivedAmnt" style="text-align:right;" class="int input-value" id="ReceivedAmnt" >
-                    CHANGE<input type="text" class="int input-value" name="change" onclick="calculate()" id="change"  readonly/>
-                  </div>
           </div>
         </div>
          
@@ -90,18 +94,6 @@
               <div id="menu-container" >
               </div>              
           </div>          
-        </div>
-          <button type="button" style="width:5%" id="idOfButtonToClick"  onclick="Sizes()" class="btn btn-info">+</button>
-        <div id="SML" class="row">
-          <div class="col-sm-4">
-          <button type="button" id="idOfButtonToClick" class="btn btn-default">Small</button><br/>
-          </div>
-          <div class="col-sm-4">
-          <button type="button" id="idOfButtonToClick" class="btn btn-default">Medium</button><br/>
-          </div>
-          <div class="col-sm-4">
-          </div>
-          <button type="button" id="idOfButtonToClick" class="btn btn-default">Large</button><br/>
         </div>
     </div>
   </div>
@@ -130,8 +122,9 @@ $(document).ready(function () {
         url:"<?php echo base_url('Cashier/SaveOrder'); ?>/"+discount+"/"+puretotal+"/"+ReceivedAmnt+"/"+change,
         type: "get",
         success: function(i){
-          //swal('DONE!', 'success');
-          Remove();
+              //alert('rere');
+                $('#mycart').html("");
+                Remove();
           }
     })    
   }
@@ -156,10 +149,6 @@ $(document).ready(function () {
       
 </script>
   <script>
-   
-function Sizes() {
-  $("#SML").toggle()
-}	
 function menu() {
 	$.ajax({
         url: "<?php echo base_url('FoodWaze/GetCategory/'.$this->session->userdata('StallId')); ?>",        
@@ -291,7 +280,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td> <td width="25%"><div class="btn-warning btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-warning btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i></td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
@@ -375,6 +364,10 @@ $('#pdf').click(function () {
       menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
 
     });
+  var date = $('#date').val();
+  var day = $('#day').val();
+  var time = $('#time').val();
+  var Change = $('form#smdiv input[name="change"]').val();
   var discount = $('form#smdiv select[name="discount"]').val();
   var puretotal = $('form#smdiv input[name="puretotal"]').val();
   var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
@@ -398,18 +391,20 @@ $('#pdf').click(function () {
     TotalDue = parseFloat(VATExempt * .8);
   }
 
-  var pdf = new jsPDF();
-  pdf.text(90, 5, 'FOODWAZE');
-  pdf.text(5, 10, 'Receipt');
-  pdf.text(5, 15, menu);
-  pdf.text(5, 70, '------------------');
-  pdf.text(5, 85, 'VATable: '+ VATable);
-  pdf.text(5, 90, 'VAT Exempt: '+ VATExempt);
-  pdf.text(5, 95, 'VAT: '+ VAT);
-  pdf.text(5, 100, '------------------');
-  pdf.text(5, 105, 'Total: '+ TotalDue );
-  pdf.text(5, 119, 'Cash: '+ Cash);
-  pdf.text(5, 115, 'Change: '+ Change);
+
+  var pdf = new jsPDF('p', 'mm', [400, 330]);
+  pdf.text(40, 5, 'FOODWAZE');
+  pdf.text(35, 10, 'Receipt# '+' 312312');
+  pdf.text(15, 15, time +' | '+date);
+  pdf.text(5, 25, menu);
+  pdf.text(5, 80, '------------------------------------------------------');
+  pdf.text(5, 85, 'VATable:                                  '+ VATable);
+  pdf.text(5, 90, 'VAT Exempt:                            '+ VATExempt);
+  pdf.text(5, 95, 'VAT:                                        '+ VAT);
+  pdf.text(5, 100, '-----------------------------------------------------');
+  pdf.text(5, 105, 'Total Amount Due:                    '+ TotalDue );
+  pdf.text(5, 110, 'Cash:                                         '+ Cash+'.00');
+  pdf.text(5, 115, 'Change:                                     '+ Change);
   pdf.save('Receipt.pdf');
   console.log(menu);
   }
