@@ -9,10 +9,12 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="row">
-        <div class="col-sm-12"  style="height:12%;" >
+        <div class="col-sm-12"  style="height:10%;" >
           <center>
-            <H3>FOODWAZE</H3>
-            <h5>Manila City</h5>
+            <H3><strong>FoodWaze</strong></H3>
+            <input type="hidden" value="<?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?>" id="date" />
+            <input type="hidden" value="<?php $timestamp = time(); echo date("D", $timestamp) ?>" id="day" />
+            <input type="hidden" value="<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?>" id="time" />
             <em><?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?></em>&nbsp;|
             <em>Today is&nbsp;<?php $timestamp = time(); echo date("D", $timestamp) ?>,</em>
             <em>&nbsp;<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?></em>
@@ -20,13 +22,11 @@
         </div>
           <a href="<?php echo base_url('Cashier/RemoveAll'); ?>" >Empty Cart</a>
       </div>
-      <div class="row" style="padding-top:8px; height:5%;" >
+      <div class="row" style="padding-top:5px; height:5%;" >
         <!-- <div class="col-sm-12"> -->
         <table class="col-sm-12">
-         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:aquamarine;"> <tr>  <th width="10%">Qty</th>  <th width="35%">Name</th> <th width="15%">Price</th> <th width="15%">Total</th> <th width="25%">Action</th> </tr> </thead> 
+         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:#FFE694;"> <tr>  <th width="10%">Qty</th>  <th width="35%">Name</th> <th width="15%">Price</th> <th width="15%">Total</th> <th width="25%">Action</th> </tr> </thead> 
        </table>
-<!--      
-</div> -->
       </div>
       <div clas="row " style="padding-bottom:10px; height:40%; overflow-y:auto; " >
                 <div id="mycart">
@@ -34,7 +34,7 @@
                 </div>
       </div>
       <!-- <br/> -->
-      <div class="row" id="customers" style="border: 3px dotted rgba(0, 0, 0, .2);">
+      <div class="row" id="customers" style="border: 3px dotted rgba(0, 0, 0, .2); margin-top:5%;">
         <div class="col-sm-8" >
         <div class="row" style="height:5%; padding:5%;">
         DISCOUNT 
@@ -364,6 +364,10 @@ $('#pdf').click(function () {
       menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
 
     });
+  var date = $('#date').val();
+  var day = $('#day').val();
+  var time = $('#time').val();
+  var Change = $('form#smdiv input[name="change"]').val();
   var discount = $('form#smdiv select[name="discount"]').val();
   var puretotal = $('form#smdiv input[name="puretotal"]').val();
   var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
@@ -388,10 +392,11 @@ $('#pdf').click(function () {
   }
 
 
-  var pdf = new jsPDF('p', 'mm', [400, 320]);
+  var pdf = new jsPDF('p', 'mm', [400, 330]);
   pdf.text(40, 5, 'FOODWAZE');
-  pdf.text(45, 10, 'Receipt');
-  pdf.text(5, 20, menu);
+  pdf.text(35, 10, 'Receipt# '+' 312312');
+  pdf.text(15, 15, time +' | '+date);
+  pdf.text(5, 25, menu);
   pdf.text(5, 80, '------------------------------------------------------');
   pdf.text(5, 85, 'VATable:                                  '+ VATable);
   pdf.text(5, 90, 'VAT Exempt:                            '+ VATExempt);
