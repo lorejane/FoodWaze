@@ -247,17 +247,18 @@ class Manager extends _BaseController {
         echo $json;        
     }
 
-    public function GenerateReceiptTbl(){
-        //print_r($this->ManagerModel->TotalSalesByCashier());
+    public function GenerateReceiptTbl($from = null, $to = null){
+        $additionalCondition = '';
+        if($from != null){
+            $additionalCondition .= " AND DateTime BETWEEN '".$from."' AND '".$to."'";
+        }
         $json = '{ "data": [';
-        foreach($this->ManagerModel->displayReceiptTbl() as $data){
+        foreach($this->ManagerModel->displayReceiptTbl($additionalCondition) as $data){
+            $emp = $this->ManagerModel->getEmployee($data->EmployeeId);
             $json .= '['
+                .'"'.$emp->Lastname.', '.$emp->Firstname.'",'
                 .'"'.$data->OrderId.'",'
-                .'"'.$data->EmployeeId.'",'
-                .'"'.$data->Total.'",'
-                .'"'.$data->Cash.'",'
-                .'"'.$data->Change.'",'
-                .'"'.$data->Discount.'",'
+                .'"'.$data->Total.'",'                
                 .'"'.$data->DateTime.'"'
             .']';            
             $json .= ',';
