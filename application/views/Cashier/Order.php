@@ -23,7 +23,7 @@
       <div class="row" style="padding-top:8px; height:5%;" >
         <!-- <div class="col-sm-12"> -->
         <table class="col-sm-12">
-         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:aquamarine;"> <tr>  <th width="10%">Qty</th>  <th width="30%">Name</th> <th width="20%">Price</th> <th width="20%">Total</th> <th></th> <th width="20%">Action</th> </tr> </thead> 
+         <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:aquamarine;"> <tr>  <th width="10%">Qty</th>  <th width="35%">Name</th> <th width="15%">Price</th> <th width="15%">Total</th> <th width="25%">Action</th> </tr> </thead> 
        </table>
 <!--      
 </div> -->
@@ -280,7 +280,7 @@ function refresh(){
 			total = 0;
       element +='<table class="table-hover"><tbody>';
       $.each(i, function(index, data){
-                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td>  <td width="15%"><div class="btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div></td> <td width="10%"> <i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i><td></tr> ';
+                    element+=' <tr>  <td width="10%"><input class="input-quantity" id="input-quantity-'+data.id+'" value='+data.qty+'  readonly></td> <td width="35%">'+data.name+'</td> <td width="15%">'+data.price+'</td>  <td width="15%"><div class="subtotal" id="cart-price-'+data.id+'">'+(data.qty * data.price)+'</div></td> <td width="25%"><div class="btn-warning btn-increment-decrement" onClick="decrement_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">-</div>&nbsp;<div class="btn-warning btn-increment-decrement" onClick="increment_quantity('+data.id+', '+data.price+',\''+data.rowid+'\')">+</div>&nbsp;<i class="btn btn-danger btn-xs fa fa-trash right" onclick="DeleteCart(\''+data.rowid+'\')" id="'+data.id+'"></i></td></tr> ';
                     total = Number(total) + Number(data.qty * data.price);
             })
             element += '</table>';
@@ -387,23 +387,19 @@ $('#pdf').click(function () {
     TotalDue = parseFloat(VATExempt * .8);
   }
 
-  var pdf = new jsPDF();
-  pdf.text(5, 15, menu);
-  pdf.text(5, 70, '------------------');
-  pdf.text(5, 85, 'VATable: '+ VATable);
-  pdf.text(5, 90, 'VAT Exempt: '+ VATExempt);
-  pdf.text(5, 95, 'VAT: '+ VAT);
-  pdf.text(5, 100, '------------------');
-  pdf.text(5, 105, 'Total: '+ TotalDue );
-  pdf.text(5, 119, 'Cash: '+ Cash);
-  pdf.text(5, 115, 'Change: '+ Change);
 
-  pdf.setProperties({
-    title: 'FOODWAZE',
-    sucject: 'This shit is a Receipt',
-    author: 'FoodWaze'
-  });
-
+  var pdf = new jsPDF('p', 'mm', [400, 320]);
+  pdf.text(40, 5, 'FOODWAZE');
+  pdf.text(45, 10, 'Receipt');
+  pdf.text(5, 20, menu);
+  pdf.text(5, 80, '------------------------------------------------------');
+  pdf.text(5, 85, 'VATable:                                  '+ VATable);
+  pdf.text(5, 90, 'VAT Exempt:                            '+ VATExempt);
+  pdf.text(5, 95, 'VAT:                                        '+ VAT);
+  pdf.text(5, 100, '-----------------------------------------------------');
+  pdf.text(5, 105, 'Total Amount Due:                    '+ TotalDue );
+  pdf.text(5, 110, 'Cash:                                         '+ Cash+'.00');
+  pdf.text(5, 115, 'Change:                                     '+ Change);
   pdf.save('Receipt.pdf');
   console.log(menu);
   }
