@@ -42,12 +42,20 @@ class Manager extends _BaseController {
         $this->load->view('include/footer');
         
     } 
+    public function Dashboard(){
+        $this->load->view('include/header');
+        $data['totalorders'] = $this->ManagerModel->TotalOrders();
+        $data['totalprice'] = $this->ManagerModel->TotalSales();
+        $this->load->view('Manager/Dashboard', $data);
+        $this->load->view('include/footer');
+    }
+
     
     public function Sales(){
         $this->load->view('include/header');
         $data['totalorders'] = $this->ManagerModel->TotalOrders();
         $data['totalprice'] = $this->ManagerModel->TotalSales();
-        $this->load->view('Manager/Dashboard', $data);
+        $this->load->view('Manager/Sales', $data);
         $this->load->view('include/footer');
     }
 
@@ -231,6 +239,26 @@ class Manager extends _BaseController {
                 .'"'.$data->EmployeeId.'",'
                 .'"'.$emperador->Lastname.','.$emperador->Firstname.'",'
                 .'"'.$data->Total.'"'
+            .']';            
+            $json .= ',';
+        }
+        $json = $this->removeExcessComma($json);
+        $json .= ']}';
+        echo $json;        
+    }
+
+    public function GenerateReceiptTbl(){
+        //print_r($this->ManagerModel->TotalSalesByCashier());
+        $json = '{ "data": [';
+        foreach($this->ManagerModel->displayReceiptTbl() as $data){
+            $json .= '['
+                .'"'.$data->OrderId.'",'
+                .'"'.$data->EmployeeId.'",'
+                .'"'.$data->Total.'",'
+                .'"'.$data->Cash.'",'
+                .'"'.$data->Change.'",'
+                .'"'.$data->Discount.'",'
+                .'"'.$data->DateTime.'"'
             .']';            
             $json .= ',';
         }
