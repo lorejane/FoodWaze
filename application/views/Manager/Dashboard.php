@@ -1,11 +1,7 @@
-<main class="main-container">
+<main class="main-container bg-pale-purple">
 
       <div class="main-content">
         <div class="row">
-
-
-
-           
 
            <div class="col-md-6 col-xl-6">
             <div class="card card-body bl-3 border-yellow">
@@ -23,7 +19,7 @@
               <h6 class="text-uppercase text-gray">Total Orders</h6>
               <div class="flexbox mt-2">
 
-                <span class="fa fa-rub text-danger fs-30"></span>
+                <span class="fa fa-cart-plus text-danger fs-50"></span>
                 <p class="fs-50 fw-100"><?php echo $totalorders ?></p>
               </div>
             </div>
@@ -35,7 +31,7 @@
               <h4 class="card-title"><strong>Most Sale Item</strong></h4>
 
               <div class="card-body">
-                <div class="table-responsive" style="padding-right:10 px">
+                <div class="table-responsive" style="ing-right:10 px">
                 <table class="table table-lg table-bordered" id = "Employee-table" cellspacing="0" data-provide = "datatables" data-ajax = "<?php echo base_url("Manager/GenerateMostSaleable") ?>">
               <thead>
                 <tr>
