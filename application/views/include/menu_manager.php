@@ -32,7 +32,7 @@
         <ul class="menu menu-lg menu-bordery">
 
           <li class="menu-item">
-            <a class="menu-link hover-yellow" href="#">
+            <a class="menu-link hover-yellow" href="<?php echo base_url('manager/Dashboard'); ?>">
               <span class="icon ti-home"></span>
               <span class="title">
                 <span>Dashboard</span>
