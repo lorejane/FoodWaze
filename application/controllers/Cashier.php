@@ -112,4 +112,8 @@ class Cashier extends _BaseController {
     {
     	echo $this->convert($this->CashierModel->getMenu($menuid));
     }
-}	
+
+    public function Pending($id){
+        $this->CashierModel->updateOrder($id);
+    }
+}
