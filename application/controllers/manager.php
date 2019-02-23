@@ -14,13 +14,6 @@ class Manager extends _BaseController {
 		redirect(base_url('Login'));
 	}
 
-    public function SidebarProfile(){
-       // $this->load->view('include/header');        
-        $data['profile'] = $this->ManagerModel->getManagerDetails();
-        $this->load->view('include/menu_manager', $data);
-        //$this->load->view('include/footer');
-    }
-
     public function Profile(){
         $this->load->view('include/header');        
         $data['profile'] = $this->ManagerModel->getManagerDetails();
@@ -31,7 +24,8 @@ class Manager extends _BaseController {
     public function Menu(){
 
         $this->load->view('include/header');
-        $this->load->view('Manager/ManageMenus/Menu');
+        $data['stall'] = $this->ManagerModel->getStallname();
+        $this->load->view('Manager/ManageMenus/Menu', $data);
         $this->load->view('include/footer');
     }
 
@@ -45,13 +39,15 @@ class Manager extends _BaseController {
     public function Accounts()
     {
         $this->load->view('include/header');
-        $this->load->view('Manager/ManageAccounts/Accounts');
+        $data['stall'] = $this->ManagerModel->getStallname();
+        $this->load->view('Manager/ManageAccounts/Accounts', $data);
         $this->load->view('include/footer');
         
     } 
     
     public function Sales(){
         $this->load->view('include/header');
+        $data['stall'] = $this->ManagerModel->getStallname();
         $data['totalorders'] = $this->ManagerModel->TotalOrders();
         $data['totalprice'] = $this->ManagerModel->TotalSales();
         $this->load->view('Manager/Sales', $data);
@@ -60,6 +56,7 @@ class Manager extends _BaseController {
 
     public function Dashboard(){
         $this->load->view('include/header');
+        $data['stall'] = $this->ManagerModel->getStallname();
         $data['totalorders'] = $this->ManagerModel->TotalOrders();
         $data['totalprice'] = $this->ManagerModel->TotalSales();
         $this->load->view('Manager/Dashboard', $data);
