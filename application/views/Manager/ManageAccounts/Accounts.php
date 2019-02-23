@@ -1,5 +1,22 @@
 <main class="main-container bg-pale-purple">
 
+
+<!--NAME NUNG STALLS-->
+<header class="header">
+<div class="container bg-img h-250px" style="" >
+	<div class="header-info">
+		<?php echo $stall->Name; ?>
+	</div>
+	</div>
+
+	 <div class="preloader">
+       <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
+            <circle class="circle" cx="25" cy="25" r="25"></circle>
+     	</svg>
+    </div>
+</header>
+<!--end nung name ng stalls-->
+
 <header class="header bg-pale-purple">
 <div class="container bg-img h-200px" style="background-image: url(../pics/employee.png)" >
 	<div class="header-info">
