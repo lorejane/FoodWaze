@@ -11,7 +11,7 @@
       <div class="row">
         <div class="col-sm-12"  style="height:10%;" >
           <center>
-            <H3><strong>FoodWaze</strong></H3>
+            <H3><strong><?php echo $stall->Name?></strong></H3>
             <input type="hidden" value="<?php $timestamp = time(); echo date("h:i:s A", $timestamp) ?>" id="date" />
             <input type="hidden" value="<?php $timestamp = time(); echo date("D", $timestamp) ?>" id="day" />
             <input type="hidden" value="<?php $timestamp = time(); echo date("F d, Y", $timestamp) ?>" id="time" />
