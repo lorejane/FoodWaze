@@ -9,21 +9,12 @@ class Cashier extends _BaseController {
 	}
 
 	public function Order(){
+
 		$this->load->view('include/header');
-		$this->load->view('Cashier/Order');
+        $data['stall'] = $this->CashierModel->getStallname();
+		$this->load->view('Cashier/Order', $data);
 		$this->load->view('include/footer');
 	}
-
-    // public function removeFromCart($id){     
-    //     $this->cart->remove($id);
-    //     redirect(base_url('Cashier/Order/'));
-    // }
-
-    public function Payment(){
-        $this->load->view('include/header');
-        $this->load->view('Cashier/Payment');
-        $this->load->view('include/cash_footer');
-    }
 
     public function Profile(){
         $this->load->view('include/header');
