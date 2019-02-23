@@ -22,7 +22,9 @@
 		return $this->db->query("SELECT * FROM orderdetails WHERE OrderId = '".$id."' ")->result();	
 	}
 	
-
+	public function getStallname(){ //display menu 
+		return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();	
+	}
 
 	public function getMenu($menuid){
 		return $this->db->query("SELECT * FROM menu WHERE MenuId = '".$menuid."' ")->result();	
@@ -45,7 +47,7 @@
 		$this->db->query("INSERT into orderdetails "
 		 		."(OrderId, MenuId, Quantity) VALUES ("
 		 			."'".$orderid."',"	
-		 			."'".$menu['id']."',"
+		 			."'".$menu['id']."',"	
 		 			."'".$menu['qty']."'"
 		 		.")"
 		 	);
