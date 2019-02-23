@@ -57,6 +57,11 @@
 		return $dbList;		
 	}
 
+	public function getStallname(){ //display menu 
+		return $this->db->query("SELECT Name FROM stall WHERE StallId = '".$this->session->userdata('StallId')."'")->row();
+		
+	}
+
 	public function getMenu(){ //display menu 
 		return $this->db->query("SELECT * FROM menu WHERE StallId = '".$this->session->userdata('StallId')."'")->result();
 		
