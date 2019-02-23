@@ -10,23 +10,22 @@ class FoodWaze extends _BaseController {
         public function index()
         {
             session_destroy(); 
-            $data['stall'] = $this->foodwaze_model->getStall(); //stall list
             $this->load->view('include/header');
-            $this->load->view('homepage', $data); // for stall list
+            $this->load->view('Customer/Login'); // for stall list
             $this->load->view('include/footer');
         }
 
         public function Dashboard(){
             $this->load->view('include/header');
             $data['cat'] = $this->Stall_model->getCustomerMenuMeal();
-            $this->load->view('homepage', $data);
+            $this->load->view('Homepage', $data);
             $this->load->view('include/footer');
         }
         
         public function GetMenu($stallId)
         {
             $_SESSION['stallId']=$stallId;
-            echo $this->convert($this->foodwaze_model->getMenu($stallId));
+            echo $this->convert($this->Foodwaze_model->getMenu($stallId));
         }
         
         public function Checkout()
@@ -37,7 +36,7 @@ class FoodWaze extends _BaseController {
                     'Contact_Number'=> $_POST['ContactNo'],
                 );
             $orders[]=$order;
-            $last_id = $this->foodwaze_model->addorder($orders);
+            $last_id = $this->Foodwaze_model->addorder($orders);
             $itemcart=$_SESSION['cart'];
             $cart = array_column($itemcart, 'id');  
             for ($x = 0; $x < count($cart); $x++) {
@@ -48,24 +47,7 @@ class FoodWaze extends _BaseController {
                 );
                 $items[]=$item;
             }
-            // // Required field names
-            // $required = array('Name', 'Contact_Number');
-
-            // // Loop over field names, make sure each one exists and is not empty
-            // $error = false;
-            // foreach($required as $field) {
-            // if (empty($_POST[$field])) {
-            //     $error = true;
-            // }
-            // }
-
-            // if ($error) {
-            // echo "All fields are required.";
-            // } else {
-            // echo "Proceed...";
-            // }
-
-            $this->foodwaze_model->addorderdetails($items);
+            $this->Foodwaze_model->addorderdetails($items);
             redirect(base_url(''), 'refresh');
 
             
@@ -75,7 +57,7 @@ class FoodWaze extends _BaseController {
         public function Clearcart()
         {
             session_destroy(); 
-            redirect(base_url('foodwaze'), 'refresh');
+            redirect(base_url('FoodWaze'), 'refresh');
         }
         public function Clearsession()
         {
@@ -91,7 +73,7 @@ class FoodWaze extends _BaseController {
         public function Cart(){
 			$itemcart=$_SESSION['cart'];
 	   		$cart = array_column($itemcart, 'id');					
-			$rs = $this->foodwaze_model->readitem_f($cart);	
+			$rs = $this->Foodwaze_model->readitem_f($cart);	
 			foreach($rs as $r)
 			{
 				$item[] = array(
@@ -160,7 +142,7 @@ class FoodWaze extends _BaseController {
                 }
                 else{
                     $cart = array_column($itemcart, 'id');					
-                    $rs = $this->foodwaze_model->readitem_f($cart);	
+                    $rs = $this->Foodwaze_model->readitem_f($cart);	
                     foreach($rs as $r)
                     {
                         $item[] = array(
@@ -179,7 +161,7 @@ class FoodWaze extends _BaseController {
         }
         public function GetCategory($stallId)
         {
-            echo $this->convert($this->foodwaze_model->getCategory($stallId));
+            echo $this->convert($this->Foodwaze_model->getCategory($stallId));
         }
      
 }
