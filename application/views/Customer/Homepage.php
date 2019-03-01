@@ -8,10 +8,10 @@
 </div>       
 
             <!-- Topbar -->
-            <header class="topbar" style="background-color:#b53b30; box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); ">
+<!--             <header class="topbar" style="background-color:#b53b30; box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); ">
                          
             <a class="card-title" href="<?php echo base_url(); ?>">
-            <!-- <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px"> -->
+         <image src="images_foodwaze/fw_logo.png" alt="Foodwaze" width="50px" height="50px">
             <h1 class="title"><strong style="color:white; font-family: black jack; text-shadow: 1px 2px 2px #00FFFF;">FoodWaze</strong></h1>
             </a>
            
@@ -20,155 +20,162 @@
                 <i class="material-icons fullscreen-default">fullscreen</i>
             </a>
 
-            </header>
+            </header> -->
                 <!-- END Topbar -->
 
+
+<!-- <header style="background-color: #d02020" class="topbar">
+    <div class="topbar-left">
+        <a onclick="toggleFullScreen()" class="topbar-btn d-md-block">
+          <button class="btn btn-square btn-outline btn-yellow "> <i class="ti-fullscreen"></i></button>
+        </a>
+        <a  href="<?php echo base_url('Customer/Homepage'); ?>"><img src="../pics/foodwazelogoo.png" alt="logo icon"></a>       
+    </div>
+
+    <div class="topbar-right">        
+       <div class="dropdown">
+                <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <a class="dropdown-item" href="<?php echo base_url('Customer/Profile'); ?>"><i class="ti-user"></i> Profile</a>
+                  <a class="dropdown-item" href="<?php echo base_url('Customer/Receipt'); ?>"><i class="ti-user"></i> Receipt</a>
+                  <a class="dropdown-item" href="<?php echo base_url('Home/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
+                </div>
+              </div>
+    </div>
+</header> -->
         
 <!-- Main container -->
+<br/><br/><br/>
 <main class="main-container">
 
     <div class="main-content" style="background-image: url(images_foodwaze/rnw.jpg); background-size: auto;">
-        <div class="row">
-            
-            <div class="col-lg-12">
-                <div class="card card-shadowed" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
-                    <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
+    <div class="row">
         
+        <div class="col-lg-12">
+            <div class="card card-shadowed" style="box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);">
+                <div class="card-title"  style="background-color:#b53b30;"><strong style="color:white;">Ordering made EZ!</strong></div>
+    
 
-                    <div class="card-body">
-                    <!-- <div class="card-body" style="background-color:#b53b30;"> -->
-                 
-                        <div data-provide="wizard" data-navigateable="true">
-                        <ul class="nav nav-process nav-process-circle">
-                            <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 1</span>
-                                <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
-                            </li>
+                <div class="card-body">
+                <!-- <div class="card-body" style="background-color:#b53b30;"> -->
+             
+                    <div data-provide="wizard" data-navigateable="true">
+                    <ul class="nav nav-process nav-process-circle">
+                        <li class="nav-item">
+                            <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 1</span>
+                            <a id="tab1" class="nav-link" data-toggle="tab" href="#wizard-navable-1"></a>
+                        </li>
 
-                            <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 2</span>
-                                <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
-                            </li>
+                        <li class="nav-item">
+                            <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 2</span>
+                            <a id="tab2" class="nav-link" data-toggle="tab" href="#wizard-navable-2"></a>
+                        </li>
 
-                            <li class="nav-item">
-                                <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 3</span>
-                                <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
-                            </li>
+                        <li class="nav-item">
+                            <span class="nav-title" style="color:#b53b30; font-family: malgun gothic; font-size:15px; font-weight: bold;">Step 3</span>
+                            <a id="tab3" class="nav-link" data-toggle="tab" href="#wizard-navable-3"></a>
+                        </li>
 
-                        </ul>
-                        
+                    </ul>
+                    
 
-                            <div class="tab-content" > <!-- step 1 -->
-                                <div class="tab-pane fade active show" id="wizard-navable-1">
-                                
-                                <p class="text-center fs-30 text-muted">Choose a <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Stall</strong></p>
-                                <div class="card">
-                                    <div class="card-body"> 
-                                        <div class="col-12">     
-                                            <div class="row" id="filters">   
-                                                <?php foreach($stall as $s): ?>
-                                                
-                                                <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
-                                                <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
-                                                <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
-                                                <!-- <strong><h3 style="color:#b53b30; font-family: black jack;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h3></strong></label> --> </label>
-                                                </div>
-
-                                                <?php endforeach; ?>
-                                            </div>
-                                        </div> <!--col-12-->
-                                </div> <!--card-body-->
-                            </div> <!--card-->
-                            </div> <!-- end step 1 -->
-
-
-                        
-                            <!-- step 2 -->
-                            <div class="tab-pane fade" id="wizard-navable-2">
-                            <p class="text-center fs-30 text-muted"><strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Order</strong> up!</p>
-                            <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
-                                <div class="card"> 
-                                    <div class="card-body">                                         
-                                        <div class="row">
-                                            <div class="col-sm-12" id="menu-container">
-
-                                            </div>
+                        <div class="tab-content" > <!-- step 1 -->
+                            <div class="tab-pane fade active show" id="wizard-navable-1">
+                            
+                            <p class="text-center fs-30 text-muted">Choose a <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Stall</strong></p>
+                            <div class="card">
+                                <div class="card-body"> 
+                                    <div class="col-12">     
+                                        <div class="row" id="filters">   
+                                            <?php foreach($stall as $s): ?>
                                             
-                                                <!-- <div class="col-md-6 col-sm-12"> -->
-                                                <!-- <div class="col-12">
-                                                    
-                                                    <div class="cart">
-                                                        <div id="mycart"></div>                                                        
-                                                    </div>                                                    
-                                                    
-                                                </div>col-md-6 col-sm-12 -->
-                                                
-                                                
-          
-                                        </div><!--row-->                                   
-                                    </div><!--card body-->
-                                    
-                                </div> <!--card-->
-                            </div><!--tab-->                
-                            <!-- end step 2 -->
+                                            <div class="col-lg-3 col-xs-3"> <!--PLEASE LANG WAG NA GALAWIN KAT OKAY NA -->
+                                            <input type="checkbox" id="<?php echo $s->StallId; ?>" name="<?php echo $s->Name; ?>" value="<?php echo $s->StallId; ?>"/>
+                                            <label for="<?php echo $s->StallId; ?>"><img src="images_foodwaze/stall/stall<?php echo $s->StallId; ?>.jpg" alt="" style="width: 200px; padding: 10px; margin: 5px;">
+                                            <!-- <strong><h3 style="color:#b53b30; font-family: black jack;" title="<?php echo $s->Name; ?>"><?php echo $s->Name; ?></h3></strong></label> --> </label>
+                                            </div>
 
-
-                            <!-- step 3 -->                            
-                            <div class="tab-pane fade" id="wizard-navable-3">
-                            <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">yourself</strong></p>
-                            <hr class="w-100px">
-                            <div class="card card-shadowed" style="padding: 30px;">
-                            <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
-                            <!-- <div class="card card-shadowed"> -->
-                            <form action=<?php echo base_url('FoodWaze/Checkout');?> method="post">
-                             
-                            <div class="form-row col-10">
-
-
-                  <!-- <div class="col-md-6"> -->
-                    <div class="form-group col-md-6">
-                      <label style="font-size:15px; margin:-5px;">Name (Minimum of 2 characters):</label>
-                      <input type="text" class="form-control form-control-lg" required name="NameCustomer" required minlength="2" maxlength="30">
-                    </div>
-                  <!-- </div>
-
-
-                  <div class="col-md-6">
-                    <hr class="d-md-none"> -->
-
-                    <div class="form-group col-md-4">
-                      <label style="font-size:15px; margin:-5px;">Contact Number</label>
-                      <input type="number" class="form-control form-control-lg" required name="ContactNo" minlength="7" maxlength="11">
-                      <!-- <div class="invalid-feedback">Please provide a valid value.</div> -->
-                    </div>
-                  </div>
-
-
-                </div><!-- shadow card -->
-
-
-
-                            <!-- <div class="col-md-6">
-                                <div class="form-group">
-
-
-                                    <label>Name (2 to 30 characters):</label>   
-                                    <input class="form-control "type="text" name="NameCustomer" required minlength="2" maxlength="30" size="30">
-
-                                       
-                               
-                                <div class="form-group row">
-                                    <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
-                                        <div class="col-8 col-lg-8">
-                                                <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
-                                            <div class="invalid-feedback"></div>
+                                            <?php endforeach; ?>
                                         </div>
-                                </div> -->
+                                    </div> <!--col-12-->
+                            </div> <!--card-body-->
+                        </div> <!--card-->
+                        </div> <!-- end step 1 -->
 
-                                <div class="hidden">
-                                    <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
-                                </div>
-                            </form>  
+
+                    
+                        <!-- step 2 -->
+                        <div class="tab-pane fade" id="wizard-navable-2">
+                        <p class="text-center fs-30 text-muted"><strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">Order</strong> up!</p>
+                        <button type="button" class="btn btn-lg btn-primary fa fa-shopping-cart" data-toggle="modal" data-target="#myModal" onclick="show_cart()"></button>
+                            <div class="card"> 
+                              <div class="card-body">                                         
+                                <div class="row">
+                                  <div class="col-sm-12" id="menu-container">
+                                  </div>                                    
+                                </div><!--row-->                                   
+                              </div><!--card body-->                                
+                            </div> <!--card-->
+                        </div><!--tab-->                
+                        <!-- end step 2 -->
+
+
+                        <!-- step 3 -->                            
+                        <div class="tab-pane fade" id="wizard-navable-3">
+                        <p class="text-center fs-30 text-muted">Tell us about <strong class="text-primary" style="text-shadow: 1px 2px 2px #706763;">yourself</strong></p>
+                        <hr class="w-100px">
+                        <div class="card card-shadowed" style="padding: 30px;">
+                        <p style="color:#b53b30; font-size:20px; margin-left: 3px;">Please fill up form to be informed when order is done.</p>
+                        <!-- <div class="card card-shadowed"> -->
+                        <form action=<?php echo base_url('FoodWaze/Checkout');?> method="post">
+                         
+                        <div class="form-row col-10">
+
+
+              <!-- <div class="col-md-6"> -->
+                <div class="form-group col-md-6">
+                  <label style="font-size:15px; margin:-5px;">Name (Minimum of 2 characters):</label>
+                  <input type="text" class="form-control form-control-lg" required name="NameCustomer" required minlength="2" maxlength="30">
+                </div>
+              <!-- </div>
+
+
+              <div class="col-md-6">
+                <hr class="d-md-none"> -->
+
+                <div class="form-group col-md-4">
+                  <label style="font-size:15px; margin:-5px;">Contact Number</label>
+                  <input type="number" class="form-control form-control-lg" required name="ContactNo" minlength="7" maxlength="11">
+                  <!-- <div class="invalid-feedback">Please provide a valid value.</div> -->
+                </div>
+              </div>
+
+
+            </div><!-- shadow card -->
+
+
+
+                        <!-- <div class="col-md-6">
+                            <div class="form-group">
+
+
+                                <label>Name (2 to 30 characters):</label>   
+                                <input class="form-control "type="text" name="NameCustomer" required minlength="2" maxlength="30" size="30">
+
+                                   
+                           
+                            <div class="form-group row">
+                                <label class="col-3 col-lg-2 col-form-label text-center require">Contact No.</label>
+                                    <div class="col-8 col-lg-8">
+                                            <input type="number" pattern="[0-9]*" class="form-control" name="ContactNo" minlength="7" maxlength="11">
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                            </div> -->
+
+                            <div class="hidden">
+                                <button id="fsubmit" class="btn btn-primary" data-wizard="finish" type="submit">Submit</button>
+                            </div>
+                        </form>  
                       </div>
                 <hr>
                 <div class="flexbox">
@@ -265,16 +272,16 @@
                   show_cart();        
                   // swal("1 Item Added")
                   // timer: 2000,
-                  swal("Here's a message!")
+                  swal("Added!");
                   
-				  var notification = new NotificationFx({
-                                    message : '<p>1 Item Added</p>',
-                                    layout : 'growl',
-                                    effect : 'scale',
-                                    type : 'success'
-                                  });
-                                setInterval(notification.show(), 500);
-                },
+				  // var notification = new NotificationFx({
+      //                               message : '<p>1 Item Added</p>',
+      //                               layout : 'growl',
+      //                               effect : 'scale',
+      //                               type : 'success'
+      //                             });
+      //                           setInterval(notification.show(), 500);
+                 },
                 error: function(){
                     alert('ERROR!');
                 }
