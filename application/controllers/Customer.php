@@ -11,23 +11,23 @@ class Customer extends _BaseController {
         public function Signup()
         {
             $this->load->view('include/header');
-            $this->load->view('Customer/Signup'); // for stall list
+            $this->load->view('Foodwaze/Homepage'); // for stall list
             $this->load->view('include/footer');
         }
 
         public function Homepage()
         {
-            session_destroy(); 
-            $data['stall'] = $this->Foodwaze_model->getStall(); //stall list
             $this->load->view('include/header');
+            //session_destroy(); 
+            $data['stall'] = $this->Foodwaze_model->getStall(); //stall list
             $this->load->view('Customer/Homepage', $data); // for stall list
             $this->load->view('include/footer');
         }
 
-        public function Profile()
-        {
-            $this->load->view('include/header');
-            $this->load->view('Customer/Profile'); // for stall list
+        public function Profile(){
+            $this->load->view('include/header');        
+            $data['profile'] = $this->CustomerModel->CustomerDetails();
+            $this->load->view('Customer/Profile', $data);
             $this->load->view('include/footer');
         }
 
@@ -38,30 +38,24 @@ class Customer extends _BaseController {
             $this->load->view('include/footer');
         }
 
-        public function Login($submit = null){
-	
-		if ($submit == null){
-			$this->load->view('Login');	
-			return true;
-		}
 
-		$this->session->set_userdata($this->user->Login($this->input->post('CustomerAccount'), $this->input->post('CustomerAccount'), $this->input->post('password')));		
-		
-		$CustomerAccount = $this->input->post('CustomerAccount');
-		$password = $this->input->post('password');
-
-        $user = $this->user->Login($CustomerAccount, $password);
-        if($this->session->has_userdata('isLoggedIn')){
-            redirect(base_url('Customer/Homepage'));
+        public function GenerateReceipts(){
+            $json = '{ "data": [';
+            foreach($this->CustomerModel->Receipts() as $data){
+                $json .= '['
+                 //   .'"'.$this->ManagerModel->getMenuName($data->MenuId).'",'
+                    .'"'.$data->OrderId.'",'
+                    .'"'.$data->DateTime.'"'
+                .']';            
+                $json .= ',';
+            }
+            $json = $this->removeExcessComma($json);
+            $json .= ']}';
+            echo $json;        
         }
-        else{
-        	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
-        	redirect('Customer/Login');
-    	}
-	}
 
 	public function Logout(){
-		$this->session->sess_destroy();
+		session_destroy(); 
 		redirect(base_url('Customer/Login'));		
 	}
 
