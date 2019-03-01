@@ -7,13 +7,24 @@ class FoodWaze extends _BaseController {
         parent::__construct();
         }
 
-        public function index()
+        // public function index()
+        // {
+        //     // session_destroy(); 
+        //     $data['stall'] = $this->Foodwaze_model->getStall();
+        //     $this->load->view('include/header');
+        //     $this->load->view('Customer/Homepage', $data); // for stall list
+        //     $this->load->view('include/footer');
+        // }
+
+        public function Homepage()
         {
-            session_destroy(); 
+            //session_destroy(); 
+            $data['stall'] = $this->Foodwaze_model->getStall(); //stall list
             $this->load->view('include/header');
-            $this->load->view('Customer/Login'); // for stall list
+            $this->load->view('Customer/Homepage', $data); // for stall list
             $this->load->view('include/footer');
         }
+
 
         public function Dashboard(){
             $this->load->view('include/header');
@@ -32,8 +43,8 @@ class FoodWaze extends _BaseController {
         {
             $order = array(
                     'StallId' => $_SESSION['stallId'],
-                    'Name'=> $_POST['NameCustomer'],
-                    'Contact_Number'=> $_POST['ContactNo'],
+                    'EmployeeId'=> $_SESSION['EmployeeId'],
+                    //'Contact_Number'=> $_POST['ContactNo'],
                 );
             $orders[]=$order;
             $last_id = $this->Foodwaze_model->addorder($orders);
@@ -48,7 +59,7 @@ class FoodWaze extends _BaseController {
                 $items[]=$item;
             }
             $this->Foodwaze_model->addorderdetails($items);
-            redirect(base_url(''), 'refresh');
+            redirect(base_url('Customer/Homepage'), 'refresh');
 
             
         }
