@@ -31,12 +31,12 @@
 			</div>
 
 			<div class="form-group">
-			<span for="username">Username</span>
+			<span for="username">First Name</span>
 		    <input type="text" class="form-control" style="width:80%;" name="EmployeeAccount">
 			</div>
 			
 			<div class="form-group">
-			<span for="username">Username</span>
+			<span for="username">Last Name</span>
 		    <input type="text" class="form-control" style="width:80%;" name="EmployeeAccount">
 			</div>
 			
@@ -52,7 +52,7 @@
 			</div>
 			<br/>
 			<div class="form-group">
-			<span>Not a member yet?&nbsp;<a href="<?php echo base_url("Customer/Homepage"); ?>">Sign up</a></span>
+			<span>Go back to&nbsp;<a href="<?php echo base_url("Home/Login"); ?>">FoodWaze</a></span>
 			</div>
 		
 		</form>
