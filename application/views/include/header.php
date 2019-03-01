@@ -76,7 +76,9 @@
 <body>
 <?php     
   if($this->session->has_userdata('logged_in')){
-    if($this->session->has_userdata('is_admin')){
+    if($this->session->has_userdata('is_customer')){
+      include('menu_customer.php');
+    }else if($this->session->has_userdata('is_admin')){
       include('menu_admin.php');
     }else if($this->session->has_userdata('is_manager')){
       include('menu_manager.php');
