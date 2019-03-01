@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 
         $user = $this->user->Login($EmployeeAccount, $password);
         $position = $this->session->userdata('PositionId');
-        if($position == 1){
+       	if($position == 1){
 			$this->session->set_userdata(array('is_admin' => true));
             redirect('Admin/Dashboard');
         }else if($position == 2){
@@ -38,14 +38,18 @@ class Home extends CI_Controller {
         }else if($position == 3){
 			$this->session->set_userdata(array('is_cashier' => true));
             redirect('Cashier/Order');
-        }else{
+        }else if($position == 4){
+			$this->session->set_userdata(array('is_customer' => true));
+            redirect('FoodWaze/Homepage');
+        }
+        else{
         	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
         	redirect('Home/Login');
     	}
 	}
 
 	public function Logout(){
-		$this->session->sess_destroy();
+		session_destroy(); 
 		//$this->session->set_userdata(array('EmployeeAccount' => '', 'is_logged_in' => ''));
 		redirect(base_url('Home/Login'));		
 	}
