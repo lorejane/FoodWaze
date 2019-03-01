@@ -37,7 +37,10 @@
 
 			<div style="color:red;"><?php echo $errror;?></div>
 			<button name="submit" type="submit" class="btn btn-bold btn-primary">Submit</button>
-		
+			<br/><br/><br/>
+			<div class="form-group">
+			<span>Not a member yet?&nbsp;<a href="<?php echo base_url("Customer/Signup"); ?>">Sign up</a></span>
+			</div>
 		</form>
 	</div>
 
