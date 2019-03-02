@@ -7,15 +7,12 @@ class FoodWaze extends _BaseController {
         parent::__construct();
         }
 
-        // public function index()
-        // {
-        //     // session_destroy(); 
-        //     $data['stall'] = $this->Foodwaze_model->getStall();
-        //     $this->load->view('include/header');
-        //     $this->load->view('Customer/Homepage', $data); // for stall list
-        //     $this->load->view('include/footer');
-        // }
-
+    public function index()
+    {
+        $this->load->view('include/header');
+        $this->load->view('Login');
+        $this->load->view('include/footer');
+    }
         public function Homepage()
         {
             //session_destroy(); 
