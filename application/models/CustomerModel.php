@@ -6,7 +6,7 @@
 		parent::_setDai(
 			array(
 				"receiptmanagement",
-				"ReceiptNumber",
+				"OrderId",
 			)
 		);
 	}
@@ -18,6 +18,16 @@
 
 	public function CustomerDetails(){ //display details nung naka login
 		return $this->db->query("SELECT * FROM employee WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."' ")->row();	
+	}
+
+	public function _getReceipt($id){ //update menu
+		$dbList = $this->db->query("SELECT * FROM receiptmanagement WHERE OrderId = '".$id."'")->row();
+		return $dbList;		
+	}
+
+	public function _getReceipts($id){ //update menu
+		$dbList = $this->db->query("SELECT * FROM orderdetails WHERE OrderId = '".$id."'")->row();
+		return $dbList;		
 	}
 
 }
