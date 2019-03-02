@@ -45,7 +45,8 @@ class Customer extends _BaseController {
                 $json .= '['
                  //   .'"'.$this->ManagerModel->getMenuName($data->MenuId).'",'
                     .'"'.$data->OrderId.'",'
-                    .'"'.$data->DateTime.'"'
+                    .'"'.$data->DateTime.'",'
+                    .'"<a onclick = \"Receipt_Modal.edit('.$data->OrderId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-eye fa-2x\"></span></a>"'
                 .']';            
                 $json .= ',';
             }
@@ -59,5 +60,12 @@ class Customer extends _BaseController {
 		redirect(base_url('Customer/Login'));		
 	}
 
+    public function GetReceipt($id){        
+        echo $this->convert($this->CustomerModel->_getReceipt($id));
+    }
+
+    public function GetReceipts($id){        
+        echo $this->convert($this->CustomerModel->_getReceipts($id));
+    }
 
 }  
