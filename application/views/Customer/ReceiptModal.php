@@ -1,4 +1,4 @@
-<div class="modal modal-center fade" id="modal-Menu" tabindex="-1">
+<div class="modal modal-center fade" id="modal-Receipt" tabindex="-1">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <div class="modal-header">
@@ -9,38 +9,50 @@
             </div>
             <div class="modal-body form-type-line">
                 <div class="col-md-12 col-sm-12">
-                    <form id="modal-Menu-form" action="#" class="form-group mt-2">
-                        <input type="hidden" id="MenuId" name="MenuId" />          
-                        <div class="row mb-2">
-                            <div id="imgDisplay" class="col-12">
-                                <img src = "" />
-                                <input id="image" name="image" type="file" data-provide="dropify" data-show-remove="false" data-default-file="<?php echo base_url("pics/default.png"); ?>" style="border: solid black 1px;">
-                            </div>
-                        </div> 
-                        <div class="row mb-2">
-                            <div class="form-group col-lg-12 col-md-12 col-sm-12" style="margin: auto;">
-                                <label>Category</label>
-                                <select id="CategoryId" name="CategoryId" data-provide="selectpicker" title="Choose Category" data-live-search="true" class="form-control show-tick"></select>
-                            </div>
-                        </div>                        
+                    <form id="modal-Receipt-form" action="#" class="form-group mt-2">
+                        <input type="hidden" id="OrderId" name="OrderId" />   
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
+                                <input id="MenuId" name="MenuId" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Name</label>
+                                <input id="Quantity" name="Quantity" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                        </div> 
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Name</label>
+                                <input id="Total" name="Total" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Name</label>
+                                <input id="Cash" name="Cash" type="text" class="form-control" placeholder="Name" />
                             </div>
                         </div> 
                         <div class="row mb-2">
                             <div class="col-12">
                                 <label>Price</label>
-                                <input id="Price" name="Price" type="text" class="form-control" placeholder="Price" />
+                                <input id="Discount" name="Discount" type="text" class="form-control" placeholder="Price" />
                             </div>
-                        </div>                                                                                                  
+                        </div>   
+                        <div class="row mb-2">
+                            <div class="col-12">
+                                <label>Price</label>
+                                <input id="Change" name="Change" type="text" class="form-control" placeholder="Price" />
+                            </div>
+                        </div>                                                                                                   
                     </form>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-info" onclick="Menu_Modal.validate()">Save</button>
+                <button id="pdf" type="button" class="btn btn-info" >Save</button>
             </div>
         </div>
     </div>
@@ -48,185 +60,113 @@
 
 <script>
 
-    var imageChanged = false;
-
-    $(document).ready(function(){
-        $("#image").change(function(event){                     
-            var tgt = event.target || window.event.srcElement, files = tgt.files;       
-            var fr = new FileReader();
-            fr.onload = function(){
-                $("#imgDisplay").children('img').attr('src', fr.result);
-                imageChanged = true;
-            }
-            fr.readAsDataURL(files[0]);
-        });
-    });
-
-    var Menu_Modal = {
+    var Receipt_Modal = {
         data: function () {
             return {
-                MenuId: $('#MenuId').val(),                
-                CategoryId: $('#CategoryId').selectpicker('val'),
-                Name: $('#Name').val(),              
-                Price: $('#Price').val()
+                OrderId: $('#OrderId').val(),                
+                Total: $('#Total').val(),              
+                Cash: $('#Cash').val(), 
+                Discount: $('#Discount').val(), 
+                Change: $('#Change').val(),
+                MenuId: $('#MenuId').val(), 
+                Quantity: $('#Quantity').val()
             }
         },
 
-        init: function () {  
-         $.ajax({
-                url: "<?php echo base_url('Manager/GetAll'); ?>",
-                async: false,
-                success: function(i){
-                    i = JSON.parse(i);          
-                    $('#CategoryId').empty();          
-                    $.each(i, function(index, data){                        
-                        $('#CategoryId').append('<option value = "' + data.CategoryId + '">' + data.CategoryName + '</option>');
-                    })
-                    $('#CategoryId').selectpicker('refresh');
-                }
-            })         
-
-            $('#modal-Menu-form')[0].reset();
+        init: function () {        
+            $('#modal-Receipt-form')[0].reset();
             $('input').removeClass('is-invalid').addClass('');
             $('.invalid-feedback').remove();
-            $('#modal-Menu').modal('show');
+            $('#modal-Receipt').modal('show');
         },
         
-        new: function () {
-            $('#MenuId').val('0');            
-            $('.modal-title').text('Add Menu');            
-            $('#rowActive').addClass('invisible');
-            Menu_Modal.init();
-        },
-
         edit: function (id) {            
             $('.modal-title').text('Edit Menu');  
             $('#rowActive').removeClass('invisible');          
-            Menu_Modal.init();
+            Receipt_Modal.init();
             $.ajax({
-                url: "<?php echo base_url('Manager/GetMenu/'); ?>" + id,
+                url: "<?php echo base_url('Customer/GetReceipt/'); ?>" + id,
+                success: function(i){
+                    i = JSON.parse(i);
+                    console.log("edit"); 
+                    console.log(i);
+                    $('#OrderId').val(i.OrderId);
+                    $('#Total').val(i.Total);
+                    $('#Cash').val(i.Cash);
+                    $('#Discount').val(i.Discount);
+                    $('#Change').val(i.Change);
+                }
+            });
+              $.ajax({
+                url: "<?php echo base_url('Customer/GetReceipts/'); ?>" + id,
                 success: function(i){
                     i = JSON.parse(i);
                     console.log("edit"); 
                     console.log(i);
                     $('#MenuId').val(i.MenuId);
-                    $('#CategoryId').selectpicker('val',i.CategoryId);
-                    $('#Name').val(i.Name);
-                    $('#Price').val(i.Price);
-                    $('#image').parent().find('.dropify-preview .dropify-render img').attr('src', "<?php echo base_url('pics/'); ?>" + i.Image);
-                    imageChanged = false;
+                    $('#Quantity').val(i.Quantity);
                 }
-            });           
-        },
-        
-        delete: function (id) {             
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Employee',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url:"<?php echo base_url('Manager/DeleteMenu/'); ?>" +id,
-                            success: function(i){
-                                swal('Deleted!', 'success');
-                                $('#Menu-table').DataTable().ajax.reload();
-                                console.log(i);
-                            }, 
-                            error: function(i){
-                                swal('Oops!', "Something went wrong", 'error');
-                            }
-                    })                                     
-                }
-            })
-
-        },
-
-        validate: function(){
-            $('.invalid-feedback').remove();
-            $('.is-invalid').removeClass('is-invalid');
-            $.ajax({
-                url:'<?php echo base_url('Manager/ValidateMenus'); ?>',
-                type: "POST",
-                data: {"menu": Menu_Modal.data()},
-                success: function(i){
-                    i = JSON.parse(i);                    
-                    if(i.status == 1){
-                        Menu_Modal.save();
-                    }else{
-                        $.each(i, function(element, message){
-                            if(element != 'status'){
-                                $('#' + element).addClass('is-invalid').parent().append(message);
-                            }
-                        });
-                    }
-                }, 
-                error: function(i){
-                    swal('Oops!', "Something went wrong", 'error');
-                }
-            })      
-        },  
-
-        upload: function(){         
-            var formData = new FormData($('#modal-Menu-form')[0]);            
-            $.ajax({
-                url: "<?php echo base_url("Manager/UploadImage"); ?>",
-                type: "POST",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(data){
-                    console.log('upload: ' + data);                 
-                },
-                error: function(data){
-                    console.log('upload: ' + data);
-                }
-            });
-        },
-
-        save: function () {
-            var message;            
-            if ($('#MenuId').val() == 0) {
-                message = "Great Job! New Menu has been created";
-            } else {
-                message = "Nice! Menu has been updated";
-            }
-
-            swal({
-                title: 'Confirm Submission',
-                text: 'Save changes for Menu',
-                type: 'warning',
-                showCancelButton: true,
-                cancelButtonText: 'No! Cancel',
-                cancelButtonClass: 'btn btn-default',
-                confirmButtonText: 'Yes! Go for it',
-                confirmButtonClass: 'btn btn-info'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url:'<?php echo base_url('Manager/SaveMenu'); ?>',
-                        type: "POST",
-                        data: {"menu": Menu_Modal.data()},
-                        success: function(i){
-                          if(imageChanged){                               
-                            Menu_Modal.upload();
-                            }
-                            swal('Good Job!', message, 'success');
-                            $('#modal-Menu').modal('hide');
-                            console.log(i);
-                        }, 
-                        error: function(i){
-                            swal('Oops!', "Something went wrong", 'error');
-                        }
-                    })                                     
-                }
-            })
+            });     
         }
-    }
+      }
+</script>
+<script>
+$('#pdf').click(function () {
+  var menu = '';
+ // $.ajax({
+ //  url: '<?php echo base_url("Cashier/DisplayCart/"); ?>',
+ //  success: function(i){
+ //    i=JSON.parse(i);
+ //    console.log(i);
+ //    $.each(i, function(index, data){
+ //      menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
+
+ //    });
+  var date = $('#date').val();
+  var day = $('#day').val();
+  var time = $('#time').val();
+  var Change = $('form#smdiv input[name="change"]').val();
+  var discount = $('form#smdiv select[name="discount"]').val();
+  var puretotal = $('form#smdiv input[name="puretotal"]').val();
+  var Cash = $('form#smdiv input[name="ReceivedAmnt"]').val();
+  var Change = $('form#smdiv input[name="change"]').val();
+  var VAT = parseFloat(puretotal * 0.12);
+  var VATable = parseFloat(puretotal - VAT);
+  var VATExempt;
+  var TotalDue;
+
+  if(discount == 0){
+      VATExempt = 0;
+  }
+  else{
+    VATExempt = parseFloat(VATable);
+  }
+
+  if(VATExempt == 0){
+    TotalDue = parseFloat(puretotal);
+  }
+  else{
+    TotalDue = parseFloat(VATExempt * .8);
+  }
+
+
+  var pdf = new jsPDF('p', 'mm', [400, 330]);
+  pdf.text(40, 5, 'FOODWAZE');
+  pdf.text(35, 10, 'Receipt# '+' 312312');
+  pdf.text(15, 15, time +' | '+date);
+  pdf.text(5, 25, menu);
+  pdf.text(5, 80, '------------------------------------------------------');
+  pdf.text(5, 85, 'VATable:                                  '+ VATable);
+  pdf.text(5, 90, 'VAT Exempt:                            '+ VATExempt);
+  pdf.text(5, 95, 'VAT:                                        '+ VAT);
+  pdf.text(5, 100, '-----------------------------------------------------');
+  pdf.text(5, 105, 'Total Amount Due:                    '+ TotalDue );
+  pdf.text(5, 110, 'Cash:                                         '+ Cash+'.00');
+  pdf.text(5, 115, 'Change:                                     '+ Change);
+  pdf.save('Receipt.pdf');
+  console.log(menu);
+  }); 
+
+// });
 
 </script>
