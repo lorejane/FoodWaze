@@ -44,9 +44,8 @@ class Customer extends _BaseController {
             foreach($this->CustomerModel->Receipts() as $data){
                 $json .= '['
                  //   .'"'.$this->ManagerModel->getMenuName($data->MenuId).'",'
-                    .'"'.$data->OrderId.'",'
                     .'"'.$data->DateTime.'",'
-                    .'"<a onclick = \"Receipt_Modal.edit('.$data->OrderId.');\" data-toggle=\"tooltip\" title=\"EDIT\"><span class=\"btn btn-float btn-info text-white icon fa fa-eye fa-2x\"></span></a>"'
+                    .'"<a onclick = \"Receipt_Modal.edit('.$data->OrderId.');\" data-toggle=\"tooltip\" title=\"View\"><span class=\"btn btn-float btn-info text-white icon fa fa-eye fa-2x\"></span></a>"'
                 .']';            
                 $json .= ',';
             }

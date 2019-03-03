@@ -11,8 +11,9 @@
                 <span class="topbar-btn" data-toggle="dropdown"><img class="avatar avatar-sm" src="../pics/logo.png" alt="..."></span>
                 <div class="dropdown-menu dropdown-menu-right">
                   <a class="dropdown-item" href="<?php echo base_url('Customer/Profile'); ?>"><i class="ti-user"></i> Profile</a>
-                  <a class="dropdown-item" href="<?php echo base_url('Customer/Receipt'); ?>"><i class="ti-user"></i> Receipt</a>
+                  <a class="dropdown-item" href="<?php echo base_url('Customer/Receipt'); ?>"><i class="ti-receipt"></i> Receipt</a>
                   <a class="dropdown-item" href="<?php echo base_url('Home/Logout'); ?>"><i class="ti-power-off"></i> Logout</a>
+                  
                 </div>
               </div>
     </div>

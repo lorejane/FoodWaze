@@ -1,5 +1,20 @@
 <main clas="main-container  bg-lightest">
 
+<header class="header">
+<div class="container bg-danger h-100px">
+  <p class="text-white letter-spacing-5 fs-30">
+    <br />
+   <strong> <?php echo $stall->Name; ?></strong>
+  </p>
+</div>
+
+   <div class="preloader">
+       <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
+            <circle class="circle" cx="25" cy="25" r="25"></circle>
+      </svg>
+    </div>
+</header>
+
 <header class="header bg-lightest bb-3 border-yellow ">
 
   <div class="header-info">

@@ -45,6 +45,11 @@
 		    <input type="text" class="form-control" style="width:80%;" name="EmployeeAccount">
 		</div>
 
+         <div class="form-group">
+      <span for="contact">Contact Number</span>
+        <input type="number" class="form-control" style="width:80%;" name="ContactNumber" minlength="11" maxlength="11">
+    </div>
+
         <div class="form-group">
 			<span for="password">Password</span>
 		    <input type="password" class="form-control" style="width:80%;" name="password">
