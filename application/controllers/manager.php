@@ -54,6 +54,7 @@ class Manager extends _BaseController {
         $this->load->view('include/footer');
     }
 
+
     public function Dashboard(){
         $this->load->view('include/header');
         $data['stall'] = $this->ManagerModel->getStallname();

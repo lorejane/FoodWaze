@@ -23,7 +23,7 @@
         <div class="sidebar-profile">
             <a id="<?php echo $this->session->userdata('StallId'); ?> " href="<?php echo base_url('manager/Profile'); ?>"><img class="avatar" src="../pics/logo.png" alt="..."></a>
           <div class="profile-info">
-            <h4><?php echo $this->session->userdata('Em'); ?></h4>
+        
             <p>Manager</p>
             
           </div>

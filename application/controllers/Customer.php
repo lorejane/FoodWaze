@@ -11,7 +11,7 @@ class Customer extends _BaseController {
         public function Signup()
         {
             $this->load->view('include/header');
-            $this->load->view('Foodwaze/Homepage'); // for stall list
+            $this->load->view('Customer/Signup'); // for stall list
             $this->load->view('include/footer');
         }
 
