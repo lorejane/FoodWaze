@@ -3,16 +3,17 @@
 
 <!--NAME NUNG STALLS-->
 <header class="header">
-<div class="container bg-img h-250px" style="" >
-    <div class="header-info">
-        <?php echo $stall->Name; ?>
-    </div>
-    </div>
+<div class="container bg-danger h-100px">
+  <p class="text-white letter-spacing-5 fs-30">
+    <br />
+   <strong> <?php echo $stall->Name; ?></strong>
+  </p>
+</div>
 
-     <div class="preloader">
+   <div class="preloader">
        <svg class="spinner-circle-material-svg" viewBox="0 0 50 50">
             <circle class="circle" cx="25" cy="25" r="25"></circle>
-        </svg>
+      </svg>
     </div>
 </header>
 <!--end nung name ng stalls-->
