@@ -67,8 +67,4 @@ class Customer extends _BaseController {
         echo $this->convert($this->CustomerModel->_getReceipts($id));
     }
 
-    public function GetMenuName($id){        
-        echo $this->convert($this->CustomerModel->GetMenuName($id));
-    }
-
 }  

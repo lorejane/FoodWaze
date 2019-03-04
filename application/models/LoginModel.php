@@ -16,6 +16,7 @@
 			foreach($query->result() as $row){
 				$session_data = array(
 					'PositionId' => $row->PositionId,
+					'CustomerId' => $row->CustomerId,
 					'EmployeeId' => $row->EmployeeId,
 					'StallId' => $row->StallId,
 					'logged_in' => true
