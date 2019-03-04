@@ -28,7 +28,7 @@ class Cashier extends _BaseController {
         //var_dump($discount);
         $orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
         $array = array(
-            //'EmployeeId' => $this->session->userdata('EmployeeId'),
+            'EmployeeId' => '86',
             'StallId' => $this->session->userdata('StallId'),
             'OrderId' => $orderid,
             'Discount' => $discount,
