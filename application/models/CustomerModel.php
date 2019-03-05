@@ -12,7 +12,8 @@
 	}
 
 	public function Receipts(){ //display menu 
-		return $this->db->query("SELECT * FROM orders WHERE CustomerId = '".$this->session->userdata('CustomerId')."'")->result();
+		//SELECT * FROM receiptmanagement where OrderId IN (Select OrderId from orders where CustomerId = '10')
+		return $this->db->query("SELECT * FROM receiptmanagement where OrderId IN (Select OrderId from orders where CustomerId = '".$this->session->userdata('CustomerId')."')")->result();
 	
 	}
 
