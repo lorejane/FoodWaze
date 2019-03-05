@@ -14,7 +14,9 @@
                         <input type="hidden" data-id="MenuId" name="MenuId" />   
                         <div class="row mb-2">
                             <div class="col-12" style="height:50%;" >
-                              <label>Name</label>
+                              <table class="col-sm-12">
+                              <thead style=" border: 1px solid rgba(0, 0, 0, .2); background-color:#FFE694;"> <tr>  <th width="10%">Qty</th>  <th width="50%">Name</th> <th width="20%">Price</th> <th width="20%">Total</th> </tr> </thead> 
+                              </table>
                                 <div id="mycart">
                                 </div>
                               </div>
@@ -98,7 +100,7 @@ var globalNaSinigang;
                 console.log(i);
                 var sinigang = '<table class="table">';
                 $.each(i, function(index, data){
-                  sinigang += "<tr><td width=\"70%\">" + data.Name + "</td><td  width=\"15%\">" + data.Quantity + "</td><td  width=\"15%\">" + data.Total + "</td></tr>" ;
+                  sinigang += "<tr><td  width=\"150\">" + data.Quantity + "</td><td width=\"50%\">" + data.Name + "</td><td  width=\"20%\">" + data.Total + "</td> <td  width=\"20%\">" + (data.Quantity * data.Total) + "</td></tr>" ;
                   
                 })
                 sinigang += '</table>';
@@ -126,21 +128,9 @@ var globalNaSinigang;
 <script>
 $('#pdf').click(function () {
   var sinigang ='';
-  
-  // console.log(sinigang);
- // $.ajax({
- //  url: '<?php echo base_url("Cashier/DisplayCart/"); ?>',
- //  success: function(i){
- //    i=JSON.parse(i);
- //    console.log(i);
- //    $.each(i, function(index, data){
- //      menu += data.qty + ' ' + data.name + " - " + (data.qty * data.price) + '\n';
-
- //    });
   var date = $('#date').val();
   var day = $('#day').val();
   var time = $('#time').val();
-//  var Change = $('#Change').val();
   var discount = $('#Discount').val();
   var puretotal = $('#Total').val();
   var Cash = $('#Cash').val();
@@ -180,7 +170,7 @@ $('#pdf').click(function () {
     console.log(i);
     // var sinigang = '<table class="table">';
     $.each(i, function(index, data){
-      sinigang += data.Name + " x " + data.Quantity + " - " + data.Total + "\n";
+      sinigang +=  data.Name + data.Quantity + " x " + data.Total + " = " + (data.Quantity * data.Total) + "\n";
       
     })
     pdf.text(5, 35, sinigang);
