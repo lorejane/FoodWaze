@@ -4,7 +4,7 @@
         <div class="header-info">
           <h3 class="header-title text-dark">
             <br />
-              <br />s
+              <br />
             <strong>List of Receipts</strong> 
             <small>This shows the list of all receipts in the previous transactions</small>
           </h3>
