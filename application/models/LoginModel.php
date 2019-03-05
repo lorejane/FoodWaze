@@ -45,11 +45,12 @@
 			);
 	}
 
-	public function UpdateProfile($EmployeeAccount, $Firstname, $Lastname, $Password){
+	public function UpdateProfile($EmployeeAccount, $Firstname, $Lastname, $ContactNumber, $Password){
 				$this->db->query("UPDATE employee SET "
                 ."EmployeeAccount = '".$EmployeeAccount."',"
                 ."Firstname = '".$Firstname."',"
                 ."Lastname = '".$Lastname."',"
+                ."ContactNumber = '".$ContactNumber."',"
                 //."PositionId = '".$this->session->userdata('PositionId')."',"
                 ."StallId = '0',"
                 ."Password = '".$Password."'"
