@@ -1,23 +1,23 @@
 <br/><br/><br/><br/>
 <main clas="main-container">
 
-<header class="header">
-<div style="background-color: #fd2951" class="container">
+<header style="background-color: #fd2951" class="header ">
+
   <div class="header-info">
   <div class="left">
-    <br>
-    <h2 class="header-title fs-60 text-white"><strong>Personal Profile</strong></h2>
+    <p class="header-title fs-60 text-white fw-50"><strong>Personal Profile</strong></p>
   </div>
   </div>
 </header>
+
+
 <div class="row">
 
-<div class="col-sm-3 bg-pale-danger b-2 border-danger">
-  <div class="sidebar-profile">
+<div style="padding: 2px" class="col-md-3 bg-lighest b-2 border-pink ">
             <a href="<?php echo base_url('Customer/Profile'); ?>"><img src="../pics/profile.jpg" alt="..."></a>
 </div>
-</div>
-<div class="col-sm-9">
+
+<div class="col-md-9">
               <form class="card" class="form-type-material" role="form" action="<?php echo base_url('Home/UpdateProfile')?>" method="post">
               <h4 class="card-title"><strong>Edit Profile</strong></h4>
 
@@ -42,6 +42,11 @@
                             <div class="col-6">
                                 <label>Last Name</label>
                                 <input id="Lastname" name="Lastname" type="text" class="form-control" placeholder="Last Name" value="<?php echo $profile->Lastname ?>"/>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Contact Number</label>
+                                <input id="ContactNumber" type="number" class="form-control" placeholder="Contact Number" name="ContactNumber" minlength="11" maxlength="11">
                             </div>
                         
                     <!-- selectpicker -->
