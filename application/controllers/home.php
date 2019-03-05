@@ -48,6 +48,49 @@ class Home extends CI_Controller {
     	}
 	}
 
+	public function Signup($submit = null){
+	
+		if ($submit == null){
+			$this->load->view('Login');	
+			return true;
+		}
+
+		$this->session->set_userdata($this->user->Signup($this->input->post('EmployeeAccount'), $this->input->post('Firstname'), $this->input->post('Lastname'), $this->input->post('ContactNumber'),$this->input->post('Password')));		
+		
+		$EmployeeAccount = $this->input->post('EmployeeAccount');
+		$Firstname = $this->input->post('Firstname');
+		$Lastname = $this->input->post('Lastname');
+		$ContactNumber = $this->input->post('ContactNumber');
+		$Password = $this->input->post('Password');
+        $employee = $this->user->Signup($PositionId, $EmployeeAccount,$Firstname, $Lastname, $ContactNumber, $Password);
+
+        $position = $this->session->userdata('PositionId');
+		if($submit != null){
+			$this->session->set_userdata(array('is_customer' => true));
+            redirect('FoodWaze/Homepage');
+        }
+        else{
+        	$this->session->set_flashdata('login_fail', ' Invalid Account/Password!');
+        	redirect('Customer/Signup');
+    	}	
+    }
+
+	public function UpdateProfile($submit = null){
+		$this->session->set_userdata($this->user->UpdateProfile($this->input->post('EmployeeAccount'), $this->input->post('Firstname'), $this->input->post('Lastname'), $this->input->post('Password')));		
+		
+		$EmployeeAccount = $this->input->post('EmployeeAccount');
+		$Firstname = $this->input->post('Firstname');
+		$Lastname = $this->input->post('Lastname');
+		//$ContactNumber = $this->input->post('ContactNumber');
+		$Password = $this->input->post('Password');
+        $user = $this->user->UpdateProfile($EmployeeAccount,$Firstname, $Lastname,  $Password);
+        //$position = $this->session->userdata('PositionId');
+       		if($submit == null){
+			//$this->session->set_userdata(array('is_customer' => true));
+            redirect('Customer/Profile');
+        }
+       } 
+
 	public function Logout(){
 		session_destroy(); 
 		//$this->session->set_userdata(array('EmployeeAccount' => '', 'is_logged_in' => ''));
