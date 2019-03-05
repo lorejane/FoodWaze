@@ -11,41 +11,44 @@
                 <div class="col-md-12 col-sm-12">
                     <form id="modal-Receipt-form" action="#" class="form-group mt-2">
                         <input type="hidden" id="OrderId" name="OrderId" />
-                        <input type="hidden" id="MenuId" name="MenuId" />   
+                        <input type="hidden" data-id="MenuId" name="MenuId" />   
                         <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Name</label>
-                                <input id="Name" name="Name" type="text" class="form-control" placeholder="Name" />
+                            <div class="col-12" style="height:50%;" >
+                              <label>Name</label>
+                                <div id="mycart">
+                                </div>
+                              </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <label>Total Amount Due</label>
+                            </div>
+                            <div class="col-6">
+                                <input id="Total" name="Total" type="text" class="form-control" style="text-align:center;" placeholder="Name" readonly/>
                             </div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Name</label>
-                                <input id="Quantity" name="Quantity" type="text" class="form-control" placeholder="Name" />
-                            </div>
-                        </div> 
-                        <div class="row mb-2">
-                            <div class="col-12">
-                                <label>Amount Due</label>
-                                <input id="Total" name="Total" type="text" class="form-control" placeholder="Name" />
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label>Cash</label>
-                                <input id="Cash" name="Cash" type="text" class="form-control" placeholder="Name" />
+                            </div>
+                            <div class="col-6">    
+                                <input id="Cash" name="Cash" type="text" class="form-control" style="text-align:center;" placeholder="Name" readonly/>
                             </div>
                         </div> 
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label>Discount</label>
-                                <input id="Discount" name="Discount" type="text" class="form-control" placeholder="Price" />
+                            </div>
+                            <div class="col-6">    
+                                <input id="Discount" name="Discount" type="text" class="form-control" style="text-align:center;" placeholder="Price"  readonly/>
                             </div>
                         </div>   
                         <div class="row mb-2">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label>Change</label>
-                                <input id="Change" name="Change" type="text" class="form-control" placeholder="Price" />
+                            </div>
+                            <div class="col-6">
+                                <input id="Change" name="Change" type="text" class="form-control" style="text-align:center;" placeholder="Price"  readonly/>
                             </div>
                         </div>                                                                                                   
                     </form>
@@ -53,14 +56,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary " data-dismiss="modal">Cancel</button>
-                <button id="pdf" type="button" class="btn btn-info" >Save</button>
+                <button id="pdf" type="button" class="btn btn-info" >Save Receipt</button>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-
+var globalNaSinigang;
     var Receipt_Modal = {
         data: function () {
             return {
@@ -82,10 +85,27 @@
             $('#modal-Receipt').modal('show');
         },
         
-        edit: function (id) {            
-            $('.modal-title').text('Edit Menu');  
+        edit: function (id) { 
+            $('#mycart').empty();            
+            $('.modal-title').text('Receipt');  
             $('#rowActive').removeClass('invisible');          
             Receipt_Modal.init();
+            globalNaSinigang = id;
+            $.ajax({
+                url: "<?php echo base_url('Customer/GetReceipts/'); ?>" + id,
+                success: function(i){
+                i= JSON.parse(i);
+                console.log(i);
+                var sinigang = '<table class="table">';
+                $.each(i, function(index, data){
+                  sinigang += "<tr><td width=\"70%\">" + data.Name + "</td><td  width=\"15%\">" + data.Quantity + "</td><td  width=\"15%\">" + data.Total + "</td></tr>" ;
+                  
+                })
+                sinigang += '</table>';
+                $('#mycart').html(sinigang);
+                console.table(sinigang);
+                }
+              })            
             $.ajax({
                 url: "<?php echo base_url('Customer/GetReceipt/'); ?>" + id,
                 success: function(i){
@@ -93,38 +113,21 @@
                     console.log("edit"); 
                     console.log(i);
                     $('#OrderId').val(i.OrderId);
+                     $('#MenuId').val(i.MenuId);
                     $('#Total').val(i.Total);
                     $('#Cash').val(i.Cash);
                     $('#Discount').val(i.Discount);
                     $('#Change').val(i.Change);
                 }
-            });
-              $.ajax({
-                url: "<?php echo base_url('Cashier/GetMenu/'); ?>" + id,
-                success: function(i){
-                    i = JSON.parse(i);
-                    console.log("edit"); 
-                    console.log(i);
-                    $('#MenuId').val(i.MenuId);
-                    $('#Name').val(i.Name);
-                }
-            });   
-              $.ajax({
-                url: "<?php echo base_url('Customer/GetReceipts/'); ?>" + id,
-                success: function(i){
-                    i = JSON.parse(i);
-                    console.log("edit"); 
-                    console.log(i);
-                    //$('#MenuId').val(i.MenuId);
-                    $('#Quantity').val(i.Quantity);
-                }
-            });     
+            });    
         }
       }
 </script>
 <script>
 $('#pdf').click(function () {
-  var menu = '';
+  var sinigang ='';
+  
+  // console.log(sinigang);
  // $.ajax({
  //  url: '<?php echo base_url("Cashier/DisplayCart/"); ?>',
  //  success: function(i){
@@ -169,7 +172,24 @@ $('#pdf').click(function () {
   pdf.text(25, 20, 'VAT reg TIN:'+'005-571-216-002');
   pdf.text(25, 25, 'MIN:'+'17101118105743142');
   pdf.text(1, 30, '-----------------------------------------------------------------');
-  pdf.text(5, 50, menu);
+  $.ajax({
+    url: "<?php echo base_url('Customer/GetReceipts/'); ?>" + globalNaSinigang,
+    async: false,
+    success: function(i){
+    i= JSON.parse(i);
+    console.log(i);
+    // var sinigang = '<table class="table">';
+    $.each(i, function(index, data){
+      sinigang += data.Name + " x " + data.Quantity + " - " + data.Total + "\n";
+      
+    })
+    pdf.text(5, 35, sinigang);
+    // sinigang += '</table>';
+    // $('#mycart').html(sinigang);
+    // console.table(sinigang);
+    }
+  });
+  // pdf.text(5, 50, sinigang);
   pdf.text(1, 90, '----------------------------------------------------------------');
   pdf.text(10, 95, 'VATable:                                   '+ VATable);
   pdf.text(10, 100, 'VAT Exempt:                             '+ VATExempt);
@@ -204,7 +224,7 @@ $('#pdf').click(function () {
   pdf.text(10, 246, 'FIVE (5) YEARS FROM THE DATE OF');
   pdf.text(35, 251, 'THE PERMIT TO USE');
   pdf.save('Receipt.pdf');
-  console.log(menu);
+  console.log(sinigang);
   }); 
 
 // });
