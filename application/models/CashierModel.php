@@ -36,12 +36,12 @@
 	}
 
 	public function SaveOrder(){
-		$this->db->query("INSERT into orders "
-			."(StallId, IsActive) VALUES ("
-		 			."'".$this->session->userdata('StallId')."',"	
-		 			."'0'"
-		 			.")" 
-				);
+		// $this->db->query("INSERT into orders "
+		// 	."(StallId, IsActive) VALUES ("
+		//  			."'".$this->session->userdata('StallId')."',"	
+		//  			."'0'"
+		//  			.")" 
+		// 		);
 		$orderid = $this->db->query("SELECT MAX(OrderId) AS OrderId FROM orders")->row()->OrderId;
 		foreach($this->cart->contents() as $menu) {
 		$this->db->query("INSERT into orderdetails "
