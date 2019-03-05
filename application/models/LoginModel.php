@@ -30,4 +30,29 @@
 			}
 		}
 
+	public function Signup($PositionId, $EmployeeAccount, $Firstname, $Lastname, $ContactNumber, $Password){
+		$this->db->query("INSERT into employee "
+				."(EmployeeAccount,Firstname, Lastname, PositionId,StallId, ContactNumber, Password) VALUES ("                   
+					."'$EmployeeAccount',"	
+					."'$Firstname',"	
+					."'$Lastname',"	
+					."'4',"	
+					."'0',"	
+					."'$ContactNumber',"
+					."'$Password'"							
+				.")"
+			);
+	}
+
+	public function UpdateProfile($EmployeeAccount, $Firstname, $Lastname, $Password){
+				$this->db->query("UPDATE employee SET "
+                ."EmployeeAccount = '".$EmployeeAccount."',"
+                ."Firstname = '".$Firstname."',"
+                ."Lastname = '".$Lastname."',"
+                //."PositionId = '".$this->session->userdata('PositionId')."',"
+                ."StallId = '0',"
+                ."Password = '".$Password."'"
+                ."WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'"
+			);	
+	}
 }
