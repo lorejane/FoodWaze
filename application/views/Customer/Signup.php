@@ -25,7 +25,7 @@
       <h5 class="text-uppercase">Sign up</h5>
       <br>
 
-      <form class="form-type-material" role="form" action="<?php echo base_url('Home/Login/submit')?>" method="post">
+      <form class="form-type-material" role="form" action="<?php echo base_url('Home/Signup/submit')?>" method="post">
 	<?php if($errror = $this->session->flashdata('login_fail')):?>
 	<?php endif; ?>	
 
@@ -37,12 +37,12 @@
 
         <div class="form-group">
          <span for="username">First Name</span> 
-         <input type="text" class="form-control" style="width:80%;" name="EmployeeAccount">	
+         <input type="text" class="form-control" style="width:80%;" name="Firstname">	
         </div>
 
         <div class="form-group">
 			<span for="username">Last Name</span>
-		    <input type="text" class="form-control" style="width:80%;" name="EmployeeAccount">
+		    <input type="text" class="form-control" style="width:80%;" name="Lastname">
 		</div>
 
          <div class="form-group">
@@ -52,7 +52,7 @@
 
         <div class="form-group">
 			<span for="password">Password</span>
-		    <input type="password" class="form-control" style="width:80%;" name="password">
+		    <input type="password" class="form-control" style="width:80%;" name="Password">
 		</div>
 
 
@@ -76,4 +76,5 @@
 <script src = "<?php echo base_url('assets/js/script.min.js'); ?>"></script>
 
 </body>
+
 </html>
