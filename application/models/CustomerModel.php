@@ -12,7 +12,7 @@
 	}
 
 	public function Receipts(){ //display menu 
-		return $this->db->query("SELECT * FROM receiptmanagement WHERE EmployeeId = '".$this->session->userdata('EmployeeId')."'")->result();
+		return $this->db->query("SELECT * FROM orders WHERE CustomerId = '".$this->session->userdata('CustomerId')."'")->result();
 	
 	}
 
