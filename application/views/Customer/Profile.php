@@ -46,7 +46,7 @@
 
                             <div class="form-group">
                                 <label>Contact Number</label>
-                                <input id="ContactNumber" type="number" class="form-control" placeholder="Contact Number" name="ContactNumber" minlength="11" maxlength="11">
+                                <input id="ContactNumber" name="ContactNumber" type="number" class="form-control" placeholder="Contact Number" value="<?php echo $profile->ContactNumber ?>" />
                             </div>
                         
                     <!-- selectpicker -->
