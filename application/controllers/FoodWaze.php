@@ -40,7 +40,7 @@ class FoodWaze extends _BaseController {
         {
             $order = array(
                     'StallId' => $_SESSION['stallId'],
-                    'EmployeeId'=> $_SESSION['EmployeeId'],
+                    'CustomerId'=> $_SESSION['CustomerId'],
                     //'Contact_Number'=> $_POST['ContactNo'],
                 );
             $orders[]=$order;
