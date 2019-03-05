@@ -16,8 +16,8 @@ class FoodWaze extends _BaseController {
         public function Homepage()
         {
             //session_destroy(); 
-            $data['stall'] = $this->Foodwaze_model->getStall(); //stall list
             $this->load->view('include/header');
+            $data['stall'] = $this->Foodwaze_model->getStall(); //stall list
             $this->load->view('Customer/Homepage', $data); // for stall list
             $this->load->view('include/footer');
         }
@@ -56,7 +56,7 @@ class FoodWaze extends _BaseController {
                 $items[]=$item;
             }
             $this->Foodwaze_model->addorderdetails($items);
-            redirect(base_url('Customer/Homepage'), 'refresh');
+            redirect(base_url('Customer/Homepage'));
 
             
         }
@@ -128,6 +128,17 @@ class FoodWaze extends _BaseController {
                 $_SESSION['cart']['total']=$_SESSION['cart']['total']-$_SESSION['cart'][$_POST['item_id']]['qty'];                   unset($_SESSION['cart'][$_POST['item_id']]);  
             }                                                     
         }
+
+        public function Plus1()
+        {   
+            $_SESSION['cart'][$_POST['item_id']]['qty']=$_SESSION['cart'][$_POST['item_id']]['qty']+1;
+            $_SESSION['cart']['total']=$_SESSION['cart']['total']+1;
+            if($_SESSION['cart'][$_POST['item_id']]['qty']==1)
+            {
+                $_SESSION['cart']['total']=$_SESSION['cart']['total']+$_SESSION['cart'][$_POST['item_id']]['qty'];                   unset($_SESSION['cart'][$_POST['item_id']]);  
+            }                                                     
+        }
+
         public function Showcart()
         {           
             if($_SESSION['cart']!=null){
