@@ -10,10 +10,15 @@
   </div>
   </div>
 </header>
+<div class="row">
 
-
-<div class="col-md-8">
-              <form class="card">
+<div class="col-sm-3 bg-pale-danger b-2 border-danger">
+  <div class="sidebar-profile">
+            <a href="<?php echo base_url('Customer/Profile'); ?>"><img src="../pics/profile.jpg" alt="..."></a>
+</div>
+</div>
+<div class="col-sm-9">
+              <form class="card" class="form-type-material" role="form" action="<?php echo base_url('Home/UpdateProfile')?>" method="post">
               <h4 class="card-title"><strong>Edit Profile</strong></h4>
 
               <div class="card-body row">
@@ -30,7 +35,7 @@
                        
                             <div class="col-6">
                                 <label>First Name</label>
-                                <input id="Firstname" name="Lastname" type="text" class="form-control" placeholder="First Name" value="<?php echo $profile->Firstname ?>"/>
+                                <input id="Firstname" name="Firstname" type="text" class="form-control" placeholder="First Name" value="<?php echo $profile->Firstname ?>"/>
                             </div>
                                                                        
               
@@ -53,9 +58,5 @@
               </footer>
            </form>
           </div>
-
-<div class="col-md-3 bg-pale-danger b-2 border-danger">
-  <div class="sidebar-profile">
-            <a href="<?php echo base_url('Customer/Profile'); ?>"><img src="../pics/profile.jpg" alt="..."></a>
 </div>
 </main>
