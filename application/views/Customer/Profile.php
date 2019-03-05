@@ -56,10 +56,6 @@
 
 <div class="col-md-3 bg-pale-danger b-2 border-danger">
   <div class="sidebar-profile">
-            <a href="<?php echo base_url('Admin/Profile'); ?>"><img class="avatar" src="../assets/img/avatar/1.jpg" alt="..."></a>
-          <div class="profile-info">
-            <h4>Maryam Amiri</h4>
-            <p>Web developer</p>
-          </div>
+            <a href="<?php echo base_url('Customer/Profile'); ?>"><img src="../pics/profile.jpg" alt="..."></a>
 </div>
 </main>
